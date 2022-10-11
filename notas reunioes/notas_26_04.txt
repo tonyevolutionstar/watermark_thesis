@@ -1,0 +1,4 @@
+modulação do qrcode sobre o texto. Onde o qrcode é mais escuro coloca-se o texto mais escuro
+onde é mais claro meto mais claro.
+Filtragem de cores.
+Contornos

@@ -45,6 +45,25 @@ namespace WatermarkApp
             document_name.AutoSize = true;
             document_name.TabIndex = 9;
             this.file_name = file_name;
+            get_PositionChar();
+        }
+
+        private void get_PositionChar()
+        {
+            string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            Console.WriteLine(file_name);
+            Console.WriteLine(partialPath);
+
+            System.Diagnostics.ProcessStartInfo process = new System.Diagnostics.ProcessStartInfo();
+            process.UseShellExecute = false;
+            process.WorkingDirectory = partialPath;
+            process.FileName = partialPath + @"\thesis_watermark.jar";
+            process.Arguments = "java -jar " + file_name;
+            process.RedirectStandardOutput = true;
+
+            System.Diagnostics.Process cmd = System.Diagnostics.Process.Start(process);
+            // waiting to complete 
+            cmd.WaitForExit();
         }
 
 

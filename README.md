@@ -2,6 +2,7 @@
 <h2>Folders</h2>
 <ul style="list-style-type:circle">
   <li>9_qrcodes - main project</li>
+  <li>Database - files to create user and database</li>
   <li>Qrcode Tests - testing the ideal number of qrcodes to use on project</li>
 </ul>
 <br>

@@ -2,14 +2,11 @@
 <h2>Folders</h2>
 <ul style="list-style-type:circle">
   <li>9_qrcodes - main project</li>
-  <li>Combinations - its is just a creation of a program that creates all combinations of strings, the propose is to use on main project</li>
-  <li>Notas reuniaão - some notes of the project</li>
   <li>Qrcode Tests - testing the ideal number of qrcodes to use on project</li>
 </ul>
 <br>
 <h2>Files</h2>
 <ul style="list-style-type:circle">
-  <li>Tese.docx - Thesis document</li>
   <li>positionCharacter.java - Algorithm developed in java to extract the position of characters on a given pdf file</li>
 </ul>
 <br>

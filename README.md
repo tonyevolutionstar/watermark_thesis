@@ -1,5 +1,23 @@
-# Packages
+# Struct 
+<h2>Folders</h2>
+<ul style="list-style-type:circle">
+  <li>9_qrcodes - main project</li>
+  <li>Combinations - its is just a creation of a program that creates all combinations of strings, the propose is to use on main project</li>
+  <li>Notas reuniaão - some notes of the project</li>
+  <li>Qrcode Tests - testing the ideal number of qrcodes to use on project</li>
+</ul>
+<br>
+<h2>Files</h2>
+<ul style="list-style-type:circle">
+  <li>Tese.docx - Thesis document</li>
+  <li>positionCharacter.java - Algorithm developed in java to extract the position of characters on a given pdf file</li>
+</ul>
+<br>
+# Steps before running the program 
 
+
+
+# Packages
 <p>BouncyCastle - Install-Package BouncyCastle -Version 1.8.9 </p>
 <p>IronBarcode - Install-Package BarCode -Version 2022.8.8024 </p>
 <p>iTextSharp - Install-Package iTextSharp -Version 5.5.13.3 </p>

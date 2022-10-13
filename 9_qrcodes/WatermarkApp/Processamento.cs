@@ -46,21 +46,18 @@ namespace WatermarkApp
             document_name.AutoSize = true;
             document_name.TabIndex = 9;
             this.file_name = file_name;
-            Get_PositionChar();
-            
+            Get_PositionChar(); 
         }
 
         private void Get_PositionChar()
         {
             string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            Console.WriteLine(partialPath);
             string jarfile = partialPath + @"\Ficheiros\thesis_watermark.jar";
             Process myProcess = new Process();
             myProcess.StartInfo.UseShellExecute = false;
             myProcess.StartInfo.RedirectStandardOutput = true;
             myProcess.StartInfo.FileName = "java";
             myProcess.StartInfo.Arguments = "-jar " + '"' + jarfile + '"' + " " + '"' + file_name + '"';
-            Console.WriteLine("Arguments " + myProcess.StartInfo.Arguments);
             myProcess.Start();
             myProcess.WaitForExit();
         }
@@ -122,7 +119,6 @@ namespace WatermarkApp
             string[] show_doc = file_name.Split(new[] { @"Ficheiros\" }, StringSplitOptions.None);
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
      
-
             if (File.Exists(s_doc[0] + qrcode_pdf))
             {
                 MessageBox.Show("Já processei o ficheiro, por favor aceite ou rejeite");  
@@ -178,7 +174,6 @@ namespace WatermarkApp
             delete_files.Add(image);
             for (int i = 1; i <= 9; i++)
                 delete_files.Add(filename + "_qrcode_" + i + ".png");
-
 
             string qr_handled = filename + "_qrcode_handled.png";
             delete_files.Add(qr_handled);
@@ -249,8 +244,6 @@ namespace WatermarkApp
                 int btn_right = analise.Get_index(analise.bottom_right, range);
                 char b_rigth = analise.Read_text_doc(btn_right);
 
-               
-
                 qrcode.Generate_qrcode(t_left, 1);
                 qrcode.Generate_qrcode(t_middle, 2);
                 qrcode.Generate_qrcode(t_rigth, 3);
@@ -294,10 +287,7 @@ namespace WatermarkApp
         private static Dictionary<Metadata, string> PreencherMetadadosParaFicheiros()
         {
             Dictionary<Metadata, string> conteudos = new Dictionary<Metadata, string>();
-
-            /*Estes metadados foram gerados aleatoriamente, no entanto representam 
-             * dados concretos e com os formatos corretos, isto é, podiam ser casos reais.*/
-                        #region Preencher Metadados Aleatorios
+            #region Preencher Metadados Aleatorios
 
             string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
@@ -433,6 +423,5 @@ namespace WatermarkApp
         {
             Process_file();
         }
-
     }
 }

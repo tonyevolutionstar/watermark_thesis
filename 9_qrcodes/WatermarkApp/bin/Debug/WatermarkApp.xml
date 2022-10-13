@@ -66,24 +66,6 @@
             obtem as posições dos qrcodes
             </summary>
         </member>
-        <member name="T:WatermarkApp.AuxColor">
-            <summary>
-            Classe destinada a obter o nome das cores com base no código RGB
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.AuxColor.aux_c">
-            <summary>
-            Obtem o nome da cor
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.AuxColor.#ctor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Obtem as cores com base no RGB e em intervalos
-            </summary>
-            <param name="R">Vermelho</param>
-            <param name="G">Verde</param>
-            <param name="B">Azul</param>
-        </member>
         <member name="T:WatermarkApp.Processamento">
             <summary>
             Parte visual do programa
@@ -205,42 +187,6 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
-        </member>
-        <member name="T:WatermarkApp.ImageProcess">
-            <summary>
-            Processa o ficheiro com o qrcode como uma imagem, para permitir a leitura do qrcode no texto
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.ImageProcess.#ctor(System.String)">
-            <summary>
-            Recebe a imagem do ficheiro com o qrcode para tratar
-            </summary>
-            <param name="file_name">Ficheiro com qrcode convertido para png</param>
-            <returns>nome do ficheiro</returns>
-        </member>
-        <member name="M:WatermarkApp.ImageProcess.image_replace">
-            <summary>
-            Vai tratar da imagem.
-            Substitui todas as cores que nao sejam brancas e cinza por pretas.
-            Altera o qrcode com base nos vizinhos.
-            Se tiver preto no branco, muda para branco.
-            Se tiver preto no cinza, muda para cinza.
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.ImageProcess.change_black">
-            <summary>
-            muda a imagem para preto
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.ImageProcess.neighbours(System.Drawing.Bitmap,System.Int32,System.Int32,System.String,System.Drawing.Color)">
-            <summary>
-            Verifica os pixels vizinhos (Cima, Baixo, Esquerda, Direita) e muda as cores
-            </summary>
-            <param name="bitmap">Imagem</param>
-            <param name="x">Posição x do pixel</param>
-            <param name="y">Posição x do pixel</param>
-            <param name="color_pretendida">Cor que se pretende mudar</param>
-            <param name="color">Cor a mudar</param>
         </member>
         <member name="T:WatermarkApp.Formato">
             <summary>

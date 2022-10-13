@@ -105,7 +105,6 @@ namespace WatermarkApp
         /// <param name="sigla_principal"></param>
         /// <param name="posto_atual"></param>
         /// <param name="dominio"></param>
-
         public void Insert_doc(int id, string nome_f, string n_registo, int n_exemplar, int n_copy, string class_seg, string estado_ex, string formato_ex, string utilizador, string data_op, string sigla_principal, string posto_atual, string dominio)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[document] (id_document, nome_ficheiro, n_registo, n_exemplar, n_copy, class_seg, estado_ex, formato_ex, utilizador, data_op, sigla_principal, posto_atual, dominio) VALUES ("
@@ -195,7 +194,6 @@ namespace WatermarkApp
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-
                     id_barcode = (int)dataReader.GetValue(0);
                 }
                 dataReader.Close();

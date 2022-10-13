@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
-
 namespace WatermarkApp
 {
     /// <summary>
@@ -15,7 +14,6 @@ namespace WatermarkApp
     {
         private string filename = "";
         private int id_doc;
-        private int sizeArc = 20;
         private int w = 0;
         private int h = 0;
 
@@ -220,8 +218,6 @@ namespace WatermarkApp
                 y = Math.Round(y, 0);
 
                 Console.WriteLine("line coord: " + x + "," + y);
-               // g.DrawArc(yellowPen, iPoint.X - sizeArc, iPoint.Y - sizeArc, 2 * sizeArc, 2 * sizeArc, 0, 360);
-                //g.DrawArc(redPen, (float)x - sizeArc, (float)y - sizeArc, 2 * sizeArc, 2 * sizeArc, 0, 360);
                 bmp.SetPixel((int)(x*w), (int)(y*h), Color.DarkBlue);
             }
         }
@@ -258,10 +254,8 @@ namespace WatermarkApp
             Bitmap bmp = new Bitmap(f);
             Graphics g = Graphics.FromImage(bmp);
 
-            Pen redPen = new Pen(Color.Red, 3);
-            Pen bluePen = new Pen(Color.Blue, 3);
             Pen greenPen = new Pen(Color.Green, 3);
-            Pen yellowPen = new Pen(Color.Yellow, 3);
+           
             Dictionary<string, Point> qrcode_points = FillDictionary(position, bmp);
 
             string qrcode_comb;
@@ -276,7 +270,6 @@ namespace WatermarkApp
                     if (!val0[0].Equals(val1[0]))
                     {
                         qrcode_comb = entry.Key + ":" + entry2.Key;
-                        //Console.WriteLine(qrcode_comb);
                         if(!combs.Contains(entry2.Key + ":" + entry.Key))
                             combs.Add(qrcode_comb);
                     }
@@ -285,7 +278,6 @@ namespace WatermarkApp
 
             for(int i = 0; i < combs.Count; i++)
             {
-                //Console.WriteLine(combs[i]);
                 string[] points = combs[i].Split(':');
 
                 qrcode_points.TryGetValue(points[0], out Point p1);

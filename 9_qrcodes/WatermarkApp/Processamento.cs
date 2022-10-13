@@ -46,7 +46,9 @@ namespace WatermarkApp
             document_name.AutoSize = true;
             document_name.TabIndex = 9;
             this.file_name = file_name;
-            Get_PositionChar(); 
+            Get_PositionChar();
+            string[] characters = read_positionChar_file();
+          
         }
 
         private void Get_PositionChar()
@@ -60,6 +62,15 @@ namespace WatermarkApp
             myProcess.StartInfo.Arguments = "-jar " + '"' + jarfile + '"' + " " + '"' + file_name + '"';
             myProcess.Start();
             myProcess.WaitForExit();
+        }
+
+        private string[] read_positionChar_file()
+        {
+            string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
+            string posFile = s_doc[0] + "_pos.txt";
+            string[] lines = System.IO.File.ReadAllLines(posFile);
+           
+            return lines;
         }
 
 

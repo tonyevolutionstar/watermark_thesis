@@ -1,5 +1,0 @@
-código de barras que tenha informação do documento e a primeira posição do qrcode principal.
-o qrcode principal teria. 
-
-tamanho ideal e descobrir posições
-

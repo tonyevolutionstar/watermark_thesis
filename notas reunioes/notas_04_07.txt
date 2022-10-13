@@ -1,6 +1,0 @@
-noutras posiçoes de texto,
-fazer análise ao pdf
-Posicoes x do documento do qrcode -
- onde está colocado o qrcode saber letras e posições
-letras em cada canto do qrcode, recortar o qrcode 
-número random, alto 10 mil milhoes

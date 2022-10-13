@@ -1,7 +1,0 @@
-questão de algoritmos
-lista de trocas mais espaçamento
-com base na watermark ver se o documento é original. 
-que informação guardo no documento impresso para verificar que é o original.
-espaçamento - analizar,
-ver outra vez o documento do espaçamento. algoritmos em c#.
-por no scan e comparar com a informação guardada no documento da watermark no sistema.

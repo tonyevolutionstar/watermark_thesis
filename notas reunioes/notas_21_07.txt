@@ -1,5 +1,0 @@
-gerar 5 qrcodes de tamanhos pequenos;
-por um fixo na borda esquerda ou direita.
-testar tamanhos
-
-gerar 5 qrcodes de tamanhos diferentes; - stand by

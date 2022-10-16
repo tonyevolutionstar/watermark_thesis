@@ -66,6 +66,20 @@
             obtem as posições dos qrcodes
             </summary>
         </member>
+        <member name="M:WatermarkApp.AuxFunc.Convert_pdf_png(System.String)">
+            <summary>
+            Converte o ficheiro pdf para png
+            </summary>
+            <param name="f">Nome do ficheiro</param>
+            <returns>Nome do ficheiro + ".png"</returns>
+        </member>
+        <member name="M:WatermarkApp.AuxFunc.DrawLines(System.String,System.String)">
+            <summary>
+            desenha linhas
+            </summary>
+            <param name="position"></param>
+            <param name="qrcode_file"></param>
+        </member>
         <member name="T:WatermarkApp.Processamento">
             <summary>
             Parte visual do programa
@@ -115,7 +129,7 @@
             <summary>
             Gera um qrcode
             </summary>
-            <param name="file_name">nome do ficheiro</param>
+            <param name="file_name">nome do ficheiro sem extensao pdf</param>
         </member>
         <member name="M:WatermarkApp.Processamento.PreencherMetadadosParaFicheiros">
             <summary>
@@ -334,11 +348,6 @@
             posição que vai ser inserido o qrcode no ficheiro
             </summary>
         </member>
-        <member name="F:WatermarkApp.QRcode.pos">
-            <summary>
-            lista de posiçoes do qrcode
-            </summary>
-        </member>
         <member name="M:WatermarkApp.QRcode.#ctor(System.String,System.Int32,System.Int32,System.Int32)">
             <summary>
             O construtor do qrcode vai receber um ficheiro e vai colocar esse ficheiro em classe, para ser possivel aceder
@@ -370,20 +379,6 @@
             </summary>
             <param name="positions">posicoes qrcode</param>
             <returns>nome do ficheiro + "_qrcode.pdf"</returns>
-        </member>
-        <member name="M:WatermarkApp.QRcode.Convert_pdf_png(System.String)">
-            <summary>
-            Converte o ficheiro pdf para png
-            </summary>
-            <param name="f">Nome do ficheiro</param>
-            <returns>Nome do ficheiro + ".png"</returns>
-        </member>
-        <member name="M:WatermarkApp.QRcode.DrawLines(System.String,System.String)">
-            <summary>
-            desenha linhas
-            </summary>
-            <param name="position"></param>
-            <param name="file_name"></param>
         </member>
         <member name="T:WatermarkApp.Retificar">
             <summary>

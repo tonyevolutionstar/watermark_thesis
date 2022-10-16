@@ -22,6 +22,7 @@ namespace WatermarkApp
         private string qr_processed = "_qrcode_processed.png";
         private string qrcode_pdf = "_qrcode.pdf";
         private string file_name;
+        private string[] characters;
         int id_doc;
         int id_barcode;
         int id_qrcode;
@@ -47,7 +48,7 @@ namespace WatermarkApp
             document_name.TabIndex = 9;
             this.file_name = file_name;
             Get_PositionChar();
-            string[] characters = read_positionChar_file();
+            characters = Read_positionChar_file();
           
         }
 
@@ -64,7 +65,7 @@ namespace WatermarkApp
             myProcess.WaitForExit();
         }
 
-        private string[] read_positionChar_file()
+        private string[] Read_positionChar_file()
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
             string posFile = s_doc[0] + "_pos.txt";
@@ -72,6 +73,7 @@ namespace WatermarkApp
            
             return lines;
         }
+
 
 
         /// <summary>
@@ -219,52 +221,15 @@ namespace WatermarkApp
         /// <summary>
         /// Gera um qrcode
         /// </summary>
-        /// <param name="file_name">nome do ficheiro</param>
+        /// <param name="file_name">nome do ficheiro sem extensao pdf</param>
         private void Generate_qrcode(string file_name)
         {
             QRcode qrcode = new QRcode(file_name, sizeQrcode, id_doc, range);
             
+
             if (id_doc != 0)
             {
                 Analise_Forense analise = new Analise_Forense(file_name, sizeQrcode);
-                /*
-                int tp_left = analise.Get_index(analise.top_left, range);
-                char t_left = analise.Read_text_doc(tp_left);
-               
-                int tp_middle = analise.Get_index(analise.top_middle, range);
-                char t_middle = analise.Read_text_doc(tp_middle);
-
-                int tp_rigth = analise.Get_index(analise.top_right, range);
-                char t_rigth = analise.Read_text_doc(tp_rigth);
-
-                int md_left = analise.Get_index(analise.middle_left, range);
-                char m_left = analise.Read_text_doc(md_left);
-
-                int mdl = analise.Get_index(analise.middle, range);
-                char m_mdl = analise.Read_text_doc(mdl);
-
-                int md_right = analise.Get_index(analise.middle_right, range);
-                char m_right = analise.Read_text_doc(md_right);
-
-                int btn_left = analise.Get_index(analise.bottom_left, range);
-                char b_left = analise.Read_text_doc(btn_left);
-
-                int btn_middle = analise.Get_index(analise.bottom_middle, range);
-                char b_middle = analise.Read_text_doc(btn_middle);
-
-                int btn_right = analise.Get_index(analise.bottom_right, range);
-                char b_rigth = analise.Read_text_doc(btn_right);
-
-                qrcode.Generate_qrcode(t_left, 1);
-                qrcode.Generate_qrcode(t_middle, 2);
-                qrcode.Generate_qrcode(t_rigth, 3);
-                qrcode.Generate_qrcode(m_left, 4);
-                qrcode.Generate_qrcode(m_mdl, 5);
-                qrcode.Generate_qrcode(m_right, 6);
-                qrcode.Generate_qrcode(b_left, 7);
-                qrcode.Generate_qrcode(b_middle, 8);
-                qrcode.Generate_qrcode(b_rigth, 9);
-                */
                 qrcode.Generate_qrcode('c', 1);
                 qrcode.Generate_qrcode('c', 2);
                 qrcode.Generate_qrcode('c', 3);
@@ -275,18 +240,23 @@ namespace WatermarkApp
                 qrcode.Generate_qrcode('c', 8);
                 qrcode.Generate_qrcode('c', 9);
 
-                string positions = analise.top_left + "|" + analise.top_middle + "|" + analise.top_right + "|"
-                   + analise.middle_left + "|" + analise.middle + "|" + analise.middle_right + "|"
-                   + analise.bottom_left + "|" + analise.bottom_middle + "|" + analise.bottom_right;
                 DateTime date_time_barcode = DateTime.Now;
 
                 SQL_connection sql = new SQL_connection();
-                sql.Insert_posicao(positions, date_time_barcode.ToString());
-               
+                sql.Insert_posicao(analise.positions, date_time_barcode.ToString());
+           
                 id_barcode = sql.Get_id_barcode(date_time_barcode.ToString());
                 qrcode.Generate_barcode(id_barcode);
-                qrcode.Add_barcodes_pdf(positions);
-                qrcode.DrawLines(positions, file_name+"_qrcode");
+                qrcode.Add_barcodes_pdf(analise.positions);
+                /*
+                foreach (string c in characters)
+                {
+                    Console.WriteLine(c);
+                }
+                */
+                AuxFunc auxFunc = new AuxFunc(file_name + ".pdf", sizeQrcode);
+
+                auxFunc.DrawLines(analise.positions, file_name + "_qrcode.pdf");
 
             }
         }

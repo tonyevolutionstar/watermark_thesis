@@ -1,6 +1,5 @@
 ﻿using iTextSharp.text.pdf;
 using System;
-
 using System.IO;
 
 namespace WatermarkApp
@@ -14,7 +13,7 @@ namespace WatermarkApp
         private int height;
         private int size_qrcode;
         private string file_name;
-
+        public string positions;
 
         #region positions
         /// <summary>
@@ -74,8 +73,10 @@ namespace WatermarkApp
                 height = (int)reader.GetPageSize(1).Height;
             }
             this.size_qrcode = size_qrcode;
-
             Get_positions();
+            positions = top_left + "|" + top_middle + "|" + top_right + "|"
+                  + middle_left + "|" + middle + "|" + middle_right + "|"
+                  + bottom_left + "|" + bottom_middle + "|" + bottom_right;
         }
 
         /// <summary>
@@ -100,8 +101,5 @@ namespace WatermarkApp
             bottom_middle = Math.Round(m).ToString() + "," + size_qrcode.ToString();
             bottom_right = r.ToString() + "," + size_qrcode.ToString();
         }
-
-    
-
     }
 }

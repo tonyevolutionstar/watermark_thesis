@@ -25,7 +25,6 @@ namespace WatermarkApp
         private string[] characters;
         int id_doc;
         int id_barcode;
-        int id_qrcode;
 
 
         /// <summary>
@@ -73,8 +72,6 @@ namespace WatermarkApp
            
             return lines;
         }
-
-
 
         /// <summary>
         /// Faz load do windows form
@@ -226,19 +223,19 @@ namespace WatermarkApp
         {
             QRcode qrcode = new QRcode(file_name, sizeQrcode, id_doc, range);
             
-
             if (id_doc != 0)
             {
                 Analise_Forense analise = new Analise_Forense(file_name, sizeQrcode);
-                qrcode.Generate_qrcode('c', 1);
-                qrcode.Generate_qrcode('c', 2);
-                qrcode.Generate_qrcode('c', 3);
-                qrcode.Generate_qrcode('c', 4);
-                qrcode.Generate_qrcode('c', 5);
-                qrcode.Generate_qrcode('c', 6);
-                qrcode.Generate_qrcode('c', 7);
-                qrcode.Generate_qrcode('c', 8);
-                qrcode.Generate_qrcode('c', 9);
+                qrcode.Generate_qrcode(1);
+                qrcode.Generate_qrcode(2);
+                qrcode.Generate_qrcode(3);
+                qrcode.Generate_qrcode(4);
+                qrcode.Generate_qrcode(5);
+                qrcode.Generate_qrcode(6);
+                qrcode.Generate_qrcode(7);
+                qrcode.Generate_qrcode(8);
+                qrcode.Generate_qrcode(9);
+               
 
                 DateTime date_time_barcode = DateTime.Now;
 
@@ -257,7 +254,7 @@ namespace WatermarkApp
                 AuxFunc auxFunc = new AuxFunc(file_name + ".pdf", sizeQrcode);
 
                 auxFunc.DrawLines(analise.positions, file_name + "_qrcode.pdf");
-
+              
             }
         }
 

@@ -44,16 +44,15 @@ namespace WatermarkApp
         /// <summary>
         /// Guarda uma imagem do qrcode gerado com base nas caracteristicas do ficheiro
         /// Estrutura do qrcode é version;id_doc;info_char;range
-        /// <param name="info_char">caracter a x direita do qrcode</param> 
         /// <param name="i">numero identificador do qrcode, max até 9</param> 
         /// <returns>imagem qrcode</returns>
         /// </summary>
 
-        public void Generate_qrcode(char info_char, int i)
+        public void Generate_qrcode(int i)
         {
             if(version == 2)
             {
-                string data_qrcode = version + ";" + id_doc + ";" + info_char + ";" + range;
+                string data_qrcode = version + ";" + id_doc + ";" + range;
 
                 string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 string logoPath = System.IO.Path.Combine(partialPath, @"number_qrcode\" + i.ToString() + ".png");

@@ -358,11 +358,10 @@
             <param name="range">posicao a ver o character</param>
             <returns>nome do ficheiro</returns>
         </member>
-        <member name="M:WatermarkApp.QRcode.Generate_qrcode(System.Char,System.Int32)">
+        <member name="M:WatermarkApp.QRcode.Generate_qrcode(System.Int32)">
             <summary>
             Guarda uma imagem do qrcode gerado com base nas caracteristicas do ficheiro
             Estrutura do qrcode é version;id_doc;info_char;range
-            <param name="info_char">caracter a x direita do qrcode</param> 
             <param name="i">numero identificador do qrcode, max até 9</param> 
             <returns>imagem qrcode</returns>
             </summary>

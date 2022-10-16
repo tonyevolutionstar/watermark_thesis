@@ -6,6 +6,9 @@ using System.IO;
 
 namespace WatermarkApp
 {
+    /// <summary>
+    /// Função auxiliar para operaçoes no ficheiro
+    /// </summary>
     public class AuxFunc
     {
         private string file_name;
@@ -13,6 +16,11 @@ namespace WatermarkApp
         private int h;
         private int w;
 
+        /// <summary>
+        /// Construtor
+        /// </summary>
+        /// <param name="filename"></param>
+        /// <param name="size_qrcode"></param>
         public AuxFunc(string filename, int size_qrcode)
         {
             this.size_qrcode = size_qrcode;
@@ -77,14 +85,12 @@ namespace WatermarkApp
             for (int i = 0; i < combs.Count; i++)
             {
                 string[] points = combs[i].Split(':');
-
                 qrcode_points.TryGetValue(points[0], out Point p1);
                 qrcode_points.TryGetValue(points[1], out Point p2);
                 g.DrawLine(greenPen, p1, p2);
             }
 
             string[] filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
-
             bmp.Save(filename[0] + "_line.png");
             bmp.Dispose();
         }
@@ -109,7 +115,6 @@ namespace WatermarkApp
 
             return qrcode_points;
         }
-
 
         private void ddaline(Point p1, Point p2, Graphics g, Bitmap bmp)
         {

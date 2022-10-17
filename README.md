@@ -1,13 +1,13 @@
 # Struct 
 <div>
-  <h2>Folders</h2>
+  <h4>Folders</h2>
   <ul style="list-style-type:circle">
     <li>9_qrcodes - main project</li>
     <li>Database - files to create user and database</li>
     <li>Qrcode Tests - testing the ideal number of qrcodes to use on project</li>
   </ul>
   <br>
-  <h2>Files</h2>
+  <h4>Files</h2>
   <ul style="list-style-type:circle">
     <li>positionCharacter.java - Algorithm developed in java to extract the position of characters on a given pdf file</li>
   </ul>

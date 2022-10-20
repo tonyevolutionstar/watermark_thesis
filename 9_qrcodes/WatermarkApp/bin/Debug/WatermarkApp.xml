@@ -66,6 +66,19 @@
             obtem as posições dos qrcodes
             </summary>
         </member>
+        <member name="T:WatermarkApp.AuxFunc">
+            <summary>
+            Função auxiliar para operaçoes no ficheiro
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.AuxFunc.#ctor(System.String,System.Int32,System.String[])">
+            <summary>
+            Construtor
+            </summary>
+            <param name="filename"></param>
+            <param name="size_qrcode"></param>
+            <param name="ch"></param>
+        </member>
         <member name="M:WatermarkApp.AuxFunc.Convert_pdf_png(System.String)">
             <summary>
             Converte o ficheiro pdf para png

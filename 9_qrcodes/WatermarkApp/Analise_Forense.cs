@@ -84,22 +84,23 @@ namespace WatermarkApp
         /// </summary>
         public void Get_positions()
         {
-            int height_top = height - size_qrcode;
+            int height_top = size_qrcode;
+            int height_bottom = height - size_qrcode;
             int r = width - size_qrcode-size_qrcode;
             double m = (width-size_qrcode) / 2 ;
             double m_h = height / 2;
-            
-            top_left = size_qrcode.ToString() + "," + height_top.ToString();
+
             top_right = r.ToString() + "," + height_top.ToString();
             top_middle = Math.Round(m).ToString() + "," + height_top;
+            top_left = size_qrcode.ToString() + "," + height_top.ToString();
 
-            middle_left = size_qrcode.ToString() + "," + Math.Round(m_h).ToString();
-            middle = Math.Round(m).ToString() + "," + Math.Round(m_h).ToString();
             middle_right = r.ToString() + "," + Math.Round(m_h).ToString();
+            middle = Math.Round(m).ToString() + "," + Math.Round(m_h).ToString();
+            middle_left = size_qrcode.ToString() + "," + Math.Round(m_h).ToString();
 
-            bottom_left = size_qrcode.ToString() + "," + size_qrcode.ToString();
-            bottom_middle = Math.Round(m).ToString() + "," + size_qrcode.ToString();
-            bottom_right = r.ToString() + "," + size_qrcode.ToString();
+            bottom_right = r.ToString() + "," + height_bottom.ToString();
+            bottom_middle = Math.Round(m).ToString() + "," + height_bottom.ToString();
+            bottom_left = size_qrcode.ToString() + "," + height_bottom.ToString();
         }
     }
 }

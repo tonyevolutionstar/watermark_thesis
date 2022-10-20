@@ -226,17 +226,9 @@ namespace WatermarkApp
             if (id_doc != 0)
             {
                 Analise_Forense analise = new Analise_Forense(file_name, sizeQrcode);
-                qrcode.Generate_qrcode(1);
-                qrcode.Generate_qrcode(2);
-                qrcode.Generate_qrcode(3);
-                qrcode.Generate_qrcode(4);
-                qrcode.Generate_qrcode(5);
-                qrcode.Generate_qrcode(6);
-                qrcode.Generate_qrcode(7);
-                qrcode.Generate_qrcode(8);
-                qrcode.Generate_qrcode(9);
-               
-
+                for(int i = 0; i < 9; i++)
+                    qrcode.Generate_qrcode(i+1);
+                
                 DateTime date_time_barcode = DateTime.Now;
 
                 SQL_connection sql = new SQL_connection();
@@ -246,15 +238,10 @@ namespace WatermarkApp
                 qrcode.Generate_barcode(id_barcode);
                 qrcode.Add_barcodes_pdf(analise.positions);
                 /*
-                foreach (string c in characters)
-                {
-                    Console.WriteLine(c);
-                }
+               
                 */
-                AuxFunc auxFunc = new AuxFunc(file_name + ".pdf", sizeQrcode);
-
+                AuxFunc auxFunc = new AuxFunc(file_name + ".pdf", sizeQrcode, characters);
                 auxFunc.DrawLines(analise.positions, file_name + "_qrcode.pdf");
-              
             }
         }
 

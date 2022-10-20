@@ -104,8 +104,9 @@ namespace WatermarkApp
                 barcode_img.SetAbsolutePosition(middle_w, 5);
                 for (int i = 0; i < positions_qrcode.Length; i++)
                 {
-                    using (Stream qrcodeStream_x = new FileStream(filename + "_qrcode_" + (i+1) + ".png", FileMode.Open, FileAccess.Read, FileShare.Read))
+                    using (Stream qrcodeStream_x = new FileStream(filename + "_qrcode_" + (positions_qrcode.Length-i) + ".png", FileMode.Open, FileAccess.Read, FileShare.Read))
                     {
+                        
                         string[] qrcodex = positions_qrcode[i].Split(',');
                         iTextSharp.text.Image qr_code_img_x = iTextSharp.text.Image.GetInstance(qrcodeStream_x);
                         qr_code_img_x.SetAbsolutePosition(Int16.Parse(qrcodex[0]), Int16.Parse(qrcodex[1]));

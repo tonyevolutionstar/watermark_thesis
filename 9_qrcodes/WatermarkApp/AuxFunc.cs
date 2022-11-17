@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Diagnostics;
 
 namespace WatermarkApp
 {
@@ -11,6 +12,7 @@ namespace WatermarkApp
     /// </summary>
     public class AuxFunc
     {
+        private string[] filename;
         private string file_name;
         private int size_qrcode;
         private int h;
@@ -92,19 +94,23 @@ namespace WatermarkApp
                 string[] points = combs[i].Split(':');
                 qrcode_points.TryGetValue(points[0], out Point p1);
                 qrcode_points.TryGetValue(points[1], out Point p2);
+                Point p1_n = new Point((int)p1.X * bmp.Width/w, (int)p1.Y * bmp.Height/h);
+                Point p2_n = new Point((int)p2.X * bmp.Width / w , (int)p2.Y * bmp.Height / h);
+
+
+                //g.DrawLine(greenPen, p1_n, p2_n);
                 g.DrawLine(greenPen, p1, p2);
-                Console.WriteLine("ret " + combs[i] + " point " + p1 + "," + p2);
-                //Ddaline(combs[i], p1, p2, g, bmp);
+                Ddaline(combs[i], p1, p2, g, bmp);
             }
 
-            string[] filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
+            filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
             bmp.Save(filename[0] + "_line.png");
             bmp.Dispose();
+            
         }
 
         private Dictionary<string, Point> FillDictionary(string position, Bitmap bmp)
         {
-            Console.WriteLine("size_qrcode: " + this.size_qrcode);
             Dictionary<string, Point> qrcode_points = new Dictionary<string, Point>();
             for (int i = 0; i < 9; i++)
             {
@@ -123,50 +129,51 @@ namespace WatermarkApp
             return qrcode_points;
         }
 
-        private void AddDictionary(string rect, string res)
+   
+        public void draw_point(string f, string[] characters)
         {
-            if (!results.ContainsKey(rect))
+            Bitmap bmp = new Bitmap(f);
+
+            foreach(string c in characters)
             {
-                all_results.Add(res);
-                results.Add(rect, all_results);
+                string[] val = c.Split('|');
+                string[] pos = val[1].Split(',');
+                int x = int.Parse(pos[0]);
+                int y = int.Parse(pos[1]);
+
+                bmp.SetPixel((int)x * bmp.Width/w, (int)y * bmp.Height/h, Color.Purple);
             }
-            else
-            {
-                all_results.Add(res);
-                results[rect].Add(res);
-            }
+            bmp.Save(filename[0] + "_auxchar.png");
+
+            bmp.Dispose();
         }
 
-        private void Verify_value(Dictionary<string, List<Point>> points_rets, Dictionary<string, Point> points_char)
+        private Dictionary<string, List<string>> Verify_value(Dictionary<string, List<Point>> points_rets, Dictionary<string, Point> points_char)
         {
-            int range = 5;
-            Dictionary<string, List<Point>> mem_result = new Dictionary<string, List<Point>>();
-
-
+            //int range = 0;
+            Dictionary<string, List<string>> mem_result = new Dictionary<string, List<string>>();
+            List<string> characters;
             foreach (KeyValuePair<string, List<Point>> rect in points_rets)
             {
-                //Console.WriteLine(rect.Key);
                 for(int i = 0; i < rect.Value.Count; i ++)
                 {
-                    //Console.WriteLine("val " + rect.Value[i]);
-                    List<string> characters = new List<string>();
+                    characters = new List<string>();
                     foreach (KeyValuePair<string, Point> c in points_char)
                     {
                         string res = c.Key;
 
-                        if ((rect.Value[i].X - range) > c.Value.X && c.Value.X < (rect.Value[i].X + range) && (rect.Value[i].Y - range) > c.Value.Y && c.Value.Y < (rect.Value[i].Y + range))
-                        {
+                        if (rect.Value[i].X == c.Value.X && rect.Value[i].Y == c.Value.Y )
                             characters.Add(res);
-                        }
                     }
-                    //Console.WriteLine("characters size " + characters.Count);
+                    if (!mem_result.ContainsKey(rect.Key))
+                        mem_result.Add(rect.Key, characters);  
                 }
             }
+            return mem_result;
         }
 
         private void Ddaline(string ret, Point p1, Point p2, Graphics g, Bitmap bmp)
         {
-            List<Point> points;
             Dictionary<string, List<Point>> points_rets = new Dictionary<string, List<Point>>();
             Dictionary<string, Point> points_char = new Dictionary<string, Point>();
 
@@ -194,21 +201,35 @@ namespace WatermarkApp
                 x = Math.Round(x, 0);
                 y = y + yinc;
                 y = Math.Round(y, 0);
-                if(points_rets.ContainsKey(ret))
+                Point point = new Point((int)x, (int)y);
+                //Console.WriteLine("point " + point);
+
+                if (points_rets.ContainsKey(ret))
                 {
                     Point p = new Point((int)x, (int)y);
-                    //points.Add(p);
                     points_rets[ret].Add(p);
                 }
                 else
                 {
                     Point p = new Point((int)x, (int)y);
-                   
                     points_rets.Add(ret, new List<Point>() { p });
                 }
             }
 
-            Verify_value(points_rets, points_char);
+            Dictionary<string, List<string>> mem_result = Verify_value(points_rets, points_char);
+            foreach (KeyValuePair <string,List<string>> m_res in mem_result)
+            {
+                Console.WriteLine(m_res.Key);
+                for (int i = 0; i < m_res.Value.Count; i++)
+                {
+                    string[] val = m_res.Value[i].Split('|');
+                    string[] coord = val[1].Split(',');
+                    int x_c = int.Parse(coord[0]);
+                    int y_c = int.Parse(coord[1]);
+                    //bmp.SetPixel((int)x_c * bmp.Width / w, (int)y_c * bmp.Height / h, Color.Brown);
+                    Console.WriteLine(m_res.Value[i]);
+                }
+            }
         }
     }
 }

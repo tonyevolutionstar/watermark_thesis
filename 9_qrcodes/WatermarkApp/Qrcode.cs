@@ -53,13 +53,11 @@ namespace WatermarkApp
             if(version == 2)
             {
                 string data_qrcode = version + ";" + id_doc + ";" + range;
-
                 string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 string logoPath = System.IO.Path.Combine(partialPath, @"number_qrcode\" + i.ToString() + ".png");
                 Bitmap bmp = new Bitmap(logoPath);
 
                 var MyBarCode = QRCodeWriter.CreateQrCodeWithLogoImage(data_qrcode, bmp, size_qrcode);
-  
                 MyBarCode.ResizeTo(size_qrcode, size_qrcode); // pixels
                 MyBarCode.ChangeBarCodeColor(Color.LightGray);
                 MyBarCode.SaveAsPng(filename + "_qrcode_" + i + ".png");
@@ -113,17 +111,17 @@ namespace WatermarkApp
                 string[] positions_qrcode = positions.Split('|');
 
                 iTextSharp.text.Image qr_code_img_1 = iTextSharp.text.Image.GetInstance(qrcodeStream_1);
-                string[] qrcode1 = positions_qrcode[6].Split(',');
+                string[] qrcode1 = positions_qrcode[0].Split(',');
                 qr_code_img_1.SetAbsolutePosition(Int16.Parse(qrcode1[0]), Int16.Parse(qrcode1[1]));
                 pdfContentByte.AddImage(qr_code_img_1);
 
                 iTextSharp.text.Image qr_code_img_2 = iTextSharp.text.Image.GetInstance(qrcodeStream_2);
-                string[] qrcode2 = positions_qrcode[7].Split(',');
+                string[] qrcode2 = positions_qrcode[1].Split(',');
                 qr_code_img_2.SetAbsolutePosition(Int16.Parse(qrcode2[0]), Int16.Parse(qrcode2[1]));
                 pdfContentByte.AddImage(qr_code_img_2);
 
                 iTextSharp.text.Image qr_code_img_3 = iTextSharp.text.Image.GetInstance(qrcodeStream_3);
-                string[] qrcode3 = positions_qrcode[8].Split(',');
+                string[] qrcode3 = positions_qrcode[2].Split(',');
                 qr_code_img_3.SetAbsolutePosition(Int16.Parse(qrcode3[0]), Int16.Parse(qrcode3[1]));
                 pdfContentByte.AddImage(qr_code_img_3);
 
@@ -143,17 +141,17 @@ namespace WatermarkApp
                 pdfContentByte.AddImage(qr_code_img_6);
 
                 iTextSharp.text.Image qr_code_img_7 = iTextSharp.text.Image.GetInstance(qrcodeStream_7);
-                string[] qrcode7 = positions_qrcode[0].Split(',');
+                string[] qrcode7 = positions_qrcode[6].Split(',');
                 qr_code_img_7.SetAbsolutePosition(Int16.Parse(qrcode7[0]), Int16.Parse(qrcode7[1]));
                 pdfContentByte.AddImage(qr_code_img_7);
 
                 iTextSharp.text.Image qr_code_img_8 = iTextSharp.text.Image.GetInstance(qrcodeStream_8);
-                string[] qrcode8 = positions_qrcode[1].Split(',');
+                string[] qrcode8 = positions_qrcode[7].Split(',');
                 qr_code_img_8.SetAbsolutePosition(Int16.Parse(qrcode8[0]), Int16.Parse(qrcode8[1]));
                 pdfContentByte.AddImage(qr_code_img_8);
 
                 iTextSharp.text.Image qr_code_img_9 = iTextSharp.text.Image.GetInstance(qrcodeStream_9);
-                string[] qrcode9 = positions_qrcode[2].Split(',');
+                string[] qrcode9 = positions_qrcode[8].Split(',');
                 qr_code_img_9.SetAbsolutePosition(Int16.Parse(qrcode9[0]), Int16.Parse(qrcode9[1]));
                 pdfContentByte.AddImage(qr_code_img_9);
 

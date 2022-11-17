@@ -68,8 +68,8 @@ namespace WatermarkApp
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
             string posFile = s_doc[0] + "_pos.txt";
-            string[] lines = System.IO.File.ReadAllLines(posFile);
-           
+            string[] lines = System.IO.File.ReadAllLines(posFile, System.Text.Encoding.UTF7);
+            
             return lines;
         }
 
@@ -136,7 +136,6 @@ namespace WatermarkApp
             else
             {
                 var watch = System.Diagnostics.Stopwatch.StartNew();
-
                 MessageBox.Show("Em processamento");
                 document_name.Text = show_doc[1];
                 Controls.Add(document_name);
@@ -145,7 +144,6 @@ namespace WatermarkApp
                 axAcroPDF1.src = s_doc[0] + qrcode_pdf;
                 Controls.Add(axAcroPDF1);
                 MessageBox.Show("Documento com watermarking gerado, por favor aceite ou reprove");
-              
                 Delete_aux_files(s_doc[0]);
             
                 watch.Stop();
@@ -197,6 +195,7 @@ namespace WatermarkApp
 
             string barcode = filename + "_barcode.png";
             delete_files.Add(barcode);
+            
 
             try
             {
@@ -237,11 +236,12 @@ namespace WatermarkApp
                 id_barcode = sql.Get_id_barcode(date_time_barcode.ToString());
                 qrcode.Generate_barcode(id_barcode);
                 qrcode.Add_barcodes_pdf(analise.positions);
-                /*
-               
-                */
+              
                 AuxFunc auxFunc = new AuxFunc(file_name + ".pdf", sizeQrcode, characters);
                 auxFunc.DrawLines(analise.positions, file_name + "_qrcode.pdf");
+                auxFunc.draw_point(file_name + "_qrcode.png", characters);
+
+                //auxFunc.DrawAuxLines(file_name + "_qrcode.png");
             }
         }
 
@@ -319,11 +319,7 @@ namespace WatermarkApp
             conteudos.Add(metadataRegistoDELNATOSR, ficheiroDELNATOSR);
             #endregion
 
-            Console.WriteLine("Ficheiro RC, Encontrado? " + File.Exists(ficheiroRC));
-            Console.WriteLine("Ficheiro GNS, Encontrado? " + File.Exists(ficheiroGNSSR));
-            Console.WriteLine("Ficheiro MDN, Encontrado? " + File.Exists(ficheiroMDNSR));
-            Console.WriteLine("Ficheiro DELNATO, Encontrado? " + File.Exists(ficheiroDELNATOSR));
-
+           
             return conteudos;
         }
 
@@ -344,6 +340,7 @@ namespace WatermarkApp
                     SQL_connection sql = new SQL_connection();
                     sql.Insert_watermark(id_doc,id_barcode,1);
                     MessageBox.Show("Documento aceite");
+                    
                 }
                 else
                 {

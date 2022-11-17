@@ -13,15 +13,12 @@ namespace WatermarkApp
     public class AuxFunc
     {
         private string[] filename;
-        private string file_name;
         private int size_qrcode;
         private int h;
         private int w;
         private Dictionary<string, Point> qrcode_points;
         private List<string> combs;
         private string[] characters;
-        private Dictionary<string, List<string>> results = new Dictionary<string, List<string>>();
-        private List<string> all_results = new List<string>();
 
         /// <summary>
         /// Construtor
@@ -94,13 +91,9 @@ namespace WatermarkApp
                 string[] points = combs[i].Split(':');
                 qrcode_points.TryGetValue(points[0], out Point p1);
                 qrcode_points.TryGetValue(points[1], out Point p2);
-                Point p1_n = new Point((int)p1.X * bmp.Width/w, (int)p1.Y * bmp.Height/h);
-                Point p2_n = new Point((int)p2.X * bmp.Width / w , (int)p2.Y * bmp.Height / h);
-
-
-                //g.DrawLine(greenPen, p1_n, p2_n);
+                 
                 g.DrawLine(greenPen, p1, p2);
-                Ddaline(combs[i], p1, p2, g, bmp);
+                //Ddaline(combs[i], p1, p2, g, bmp);
             }
 
             filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
@@ -116,11 +109,11 @@ namespace WatermarkApp
             {
                 string[] pos_qrcodes = position.Split('|');
                 string[] qrcode = pos_qrcodes[i].Split(',');
-                int x_qrcode = int.Parse(qrcode[0]) ;
-                int y_qrcode = int.Parse(qrcode[1]) ;
-                Point qrcode_l = new Point(x_qrcode + this.size_qrcode, Math.Abs(this.size_qrcode - y_qrcode));
-                Point qrcode_r = new Point(x_qrcode + this.size_qrcode * 3, Math.Abs(this.size_qrcode - y_qrcode));
-                Point qrcode_b = new Point(x_qrcode + this.size_qrcode, Math.Abs((this.size_qrcode * 3) - y_qrcode));
+                int x_qrcode = int.Parse(qrcode[0]) * bmp.Width / w ;
+                int y_qrcode = int.Parse(qrcode[1]) * bmp.Height / h;
+                Point qrcode_l = new Point(x_qrcode + size_qrcode, y_qrcode - size_qrcode * 3);
+                Point qrcode_r = new Point(x_qrcode + size_qrcode * 3, y_qrcode - size_qrcode * 3);
+                Point qrcode_b = new Point(x_qrcode +  size_qrcode, y_qrcode - size_qrcode);
                 qrcode_points.Add("qrcode" + (i + 1) + "_l", qrcode_l);
                 qrcode_points.Add("qrcode" + (i + 1) + "_r", qrcode_r);
                 qrcode_points.Add("qrcode" + (i + 1) + "_b", qrcode_b);

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Diagnostics;
+using System.Text;
 
 namespace WatermarkApp
 {
@@ -38,7 +39,7 @@ namespace WatermarkApp
                 reader.Close();
                 reader.Dispose();
             }
-            this.characters = ch;
+            characters = ch;
         }
 
         /// <summary>
@@ -62,11 +63,14 @@ namespace WatermarkApp
         /// <param name="qrcode_file"></param>
         public void DrawLines(string position,string qrcode_file)
         {
+            string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string text_file_debug = partialPath + @"\Ficheiros\text_debug.txt";
             string f = Convert_pdf_png(qrcode_file);
             Bitmap bmp = new Bitmap(f);
             Graphics g = Graphics.FromImage(bmp);
             Pen greenPen = new Pen(Color.Green, 3);
             qrcode_points = FillDictionary(position, bmp);
+            List<string> sb = new List<string>();
             
             string qrcode_comb;
             combs = new List<string>();
@@ -91,15 +95,45 @@ namespace WatermarkApp
                 string[] points = combs[i].Split(':');
                 qrcode_points.TryGetValue(points[0], out Point p1);
                 qrcode_points.TryGetValue(points[1], out Point p2);
-                 
                 g.DrawLine(greenPen, p1, p2);
-                //Ddaline(combs[i], p1, p2, g, bmp);
             }
+
+            // get rects without the origin point be the same
+            for(int i = 0; i < combs.Count; i ++)
+            {
+                string[] points_i = combs[i].Split(':');
+                string[] side_qrcode_i = points_i[0].Split('_');
+                for (int j = 0; j < combs.Count; j ++)
+                {
+                    string[] points_j = combs[j].Split(':');
+                    string[] side_qrcode_j = points_j[0].Split('_');
+                    if (!side_qrcode_i[0].Equals(side_qrcode_j[0]))
+                    {
+                        qrcode_points.TryGetValue(points_i[0], out Point A);
+                        qrcode_points.TryGetValue(points_i[1], out Point B);
+                        qrcode_points.TryGetValue(points_j[0], out Point C);
+                        qrcode_points.TryGetValue(points_j[1], out Point D);
+
+                        string res = point_intersection(bmp, A, B, C, D);
+                        //Console.WriteLine("A:" + A + " B:" + B + " C:" + C + " D:" + D + ";" + res);
+                        sb.Add(combs[i] + ";" + combs[j] + ";" + res);
+                        //Console.WriteLine(combs[i] + ";" + combs[j] + ";" + res);                       
+                    }
+                }
+            }
+
+            using (StreamWriter sw = File.CreateText(text_file_debug))
+            {
+                for(int i = 0; i < sb.Count; i ++)
+                {
+                    sw.WriteLine(sb[i]);
+                }
+            }
+
 
             filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
             bmp.Save(filename[0] + "_line.png");
             bmp.Dispose();
-            
         }
 
         private Dictionary<string, Point> FillDictionary(string position, Bitmap bmp)
@@ -111,9 +145,9 @@ namespace WatermarkApp
                 string[] qrcode = pos_qrcodes[i].Split(',');
                 int x_qrcode = int.Parse(qrcode[0]) * bmp.Width / w ;
                 int y_qrcode = int.Parse(qrcode[1]) * bmp.Height / h;
-                Point qrcode_l = new Point(x_qrcode + size_qrcode, y_qrcode - size_qrcode * 3);
-                Point qrcode_r = new Point(x_qrcode + size_qrcode * 3, y_qrcode - size_qrcode * 3);
-                Point qrcode_b = new Point(x_qrcode +  size_qrcode, y_qrcode - size_qrcode);
+                Point qrcode_l = new Point(x_qrcode + Convert.ToInt32(size_qrcode/2) + 5 , y_qrcode - size_qrcode * 2 - size_qrcode - 50);
+                Point qrcode_r = new Point(x_qrcode + size_qrcode * 3 + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode * 2 - size_qrcode - 50);
+                Point qrcode_b = new Point(x_qrcode + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode + Convert.ToInt32(size_qrcode / 2));
                 qrcode_points.Add("qrcode" + (i + 1) + "_l", qrcode_l);
                 qrcode_points.Add("qrcode" + (i + 1) + "_r", qrcode_r);
                 qrcode_points.Add("qrcode" + (i + 1) + "_b", qrcode_b);
@@ -122,107 +156,49 @@ namespace WatermarkApp
             return qrcode_points;
         }
 
-   
-        public void draw_point(string f, string[] characters)
+
+
+        private string point_intersection(Bitmap bmp, Point A, Point B, Point C, Point D)
         {
-            Bitmap bmp = new Bitmap(f);
+            int a1 = B.Y - A.Y;
+            int b1 = A.X - B.X;
+            int c1 = a1 * A.X + b1 * A.Y;
 
-            foreach(string c in characters)
+            int a2 = D.Y - C.Y;
+            int b2 = C.X - D.X;
+            int c2 = a2 * C.X + b2 * C.Y;
+
+            int determinant = a1 * b2 - a2 * b1;
+
+            if (determinant != 0)
             {
-                string[] val = c.Split('|');
-                string[] pos = val[1].Split(',');
-                int x = int.Parse(pos[0]);
-                int y = int.Parse(pos[1]);
+                double x = (b2 * c1 - b1 * c2) / determinant;
+                double y = (a1 * c2 - a2 * c1) / determinant;
+                
 
-                bmp.SetPixel((int)x * bmp.Width/w, (int)y * bmp.Height/h, Color.Purple);
-            }
-            bmp.Save(filename[0] + "_auxchar.png");
+                if (x < 0)
+                    return "0";
+                else if (y < 0)
+                    return "0";
 
-            bmp.Dispose();
-        }
-
-        private Dictionary<string, List<string>> Verify_value(Dictionary<string, List<Point>> points_rets, Dictionary<string, Point> points_char)
-        {
-            //int range = 0;
-            Dictionary<string, List<string>> mem_result = new Dictionary<string, List<string>>();
-            List<string> characters;
-            foreach (KeyValuePair<string, List<Point>> rect in points_rets)
-            {
-                for(int i = 0; i < rect.Value.Count; i ++)
+                if (x <= bmp.Width && y <= bmp.Height)
                 {
-                    characters = new List<string>();
-                    foreach (KeyValuePair<string, Point> c in points_char)
+                    if (x != C.X && y != C.Y && x != D.X && y != D.Y)
                     {
-                        string res = c.Key;
+                        //Point inter = new Point(Convert.ToInt32(x), Convert.ToInt32(y));
+                        return Convert.ToInt32(x) + "," + Convert.ToInt32(y);
 
-                        if (rect.Value[i].X == c.Value.X && rect.Value[i].Y == c.Value.Y )
-                            characters.Add(res);
+                        //bmp.SetPixel(Convert.ToInt32(x), Convert.ToInt32(y), Color.Blue);
+                        //Console.WriteLine("Point inter " + inter);
                     }
-                    if (!mem_result.ContainsKey(rect.Key))
-                        mem_result.Add(rect.Key, characters);  
-                }
+                    else
+                        return "0";
+      
+                }        
+                else return "0";
             }
-            return mem_result;
-        }
+            return "0";
 
-        private void Ddaline(string ret, Point p1, Point p2, Graphics g, Bitmap bmp)
-        {
-            Dictionary<string, List<Point>> points_rets = new Dictionary<string, List<Point>>();
-            Dictionary<string, Point> points_char = new Dictionary<string, Point>();
-
-            double xinc, yinc, x, x1, y, y1, steps;
-            double deltaX = p2.X - p1.X;
-            double deltaY = p2.Y - p1.Y;
-            if (deltaX > deltaY) steps = deltaX;
-            else steps = deltaY;
-
-            xinc = deltaX / steps;
-            yinc = deltaY / steps;
-            x = x1 = p1.X;
-            y = y1 = p1.Y;
-
-            foreach (string c in characters)
-            {
-                string[] val = c.Split('|');
-                string[] coord = val[1].Split(',');
-                points_char.Add(c, new Point(int.Parse(coord[0]), int.Parse(coord[1])));   
-            }
-
-            for (int k = 1; k <= steps; k++)
-            {
-                x = x + xinc;
-                x = Math.Round(x, 0);
-                y = y + yinc;
-                y = Math.Round(y, 0);
-                Point point = new Point((int)x, (int)y);
-                //Console.WriteLine("point " + point);
-
-                if (points_rets.ContainsKey(ret))
-                {
-                    Point p = new Point((int)x, (int)y);
-                    points_rets[ret].Add(p);
-                }
-                else
-                {
-                    Point p = new Point((int)x, (int)y);
-                    points_rets.Add(ret, new List<Point>() { p });
-                }
-            }
-
-            Dictionary<string, List<string>> mem_result = Verify_value(points_rets, points_char);
-            foreach (KeyValuePair <string,List<string>> m_res in mem_result)
-            {
-                Console.WriteLine(m_res.Key);
-                for (int i = 0; i < m_res.Value.Count; i++)
-                {
-                    string[] val = m_res.Value[i].Split('|');
-                    string[] coord = val[1].Split(',');
-                    int x_c = int.Parse(coord[0]);
-                    int y_c = int.Parse(coord[1]);
-                    //bmp.SetPixel((int)x_c * bmp.Width / w, (int)y_c * bmp.Height / h, Color.Brown);
-                    Console.WriteLine(m_res.Value[i]);
-                }
-            }
         }
     }
 }

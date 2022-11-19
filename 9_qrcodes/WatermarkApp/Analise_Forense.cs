@@ -68,7 +68,6 @@ namespace WatermarkApp
             {
                 var reader = new PdfReader(inputPdfStream);
                 PdfReader.unethicalreading = true;
-
                 width = (int)reader.GetPageSize(1).Width;
                 height = (int)reader.GetPageSize(1).Height;
             }
@@ -100,7 +99,6 @@ namespace WatermarkApp
             bottom_left = size_qrcode.ToString() + "," + size_qrcode.ToString();
             bottom_middle = Math.Round(m).ToString() + "," + size_qrcode.ToString();
             bottom_right = r.ToString() + "," + size_qrcode.ToString();
-
         }
     }
 }

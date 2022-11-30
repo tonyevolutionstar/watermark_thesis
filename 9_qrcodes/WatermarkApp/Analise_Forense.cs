@@ -88,17 +88,17 @@ namespace WatermarkApp
             double m = (width - size_qrcode) / 2;
             double m_h = height / 2;
 
-            top_left = size_qrcode.ToString() + "," + height_top.ToString();
-            top_right = r.ToString() + "," + height_top.ToString();
-            top_middle = Math.Round(m).ToString() + "," + height_top;
+            bottom_left = size_qrcode.ToString() + "," + size_qrcode.ToString();
+            bottom_middle = Math.Round(m).ToString() + "," + size_qrcode.ToString();
+            bottom_right = r.ToString() + "," + size_qrcode.ToString();
 
             middle_left = size_qrcode.ToString() + "," + Math.Round(m_h).ToString();
             middle = Math.Round(m).ToString() + "," + Math.Round(m_h).ToString();
             middle_right = r.ToString() + "," + Math.Round(m_h).ToString();
 
-            bottom_left = size_qrcode.ToString() + "," + size_qrcode.ToString();
-            bottom_middle = Math.Round(m).ToString() + "," + size_qrcode.ToString();
-            bottom_right = r.ToString() + "," + size_qrcode.ToString();
+            top_left = size_qrcode.ToString() + "," + height_top.ToString();
+            top_right = r.ToString() + "," + height_top.ToString();
+            top_middle = Math.Round(m).ToString() + "," + height_top;
         }
     }
 }

@@ -3,8 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Diagnostics;
-using System.Text;
+
 
 namespace WatermarkApp
 {
@@ -95,7 +94,7 @@ namespace WatermarkApp
                 string[] points = combs[i].Split(':');
                 qrcode_points.TryGetValue(points[0], out Point p1);
                 qrcode_points.TryGetValue(points[1], out Point p2);
-                g.DrawLine(greenPen, p1, p2);
+                
             }
 
             // get rects without the origin point be the same
@@ -114,10 +113,32 @@ namespace WatermarkApp
                         qrcode_points.TryGetValue(points_j[0], out Point C);
                         qrcode_points.TryGetValue(points_j[1], out Point D);
 
-                        string res = point_intersection(bmp, A, B, C, D);
-                        //Console.WriteLine("A:" + A + " B:" + B + " C:" + C + " D:" + D + ";" + res);
-                        sb.Add(combs[i] + ";" + combs[j] + ";" + res);
-                        //Console.WriteLine(combs[i] + ";" + combs[j] + ";" + res);                       
+                        g.DrawLine(greenPen, A, B);
+                        g.DrawLine(greenPen, C, D);
+                        
+                        Point res = other_int_try(bmp, A, B, C, D);
+
+                        if (res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
+                        {
+                            sb.Add(combs[i] + ";" + combs[j] + ";" + res);
+                            sb.Add(A.X + "," + A.Y + ":" + B.X + "," + B.Y + ";" + C.X + "," + C.Y + ":" + D.X + "," + D.Y);
+                            Pen yellow = new Pen(Color.Yellow, 3);
+
+                            // Create coordinates of the rectangle
+                            // to the bound ellipse.
+
+                            int width = 25;
+                            int height = 40;
+
+                            // Create start and sweep
+                            // angles on ellipse.
+                            int startAngle = 0;
+                            int sweepAngle = 360;
+
+                            // Draw arc to screen.
+                            g.DrawArc(yellow, res.X, res.Y, width, height, startAngle, sweepAngle);
+
+                        }
                     }
                 }
             }
@@ -129,7 +150,6 @@ namespace WatermarkApp
                     sw.WriteLine(sb[i]);
                 }
             }
-
 
             filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
             bmp.Save(filename[0] + "_line.png");
@@ -145,9 +165,9 @@ namespace WatermarkApp
                 string[] qrcode = pos_qrcodes[i].Split(',');
                 int x_qrcode = int.Parse(qrcode[0]) * bmp.Width / w ;
                 int y_qrcode = int.Parse(qrcode[1]) * bmp.Height / h;
-                Point qrcode_l = new Point(x_qrcode + Convert.ToInt32(size_qrcode/2) + 5 , y_qrcode - size_qrcode * 2 - size_qrcode - 50);
-                Point qrcode_r = new Point(x_qrcode + size_qrcode * 3 + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode * 2 - size_qrcode - 50);
-                Point qrcode_b = new Point(x_qrcode + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode + Convert.ToInt32(size_qrcode / 2));
+                Point qrcode_l = new Point(x_qrcode + Convert.ToInt32(size_qrcode/2) + 5, y_qrcode - size_qrcode + Convert.ToInt32(size_qrcode / 2));
+                Point qrcode_r = new Point(x_qrcode + size_qrcode * 3 + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode + Convert.ToInt32(size_qrcode / 2));
+                Point qrcode_b = new Point(x_qrcode + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode * 2 - size_qrcode - 50); 
                 qrcode_points.Add("qrcode" + (i + 1) + "_l", qrcode_l);
                 qrcode_points.Add("qrcode" + (i + 1) + "_r", qrcode_r);
                 qrcode_points.Add("qrcode" + (i + 1) + "_b", qrcode_b);
@@ -157,9 +177,232 @@ namespace WatermarkApp
         }
 
 
+        private Point other_int_try(Bitmap bmp, Point A, Point B, Point C, Point D)
+        {
+            int x1 = A.X;
+            int x2 = B.X;
+            int x3 = C.X;
+            int x4 = D.X;
+
+            int y1 = A.Y;
+            int y2 = B.Y;
+            int y3 = C.Y;
+            int y4 = D.Y;
+
+            int denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
+            if (denom == 0) //parallel
+                return new Point(0,0);
+            double ua = (double) ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denom;
+            Console.WriteLine(ua.ToString());
+            if (ua < 0.0 || ua > 1.0)
+                return new Point(0, 0);
+            double ub = (double)((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denom;
+            
+            if (ub < 0.0 || ub > 1.0)
+                return new Point(0, 0);
+
+            double x = x1 + ua * (x2 - x1);
+            double y = y1 + ua * (y2 - y1);
+            
+            Point inter = new Point((int)x, (int)y);
+
+            return inter;
+        }
+
+        /*
+        private void an_line(Bitmap bmp, Point A, Point B, Point C, Point D)
+        {
+            Graphics g = Graphics.FromImage(bmp);
+            int x1 = A.X;
+            int x2 = B.X;
+            int x3 = C.X;
+            int x4 = D.X;
+
+            int y1 = A.Y;
+            int y2 = B.Y;
+            int y3 = C.Y;
+            int y4 = D.Y;
+
+
+            if ((x2 - x1) != 0)
+            {
+                int b1 = Convert.ToInt32((y2 - y1) / (x2 - x1));
+                if ((x4 - x3) != 0)
+                {
+                    int b2 = Convert.ToInt32((y4 - y3) / (x4 - x3));
+
+                    int c1 = y2 - b1 * x2;
+                    int c2 = y4 - b2 * x4;
+
+                    int y_eq1 = b1 * x1 + c1;
+                    int y_eq2 = b2 * x2 + c2;
+                    if (y_eq1 != y_eq2)
+                    {
+                        if (b1 != 0)
+                        {
+
+                            int x = Convert.ToInt32((y2 - c1) / b1);
+
+                            int y = y1;
+                            Console.WriteLine("Intersection: " + x + "," + y);
+                            //bmp.SetPixel(x, y, Color.Yellow);
+                            // Create pen.
+                            Pen yellow = new Pen(Color.Yellow, 3);
+
+                            // Create coordinates of the rectangle
+                            // to the bound ellipse.
+                          
+                            int width = 100;
+                            int height = 200;
+
+                            // Create start and sweep
+                            // angles on ellipse.
+                            int startAngle = 0;
+                            int sweepAngle = 360;
+
+                            // Draw arc to screen.
+                            g.DrawArc(yellow, x, y, width,
+                                     height, startAngle, sweepAngle);
+                        }
+                           
+                    }
+                        
+                    //Console.WriteLine(y_eq1 + ":" + y1);
+                    //Console.WriteLine(y_eq2 + ":" + y2);
+
+                }
+                
+            }
+
+           
+
+        }
+
+
+        private void line_eq(Bitmap bmp, Point A, Point B, Point C, Point D)
+        {
+            
+            if ((B.X - A.X) > 0 )
+            {
+                int m1 = Convert.ToInt32((B.Y - A.Y) / (B.X - A.X));
+                if ((D.X - C.X) > 0)
+                {
+                    int m2 = Convert.ToInt32((D.Y - C.Y) / (D.X - C.X));
+                    // y - y1 = m(x-x1) <=> y = m(x-x1) + y1 <=> y = mx - mx1 + y1
+                    int y1_t = -m1 * A.X + A.Y;
+                    int y2_t = -m2 * B.X + B.Y;
+                    if ((m1 - m2) > 0)
+                    {
+                        int x = Math.Abs(Convert.ToInt32((y2_t - y1_t) / (m1 - m2)));
+                        int y = Math.Abs(m1 * x + m2);
+                        if (x< bmp.Width && y< bmp.Height)
+                            bmp.SetPixel(x, y, Color.Blue);
+                    }
+                    
+                }
+                
+            }
+        }
+
+
+        private void int_wiki(Bitmap bmp, Point A, Point B, Point C, Point D)
+        {
+            int x1 = A.X;
+            int x2 = B.X;
+            int x3 = C.X;
+            int x4 = D.X;
+
+            int y1 = A.Y;
+            int y2 = B.Y;
+            int y3 = C.Y;
+            int y4 = D.Y;
+
+            int px1 = (x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4);
+            int px2 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+
+            int py1 = (x1 * y2 - y1 * x2)  * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4);
+          
+
+            if (px2 > 0)
+            {
+                int px = Math.Abs(Convert.ToInt32(px1 / px2));
+                int py = Math.Abs(Convert.ToInt32(py1 / px2));
+                if (px < bmp.Width && py < bmp.Height)
+                    bmp.SetPixel(px, py, Color.Violet);
+            }
+
+        }
+ 
+
+        private void a_int(Bitmap bmp, Point A, Point B, Point C, Point D)
+        {
+            int x1 = A.X;
+            int x2 = B.X;
+            int x3 = C.X;
+            int x4 = D.X;
+
+            int y1 = A.Y;
+            int y2 = B.Y;
+            int y3 = C.Y;
+            int y4 = D.Y;
+
+            int t1 = (x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4);
+            int t2 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+
+            int u1 = (x1 - x3) * (y1 - y2) - (y1 - y3) * (x1 - x2);
+            int u2 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+
+            if (t2 != 0 && u2 != 0)
+            {
+                double t = t1 / t2;
+                double u = u1 / u2;
+
+                if (0.0 >= t && t <= 1.0 && 0.0 >= u && u <= 1.0)
+                {
+                    int x = Math.Abs(Convert.ToInt32(x3 + u * (x4 - x3)));
+                    int y = Math.Abs(Convert.ToInt32(y3 + u * (y4 - y3)));
+                    if (x < bmp.Width && y< bmp.Height)
+                        bmp.SetPixel(x, y, Color.Red);
+                }
+            }
+           
+        }
+
+
+        private void another_int(Bitmap bmp, Point A, Point B, Point C, Point D)
+        {
+       
+            if ((B.X - C.X) * (B.Y - A.Y) != 0 )
+            {
+                double d = (D.Y - C.Y) * (B.X - A.X) - (B.Y - A.Y) * (D.X - C.X);
+                if (d == 0)
+                    Console.WriteLine("Paralel");
+                else
+                {
+                    int u = Convert.ToInt32(((C.X - A.X) * (D.Y - C.Y) - (C.Y - A.Y) * (D.X - C.X)) / d);
+                    int v = Convert.ToInt32(((C.X - A.X) * (B.Y - A.Y) - (C.Y - A.Y) * (B.X - A.X)) / d);
+
+                    // The fractional point will be between 0 and 1 inclusive if the lines
+                    // intersect.  If the fractional calculation is larger than 1 or smaller
+                    // than 0 the lines would need to be longer to intersect.
+                    if (u >= 0d && u <= 1d && v >= 0d && v <= 1d)
+                    {
+                        int x = A.X + (u * (B.X - A.X));
+                        int y = A.Y + (u * (B.Y - A.Y));
+
+                        Console.WriteLine("Point intersection: " + x + "," + y);
+                        bmp.SetPixel(x, y, Color.Blue);
+                    }
+                }
+        
+               
+            }
+        }
+        */
 
         private string point_intersection(Bitmap bmp, Point A, Point B, Point C, Point D)
         {
+            Graphics g = Graphics.FromImage(bmp);
             int a1 = B.Y - A.Y;
             int b1 = A.X - B.X;
             int c1 = a1 * A.X + b1 * A.Y;
@@ -174,31 +417,25 @@ namespace WatermarkApp
             {
                 double x = (b2 * c1 - b1 * c2) / determinant;
                 double y = (a1 * c2 - a2 * c1) / determinant;
-                
+                x = Math.Abs(x);
+                y = Math.Abs(y);
 
-                if (x < 0)
-                    return "0";
-                else if (y < 0)
-                    return "0";
-
-                if (x <= bmp.Width && y <= bmp.Height)
+                if (x < bmp.Width && y < bmp.Height && x != A.X && y!= A.Y && x != B.X && y != B.Y && x != C.X && y != C.Y && x != D.X && y != D.Y)
                 {
-                    if (x != C.X && y != C.Y && x != D.X && y != D.Y)
-                    {
-                        //Point inter = new Point(Convert.ToInt32(x), Convert.ToInt32(y));
-                        return Convert.ToInt32(x) + "," + Convert.ToInt32(y);
+                    Pen yellow = new Pen(Color.Yellow, 3);
 
-                        //bmp.SetPixel(Convert.ToInt32(x), Convert.ToInt32(y), Color.Blue);
-                        //Console.WriteLine("Point inter " + inter);
-                    }
-                    else
-                        return "0";
-      
+                    int width = 25;
+                    int height = 50;
+                    int startAngle = 0;
+                    int sweepAngle = 360;
+                    //bmp.SetPixel(Convert.ToInt32(x) , Convert.ToInt32(y) , Color.Red);
+                    // Draw arc to screen.
+                    //g.DrawArc(yellow, Convert.ToInt32(x), Convert.ToInt32(y), width,height, startAngle, sweepAngle);
+                    return Convert.ToInt32(x) + "," + Convert.ToInt32(y);
                 }        
                 else return "0";
             }
             return "0";
-
         }
     }
 }

@@ -1,0 +1,18 @@
+<component name="libraryTable">
+  <library name="9_qrcodes">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/debugger-app-2.0.27.jar!/" />
+      <root url="jar://$PROJECT_DIR$/fontbox-1.8.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jempbox-1.8.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/pdfbox-1.8.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/pdfbox-app-2.0.27.jar!/" />
+      <root url="jar://$PROJECT_DIR$/pdfbox-app-3.0.0-alpha3.jar!/" />
+      <root url="jar://$PROJECT_DIR$/pdfbox-debugger-2.0.27.jar!/" />
+      <root url="jar://$PROJECT_DIR$/pdfbox-tools-2.0.27.jar!/" />
+      <root url="jar://$PROJECT_DIR$/preflight-1.8.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/xmpbox-1.8.17.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

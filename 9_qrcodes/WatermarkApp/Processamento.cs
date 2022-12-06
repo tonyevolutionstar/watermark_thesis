@@ -48,9 +48,12 @@ namespace WatermarkApp
             this.file_name = file_name;
             Get_PositionChar();
             characters = Read_positionChar_file();
-          
         }
 
+        /// <summary>
+        /// Executa o ficheiro jar que vai gerar um ficheiro txt com as posições dos 
+        /// caracteres que estão no pdf
+        /// </summary>
         private void Get_PositionChar()
         {
             string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -64,6 +67,10 @@ namespace WatermarkApp
             myProcess.WaitForExit();
         }
 
+        /// <summary>
+        /// Vai ler o ficheiro gerado e colocar os valores numa variavel 
+        /// </summary>
+        /// <returns></returns>
         private string[] Read_positionChar_file()
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
@@ -89,10 +96,8 @@ namespace WatermarkApp
         public int Generate_id()
         {
             Random rd = new Random();
-
             int rand_num = rd.Next(1, int.MaxValue);
             SQL_connection sql = new SQL_connection();
-
             if (sql.Check_generate_id(rand_num) == 0)
                 return rand_num;
             return 0;
@@ -196,7 +201,6 @@ namespace WatermarkApp
             string barcode = filename + "_barcode.png";
             delete_files.Add(barcode);
             
-
             try
             {
                 foreach (string file in delete_files)
@@ -239,8 +243,6 @@ namespace WatermarkApp
               
                 AuxFunc auxFunc = new AuxFunc(file_name + ".pdf", sizeQrcode, characters);
                 auxFunc.DrawLines(analise.positions, file_name + "_qrcode.pdf");
-                //auxFunc.draw_point(file_name + "_qrcode.png", characters);
-
             }
         }
 
@@ -318,7 +320,6 @@ namespace WatermarkApp
             conteudos.Add(metadataRegistoDELNATOSR, ficheiroDELNATOSR);
             #endregion
 
-           
             return conteudos;
         }
 
@@ -339,7 +340,6 @@ namespace WatermarkApp
                     SQL_connection sql = new SQL_connection();
                     sql.Insert_watermark(id_doc,id_barcode,1);
                     MessageBox.Show("Documento aceite");
-                    
                 }
                 else
                 {

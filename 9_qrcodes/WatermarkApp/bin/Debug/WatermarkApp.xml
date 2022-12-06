@@ -77,7 +77,7 @@
             </summary>
             <param name="filename"></param>
             <param name="size_qrcode"></param>
-            <param name="ch"></param>
+            <param name="ch">Posição dos caracteres no ficheiro</param>
         </member>
         <member name="M:WatermarkApp.AuxFunc.Convert_pdf_png(System.String)">
             <summary>
@@ -102,6 +102,18 @@
             <summary>
             Processamento do ficheiro para a originação do documento com watermark
             </summary>
+        </member>
+        <member name="M:WatermarkApp.Processamento.Get_PositionChar">
+            <summary>
+            Executa o ficheiro jar que vai gerar um ficheiro txt com as posições dos 
+            caracteres que estão no pdf
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Processamento.Read_positionChar_file">
+            <summary>
+            Vai ler o ficheiro gerado e colocar os valores numa variavel 
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:WatermarkApp.Processamento.Form1_Load(System.Object,System.EventArgs)">
             <summary>

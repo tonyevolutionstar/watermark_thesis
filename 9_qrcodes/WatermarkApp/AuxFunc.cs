@@ -25,7 +25,7 @@ namespace WatermarkApp
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="size_qrcode"></param>
-        /// <param name="ch"></param>
+        /// <param name="ch">Posição dos caracteres no ficheiro</param>
         public AuxFunc(string filename, int size_qrcode, string[] ch)
         {
             this.size_qrcode = size_qrcode;
@@ -39,6 +39,7 @@ namespace WatermarkApp
                 reader.Dispose();
             }
             characters = ch;
+       
         }
 
         /// <summary>
@@ -73,6 +74,13 @@ namespace WatermarkApp
             
             string qrcode_comb;
             combs = new List<string>();
+            /*
+            List<string> pos_char = Change_pos_char();
+            foreach(string c in pos_char)
+            {
+                Console.WriteLine(c);
+            }
+            */
 
             foreach (KeyValuePair<string, Point> entry in qrcode_points)
             {
@@ -94,7 +102,6 @@ namespace WatermarkApp
                 string[] points = combs[i].Split(':');
                 qrcode_points.TryGetValue(points[0], out Point p1);
                 qrcode_points.TryGetValue(points[1], out Point p2);
-                
             }
 
             // get rects without the origin point be the same
@@ -116,33 +123,25 @@ namespace WatermarkApp
                         g.DrawLine(greenPen, A, B);
                         g.DrawLine(greenPen, C, D);
                         
-                        Point res = other_int_try(bmp, A, B, C, D);
+                        Point res = Intersection(A, B, C, D);
 
                         if (res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
                         {
                             sb.Add(combs[i] + ";" + combs[j] + ";" + res);
                             sb.Add(A.X + "," + A.Y + ":" + B.X + "," + B.Y + ";" + C.X + "," + C.Y + ":" + D.X + "," + D.Y);
                             Pen yellow = new Pen(Color.Yellow, 3);
-
-                            // Create coordinates of the rectangle
-                            // to the bound ellipse.
-
                             int width = 25;
                             int height = 40;
-
-                            // Create start and sweep
-                            // angles on ellipse.
                             int startAngle = 0;
                             int sweepAngle = 360;
 
-                            // Draw arc to screen.
                             g.DrawArc(yellow, res.X, res.Y, width, height, startAngle, sweepAngle);
-
                         }
                     }
                 }
             }
 
+            // create file debug with positions of intersections and points
             using (StreamWriter sw = File.CreateText(text_file_debug))
             {
                 for(int i = 0; i < sb.Count; i ++)
@@ -163,11 +162,12 @@ namespace WatermarkApp
             {
                 string[] pos_qrcodes = position.Split('|');
                 string[] qrcode = pos_qrcodes[i].Split(',');
+                
                 int x_qrcode = int.Parse(qrcode[0]) * bmp.Width / w ;
                 int y_qrcode = int.Parse(qrcode[1]) * bmp.Height / h;
-                Point qrcode_l = new Point(x_qrcode + Convert.ToInt32(size_qrcode/2) + 5, y_qrcode - size_qrcode + Convert.ToInt32(size_qrcode / 2));
-                Point qrcode_r = new Point(x_qrcode + size_qrcode * 3 + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode + Convert.ToInt32(size_qrcode / 2));
-                Point qrcode_b = new Point(x_qrcode + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode * 2 - size_qrcode - 50); 
+                Point qrcode_l = new Point(x_qrcode + Convert.ToInt32(size_qrcode/2) + 5, y_qrcode - size_qrcode * 2 - size_qrcode - 50);
+                Point qrcode_r = new Point(x_qrcode + size_qrcode * 3 + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode * 2 - size_qrcode - 50); 
+                Point qrcode_b = new Point(x_qrcode + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode + Convert.ToInt32(size_qrcode / 2)); 
                 qrcode_points.Add("qrcode" + (i + 1) + "_l", qrcode_l);
                 qrcode_points.Add("qrcode" + (i + 1) + "_r", qrcode_r);
                 qrcode_points.Add("qrcode" + (i + 1) + "_b", qrcode_b);
@@ -177,7 +177,7 @@ namespace WatermarkApp
         }
 
 
-        private Point other_int_try(Bitmap bmp, Point A, Point B, Point C, Point D)
+        private Point Intersection(Point A, Point B, Point C, Point D)
         {
             int x1 = A.X;
             int x2 = B.X;
@@ -193,7 +193,6 @@ namespace WatermarkApp
             if (denom == 0) //parallel
                 return new Point(0,0);
             double ua = (double) ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denom;
-            Console.WriteLine(ua.ToString());
             if (ua < 0.0 || ua > 1.0)
                 return new Point(0, 0);
             double ub = (double)((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denom;
@@ -207,6 +206,19 @@ namespace WatermarkApp
             Point inter = new Point((int)x, (int)y);
 
             return inter;
+        }
+
+        private List<string> Change_pos_char()
+        {
+            List<string> pos = new List<string>();
+            foreach(string s in characters)
+            {
+                string[] var = s.Split('|');
+                string[] pos_c = var[1].Split(',');
+                int y = int.Parse(pos_c[1]) * 2;
+                pos.Add(var[0] + "|" + pos_c[0] + "," + y.ToString());
+            }
+            return pos;
         }
 
         /*
@@ -242,7 +254,6 @@ namespace WatermarkApp
                         {
 
                             int x = Convert.ToInt32((y2 - c1) / b1);
-
                             int y = y1;
                             Console.WriteLine("Intersection: " + x + "," + y);
                             //bmp.SetPixel(x, y, Color.Yellow);
@@ -264,18 +275,9 @@ namespace WatermarkApp
                             g.DrawArc(yellow, x, y, width,
                                      height, startAngle, sweepAngle);
                         }
-                           
                     }
-                        
-                    //Console.WriteLine(y_eq1 + ":" + y1);
-                    //Console.WriteLine(y_eq2 + ":" + y2);
-
                 }
-                
             }
-
-           
-
         }
 
 
@@ -394,13 +396,10 @@ namespace WatermarkApp
                         bmp.SetPixel(x, y, Color.Blue);
                     }
                 }
-        
-               
             }
         }
-        */
 
-        private string point_intersection(Bitmap bmp, Point A, Point B, Point C, Point D)
+         private string point_intersection(Bitmap bmp, Point A, Point B, Point C, Point D)
         {
             Graphics g = Graphics.FromImage(bmp);
             int a1 = B.Y - A.Y;
@@ -437,5 +436,8 @@ namespace WatermarkApp
             }
             return "0";
         }
+        */
+
+
     }
 }

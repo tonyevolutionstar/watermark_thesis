@@ -1,0 +1,18 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="thesis_watermark:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/thesis_watermark_jar</output-path>
+    <root id="archive" name="thesis_watermark.jar">
+      <element id="module-output" name="thesis_watermark" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/debugger-app-2.0.27.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/fontbox-1.8.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/jempbox-1.8.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/pdfbox-1.8.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/pdfbox-app-2.0.27.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/pdfbox-app-3.0.0-alpha3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/pdfbox-debugger-2.0.27.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/pdfbox-tools-2.0.27.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/preflight-1.8.17.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/xmpbox-1.8.17.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

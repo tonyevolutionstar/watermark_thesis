@@ -74,13 +74,7 @@ namespace WatermarkApp
             
             string qrcode_comb;
             combs = new List<string>();
-            /*
-            List<string> pos_char = Change_pos_char();
-            foreach(string c in pos_char)
-            {
-                Console.WriteLine(c);
-            }
-            */
+         
 
             foreach (KeyValuePair<string, Point> entry in qrcode_points)
             {

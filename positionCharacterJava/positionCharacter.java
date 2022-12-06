@@ -61,7 +61,7 @@ class PositionCharacter extends PDFTextStripper
             FileWriter file = new FileWriter(f[0]+"_pos.txt", true);
 
             for (TextPosition text : textPositions) {
-                file.write(text.getUnicode() + "|" + Math.round(text.getXDirAdj()) + "," + Math.round(text.getYDirAdj()*2) + "\n");
+                file.write(text.getUnicode() + "|" + Math.round(text.getXDirAdj()) + "," + Math.round(text.getYDirAdj()*4) + "\n");
             }
             file.close();
 

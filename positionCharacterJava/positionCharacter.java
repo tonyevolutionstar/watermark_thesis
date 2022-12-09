@@ -1,9 +1,7 @@
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 import org.apache.pdfbox.text.TextPosition;
-
 import java.io.*;
-import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 //https://www.tutorialkart.com/pdfbox/how-to-extract-coordinates-or-position-of-characters-in-pdf/
@@ -61,7 +59,8 @@ class PositionCharacter extends PDFTextStripper
             FileWriter file = new FileWriter(f[0]+"_pos.txt", true);
 
             for (TextPosition text : textPositions) {
-                file.write(text.getUnicode() + "|" + Math.round(text.getXDirAdj()) + "," + Math.round(text.getYDirAdj()*4) + "\n");
+
+                file.write(text.getUnicode() + "|" + Math.round(text.getX()) + "," + Math.round(Math.abs(text.getHeight() - text.getY())) + "," + Math.round(text.getEndX() - text.getWidthOfSpace()) + "," +  Math.round(text.getY()) +  "\n");
             }
             file.close();
 

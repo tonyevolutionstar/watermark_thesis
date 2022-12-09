@@ -242,6 +242,7 @@ namespace WatermarkApp
                 qrcode.Add_barcodes_pdf(analise.positions);
               
                 AuxFunc auxFunc = new AuxFunc(file_name + ".pdf", sizeQrcode, characters);
+
                 auxFunc.DrawLines(analise.positions, file_name + "_qrcode.pdf");
             }
         }

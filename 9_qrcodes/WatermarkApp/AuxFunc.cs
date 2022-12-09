@@ -19,6 +19,8 @@ namespace WatermarkApp
         private Dictionary<string, Point> qrcode_points;
         private List<string> combs;
         private string[] characters;
+        private string pngfile;
+
 
         /// <summary>
         /// Construtor
@@ -38,8 +40,9 @@ namespace WatermarkApp
                 reader.Close();
                 reader.Dispose();
             }
+            
             characters = ch;
-       
+            pngfile = Convert_pdf_png(filename);
         }
 
         /// <summary>
@@ -66,16 +69,18 @@ namespace WatermarkApp
             string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string text_file_debug = partialPath + @"\Ficheiros\text_debug.txt";
             string f = Convert_pdf_png(qrcode_file);
+
             Bitmap bmp = new Bitmap(f);
+            Bitmap getcolors = new Bitmap(pngfile);
+            //Console.WriteLine(getcolors.Width + "," + getcolors.Height);
             Graphics g = Graphics.FromImage(bmp);
             Pen greenPen = new Pen(Color.Green, 3);
             qrcode_points = FillDictionary(position, bmp);
             List<string> sb = new List<string>();
-            
+
             string qrcode_comb;
             combs = new List<string>();
-         
-
+      
             foreach (KeyValuePair<string, Point> entry in qrcode_points)
             {
                 string[] val0 = entry.Key.Split('_');
@@ -119,13 +124,18 @@ namespace WatermarkApp
                         
                         Point res = Intersection(A, B, C, D);
 
-                        if (res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
+                        if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
                         {
-                            sb.Add(combs[i] + ";" + combs[j] + ";" + res);
-                            sb.Add(A.X + "," + A.Y + ":" + B.X + "," + B.Y + ";" + C.X + "," + C.Y + ":" + D.X + "," + D.Y);
+                            string ch = Get_Value_in(getcolors, res.X, res.Y);
+                            if (!String.IsNullOrEmpty(ch))
+                            {
+                                sb.Add(combs[i] + ";" + combs[j] + ";" + res + ";" + ch + ";");
+                                sb.Add(A.X + "," + A.Y + ":" + B.X + "," + B.Y + ";" + C.X + "," + C.Y + ":" + D.X + "," + D.Y);
+                            }
+                         
                             Pen yellow = new Pen(Color.Yellow, 3);
-                            int width = 25;
-                            int height = 40;
+                            int width = 15;
+                            int height = 20;
                             int startAngle = 0;
                             int sweepAngle = 360;
 
@@ -147,6 +157,7 @@ namespace WatermarkApp
             filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
             bmp.Save(filename[0] + "_line.png");
             bmp.Dispose();
+            getcolors.Dispose();
         }
 
         private Dictionary<string, Point> FillDictionary(string position, Bitmap bmp)
@@ -183,37 +194,92 @@ namespace WatermarkApp
             int y3 = C.Y;
             int y4 = D.Y;
 
-            int denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
-            if (denom == 0) //parallel
-                return new Point(0,0);
-            double ua = (double) ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denom;
-            if (ua < 0.0 || ua > 1.0)
-                return new Point(0, 0);
-            double ub = (double)((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denom;
+            /*
+                int denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
+                if (denom == 0) //parallel
+                    return new Point(0,0);
+                double ua = (double) ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denom;
+                if (ua < 0.0 || ua > 1.0)
+                    return new Point(0, 0);
+                double ub = (double)((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denom;
             
-            if (ub < 0.0 || ub > 1.0)
-                return new Point(0, 0);
+                if (ub < 0.0 || ub > 1.0)
+                    return new Point(0, 0);
 
-            double x = x1 + ua * (x2 - x1);
-            double y = y1 + ua * (y2 - y1);
+                double x = x3 + ua * (x4 - x3);
+                double y = y3 + ua * (y4 - y3);
             
-            Point inter = new Point((int)x, (int)y);
+                Point inter = new Point((int)x, (int)y);
+            */
+
+            double t = (double) ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4));
+            double u = (double)((x1 - x3) * (y1 - y2) - (y1 - y3) * (x1 - x2)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4));
+
+            Point inter = new Point();
+            if ((t >= 0 && t <= 1) && (u >= 0 && u <= 1))
+            {
+                double x = x3 + u * (x4 - x3);
+                double y = y3 + u * (y4 - y3);
+
+                inter = new Point((int)x, (int)y);
+            }
 
             return inter;
         }
 
-        private List<string> Change_pos_char()
+        private string Get_Value_in(Bitmap bmp, int x, int y)
         {
-            List<string> pos = new List<string>();
-            foreach(string s in characters)
+            string ch = "";
+            foreach (string values in characters)
             {
-                string[] var = s.Split('|');
-                string[] pos_c = var[1].Split(',');
-                int y = int.Parse(pos_c[1]) * 2;
-                pos.Add(var[0] + "|" + pos_c[0] + "," + y.ToString());
+                string[] val = values.Split('|');
+                string[] pos_val = val[1].Split(',');
+                int new_x = Convert.ToInt32(int.Parse(pos_val[0]) * bmp.Width / w);
+                int new_y = Convert.ToInt32(int.Parse(pos_val[1]) * bmp.Height / h);
+                int final_x = Convert.ToInt32(int.Parse(pos_val[2]) * bmp.Width / w);
+                int final_y = Convert.ToInt32(int.Parse(pos_val[3]) * bmp.Height / h);
+
+                //Console.WriteLine("intersection:" + x + "," + y);
+                //Console.WriteLine("points char start:" + new_x + "," + new_y);
+                //Console.WriteLine("points char end:" + final_x + "," + final_y);
+
+                // verifica se o valor da interseção está proximo a uma letra
+                if (x >= new_x && x <= final_x && y >= new_y && y <= final_y)
+                {
+                    // é necessario obter a posição para retificar se está de cima de uma letra ou não,
+                    // para isso, vê se a cor do pixel, se for preto pertence À letra, se for branco não pertence
+                  
+                    return val[0]; 
+                    
+                }
             }
-            return pos;
+            return ch;
         }
+
+        private Point Intersect(Point A, Point B, Point C, Point D)
+        {
+            int a1 = B.Y - A.Y;
+            int b1 = A.X - B.X;
+            int c1 = a1 * A.X + b1 * A.Y;
+
+            int a2 = D.Y - C.Y;
+            int b2 = C.X - D.X;
+            int c2 = a2 * C.X + b2 * C.Y;
+
+            int determinant = a1 * b2 - a2 * b1;
+
+            if (determinant != 0)
+            {
+                double x = (double) (b2 * c1 - b1 * c2) / determinant;
+                double y = (double) (a1 * c2 - a2 * c1) / determinant;
+                x = Math.Abs(x);
+                y = Math.Abs(y);
+                return new Point(Convert.ToInt32(x), Convert.ToInt32(y));
+                
+            }
+            return new Point(0, 0);
+        }
+
 
         /*
         private void an_line(Bitmap bmp, Point A, Point B, Point C, Point D)
@@ -299,6 +365,40 @@ namespace WatermarkApp
                 
             }
         }
+         private Point a_int(Point A, Point B, Point C, Point D)
+        {
+            int x1 = A.X;
+            int x2 = B.X;
+            int x3 = C.X;
+            int x4 = D.X;
+
+            int y1 = A.Y;
+            int y2 = B.Y;
+            int y3 = C.Y;
+            int y4 = D.Y;
+
+            int t1 = (x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4);
+            int t2 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+
+            int u1 = (x1 - x3) * (y1 - y2) - (y1 - y3) * (x1 - x2);
+            int u2 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
+
+            if (t2 != 0 && u2 != 0)
+            {
+                double t = (double)t1 / t2;
+                double u = (double)u1 / u2;
+
+                if (0.0 >= t && t <= 1.0 && 0.0 >= u && u <= 1.0)
+                {
+                    int x = Math.Abs(Convert.ToInt32(x3 + u * (x4 - x3)));
+                    int y = Math.Abs(Convert.ToInt32(y3 + u * (y4 - y3)));
+                    return new Point(x, y);
+                }
+            }
+            return new Point(0, 0);
+
+        }
+
 
 
         private void int_wiki(Bitmap bmp, Point A, Point B, Point C, Point D)
@@ -330,39 +430,7 @@ namespace WatermarkApp
         }
  
 
-        private void a_int(Bitmap bmp, Point A, Point B, Point C, Point D)
-        {
-            int x1 = A.X;
-            int x2 = B.X;
-            int x3 = C.X;
-            int x4 = D.X;
-
-            int y1 = A.Y;
-            int y2 = B.Y;
-            int y3 = C.Y;
-            int y4 = D.Y;
-
-            int t1 = (x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4);
-            int t2 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-
-            int u1 = (x1 - x3) * (y1 - y2) - (y1 - y3) * (x1 - x2);
-            int u2 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-
-            if (t2 != 0 && u2 != 0)
-            {
-                double t = t1 / t2;
-                double u = u1 / u2;
-
-                if (0.0 >= t && t <= 1.0 && 0.0 >= u && u <= 1.0)
-                {
-                    int x = Math.Abs(Convert.ToInt32(x3 + u * (x4 - x3)));
-                    int y = Math.Abs(Convert.ToInt32(y3 + u * (y4 - y3)));
-                    if (x < bmp.Width && y< bmp.Height)
-                        bmp.SetPixel(x, y, Color.Red);
-                }
-            }
-           
-        }
+      
 
 
         private void another_int(Bitmap bmp, Point A, Point B, Point C, Point D)

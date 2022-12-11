@@ -5,6 +5,7 @@
     <li>9_qrcodes - main project</li>
     <li>Database - files to create user and database</li>
     <li>Qrcode Tests - testing the ideal number of qrcodes to use on project</li>
+    <li>TestIntersection - develop on python to test intersection</li>
   </ul>
   <br>
   <h4>Files</h2>
@@ -15,7 +16,6 @@
 <br>
 
 # Steps before running the program 
-<p>Download  <a href = "#jarfile">jar file</a></p>
 <p>Install <a href ="#packages">packages</a></p> 
 
 
@@ -27,5 +27,3 @@
   <p>Freeware.Pdf2Png - Install-Package Freeware.Pdf2Png -Version 1.0.1 </p>
  </div>
  
-# Link jar
-<a href = "https://drive.google.com/file/d/1FNU01qWtHGroN7A8DWh_igj2yGNb3zdj/view?usp=sharing" id = "jarfile"> jar file </a>

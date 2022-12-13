@@ -86,7 +86,7 @@
             <param name="f">Nome do ficheiro</param>
             <returns>Nome do ficheiro + ".png"</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.DrawLines(System.String,System.String)">
+        <member name="M:WatermarkApp.AuxFunc.DrawLines(System.Int32,WatermarkApp.SQL_connection,System.String,System.String)">
             <summary>
             desenha linhas
             </summary>
@@ -517,6 +517,19 @@
             </summary>
             <param name="id_document"></param>
             <returns>nome_ficheiro;utilizador;sigla_principal;posto_atual</returns>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.Insert_forense_analises(System.Int32,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Insert info into forense analise database
+            </summary>
+            <param name="id_doc"></param>
+            <param name="line1"></param>
+            <param name="line2"></param>
+            <param name="inter_point"></param>
+            <param name="inter_char"></param>
+            <param name="line1_points"></param>
+            <param name="line2_points"></param>
+            <example>1; qrcode1_l:qrcode4_r; qrcode2_l:qrcode4_l; 525, 1158; s; 354,37:574,1479;1125,37:354,1479</example>
         </member>
         <member name="T:WatermarkApp.Properties.Resources">
             <summary>

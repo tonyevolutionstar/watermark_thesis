@@ -243,7 +243,7 @@ namespace WatermarkApp
               
                 AuxFunc auxFunc = new AuxFunc(file_name + ".pdf", sizeQrcode, characters);
 
-                auxFunc.DrawLines(analise.positions, file_name + "_qrcode.pdf");
+                auxFunc.DrawLines(id_doc, sql, analise.positions, file_name + "_qrcode.pdf");
             }
         }
 

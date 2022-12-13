@@ -243,5 +243,40 @@ namespace WatermarkApp
 
             return result;
         }
+
+        /// <summary>
+        /// Insert info into forense analise database
+        /// </summary>
+        /// <param name="id_doc"></param>
+        /// <param name="line1"></param>
+        /// <param name="line2"></param>
+        /// <param name="inter_point"></param>
+        /// <param name="inter_char"></param>
+        /// <param name="line1_points"></param>
+        /// <param name="line2_points"></param>
+        /// <example>1; qrcode1_l:qrcode4_r; qrcode2_l:qrcode4_l; 525, 1158; s; 354,37:574,1479;1125,37:354,1479</example>
+        public void Insert_forense_analises(int id_doc, string line1, string line2, string inter_point, string inter_char, string line1_points, string line2_points)
+        {
+            sql = "Use Watermark;INSERT INTO [dbo].[forense_analises] VALUES ("
+             + id_doc + "," + "'" + line1 + "'" + "," + "'" + line2 + "'" + "," + "'" + inter_point + "'" + "," + "'" + inter_char + "'" + "," + "'" + line1_points + "'" + "," + "'" + line2_points + "'" + ");";
+            connection = new SqlConnection(connetionString);
+    
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+
     }
 }

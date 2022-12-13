@@ -64,7 +64,7 @@ namespace WatermarkApp
         /// </summary>
         /// <param name="position"></param>
         /// <param name="qrcode_file"></param>
-        public void DrawLines(string position,string qrcode_file)
+        public void DrawLines(int id_doc, SQL_connection sql, string position,string qrcode_file)
         {
             string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string text_file_debug = partialPath + @"\Ficheiros\text_debug.txt";
@@ -72,11 +72,10 @@ namespace WatermarkApp
 
             Bitmap bmp = new Bitmap(f);
             Bitmap getcolors = new Bitmap(pngfile);
-            //Console.WriteLine(getcolors.Width + "," + getcolors.Height);
             Graphics g = Graphics.FromImage(bmp);
             Pen greenPen = new Pen(Color.Green, 3);
             qrcode_points = FillDictionary(position, bmp);
-            List<string> sb = new List<string>();
+            //List<string> sb = new List<string>();
 
             string qrcode_comb;
             combs = new List<string>();
@@ -127,10 +126,14 @@ namespace WatermarkApp
                         if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
                         {
                             string ch = Get_Value_in(getcolors, res.X, res.Y);
-                            if (!String.IsNullOrEmpty(ch))
+                            if (!String.IsNullOrEmpty(ch) && !ch.Equals("") && !String.IsNullOrWhiteSpace(ch))
                             {
-                                sb.Add(combs[i] + ";" + combs[j] + ";" + res + ";" + ch + ";");
-                                sb.Add(A.X + "," + A.Y + ":" + B.X + "," + B.Y + ";" + C.X + "," + C.Y + ":" + D.X + "," + D.Y);
+                                string line1_points = A.X + "," + A.Y + ":" + B.X + "," + B.Y;
+                                string line2_points = C.X + "," + C.Y + ":" + D.X + "," + D.Y;
+                                string inter_point = res.X + "," + res.Y;
+
+                                sql.Insert_forense_analises(id_doc, combs[i], combs[j], inter_point, ch, line1_points, line2_points); 
+                      
                             }
                          
                             Pen yellow = new Pen(Color.Yellow, 3);
@@ -145,17 +148,8 @@ namespace WatermarkApp
                 }
             }
 
-            // create file debug with positions of intersections and points
-            using (StreamWriter sw = File.CreateText(text_file_debug))
-            {
-                for(int i = 0; i < sb.Count; i ++)
-                {
-                    sw.WriteLine(sb[i]);
-                }
-            }
-
             filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
-            bmp.Save(filename[0] + "_line.png");
+            //bmp.Save(filename[0] + "_line.png");
             bmp.Dispose();
             getcolors.Dispose();
         }
@@ -193,25 +187,6 @@ namespace WatermarkApp
             int y2 = B.Y;
             int y3 = C.Y;
             int y4 = D.Y;
-
-            /*
-                int denom = (y4 - y3) * (x2 - x1) - (x4 - x3) * (y2 - y1);
-                if (denom == 0) //parallel
-                    return new Point(0,0);
-                double ua = (double) ((x4 - x3) * (y1 - y3) - (y4 - y3) * (x1 - x3)) / denom;
-                if (ua < 0.0 || ua > 1.0)
-                    return new Point(0, 0);
-                double ub = (double)((x2 - x1) * (y1 - y3) - (y2 - y1) * (x1 - x3)) / denom;
-            
-                if (ub < 0.0 || ub > 1.0)
-                    return new Point(0, 0);
-
-                double x = x3 + ua * (x4 - x3);
-                double y = y3 + ua * (y4 - y3);
-            
-                Point inter = new Point((int)x, (int)y);
-            */
-
             double t = (double) ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4));
             double u = (double)((x1 - x3) * (y1 - y2) - (y1 - y3) * (x1 - x2)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4));
 
@@ -239,24 +214,23 @@ namespace WatermarkApp
                 int final_x = Convert.ToInt32(int.Parse(pos_val[2]) * bmp.Width / w);
                 int final_y = Convert.ToInt32(int.Parse(pos_val[3]) * bmp.Height / h);
 
-                //Console.WriteLine("intersection:" + x + "," + y);
-                //Console.WriteLine("points char start:" + new_x + "," + new_y);
-                //Console.WriteLine("points char end:" + final_x + "," + final_y);
-
                 // verifica se o valor da interseção está proximo a uma letra
                 if (x >= new_x && x <= final_x && y >= new_y && y <= final_y)
                 {
-                    // é necessario obter a posição para retificar se está de cima de uma letra ou não,
-                    // para isso, vê se a cor do pixel, se for preto pertence À letra, se for branco não pertence
-                  
+                   
                     return val[0]; 
-                    
                 }
             }
             return ch;
         }
 
-        private Point Intersect(Point A, Point B, Point C, Point D)
+
+
+        /*
+         * 
+         * 
+         * 
+            private Point Intersect(Point A, Point B, Point C, Point D)
         {
             int a1 = B.Y - A.Y;
             int b1 = A.X - B.X;
@@ -280,8 +254,7 @@ namespace WatermarkApp
             return new Point(0, 0);
         }
 
-
-        /*
+        
         private void an_line(Bitmap bmp, Point A, Point B, Point C, Point D)
         {
             Graphics g = Graphics.FromImage(bmp);

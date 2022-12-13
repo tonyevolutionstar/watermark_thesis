@@ -28,24 +28,6 @@ CREATE TABLE document (
 
 -- Select * from document;
 
-
--- DROP TABLE QRCODE
--- guarda os caracterers onde os qrcodes estão posicionadaos
-CREATE TABLE QRCODE(
-	id_qrcode INT IDENTITY(1,1) PRIMARY KEY,
-	qrcode1 VARCHAR(12), -- CIMA, BAIXO, ESQUERDA,DIREITA
-	qrcode2 VARCHAR(12),
-	qrcode3 VARCHAR(12),
-	qrcode4 VARCHAR(12),
-	qrcode5 VARCHAR(12),
-	qrcode6 VARCHAR(12),
-	qrcode7 VARCHAR(12),
-	qrcode8 VARCHAR(12),
-	qrcode9 VARCHAR(12),
-	date_time varchar(20)
-);
--- Select * from QRCODE
-
 -- DROP TABLE barcode
 CREATE TABLE barcode(
 	id_barcode INT IDENTITY(1,1) PRIMARY KEY,
@@ -59,14 +41,21 @@ CREATE TABLE barcode(
 CREATE TABLE watermark_qrcode(
 	id_doc INT FOREIGN KEY REFERENCES document(id_document),
 	id_barcode INT FOREIGN KEY REFERENCES barcode(id_barcode),
-	id_qrcode INT FOREIGN KEY REFERENCES qrcode(id_qrcode),
-	validacao INT -- 0 reject, 1 acept 
-);
-
-CREATE TABLE watermark_qrcode(
-	id_doc INT FOREIGN KEY REFERENCES document(id_document),
-	id_barcode INT FOREIGN KEY REFERENCES barcode(id_barcode),
 	validacao INT -- 0 reject, 1 acept 
 );
 
 -- SELECT * FROM WATERMARK_QRCODE
+
+--DROP TABLE forense_analises
+CREATE TABLE forense_analises(
+	id_doc INT FOREIGN KEY REFERENCES document(id_document),
+	line1 varchar(200),
+	line2 varchar(200),
+	inter_point varchar(10), -- intersection point
+	inter_char varchar(2),    -- character on that position
+	line1_points varchar(200),
+	line2_points varchar(200)
+);
+
+-- ex 1; qrcode1_l:qrcode4_r; qrcode2_l:qrcode4_l; 525, 1158; s; 354,37:574,1479;1125,37:354,1479 ';' columns
+-- Select * from forense_analises

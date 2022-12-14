@@ -71,10 +71,12 @@
             Função auxiliar para operaçoes no ficheiro
             </summary>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.#ctor(System.String,System.Int32,System.String[])">
+        <member name="M:WatermarkApp.AuxFunc.#ctor(System.Int32,WatermarkApp.SQL_connection,System.String,System.Int32,System.String[])">
             <summary>
             Construtor
             </summary>
+            <param name="id_doc"></param>
+            <param name="sql"></param>
             <param name="filename"></param>
             <param name="size_qrcode"></param>
             <param name="ch">Posição dos caracteres no ficheiro</param>
@@ -86,12 +88,39 @@
             <param name="f">Nome do ficheiro</param>
             <returns>Nome do ficheiro + ".png"</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.DrawLines(System.Int32,WatermarkApp.SQL_connection,System.String,System.String)">
+        <member name="M:WatermarkApp.AuxFunc.DrawLines(System.String,System.String)">
             <summary>
-            desenha linhas
+            Desenha as linhas e guarda numa imagem
             </summary>
             <param name="position"></param>
             <param name="qrcode_file"></param>
+        </member>
+        <member name="M:WatermarkApp.AuxFunc.FillDictionary(System.String,System.Drawing.Bitmap)">
+            <summary>
+            Preenche os qrcodes de 1 a 9 com as respetivas posições
+            </summary>
+            <param name="position"></param>
+            <param name="bmp"></param>
+            <returns>Dicionario com as posições</returns>
+        </member>
+        <member name="M:WatermarkApp.AuxFunc.Intersection(System.Drawing.Point,System.Drawing.Point,System.Drawing.Point,System.Drawing.Point)">
+            <summary>
+            Calcula a interseção entre duas retas
+            </summary>
+            <param name="A"></param>
+            <param name="B"></param>
+            <param name="C"></param>
+            <param name="D"></param>
+            <returns>Ponto de interseção</returns>
+        </member>
+        <member name="M:WatermarkApp.AuxFunc.Get_Value_in(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            Obtem a letra próxima ao valor da interseção
+            </summary>
+            <param name="bmp"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>Letra</returns>
         </member>
         <member name="T:WatermarkApp.Processamento">
             <summary>
@@ -101,6 +130,11 @@
         <member name="M:WatermarkApp.Processamento.#ctor(System.String)">
             <summary>
             Processamento do ficheiro para a originação do documento com watermark
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Processamento.Insert_info_char">
+            <summary>
+            Insere informaçoes na base de dados, faz conversões do ficheiro
             </summary>
         </member>
         <member name="M:WatermarkApp.Processamento.Get_PositionChar">
@@ -520,7 +554,7 @@
         </member>
         <member name="M:WatermarkApp.SQL_connection.Insert_forense_analises(System.Int32,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
-            Insert info into forense analise database
+            Insere informações da analise forense na base de dados
             </summary>
             <param name="id_doc"></param>
             <param name="line1"></param>
@@ -530,6 +564,17 @@
             <param name="line1_points"></param>
             <param name="line2_points"></param>
             <example>1; qrcode1_l:qrcode4_r; qrcode2_l:qrcode4_l; 525, 1158; s; 354,37:574,1479;1125,37:354,1479</example>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.Insert_position_char_file(System.Int32,System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Insere as posições dos characteres na base de dados 
+            </summary>
+            <param name="id_doc"></param>
+            <param name="value_char"></param>
+            <param name="start_x"></param>
+            <param name="start_y"></param>
+            <param name="stop_x"></param>
+            <param name="stop_y"></param>
         </member>
         <member name="T:WatermarkApp.Properties.Resources">
             <summary>

@@ -3,13 +3,18 @@
 ALTER DATABASE Watermark SET OFFLINE;
 -- se der erro ir à diretoria C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA e apagar o ficheiro Watermark.mdf e Watermark_log.ldf
 
-DROP DATABASE Watermark;
+DROP DATABASE IF EXISTS Watermark;
 
 CREATE DATABASE Watermark;
 
 USE Watermark;
 
--- DROP TABLE document
+DROP TABLE IF EXISTS position_char_file;
+DROP TABLE IF EXISTS forense_analises;
+DROP TABLE IF EXISTS watermark_qrcode;
+DROP TABLE IF EXISTS barcode;
+DROP TABLE IF EXISTS document;
+
 CREATE TABLE document (
     id_document INT NOT NULL PRIMARY KEY,
 	nome_ficheiro VARCHAR(100),
@@ -26,27 +31,18 @@ CREATE TABLE document (
 	dominio VARCHAR(500)
 );
 
--- Select * from document;
-
--- DROP TABLE barcode
 CREATE TABLE barcode(
 	id_barcode INT IDENTITY(1,1) PRIMARY KEY,
 	posicoes_qrcode VARCHAR(200),
 	date_time VARCHAR(20) NOT NULL
 );
 
--- SELECT * FROM barcode
-
--- DROP TABLE watermark_qrcode
 CREATE TABLE watermark_qrcode(
 	id_doc INT FOREIGN KEY REFERENCES document(id_document),
 	id_barcode INT FOREIGN KEY REFERENCES barcode(id_barcode),
 	validacao INT -- 0 reject, 1 acept 
 );
 
--- SELECT * FROM WATERMARK_QRCODE
-
---DROP TABLE forense_analises
 CREATE TABLE forense_analises(
 	id_doc INT FOREIGN KEY REFERENCES document(id_document),
 	line1 varchar(200),
@@ -57,5 +53,17 @@ CREATE TABLE forense_analises(
 	line2_points varchar(200)
 );
 
--- ex 1; qrcode1_l:qrcode4_r; qrcode2_l:qrcode4_l; 525, 1158; s; 354,37:574,1479;1125,37:354,1479 ';' columns
--- Select * from forense_analises
+CREATE TABLE position_char_file(
+	id_doc INT FOREIGN KEY REFERENCES document(id_document),
+	value_char varchar(5),
+	start_x int,
+	start_y int,
+	stop_x int,
+	stop_y int
+);
+
+-- Select * from document;
+-- Select * from barcode;
+-- Select * from watermark_qrcode;
+-- Select * from forense_analises;
+-- Select * from position_char_file;

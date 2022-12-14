@@ -245,7 +245,7 @@ namespace WatermarkApp
         }
 
         /// <summary>
-        /// Insert info into forense analise database
+        /// Insere informações da analise forense na base de dados
         /// </summary>
         /// <param name="id_doc"></param>
         /// <param name="line1"></param>
@@ -260,7 +260,6 @@ namespace WatermarkApp
             sql = "Use Watermark;INSERT INTO [dbo].[forense_analises] VALUES ("
              + id_doc + "," + "'" + line1 + "'" + "," + "'" + line2 + "'" + "," + "'" + inter_point + "'" + "," + "'" + inter_char + "'" + "," + "'" + line1_points + "'" + "," + "'" + line2_points + "'" + ");";
             connection = new SqlConnection(connetionString);
-    
             try
             {
                 connection.Open();
@@ -276,6 +275,34 @@ namespace WatermarkApp
             }
         }
 
+        /// <summary>
+        /// Insere as posições dos characteres na base de dados 
+        /// </summary>
+        /// <param name="id_doc"></param>
+        /// <param name="value_char"></param>
+        /// <param name="start_x"></param>
+        /// <param name="start_y"></param>
+        /// <param name="stop_x"></param>
+        /// <param name="stop_y"></param>
+        public void Insert_position_char_file(int id_doc, string value_char, int start_x, int start_y, int stop_x, int stop_y)
+        {
+            sql = "Use Watermark;INSERT INTO [dbo].[position_char_file] VALUES ("
+             + id_doc + "," + "'" + value_char + "'" + "," + start_x + "," + start_y + "," + stop_x + "," + stop_y + ");";
+            connection = new SqlConnection(connetionString);
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
 
 
     }

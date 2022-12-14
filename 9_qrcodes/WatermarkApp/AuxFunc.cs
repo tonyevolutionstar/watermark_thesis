@@ -13,6 +13,8 @@ namespace WatermarkApp
     public class AuxFunc
     {
         private string[] filename;
+        private int id_doc;
+        private SQL_connection sql;
         private int size_qrcode;
         private int h;
         private int w;
@@ -25,11 +27,15 @@ namespace WatermarkApp
         /// <summary>
         /// Construtor
         /// </summary>
+        /// <param name="id_doc"></param>
+        /// <param name="sql"></param>
         /// <param name="filename"></param>
         /// <param name="size_qrcode"></param>
         /// <param name="ch">Posição dos caracteres no ficheiro</param>
-        public AuxFunc(string filename, int size_qrcode, string[] ch)
+        public AuxFunc(int id_doc, SQL_connection sql, string filename, int size_qrcode, string[] ch)
         {
+            this.id_doc = id_doc;
+            this.sql = sql;
             this.size_qrcode = size_qrcode;
             using (Stream inputPdfStream = new FileStream(filename , FileMode.Open, FileAccess.Read, FileShare.Read))
             {
@@ -41,8 +47,8 @@ namespace WatermarkApp
                 reader.Dispose();
             }
             
-            characters = ch;
-            pngfile = Convert_pdf_png(filename);
+            this.characters = ch;
+            this.pngfile = Convert_pdf_png(filename);
         }
 
         /// <summary>
@@ -60,22 +66,19 @@ namespace WatermarkApp
         }
 
         /// <summary>
-        /// desenha linhas
+        /// Desenha as linhas e guarda numa imagem
         /// </summary>
         /// <param name="position"></param>
         /// <param name="qrcode_file"></param>
-        public void DrawLines(int id_doc, SQL_connection sql, string position,string qrcode_file)
+        public List<string> DrawLines(string position, string qrcode_file)
         {
-            string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            string text_file_debug = partialPath + @"\Ficheiros\text_debug.txt";
+            List<string> return_list = new List<string>();
             string f = Convert_pdf_png(qrcode_file);
-
             Bitmap bmp = new Bitmap(f);
             Bitmap getcolors = new Bitmap(pngfile);
             Graphics g = Graphics.FromImage(bmp);
             Pen greenPen = new Pen(Color.Green, 3);
             qrcode_points = FillDictionary(position, bmp);
-            //List<string> sb = new List<string>();
 
             string qrcode_comb;
             combs = new List<string>();
@@ -93,13 +96,6 @@ namespace WatermarkApp
                             combs.Add(qrcode_comb);
                     }
                 }
-            }
-
-            for (int i = 0; i < combs.Count; i++)
-            {
-                string[] points = combs[i].Split(':');
-                qrcode_points.TryGetValue(points[0], out Point p1);
-                qrcode_points.TryGetValue(points[1], out Point p2);
             }
 
             // get rects without the origin point be the same
@@ -122,6 +118,8 @@ namespace WatermarkApp
                         g.DrawLine(greenPen, C, D);
                         
                         Point res = Intersection(A, B, C, D);
+                        Font drawFont = new Font("Arial", 8);
+                        SolidBrush drawBrush = new SolidBrush(Color.Blue);
 
                         if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
                         {
@@ -132,8 +130,9 @@ namespace WatermarkApp
                                 string line2_points = C.X + "," + C.Y + ":" + D.X + "," + D.Y;
                                 string inter_point = res.X + "," + res.Y;
 
-                                sql.Insert_forense_analises(id_doc, combs[i], combs[j], inter_point, ch, line1_points, line2_points); 
-                      
+                                return_list.Add(ch + "|" + combs[i] + "|" + combs[j] + "|" + line1_points + "|" + line2_points + "|" + inter_point);
+                                sql.Insert_forense_analises(id_doc, combs[i], combs[j], inter_point, ch, line1_points, line2_points);
+                                g.DrawString(ch, drawFont, drawBrush, res);
                             }
                          
                             Pen yellow = new Pen(Color.Yellow, 3);
@@ -141,7 +140,6 @@ namespace WatermarkApp
                             int height = 20;
                             int startAngle = 0;
                             int sweepAngle = 360;
-
                             g.DrawArc(yellow, res.X, res.Y, width, height, startAngle, sweepAngle);
                         }
                     }
@@ -149,11 +147,18 @@ namespace WatermarkApp
             }
 
             filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
-            //bmp.Save(filename[0] + "_line.png");
+            bmp.Save(filename[0] + "_line.png");
             bmp.Dispose();
             getcolors.Dispose();
+            return return_list;
         }
 
+        /// <summary>
+        /// Preenche os qrcodes de 1 a 9 com as respetivas posições
+        /// </summary>
+        /// <param name="position"></param>
+        /// <param name="bmp"></param>
+        /// <returns>Dicionario com as posições</returns>
         private Dictionary<string, Point> FillDictionary(string position, Bitmap bmp)
         {
             Dictionary<string, Point> qrcode_points = new Dictionary<string, Point>();
@@ -175,7 +180,14 @@ namespace WatermarkApp
             return qrcode_points;
         }
 
-
+        /// <summary>
+        /// Calcula a interseção entre duas retas
+        /// </summary>
+        /// <param name="A"></param>
+        /// <param name="B"></param>
+        /// <param name="C"></param>
+        /// <param name="D"></param>
+        /// <returns>Ponto de interseção</returns>
         private Point Intersection(Point A, Point B, Point C, Point D)
         {
             int x1 = A.X;
@@ -202,6 +214,13 @@ namespace WatermarkApp
             return inter;
         }
 
+        /// <summary>
+        /// Obtem a letra próxima ao valor da interseção
+        /// </summary>
+        /// <param name="bmp"></param>
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        /// <returns>Letra</returns>
         private string Get_Value_in(Bitmap bmp, int x, int y)
         {
             string ch = "";
@@ -224,6 +243,10 @@ namespace WatermarkApp
             return ch;
         }
 
+        public void DrawImage(List<string> return_list)
+        {
+
+        }
 
 
         /*

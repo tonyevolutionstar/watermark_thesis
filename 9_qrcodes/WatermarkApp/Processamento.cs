@@ -48,7 +48,29 @@ namespace WatermarkApp
             this.file_name = file_name;
             Get_PositionChar();
             characters = Read_positionChar_file();
+            //sql insert
         }
+
+        /// <summary>
+        /// Insere informaçoes na base de dados, faz conversões do ficheiro
+        /// </summary>
+        private void Insert_info_char()
+        {
+            SQL_connection sql = new SQL_connection();
+            foreach (string val in characters)
+            {
+                string[] values = val.Split('|'); 
+                string value_char = values[0];
+                string[] positions = values[1].Split(',');
+                int start_x = int.Parse(positions[0]);
+                int start_y = int.Parse(positions[1]);
+                int stop_x = int.Parse(positions[2]);
+                int stop_y = int.Parse(positions[3]);
+
+                sql.Insert_position_char_file(id_doc, value_char, start_x, start_y, stop_x, stop_y);
+            }
+        }
+       
 
         /// <summary>
         /// Executa o ficheiro jar que vai gerar um ficheiro txt com as posições dos 
@@ -124,6 +146,7 @@ namespace WatermarkApp
 
             if (File.Exists(s_doc[0] + qrcode_pdf))
                 File.Delete(s_doc[0] + qrcode_pdf);
+            Insert_info_char();
         }
 
         /// <summary>
@@ -241,9 +264,8 @@ namespace WatermarkApp
                 qrcode.Generate_barcode(id_barcode);
                 qrcode.Add_barcodes_pdf(analise.positions);
               
-                AuxFunc auxFunc = new AuxFunc(file_name + ".pdf", sizeQrcode, characters);
-
-                auxFunc.DrawLines(id_doc, sql, analise.positions, file_name + "_qrcode.pdf");
+                AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf", sizeQrcode, characters);
+                auxFunc.DrawLines(analise.positions, file_name + "_qrcode.pdf");
             }
         }
 

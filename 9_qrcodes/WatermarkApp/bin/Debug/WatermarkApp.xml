@@ -4,6 +4,23 @@
         <name>WatermarkApp</name>
     </assembly>
     <members>
+        <member name="F:WatermarkApp.AnaliseForenseForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.AnaliseForenseForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:WatermarkApp.AnaliseForenseForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
         <member name="T:WatermarkApp.Analise_Forense">
             <summary>
             Classe para proceder a análise forense do ficheiro
@@ -71,7 +88,7 @@
             Função auxiliar para operaçoes no ficheiro
             </summary>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.#ctor(System.Int32,WatermarkApp.SQL_connection,System.String,System.Int32,System.String[])">
+        <member name="M:WatermarkApp.AuxFunc.#ctor(System.Int32,WatermarkApp.SQL_connection,System.String,System.Int32)">
             <summary>
             Construtor
             </summary>
@@ -79,7 +96,7 @@
             <param name="sql"></param>
             <param name="filename"></param>
             <param name="size_qrcode"></param>
-            <param name="ch">Posição dos caracteres no ficheiro</param>
+            
         </member>
         <member name="M:WatermarkApp.AuxFunc.Convert_pdf_png(System.String)">
             <summary>
@@ -88,12 +105,13 @@
             <param name="f">Nome do ficheiro</param>
             <returns>Nome do ficheiro + ".png"</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.DrawLines(System.String,System.String)">
+        <member name="M:WatermarkApp.AuxFunc.CalculateIntersection(System.String,System.String,System.String[])">
             <summary>
-            Desenha as linhas e guarda numa imagem
+            Calcula a interseção
             </summary>
             <param name="position"></param>
             <param name="qrcode_file"></param>
+            <param name="characters">Posição dos caracteres no ficheiro</param>
         </member>
         <member name="M:WatermarkApp.AuxFunc.FillDictionary(System.String,System.Drawing.Bitmap)">
             <summary>
@@ -122,12 +140,19 @@
             <param name="y"></param>
             <returns>Letra</returns>
         </member>
+        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Usado pela Analise Forense
+            </summary>
+            <param name="return_list"></param>
+            <param name="qrcode_file"></param>
+        </member>
         <member name="T:WatermarkApp.Processamento">
             <summary>
             Parte visual do programa
             </summary>
         </member>
-        <member name="M:WatermarkApp.Processamento.#ctor(System.String)">
+        <member name="M:WatermarkApp.Processamento.#ctor(System.String,System.Int32)">
             <summary>
             Processamento do ficheiro para a originação do documento com watermark
             </summary>
@@ -443,11 +468,12 @@
             Menu retificar
             </summary>
         </member>
-        <member name="M:WatermarkApp.Retificar.#ctor(System.String)">
+        <member name="M:WatermarkApp.Retificar.#ctor(System.String,System.Int32)">
             <summary>
             Retica um documento com watermark
             </summary>
             <param name="file_name"></param>
+            <param name="size_qrcode"></param>
         </member>
         <member name="M:WatermarkApp.Retificar.Read_barcode(System.String)">
             <summary>
@@ -575,6 +601,19 @@
             <param name="start_y"></param>
             <param name="stop_x"></param>
             <param name="stop_y"></param>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.Get_Values_Analise_Forense(System.Int32)">
+            <summary>
+            Obtem os valores da base de dados e compara
+            </summary>
+            <param name="id_doc"></param>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.Get_characters_Pos(System.Int32)">
+            <summary>
+            Obtem a posicao dos characteres na base de dados
+            </summary>
+            <param name="id_doc"></param>
+            <returns></returns>
         </member>
         <member name="T:WatermarkApp.Properties.Resources">
             <summary>

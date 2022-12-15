@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 
 namespace WatermarkApp
@@ -304,6 +305,75 @@ namespace WatermarkApp
             }
         }
 
+        /// <summary>
+        /// Obtem os valores da base de dados e compara
+        /// </summary>
+        /// <param name="id_doc"></param>
+        public List<string> Get_Values_Analise_Forense(int id_doc)
+        {
+            List<string> returnList = new List<string>();
+
+            sql = "Use Watermark; Select inter_point, inter_char, line1_points, line2_points  from forense_analises where id_doc = " + id_doc + ";";
+            connection = new SqlConnection(connetionString);
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    string inter_point = dataReader.GetValue(0).ToString();
+                    string inter_char = dataReader.GetValue(1).ToString();
+                    string line1_points = dataReader.GetValue(2).ToString();
+                    string line2_points = dataReader.GetValue(3).ToString();
+                    returnList.Add(inter_point + "|" + inter_char + "|" + line1_points + "|" + line2_points );
+                }
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return returnList;
+        }
+
+        /// <summary>
+        /// Obtem a posicao dos characteres na base de dados
+        /// </summary>
+        /// <param name="id_doc"></param>
+        /// <returns></returns>
+        public List<string> Get_characters_Pos(int id_doc)
+        {
+            List<string> returnList = new List<string>();
+
+            sql = "Use Watermark; Select value_char, start_x, start_y, stop_x, stop_y from position_char_file where id_doc = " + id_doc + ";";
+            connection = new SqlConnection(connetionString);
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    string value_char = dataReader.GetValue(0).ToString();
+                    string start_x = dataReader.GetValue(1).ToString();
+                    string start_y = dataReader.GetValue(2).ToString();
+                    string stop_x = dataReader.GetValue(3).ToString();
+                    string stop_y = dataReader.GetValue(3).ToString();
+                    returnList.Add(value_char + "|" + start_x + "," + start_x + "," + start_y + "," + stop_x + "," + stop_y);
+                }
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return returnList;
+        }
 
     }
 }

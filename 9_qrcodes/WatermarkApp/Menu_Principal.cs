@@ -9,6 +9,7 @@ namespace WatermarkApp
     /// </summary>
     public partial class Menu_Principal : Form
     {
+        private int size_qrcode = 75;
         string file_name;
 
         /// <summary>
@@ -35,14 +36,14 @@ namespace WatermarkApp
         private void Processar_btn_Click(object sender, EventArgs e)
         {
             Choose_file();
-            Processamento processamento = new Processamento(file_name);
+            Processamento processamento = new Processamento(file_name, size_qrcode);
             processamento.Show(); 
         }
 
         private void Retificar_btn_Click(object sender, EventArgs e)
         {
             Choose_file();
-            Retificar retificar = new Retificar(file_name);
+            Retificar retificar = new Retificar(file_name, size_qrcode);
             retificar.Show();
         }
     }

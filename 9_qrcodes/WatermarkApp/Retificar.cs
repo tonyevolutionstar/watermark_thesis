@@ -1,5 +1,7 @@
-﻿using IronBarCode;
+﻿using Aspose.Words;
+using IronBarCode;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -11,18 +13,21 @@ namespace WatermarkApp
     public partial class Retificar : Form
     {
         private string file_name;
-
+        private int size_qrcode;
         private string resultado_barcode;
+        private int id_doc;
 
         /// <summary>
         /// Retica um documento com watermark
         /// </summary>
         /// <param name="file_name"></param>
-        public Retificar(string file_name)
+        /// <param name="size_qrcode"></param>
+        public Retificar(string file_name, int size_qrcode)
         {
             InitializeComponent();
         
             this.file_name = file_name;
+            this.size_qrcode = size_qrcode;
             Convert_pdf_png(file_name);
             file_qrcode.src = file_name;
             Controls.Add(file_qrcode);
@@ -69,7 +74,8 @@ namespace WatermarkApp
             SQL_connection sql = new SQL_connection();
             Console.WriteLine(resultado_barcode);
             string[] resultado = resultado_barcode.Split(';');
-            string res_doc = sql.Search_document(Int32.Parse(resultado[0]));
+            id_doc = Int32.Parse(resultado[0]);
+            string res_doc = sql.Search_document(id_doc);
             string[] col_sql = res_doc.Split(';');
             // nome_ficheiro, utilizador, sigla_principal, posto_atual
             dct_name.Text = col_sql[0];
@@ -80,12 +86,25 @@ namespace WatermarkApp
             Controls.Add(user);
             Controls.Add(sigla);
             Controls.Add(posto);
-            Console.WriteLine("posicoes " + resultado[1]);
         }
 
         private void Forense_btn_Click(object sender, EventArgs e)
         {
+            SQL_connection sql = new SQL_connection();
+            List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
+            AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name, size_qrcode);
+            string img = auxFunc.DrawImage(returnlist, file_name);
 
+            string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
+            var doc = new Document();
+            var builder = new DocumentBuilder(doc);
+
+            builder.InsertImage(img);
+
+            doc.Save(filename[0] + ".pdf");
+
+            AnaliseForenseForm form = new AnaliseForenseForm(filename[0] + ".pdf");
+            form.Show();
         }
 
   

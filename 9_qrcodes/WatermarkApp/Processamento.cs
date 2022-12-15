@@ -12,7 +12,7 @@ namespace WatermarkApp
     /// </summary>
     public partial class Processamento : Form
     {
-        int sizeQrcode = 75; //pixels
+        int sizeQrcode; //pixels
         int range = 5;
 
         Dictionary<Metadata, string> dados;
@@ -30,10 +30,10 @@ namespace WatermarkApp
         /// <summary>
         /// Processamento do ficheiro para a originação do documento com watermark
         /// </summary>
-        public Processamento(string file_name)
+        public Processamento(string file_name, int size_qrcode)
         {
             InitializeComponent();
-
+            sizeQrcode = size_qrcode;   
             dados = PreencherMetadadosParaFicheiros();
 
             foreach (var kvp in dados)
@@ -264,8 +264,8 @@ namespace WatermarkApp
                 qrcode.Generate_barcode(id_barcode);
                 qrcode.Add_barcodes_pdf(analise.positions);
               
-                AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf", sizeQrcode, characters);
-                auxFunc.DrawLines(analise.positions, file_name + "_qrcode.pdf");
+                AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf", sizeQrcode);
+                auxFunc.CalculateIntersection(analise.positions, file_name + "_qrcode.pdf", characters);
             }
         }
 

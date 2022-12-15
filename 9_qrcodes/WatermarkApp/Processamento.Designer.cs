@@ -104,7 +104,7 @@ namespace WatermarkApp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1920, 1055);
             this.Controls.Add(this.axAcroPDF1);
             this.Controls.Add(this.gerar_btn);
             this.Controls.Add(this.doc_label);
@@ -112,8 +112,8 @@ namespace WatermarkApp
             this.Controls.Add(this.aceitar_btn);
             this.Name = "Processamento";
             this.Text = "Watermark";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.Form1_Load);
-            this.WindowState = FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

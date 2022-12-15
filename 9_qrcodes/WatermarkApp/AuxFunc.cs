@@ -31,8 +31,8 @@ namespace WatermarkApp
         /// <param name="sql"></param>
         /// <param name="filename"></param>
         /// <param name="size_qrcode"></param>
-        /// <param name="ch">Posição dos caracteres no ficheiro</param>
-        public AuxFunc(int id_doc, SQL_connection sql, string filename, int size_qrcode, string[] ch)
+        /// 
+        public AuxFunc(int id_doc, SQL_connection sql, string filename, int size_qrcode)
         {
             this.id_doc = id_doc;
             this.sql = sql;
@@ -47,7 +47,7 @@ namespace WatermarkApp
                 reader.Dispose();
             }
             
-            this.characters = ch;
+           
             this.pngfile = Convert_pdf_png(filename);
         }
 
@@ -66,18 +66,18 @@ namespace WatermarkApp
         }
 
         /// <summary>
-        /// Desenha as linhas e guarda numa imagem
+        /// Calcula a interseção
         /// </summary>
         /// <param name="position"></param>
         /// <param name="qrcode_file"></param>
-        public List<string> DrawLines(string position, string qrcode_file)
+        /// <param name="characters">Posição dos caracteres no ficheiro</param>
+        public void CalculateIntersection(string position, string qrcode_file, string [] characters)
         {
-            List<string> return_list = new List<string>();
+            this.characters = characters;
             string f = Convert_pdf_png(qrcode_file);
             Bitmap bmp = new Bitmap(f);
             Bitmap getcolors = new Bitmap(pngfile);
-            Graphics g = Graphics.FromImage(bmp);
-            Pen greenPen = new Pen(Color.Green, 3);
+
             qrcode_points = FillDictionary(position, bmp);
 
             string qrcode_comb;
@@ -113,14 +113,8 @@ namespace WatermarkApp
                         qrcode_points.TryGetValue(points_i[1], out Point B);
                         qrcode_points.TryGetValue(points_j[0], out Point C);
                         qrcode_points.TryGetValue(points_j[1], out Point D);
-
-                        g.DrawLine(greenPen, A, B);
-                        g.DrawLine(greenPen, C, D);
-                        
                         Point res = Intersection(A, B, C, D);
-                        Font drawFont = new Font("Arial", 8);
-                        SolidBrush drawBrush = new SolidBrush(Color.Blue);
-
+                      
                         if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
                         {
                             string ch = Get_Value_in(getcolors, res.X, res.Y);
@@ -130,27 +124,15 @@ namespace WatermarkApp
                                 string line2_points = C.X + "," + C.Y + ":" + D.X + "," + D.Y;
                                 string inter_point = res.X + "," + res.Y;
 
-                                return_list.Add(ch + "|" + combs[i] + "|" + combs[j] + "|" + line1_points + "|" + line2_points + "|" + inter_point);
                                 sql.Insert_forense_analises(id_doc, combs[i], combs[j], inter_point, ch, line1_points, line2_points);
-                                g.DrawString(ch, drawFont, drawBrush, res);
                             }
-                         
-                            Pen yellow = new Pen(Color.Yellow, 3);
-                            int width = 15;
-                            int height = 20;
-                            int startAngle = 0;
-                            int sweepAngle = 360;
-                            g.DrawArc(yellow, res.X, res.Y, width, height, startAngle, sweepAngle);
                         }
                     }
                 }
             }
 
-            filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
-            bmp.Save(filename[0] + "_line.png");
             bmp.Dispose();
-            getcolors.Dispose();
-            return return_list;
+            getcolors.Dispose();        
         }
 
         /// <summary>
@@ -224,7 +206,9 @@ namespace WatermarkApp
         private string Get_Value_in(Bitmap bmp, int x, int y)
         {
             string ch = "";
-            foreach (string values in characters)
+            List<string> pos_char = sql.Get_characters_Pos(id_doc);
+
+            foreach (string values in pos_char)
             {
                 string[] val = values.Split('|');
                 string[] pos_val = val[1].Split(',');
@@ -236,16 +220,76 @@ namespace WatermarkApp
                 // verifica se o valor da interseção está proximo a uma letra
                 if (x >= new_x && x <= final_x && y >= new_y && y <= final_y)
                 {
-                   
                     return val[0]; 
                 }
             }
             return ch;
         }
 
-        public void DrawImage(List<string> return_list)
+        /// <summary>
+        /// Usado pela Analise Forense
+        /// </summary>
+        /// <param name="return_list"></param>
+        /// <param name="qrcode_file"></param>
+        public String DrawImage(List<string> return_list, string qrcode_file)
         {
+            string f = Convert_pdf_png(qrcode_file);
+            Bitmap bmp = new Bitmap(f);
+            Bitmap getcolors = new Bitmap(pngfile);
 
+            Graphics g = Graphics.FromImage(bmp);
+            Pen yellow = new Pen(Color.Yellow, 3);
+            int width = 15;
+            int height = 20;
+            int startAngle = 0;
+            int sweepAngle = 360;
+
+            Font drawFont = new Font("Arial", 8);
+            SolidBrush drawBrush = new SolidBrush(Color.Blue);
+            //inter_point + "|" + inter_char + "|" + line1_points + "|" + line2_points
+            //ch + "|" + line1_points + "|" + line2_points + "|" + inter_point
+            for (int i = 0; i < return_list.Count; i++)
+            {
+
+                string[] values = return_list[i].Split('|');
+                string[] inter_point = values[0].Split(',');
+                string ch = values[1];
+                string[] line1_points = values[2].Split(':');
+                string[] line2_points = values[3].Split(':');
+                
+
+                string[] points_a = line1_points[0].Split(',');
+                Point A = new Point(Convert.ToInt32(points_a[0]), Convert.ToInt32(points_a[1]));
+                string[] points_b = line1_points[1].Split(',');
+                Point B = new Point(Convert.ToInt32(points_b[0]), Convert.ToInt32(points_b[1]));
+                string[] points_c = line2_points[0].Split(',');
+                Point C = new Point(Convert.ToInt32(points_c[0]), Convert.ToInt32(points_c[1]));
+                string[] points_d = line2_points[1].Split(',');
+                Point D = new Point(Convert.ToInt32(points_d[0]), Convert.ToInt32(points_d[1]));
+
+                int res_x = Convert.ToInt32(inter_point[0]);
+                int res_y = Convert.ToInt32(inter_point[1]);
+
+                Point res = Intersection(A, B, C, D);
+
+                if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
+                {
+                    string ch_calc = Get_Value_in(getcolors, res.X, res.Y);
+                    if (!String.IsNullOrEmpty(ch_calc) && !ch.Equals("") && !String.IsNullOrWhiteSpace(ch_calc))
+                    {
+                        g.DrawString(ch, drawFont, drawBrush, res);
+                        g.DrawArc(yellow, res_x, res_y, width, height, startAngle, sweepAngle);
+                    }
+                }
+
+                //g.DrawLine(greenPen, A, B);
+                //g.DrawLine(greenPen, C, D);               
+            }
+
+            filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
+            bmp.Save(filename[0] + "_line.png");
+            bmp.Dispose();
+            return filename[0] + "_line.png";
         }
 
 

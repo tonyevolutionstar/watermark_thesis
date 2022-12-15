@@ -144,9 +144,10 @@
             // 
             // Retificar
             // 
+            this.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1920, 1080);
+            this.ClientSize = new System.Drawing.Size(1920, 1055);
             this.Controls.Add(this.forense_btn);
             this.Controls.Add(this.posto);
             this.Controls.Add(this.label5);
@@ -159,8 +160,8 @@
             this.Controls.Add(this.label1);
             this.Name = "Retificar";
             this.Text = "Retificar";
-            this.Load += new System.EventHandler(this.Retificar_Load);
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.Retificar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.file_qrcode)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

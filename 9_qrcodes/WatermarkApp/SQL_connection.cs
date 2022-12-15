@@ -361,8 +361,8 @@ namespace WatermarkApp
                     string start_x = dataReader.GetValue(1).ToString();
                     string start_y = dataReader.GetValue(2).ToString();
                     string stop_x = dataReader.GetValue(3).ToString();
-                    string stop_y = dataReader.GetValue(3).ToString();
-                    returnList.Add(value_char + "|" + start_x + "," + start_x + "," + start_y + "," + stop_x + "," + stop_y);
+                    string stop_y = dataReader.GetValue(4).ToString();
+                    returnList.Add(value_char + "|" + start_x + "," + start_y + "," + stop_x + "," + stop_y);
                 }
                 dataReader.Close();
                 command.Dispose();

@@ -48,6 +48,7 @@ namespace WatermarkApp
             this.file_name = file_name;
             Get_PositionChar();
             characters = Read_positionChar_file();
+            
             //sql insert
         }
 
@@ -69,6 +70,7 @@ namespace WatermarkApp
 
                 sql.Insert_position_char_file(id_doc, value_char, start_x, start_y, stop_x, stop_y);
             }
+            
         }
        
 
@@ -143,10 +145,11 @@ namespace WatermarkApp
             Controls.Add(axAcroPDF1);
 
             Insert_info_doc(file_name, file[0]);
+            Insert_info_char();
 
             if (File.Exists(s_doc[0] + qrcode_pdf))
                 File.Delete(s_doc[0] + qrcode_pdf);
-            Insert_info_char();
+           
         }
 
         /// <summary>
@@ -265,7 +268,7 @@ namespace WatermarkApp
                 qrcode.Add_barcodes_pdf(analise.positions);
               
                 AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf", sizeQrcode);
-                auxFunc.CalculateIntersection(analise.positions, file_name + "_qrcode.pdf", characters);
+                auxFunc.CalculateIntersection(analise.positions, file_name + "_qrcode.pdf");
             }
         }
 

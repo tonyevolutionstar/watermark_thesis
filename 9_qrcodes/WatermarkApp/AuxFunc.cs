@@ -20,7 +20,6 @@ namespace WatermarkApp
         private int w;
         private Dictionary<string, Point> qrcode_points;
         private List<string> combs;
-        private string[] characters;
         private string pngfile;
 
 
@@ -70,16 +69,17 @@ namespace WatermarkApp
         /// </summary>
         /// <param name="position"></param>
         /// <param name="qrcode_file"></param>
-        /// <param name="characters">Posição dos caracteres no ficheiro</param>
-        public void CalculateIntersection(string position, string qrcode_file, string [] characters)
+        public void CalculateIntersection(string position, string qrcode_file)
         {
-            this.characters = characters;
+            string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string text_file_debug = partialPath + @"\Ficheiros\text_debug.txt";
+
             string f = Convert_pdf_png(qrcode_file);
             Bitmap bmp = new Bitmap(f);
             Bitmap getcolors = new Bitmap(pngfile);
 
             qrcode_points = FillDictionary(position, bmp);
-
+            List<string> sb = new List<string>();
             string qrcode_comb;
             combs = new List<string>();
       
@@ -120,6 +120,8 @@ namespace WatermarkApp
                             string ch = Get_Value_in(getcolors, res.X, res.Y);
                             if (!String.IsNullOrEmpty(ch) && !ch.Equals("") && !String.IsNullOrWhiteSpace(ch))
                             {
+                                sb.Add(combs[i] + ";" + combs[j] + ";" + res.X + ',' + res.Y + ";" + ch);
+                                sb.Add(A.X + "," + A.Y + ":" + B.X + "," + B.Y + ";" + C.X + "," + C.Y + ":" + D.X + "," + D.Y);
                                 string line1_points = A.X + "," + A.Y + ":" + B.X + "," + B.Y;
                                 string line2_points = C.X + "," + C.Y + ":" + D.X + "," + D.Y;
                                 string inter_point = res.X + "," + res.Y;
@@ -128,6 +130,14 @@ namespace WatermarkApp
                             }
                         }
                     }
+                }
+            }
+            // create file debug with positions of intersections and points
+            using (StreamWriter sw = File.CreateText(text_file_debug))
+            {
+                for (int i = 0; i < sb.Count; i++)
+                {
+                    sw.WriteLine(sb[i]);
                 }
             }
 
@@ -234,8 +244,8 @@ namespace WatermarkApp
         public String DrawImage(List<string> return_list, string qrcode_file)
         {
             string f = Convert_pdf_png(qrcode_file);
+
             Bitmap bmp = new Bitmap(f);
-            Bitmap getcolors = new Bitmap(pngfile);
 
             Graphics g = Graphics.FromImage(bmp);
             Pen yellow = new Pen(Color.Yellow, 3);
@@ -269,18 +279,14 @@ namespace WatermarkApp
 
                 int res_x = Convert.ToInt32(inter_point[0]);
                 int res_y = Convert.ToInt32(inter_point[1]);
-
-                Point res = Intersection(A, B, C, D);
-
-                if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
-                {
-                    string ch_calc = Get_Value_in(getcolors, res.X, res.Y);
-                    if (!String.IsNullOrEmpty(ch_calc) && !ch.Equals("") && !String.IsNullOrWhiteSpace(ch_calc))
-                    {
-                        g.DrawString(ch, drawFont, drawBrush, res);
-                        g.DrawArc(yellow, res_x, res_y, width, height, startAngle, sweepAngle);
-                    }
-                }
+                Point res = new Point(res_x, res_y);
+             
+             
+               
+                g.DrawString(ch, drawFont, drawBrush, res);
+                g.DrawArc(yellow, res.X, res.Y, width, height, startAngle, sweepAngle);
+                   
+                
 
                 //g.DrawLine(greenPen, A, B);
                 //g.DrawLine(greenPen, C, D);               

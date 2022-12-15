@@ -105,13 +105,12 @@
             <param name="f">Nome do ficheiro</param>
             <returns>Nome do ficheiro + ".png"</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.CalculateIntersection(System.String,System.String,System.String[])">
+        <member name="M:WatermarkApp.AuxFunc.CalculateIntersection(System.String,System.String)">
             <summary>
             Calcula a interseção
             </summary>
             <param name="position"></param>
             <param name="qrcode_file"></param>
-            <param name="characters">Posição dos caracteres no ficheiro</param>
         </member>
         <member name="M:WatermarkApp.AuxFunc.FillDictionary(System.String,System.Drawing.Bitmap)">
             <summary>

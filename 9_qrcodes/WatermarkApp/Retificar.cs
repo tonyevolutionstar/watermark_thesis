@@ -22,6 +22,7 @@ namespace WatermarkApp
         /// </summary>
         /// <param name="file_name"></param>
         /// <param name="size_qrcode"></param>
+        [Obsolete]
         public Retificar(string file_name, int size_qrcode)
         {
             InitializeComponent();
@@ -45,6 +46,7 @@ namespace WatermarkApp
         /// </summary>
         /// <param name="file_name"></param>
         /// <returns></returns>
+        [Obsolete]
         private string Read_barcode(string file_name)
         {
             BarcodeResult QRBetterResult = BarcodeReader.QuicklyReadOneBarcode(file_name, BarcodeEncoding.Code128, true);
@@ -74,20 +76,32 @@ namespace WatermarkApp
             string[] resultado = resultado_barcode.Split(';');
             id_doc = Int32.Parse(resultado[0]);
             string res_doc = sql.Search_document(id_doc);
-            string[] col_sql = res_doc.Split(';');
-            // nome_ficheiro, utilizador, sigla_principal, posto_atual
-            dct_name.Text = col_sql[0];
-            user.Text = col_sql[1];
-            sigla.Text = col_sql[2];
-            posto.Text = col_sql[3];
-            Controls.Add(dct_name);
-            Controls.Add(user);
-            Controls.Add(sigla);
-            Controls.Add(posto);
+            if (String.IsNullOrEmpty(res_doc))
+            {
+                MessageBox.Show("O ficheiro que selecionou nao foi aprovado nem aceite na base de dados");
+                this.Close();
+                this.Dispose();
+            } 
+            else
+            {
+                string[] col_sql = res_doc.Split(';');
+                // nome_ficheiro, utilizador, sigla_principal, posto_atual
+                dct_name.Text = col_sql[0];
+                user.Text = col_sql[1];
+                sigla.Text = col_sql[2];
+                posto.Text = col_sql[3];
+                Controls.Add(dct_name);
+                Controls.Add(user);
+                Controls.Add(sigla);
+                Controls.Add(posto);
+                this.Show();
+            }
+           
         }
 
         private void Forense_btn_Click(object sender, EventArgs e)
         {
+            MessageBox.Show("Processedendo à Análise Forense, aguarde!");
             SQL_connection sql = new SQL_connection();
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name, size_qrcode);

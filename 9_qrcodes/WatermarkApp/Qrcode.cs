@@ -14,15 +14,12 @@ namespace WatermarkApp
         private string filename = "";
         private int id_doc;
 
-
         /// <summary>
         /// posição que vai ser inserido o qrcode no ficheiro
         /// </summary>
      
         private int version = 2;
         private int size_qrcode; //Width == height para ser quadrado
-        private int range; 
-
     
         /// <summary>
         /// O construtor do qrcode vai receber um ficheiro e vai colocar esse ficheiro em classe, para ser possivel aceder
@@ -30,20 +27,18 @@ namespace WatermarkApp
         /// <param name="pdf_name">nome do ficheiro</param>
         /// <param name="size">tamanho do qrcode</param>
         /// <param name="id">id identificador do documento</param>
-        /// <param name="range">posicao a ver o character</param>
         /// <returns>nome do ficheiro</returns>
-        public QRcode(string pdf_name, int size, int id, int range)
+        public QRcode(string pdf_name, int size, int id)
         {
             filename = pdf_name;
             size_qrcode = size;
             id_doc = id;
-            this.range = range;
         }
 
 
         /// <summary>
         /// Guarda uma imagem do qrcode gerado com base nas caracteristicas do ficheiro
-        /// Estrutura do qrcode é version;id_doc;info_char;range
+        /// Estrutura do qrcode é version;id_doc;info_char
         /// <param name="i">numero identificador do qrcode, max até 9</param> 
         /// <returns>imagem qrcode</returns>
         /// </summary>
@@ -52,7 +47,7 @@ namespace WatermarkApp
         {
             if(version == 2)
             {
-                string data_qrcode = version + ";" + id_doc + ";" + range;
+                string data_qrcode = version + ";" + id_doc;
                 string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 string logoPath = System.IO.Path.Combine(partialPath, @"number_qrcode\" + i.ToString() + ".png");
                 Bitmap bmp = new Bitmap(logoPath);
@@ -84,8 +79,9 @@ namespace WatermarkApp
         /// Vai ler o ficheiro original e a imagem do qrcode, colocando o qrcode numa posição aleatória num ficheiro novo
         /// </summary>
         /// <param name="positions">posicoes qrcode</param>
+        /// <param name="date_time"></param>
         /// <returns>nome do ficheiro + "_qrcode.pdf"</returns>
-        public void Add_barcodes_pdf(string positions)
+        public void Add_barcodes_pdf(string positions, string date_time)
         {
             using (Stream inputPdfStream = new FileStream(filename + ".pdf", FileMode.Open, FileAccess.Read, FileShare.Read))
             using (Stream qrcodeStream_1 = new FileStream(filename + "_qrcode_1.png", FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -98,7 +94,7 @@ namespace WatermarkApp
             using (Stream qrcodeStream_8 = new FileStream(filename + "_qrcode_8.png", FileMode.Open, FileAccess.Read, FileShare.Read))
             using (Stream qrcodeStream_9 = new FileStream(filename + "_qrcode_9.png", FileMode.Open, FileAccess.Read, FileShare.Read))
             using (Stream barcodeStream = new FileStream(filename + "_barcode.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream outputPdfStream = new FileStream(filename + "_qrcode.pdf", FileMode.Create, FileAccess.Write, FileShare.Write))
+            using (Stream outputPdfStream = new FileStream(filename + "_qrcode_" + date_time + ".pdf", FileMode.Create, FileAccess.Write, FileShare.Write))
             {
                 var reader = new PdfReader(inputPdfStream);
                 PdfReader.unethicalreading = true;
@@ -164,11 +160,9 @@ namespace WatermarkApp
                 stamper.Close();
                 stamper.Dispose();
                 reader.Dispose();
-
                 inputPdfStream.Dispose();
             }
             
-    }
-
+        }
     }
 }

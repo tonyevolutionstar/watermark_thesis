@@ -158,7 +158,7 @@
         </member>
         <member name="M:WatermarkApp.Processamento.Insert_info_char">
             <summary>
-            Insere informaçoes na base de dados, faz conversões do ficheiro
+            Insere as posiçoes dos caracteres do ficheiro na base de dados
             </summary>
         </member>
         <member name="M:WatermarkApp.Processamento.Get_PositionChar">
@@ -171,7 +171,7 @@
             <summary>
             Vai ler o ficheiro gerado e colocar os valores numa variavel 
             </summary>
-            <returns></returns>
+            <returns>Linhas do documento</returns>
         </member>
         <member name="M:WatermarkApp.Processamento.Form1_Load(System.Object,System.EventArgs)">
             <summary>
@@ -182,7 +182,7 @@
         </member>
         <member name="M:WatermarkApp.Processamento.Generate_id">
             <summary>
-            Gera um id aleatorio que corresponde ao documento que porventura se obtem pela da leitura do qrcode
+            Gera um id aleatorio que corresponde ao documento que porventura se obtem pela da leitura do barcode
             </summary>
         </member>
         <member name="M:WatermarkApp.Processamento.Show_file">
@@ -195,12 +195,13 @@
             Mostra ficheiro com o qrcode
             </summary>
         </member>
-        <member name="M:WatermarkApp.Processamento.Insert_info_doc(System.String,System.String)">
+        <member name="M:WatermarkApp.Processamento.Insert_info_doc(System.String,System.String,System.String)">
             <summary>
             Insere o documento na base de dados 
             </summary>
             <param name="original_file">ficheiro normal</param>
             <param name="file_name">nome do ficheiro o caminho todo</param>
+            <param name="date_time"></param>
         </member>
         <member name="M:WatermarkApp.Processamento.Delete_aux_files(System.String)">
             <summary>
@@ -431,20 +432,19 @@
             posição que vai ser inserido o qrcode no ficheiro
             </summary>
         </member>
-        <member name="M:WatermarkApp.QRcode.#ctor(System.String,System.Int32,System.Int32,System.Int32)">
+        <member name="M:WatermarkApp.QRcode.#ctor(System.String,System.Int32,System.Int32)">
             <summary>
             O construtor do qrcode vai receber um ficheiro e vai colocar esse ficheiro em classe, para ser possivel aceder
             </summary>
             <param name="pdf_name">nome do ficheiro</param>
             <param name="size">tamanho do qrcode</param>
             <param name="id">id identificador do documento</param>
-            <param name="range">posicao a ver o character</param>
             <returns>nome do ficheiro</returns>
         </member>
         <member name="M:WatermarkApp.QRcode.Generate_qrcode(System.Int32)">
             <summary>
             Guarda uma imagem do qrcode gerado com base nas caracteristicas do ficheiro
-            Estrutura do qrcode é version;id_doc;info_char;range
+            Estrutura do qrcode é version;id_doc;info_char
             <param name="i">numero identificador do qrcode, max até 9</param> 
             <returns>imagem qrcode</returns>
             </summary>
@@ -455,11 +455,12 @@
             </summary>
             <param name="id_barcode"></param>
         </member>
-        <member name="M:WatermarkApp.QRcode.Add_barcodes_pdf(System.String)">
+        <member name="M:WatermarkApp.QRcode.Add_barcodes_pdf(System.String,System.String)">
             <summary>
             Vai ler o ficheiro original e a imagem do qrcode, colocando o qrcode numa posição aleatória num ficheiro novo
             </summary>
             <param name="positions">posicoes qrcode</param>
+            <param name="date_time"></param>
             <returns>nome do ficheiro + "_qrcode.pdf"</returns>
         </member>
         <member name="T:WatermarkApp.Retificar">
@@ -529,7 +530,7 @@
             <param name="id"></param>
             <returns>Dados do ficheiro</returns>
         </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_doc(System.Int32,System.String,System.String,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+        <member name="M:WatermarkApp.SQL_connection.Insert_doc(System.Int32,System.String,System.String,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
             <summary>
             Insere o documento na base de dados
             </summary>
@@ -546,6 +547,7 @@
             <param name="sigla_principal"></param>
             <param name="posto_atual"></param>
             <param name="dominio"></param>
+            <param name="date_time"></param>
         </member>
         <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32)">
             <summary>

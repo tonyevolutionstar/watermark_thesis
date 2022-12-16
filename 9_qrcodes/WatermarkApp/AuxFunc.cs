@@ -225,12 +225,10 @@ namespace WatermarkApp
         /// </summary>
         /// <param name="return_list"></param>
         /// <param name="qrcode_file"></param>
-        public String DrawImage(List<string> return_list, string qrcode_file)
+        public string DrawImage(List<string> return_list, string qrcode_file)
         {
             string f = Convert_pdf_png(qrcode_file);
-
             Bitmap bmp = new Bitmap(f);
-
             Graphics g = Graphics.FromImage(bmp);
             Pen yellow = new Pen(Color.Yellow, 3);
             int width = 15;
@@ -244,19 +242,16 @@ namespace WatermarkApp
             //inter_point + "|" + inter_char + "|" + line1_points + "|" + line2_points
             for (int i = 0; i < return_list.Count; i++)
             {
-
                 string[] values = return_list[i].Split('|');
                 string[] inter_point = values[0].Split(',');
                 string ch = values[1];
-
 
                 int res_x = Convert.ToInt32(inter_point[0]);
                 int res_y = Convert.ToInt32(inter_point[1]);
                 Point res = new Point(res_x, res_y);
 
                 g.DrawString(ch, drawFont, drawBrush, res);
-                g.DrawArc(yellow, res.X, res.Y, width, height, startAngle, sweepAngle);
-                             
+                g.DrawArc(yellow, res.X, res.Y, width, height, startAngle, sweepAngle);          
             }
 
             filename = f.Split(new[] { ".png" }, StringSplitOptions.None);

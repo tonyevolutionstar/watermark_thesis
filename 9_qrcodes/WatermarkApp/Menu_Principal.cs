@@ -44,7 +44,15 @@ namespace WatermarkApp
         {
             Choose_file();
             Retificar retificar = new Retificar(file_name, size_qrcode);
-            retificar.Show();
+            try
+            {
+                retificar.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);    
+            }
+           
         }
     }
 }

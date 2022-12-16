@@ -28,7 +28,8 @@ CREATE TABLE document (
 	data_op VARCHAR(50),
 	sigla_principal VARCHAR(500),
 	posto_atual VARCHAR(500),
-	dominio VARCHAR(500)
+	dominio VARCHAR(500),
+	date_time varchar(50)
 );
 
 CREATE TABLE barcode(

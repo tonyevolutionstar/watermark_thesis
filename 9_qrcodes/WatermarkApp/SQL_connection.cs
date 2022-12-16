@@ -106,10 +106,11 @@ namespace WatermarkApp
         /// <param name="sigla_principal"></param>
         /// <param name="posto_atual"></param>
         /// <param name="dominio"></param>
-        public void Insert_doc(int id, string nome_f, string n_registo, int n_exemplar, int n_copy, string class_seg, string estado_ex, string formato_ex, string utilizador, string data_op, string sigla_principal, string posto_atual, string dominio)
+        /// <param name="date_time"></param>
+        public void Insert_doc(int id, string nome_f, string n_registo, int n_exemplar, int n_copy, string class_seg, string estado_ex, string formato_ex, string utilizador, string data_op, string sigla_principal, string posto_atual, string dominio, string date_time)
         {
-            sql = "Use Watermark;INSERT INTO [dbo].[document] (id_document, nome_ficheiro, n_registo, n_exemplar, n_copy, class_seg, estado_ex, formato_ex, utilizador, data_op, sigla_principal, posto_atual, dominio) VALUES ("
-                + id + "," + "'" + nome_f + "'" + "," + "'" + n_registo + "'" + "," + n_exemplar + "," + n_copy + "," + "'" + class_seg + "'" + "," + "'" + estado_ex + "'" + "," + "'" + formato_ex + "'" + "," + "'" + utilizador + "'" + "," + "'" + data_op + "'" + "," + "'" + sigla_principal + "'" + "," + "'" + posto_atual + "'" + "," + "'" + dominio + "'" + ");";
+            sql = "Use Watermark;INSERT INTO [dbo].[document] (id_document, nome_ficheiro, n_registo, n_exemplar, n_copy, class_seg, estado_ex, formato_ex, utilizador, data_op, sigla_principal, posto_atual, dominio, date_time) VALUES ("
+                + id + "," + "'" + nome_f + "'" + "," + "'" + n_registo + "'" + "," + n_exemplar + "," + n_copy + "," + "'" + class_seg + "'" + "," + "'" + estado_ex + "'" + "," + "'" + formato_ex + "'" + "," + "'" + utilizador + "'" + "," + "'" + data_op + "'" + "," + "'" + sigla_principal + "'" + "," + "'" + posto_atual + "'" + "," + "'" + dominio + "'" + ',' + "'" + date_time + "'" + ");";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -374,6 +375,5 @@ namespace WatermarkApp
             }
             return returnList;
         }
-
     }
 }

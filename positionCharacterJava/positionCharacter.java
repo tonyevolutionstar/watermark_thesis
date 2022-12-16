@@ -57,10 +57,18 @@ class PositionCharacter extends PDFTextStripper
         try{
             String[] f = file_name.split(".pdf");
             FileWriter file = new FileWriter(f[0]+"_pos.txt", true);
+            String ch;
 
             for (TextPosition text : textPositions) {
+                ch = text.getUnicode();
 
-                file.write(text.getUnicode() + "|" + Math.round(text.getX()) + "," + Math.round(Math.abs(text.getHeight() - text.getY())) + "," + Math.round(text.getEndX() - text.getWidthOfSpace()) + "," +  Math.round(text.getY()) +  "\n");
+                //remove ?
+                if (ch.equals("—"))
+                    ch = "-";
+                else if (ch.equals("’"))
+                    ch = "'";
+
+                file.write(ch + "|" + Math.round(text.getX()) + "," + Math.round(Math.abs(text.getHeight() - text.getY())) + "," + Math.round(text.getEndX() - text.getWidthOfSpace()) + "," +  Math.round(text.getY()) +  "\n");
             }
             file.close();
 

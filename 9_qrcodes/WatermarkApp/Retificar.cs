@@ -32,7 +32,6 @@ namespace WatermarkApp
             file_qrcode.src = file_name;
             Controls.Add(file_qrcode);
 
-            string[] show_doc = file_name.Split(new[] { @"Ficheiros\" }, StringSplitOptions.None);
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
             string file_name_qrcode = s_doc[0] + ".png";
             resultado_barcode = Read_barcode(file_name_qrcode);
@@ -72,7 +71,6 @@ namespace WatermarkApp
         private void Retificar_Load(object sender, EventArgs e)
         {
             SQL_connection sql = new SQL_connection();
-            Console.WriteLine(resultado_barcode);
             string[] resultado = resultado_barcode.Split(';');
             id_doc = Int32.Parse(resultado[0]);
             string res_doc = sql.Search_document(id_doc);
@@ -107,6 +105,5 @@ namespace WatermarkApp
             form.Show();
         }
 
-  
     }
 }

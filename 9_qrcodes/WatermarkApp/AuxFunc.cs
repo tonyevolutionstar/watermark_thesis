@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
-
 namespace WatermarkApp
 {
     /// <summary>
@@ -44,9 +43,7 @@ namespace WatermarkApp
                 h = (int)reader.GetPageSize(1).Height;
                 reader.Close();
                 reader.Dispose();
-            }
-            
-           
+            }   
             this.pngfile = Convert_pdf_png(filename);
         }
 
@@ -71,15 +68,12 @@ namespace WatermarkApp
         /// <param name="qrcode_file"></param>
         public void CalculateIntersection(string position, string qrcode_file)
         {
-            string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            string text_file_debug = partialPath + @"\Ficheiros\text_debug.txt";
-
             string f = Convert_pdf_png(qrcode_file);
             Bitmap bmp = new Bitmap(f);
             Bitmap getcolors = new Bitmap(pngfile);
 
             qrcode_points = FillDictionary(position, bmp);
-            List<string> sb = new List<string>();
+       
             string qrcode_comb;
             combs = new List<string>();
       
@@ -120,8 +114,6 @@ namespace WatermarkApp
                             string ch = Get_Value_in(getcolors, res.X, res.Y);
                             if (!String.IsNullOrEmpty(ch) && !ch.Equals("") && !String.IsNullOrWhiteSpace(ch))
                             {
-                                sb.Add(combs[i] + ";" + combs[j] + ";" + res.X + ',' + res.Y + ";" + ch);
-                                sb.Add(A.X + "," + A.Y + ":" + B.X + "," + B.Y + ";" + C.X + "," + C.Y + ":" + D.X + "," + D.Y);
                                 string line1_points = A.X + "," + A.Y + ":" + B.X + "," + B.Y;
                                 string line2_points = C.X + "," + C.Y + ":" + D.X + "," + D.Y;
                                 string inter_point = res.X + "," + res.Y;
@@ -130,14 +122,6 @@ namespace WatermarkApp
                             }
                         }
                     }
-                }
-            }
-            // create file debug with positions of intersections and points
-            using (StreamWriter sw = File.CreateText(text_file_debug))
-            {
-                for (int i = 0; i < sb.Count; i++)
-                {
-                    sw.WriteLine(sb[i]);
                 }
             }
 
@@ -220,7 +204,7 @@ namespace WatermarkApp
 
             foreach (string values in pos_char)
             {
-                string[] val = values.Split('|');
+                string[] val = values.Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries); ;
                 string[] pos_val = val[1].Split(',');
                 int new_x = Convert.ToInt32(int.Parse(pos_val[0]) * bmp.Width / w);
                 int new_y = Convert.ToInt32(int.Parse(pos_val[1]) * bmp.Height / h);
@@ -256,40 +240,23 @@ namespace WatermarkApp
 
             Font drawFont = new Font("Arial", 8);
             SolidBrush drawBrush = new SolidBrush(Color.Blue);
+
             //inter_point + "|" + inter_char + "|" + line1_points + "|" + line2_points
-            //ch + "|" + line1_points + "|" + line2_points + "|" + inter_point
             for (int i = 0; i < return_list.Count; i++)
             {
 
                 string[] values = return_list[i].Split('|');
                 string[] inter_point = values[0].Split(',');
                 string ch = values[1];
-                string[] line1_points = values[2].Split(':');
-                string[] line2_points = values[3].Split(':');
-                
 
-                string[] points_a = line1_points[0].Split(',');
-                Point A = new Point(Convert.ToInt32(points_a[0]), Convert.ToInt32(points_a[1]));
-                string[] points_b = line1_points[1].Split(',');
-                Point B = new Point(Convert.ToInt32(points_b[0]), Convert.ToInt32(points_b[1]));
-                string[] points_c = line2_points[0].Split(',');
-                Point C = new Point(Convert.ToInt32(points_c[0]), Convert.ToInt32(points_c[1]));
-                string[] points_d = line2_points[1].Split(',');
-                Point D = new Point(Convert.ToInt32(points_d[0]), Convert.ToInt32(points_d[1]));
 
                 int res_x = Convert.ToInt32(inter_point[0]);
                 int res_y = Convert.ToInt32(inter_point[1]);
                 Point res = new Point(res_x, res_y);
-             
-             
-               
+
                 g.DrawString(ch, drawFont, drawBrush, res);
                 g.DrawArc(yellow, res.X, res.Y, width, height, startAngle, sweepAngle);
-                   
-                
-
-                //g.DrawLine(greenPen, A, B);
-                //g.DrawLine(greenPen, C, D);               
+                             
             }
 
             filename = f.Split(new[] { ".png" }, StringSplitOptions.None);

@@ -67,10 +67,9 @@ namespace WatermarkApp
                 int start_y = int.Parse(positions[1]);
                 int stop_x = int.Parse(positions[2]);
                 int stop_y = int.Parse(positions[3]);
-
+               
                 sql.Insert_position_char_file(id_doc, value_char, start_x, start_y, stop_x, stop_y);
-            }
-            
+            }    
         }
        
 

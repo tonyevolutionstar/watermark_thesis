@@ -55,17 +55,16 @@ CREATE TABLE forense_analises(
 
 CREATE TABLE position_char_file(
 	id_doc INT FOREIGN KEY REFERENCES document(id_document),
-	value_char nvarchar(2),
+	value_char char(20),
 	start_x int,
 	start_y int,
 	stop_x int,
 	stop_y int
 );
 
-SET LANGUAGE Portuguese;
 
 -- Select * from document;
 -- Select * from barcode;
 -- Select * from watermark_qrcode;
--- Select * from forense_analises where id_doc = 1138392168;
--- Select value_char, start_x, start_y, stop_x, stop_y from position_char_file where value_char = '?' ;
+-- Select * from forense_analises;
+-- Select id_doc, value_char, start_x, start_y, stop_x, stop_y from position_char_file;

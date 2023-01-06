@@ -139,15 +139,10 @@ namespace WatermarkApp
             Controls.Add(document_name);
             axAcroPDF1.src = file_name;
             Controls.Add(axAcroPDF1);
-            date_time = DateTime.Now.Day + "_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Millisecond;
+            date_time = DateTime.Now.Day + "_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second;
 
             Insert_info_doc(file_name, file[0], date_time);
             Insert_info_char();
-
-            /*
-            if (File.Exists(s_doc[0] + qrcode_pdf))
-                File.Delete(s_doc[0] + qrcode_pdf);
-           */
         }
 
         /// <summary>

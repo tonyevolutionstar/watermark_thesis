@@ -1,5 +1,0 @@
-Urgente mudar nome do ficheiro do qrcode gerado para com a data e a hora. Com interseções tbm.
-
-1. Testar para os outros documentos.
-2. Tirar prints
-3. Escrever tese

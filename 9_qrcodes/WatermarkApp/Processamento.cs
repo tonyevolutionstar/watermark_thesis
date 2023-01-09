@@ -183,8 +183,8 @@ namespace WatermarkApp
         private void Delete_aux_files(string filename)
         {
             List<string> delete_files = new List<string>();
-            string image = filename + ".png";
-            delete_files.Add(image);
+            //string image = filename + ".png";
+            //delete_files.Add(image);
             for (int i = 1; i <= 9; i++)
                 delete_files.Add(filename + "_qrcode_" + i + ".png");
 

@@ -94,7 +94,7 @@ namespace WatermarkApp
             using (Stream qrcodeStream_8 = new FileStream(filename + "_qrcode_8.png", FileMode.Open, FileAccess.Read, FileShare.Read))
             using (Stream qrcodeStream_9 = new FileStream(filename + "_qrcode_9.png", FileMode.Open, FileAccess.Read, FileShare.Read))
             using (Stream barcodeStream = new FileStream(filename + "_barcode.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream outputPdfStream = new FileStream(filename + "_qrcode_" + date_time + ".pdf", FileMode.Create, FileAccess.Write, FileShare.Write))
+            using (Stream outputPdfStream = new FileStream(filename + "_watermark_" + date_time + ".pdf", FileMode.Create, FileAccess.Write, FileShare.Write))
             {
                 var reader = new PdfReader(inputPdfStream);
                 PdfReader.unethicalreading = true;
@@ -162,7 +162,6 @@ namespace WatermarkApp
                 reader.Dispose();
                 inputPdfStream.Dispose();
             }
-            
         }
     }
 }

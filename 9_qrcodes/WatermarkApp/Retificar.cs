@@ -28,7 +28,9 @@ namespace WatermarkApp
             InitializeComponent();
         
             this.file_name = file_name;
+         
             this.size_qrcode = size_qrcode;
+
             Convert_pdf_png(file_name);
             file_qrcode.src = file_name;
             Controls.Add(file_qrcode);
@@ -36,9 +38,10 @@ namespace WatermarkApp
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
             string file_name_qrcode = s_doc[0] + ".png";
             resultado_barcode = Read_barcode(file_name_qrcode);
-            if(File.Exists(file_name_qrcode))
+            if (File.Exists(file_name_qrcode))
                 File.Delete(file_name_qrcode);
-
+            
+          
         }
 
         /// <summary>
@@ -78,14 +81,13 @@ namespace WatermarkApp
             string res_doc = sql.Search_document(id_doc);
             if (String.IsNullOrEmpty(res_doc))
             {
-                MessageBox.Show("O ficheiro que selecionou nao foi aprovado nem aceite na base de dados");
+                MessageBox.Show("O ficheiro que selecionou não foi aprovado nem aceite na base de dados");
                 this.Close();
                 this.Dispose();
             } 
             else
             {
                 string[] col_sql = res_doc.Split(';');
-                // nome_ficheiro, utilizador, sigla_principal, posto_atual
                 dct_name.Text = col_sql[0];
                 user.Text = col_sql[1];
                 sigla.Text = col_sql[2];
@@ -96,7 +98,6 @@ namespace WatermarkApp
                 Controls.Add(posto);
                 this.Show();
             }
-           
         }
 
         private void Forense_btn_Click(object sender, EventArgs e)
@@ -118,6 +119,5 @@ namespace WatermarkApp
             AnaliseForenseForm form = new AnaliseForenseForm(filename[0] + ".pdf");
             form.Show();
         }
-
     }
 }

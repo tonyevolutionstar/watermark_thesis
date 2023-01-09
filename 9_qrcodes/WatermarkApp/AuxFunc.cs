@@ -28,8 +28,7 @@ namespace WatermarkApp
         /// <param name="id_doc"></param>
         /// <param name="sql"></param>
         /// <param name="filename"></param>
-        /// <param name="size_qrcode"></param>
-        /// 
+        /// <param name="size_qrcode"></param> 
         public AuxFunc(int id_doc, SQL_connection sql, string filename, int size_qrcode)
         {
             this.id_doc = id_doc;
@@ -239,7 +238,6 @@ namespace WatermarkApp
             Font drawFont = new Font("Arial", 8);
             SolidBrush drawBrush = new SolidBrush(Color.Blue);
 
-            //inter_point + "|" + inter_char + "|" + line1_points + "|" + line2_points
             for (int i = 0; i < return_list.Count; i++)
             {
                 string[] values = return_list[i].Split('|');
@@ -248,10 +246,10 @@ namespace WatermarkApp
 
                 int res_x = Convert.ToInt32(inter_point[0]);
                 int res_y = Convert.ToInt32(inter_point[1]);
-                Point res = new Point(res_x, res_y);
+                Point intersection = new Point(res_x, res_y);
 
-                g.DrawString(ch, drawFont, drawBrush, res);
-                g.DrawArc(yellow, res.X, res.Y, width, height, startAngle, sweepAngle);          
+                g.DrawString(ch, drawFont, drawBrush, intersection);
+                g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);          
             }
 
             filename = f.Split(new[] { ".png" }, StringSplitOptions.None);

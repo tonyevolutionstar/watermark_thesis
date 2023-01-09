@@ -4,9 +4,6 @@ using System.Windows.Forms;
 
 namespace WatermarkApp
 {  
-    /// <summary>
-    /// Menu Principal
-    /// </summary>
     public partial class Menu_Principal : Form
     {
         private int size_qrcode = 75;
@@ -30,6 +27,7 @@ namespace WatermarkApp
             if (DialogResult.OK == ofd.ShowDialog())
             {
                 file_name = ofd.FileName;
+                
             }
         }
 
@@ -43,16 +41,27 @@ namespace WatermarkApp
         private void Retificar_btn_Click(object sender, EventArgs e)
         {
             Choose_file();
-            Retificar retificar = new Retificar(file_name, size_qrcode);
-            try
+            string[] show_doc = file_name.Split(new[] { @"Ficheiros\" }, StringSplitOptions.None);
+            string[] file = show_doc[1].Split(new[] { ".pdf" }, StringSplitOptions.None);
+
+
+            if (file[0].Contains("watermark"))
             {
-                retificar.Show();
+                Retificar retificar = new Retificar(file_name, size_qrcode);
+                try
+                {
+                    retificar.Show();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message);    
-            }
-           
+
+                MessageBox.Show("O ficheiro que selecionou ainda não tem marca de água");
+            } 
         }
     }
 }

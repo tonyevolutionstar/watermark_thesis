@@ -4,6 +4,12 @@
         <name>WatermarkApp</name>
     </assembly>
     <members>
+        <member name="M:WatermarkApp.AnaliseForenseForm.#ctor(System.String)">
+            <summary>
+            Mostrar resultado da análise forense através de um documento criado com as letras que se devia ter em azul
+            </summary>
+            <param name="file_name"></param>
+        </member>
         <member name="F:WatermarkApp.AnaliseForenseForm.components">
             <summary>
             Required designer variable.
@@ -73,7 +79,7 @@
         </member>
         <member name="M:WatermarkApp.Analise_Forense.#ctor(System.String,System.Int32)">
             <summary>
-            Construtor 
+            Obtem as coordenadas dos qrcodes 
             </summary>
             <param name="filename"></param>
             <param name="size_qrcode"></param>
@@ -95,8 +101,7 @@
             <param name="id_doc"></param>
             <param name="sql"></param>
             <param name="filename"></param>
-            <param name="size_qrcode"></param>
-            
+            <param name="size_qrcode"></param> 
         </member>
         <member name="M:WatermarkApp.AuxFunc.Convert_pdf_png(System.String)">
             <summary>
@@ -155,8 +160,10 @@
             <summary>
             Processamento do ficheiro para a originação do documento com watermark
             </summary>
+            <param name="file_name">Nome do ficheiro sem watermark</param>
+            <param name="size_qrcode">Tamanho do qrcode</param>
         </member>
-        <member name="M:WatermarkApp.Processamento.Insert_info_char">
+        <member name="M:WatermarkApp.Processamento.Insert_info_char_database">
             <summary>
             Insere as posiçoes dos caracteres do ficheiro na base de dados
             </summary>
@@ -169,51 +176,19 @@
         </member>
         <member name="M:WatermarkApp.Processamento.Read_positionChar_file">
             <summary>
-            Vai ler o ficheiro gerado e colocar os valores numa variavel 
+            Vai ler o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
             </summary>
             <returns>Linhas do documento</returns>
-        </member>
-        <member name="M:WatermarkApp.Processamento.Form1_Load(System.Object,System.EventArgs)">
-            <summary>
-            Faz load do windows form
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
         <member name="M:WatermarkApp.Processamento.Generate_id">
             <summary>
             Gera um id aleatorio que corresponde ao documento que porventura se obtem pela da leitura do barcode
             </summary>
         </member>
-        <member name="M:WatermarkApp.Processamento.Show_file">
-            <summary>
-            Mostra o ficheiro sem o qrcode
-            </summary>
-        </member>
         <member name="M:WatermarkApp.Processamento.Process_file">
             <summary>
             Mostra ficheiro com o qrcode
             </summary>
-        </member>
-        <member name="M:WatermarkApp.Processamento.Insert_info_doc(System.String,System.String,System.String)">
-            <summary>
-            Insere o documento na base de dados 
-            </summary>
-            <param name="original_file">ficheiro normal</param>
-            <param name="file_name">nome do ficheiro o caminho todo</param>
-            <param name="date_time"></param>
-        </member>
-        <member name="M:WatermarkApp.Processamento.Delete_aux_files(System.String)">
-            <summary>
-            Apaga os ficheiros auxiliares criados
-            </summary>
-            <param name="filename">Nome do ficheiro</param>
-        </member>
-        <member name="M:WatermarkApp.Processamento.Generate_qrcode(System.String)">
-            <summary>
-            Gera um qrcode
-            </summary>
-            <param name="file_name">nome do ficheiro sem extensao pdf</param>
         </member>
         <member name="M:WatermarkApp.Processamento.PreencherMetadadosParaFicheiros">
             <summary>
@@ -257,11 +232,6 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="T:WatermarkApp.Menu_Principal">
-            <summary>
-            Menu Principal
             </summary>
         </member>
         <member name="M:WatermarkApp.Menu_Principal.#ctor">

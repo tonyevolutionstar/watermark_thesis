@@ -57,7 +57,7 @@ namespace WatermarkApp
         #endregion
 
         /// <summary>
-        /// Construtor 
+        /// Obtem as coordenadas dos qrcodes 
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="size_qrcode"></param>

@@ -18,17 +18,22 @@ namespace WatermarkApp
         List<string> ficheiros = new List<string>();
         Label document_name = new Label();
 
-        private string qrcode_pdf = "_qrcode.pdf";
+       
         private string file_name;
         private string[] characters;
         int id_doc;
         int id_barcode;
         private string date_time;
+        private string jar_file = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Ficheiros\thesis_watermark.jar";
+        private string message_error_file_without_watermark = "Primeiro tens de clicar em processar, para gerar o ficheiro com a marca de água";
+        private bool accept_flag = false;
 
 
         /// <summary>
         /// Processamento do ficheiro para a originação do documento com watermark
         /// </summary>
+        /// <param name="file_name">Nome do ficheiro sem watermark</param>
+        /// <param name="size_qrcode">Tamanho do qrcode</param>
         public Processamento(string file_name, int size_qrcode)
         {
             InitializeComponent();
@@ -52,7 +57,7 @@ namespace WatermarkApp
         /// <summary>
         /// Insere as posiçoes dos caracteres do ficheiro na base de dados
         /// </summary>
-        private void Insert_info_char()
+        private void Insert_info_char_database()
         {
             SQL_connection sql = new SQL_connection();
             foreach (string val in characters)
@@ -75,39 +80,31 @@ namespace WatermarkApp
         /// </summary>
         private void Get_PositionChar()
         {
-            string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            string jarfile = partialPath + @"\Ficheiros\thesis_watermark.jar";
-            Process myProcess = new Process();
-            myProcess.StartInfo.UseShellExecute = false;
-            myProcess.StartInfo.RedirectStandardOutput = true;
-            myProcess.StartInfo.FileName = "java";
-            myProcess.StartInfo.Arguments = "-jar " + '"' + jarfile + '"' + " " + '"' + file_name + '"';
-            myProcess.Start();
-            myProcess.WaitForExit();
+            Process process_file = new Process();
+            process_file.StartInfo.UseShellExecute = false;
+            process_file.StartInfo.RedirectStandardOutput = true;
+            process_file.StartInfo.FileName = "java";
+            process_file.StartInfo.Arguments = "-jar " + '"' + jar_file + '"' + " " + '"' + file_name + '"';
+            process_file.Start();
+            process_file.WaitForExit();
         }
 
         /// <summary>
-        /// Vai ler o ficheiro gerado e colocar os valores numa variavel 
+        /// Vai ler o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
         /// </summary>
         /// <returns>Linhas do documento</returns>
         private string[] Read_positionChar_file()
-        {
-            
-            string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-            string posFile = s_doc[0] + "_pos.txt";
+        {   
+            string[] doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
+            string posFile = doc[0] + "_pos.txt";
             string[] lines = System.IO.File.ReadAllLines(posFile, System.Text.Encoding.UTF7);
-            
             return lines;
         }
 
-        /// <summary>
-        /// Faz load do windows form
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+    
         private void Form1_Load(object sender, EventArgs e)
         {
-            Show_file();
+            Show_file_without_watermark();
         }
 
         /// <summary>
@@ -124,15 +121,10 @@ namespace WatermarkApp
         }
 
 
-        /// <summary>
-        /// Mostra o ficheiro sem o qrcode
-        /// </summary>
-        private void Show_file()
+        private void Show_file_without_watermark()
         {
             id_doc = Generate_id();
- 
             string[] show_doc = file_name.Split(new[] { @"Ficheiros\" }, StringSplitOptions.None);
-            string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
             string[] file = show_doc[1].Split(new[] { ".pdf" }, StringSplitOptions.None);
 
             document_name.Text = show_doc[1];
@@ -141,8 +133,8 @@ namespace WatermarkApp
             Controls.Add(axAcroPDF1);
             date_time = DateTime.Now.Day + "_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second;
 
-            Insert_info_doc(file_name, file[0], date_time);
-            Insert_info_char();
+            Insert_info_doc_database(file_name, file[0], date_time);
+            Insert_info_char_database();
         }
 
         /// <summary>
@@ -153,7 +145,7 @@ namespace WatermarkApp
             string[] show_doc = file_name.Split(new[] { @"Ficheiros\" }, StringSplitOptions.None);
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
      
-            if (File.Exists(s_doc[0] + qrcode_pdf))
+            if (File.Exists(s_doc[0] + "_watermark_" + date_time + ".pdf"))
             {
                 MessageBox.Show("Já processei o ficheiro, por favor aceite ou rejeite");  
             }
@@ -165,24 +157,17 @@ namespace WatermarkApp
                 Controls.Add(document_name);
                 Generate_qrcode(s_doc[0]);
     
-                axAcroPDF1.src = s_doc[0] + "_qrcode_" + date_time + ".pdf";
+                axAcroPDF1.src = s_doc[0] + "_watermark_" + date_time + ".pdf";
                 Controls.Add(axAcroPDF1);
                 MessageBox.Show("Documento com watermarking gerado, por favor aceite ou reprove");
                 Delete_aux_files(s_doc[0]);
-            
                 watch.Stop();
                 Console.WriteLine($"Execution Time {TimeSpan.FromMilliseconds(watch.ElapsedMilliseconds)}");
             }
         }
 
 
-        /// <summary>
-        /// Insere o documento na base de dados 
-        /// </summary>
-        /// <param name="original_file">ficheiro normal</param>
-        /// <param name="file_name">nome do ficheiro o caminho todo</param>
-        /// <param name="date_time"></param>
-        private void Insert_info_doc(string original_file, string file_name, string date_time)
+        private void Insert_info_doc_database(string original_file, string file_name, string date_time)
         {
             SQL_connection sql = new SQL_connection();
             foreach (KeyValuePair<Metadata, string> item in dados)
@@ -195,10 +180,6 @@ namespace WatermarkApp
         }
 
 
-        /// <summary>
-        /// Apaga os ficheiros auxiliares criados
-        /// </summary>
-        /// <param name="filename">Nome do ficheiro</param>
         private void Delete_aux_files(string filename)
         {
             List<string> delete_files = new List<string>();
@@ -213,7 +194,7 @@ namespace WatermarkApp
             string pos = filename + "_pos.txt";
             delete_files.Add(pos);
 
-            string qrcode_png = filename + "_qrcode_" + date_time + ".png";
+            string qrcode_png = filename + "_watermark_" + date_time + ".png";
             delete_files.Add(qrcode_png);
             
             try
@@ -233,10 +214,6 @@ namespace WatermarkApp
         }
 
 
-        /// <summary>
-        /// Gera um qrcode
-        /// </summary>
-        /// <param name="file_name">nome do ficheiro sem extensao pdf</param>
         private void Generate_qrcode(string file_name)
         {
             QRcode qrcode = new QRcode(file_name, sizeQrcode, id_doc);
@@ -257,7 +234,7 @@ namespace WatermarkApp
                 qrcode.Add_barcodes_pdf(analise.positions, date_time);
               
                 AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf", sizeQrcode);
-                auxFunc.CalculateIntersection(analise.positions, file_name + "_qrcode_" + date_time + ".pdf");
+                auxFunc.CalculateIntersection(analise.positions, file_name + "_watermark_" + date_time + ".pdf");
             }
         }
 
@@ -349,16 +326,17 @@ namespace WatermarkApp
             {
                 string[] show_doc = file_name.Split(new[] { @"Ficheiros\" }, StringSplitOptions.None);
                 string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-                string file_name_qrcode = s_doc[0] + "_qrcode_" + date_time + ".pdf";
+                string file_name_qrcode = s_doc[0] + "_watermark_" + date_time + ".pdf";
                 if (File.Exists(file_name_qrcode))
                 {
                     SQL_connection sql = new SQL_connection();
                     sql.Insert_watermark(id_doc,id_barcode,1);
                     MessageBox.Show("Documento aceite");
+                    accept_flag = true;
                 }
                 else
                 {
-                    MessageBox.Show("Primeiro tens de clicar em processar, para gerar o ficheiro com o qrcode");
+                    MessageBox.Show(message_error_file_without_watermark);
                 }
             }
             catch (ArgumentOutOfRangeException argumentOutOfRangeException)
@@ -375,19 +353,25 @@ namespace WatermarkApp
         private void Rejeitar_btn_Click(object sender, EventArgs e)
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-            string file_name_qrcode = s_doc[0] + "_qrcode_" + date_time + ".pdf";
+            string file_name_qrcode = s_doc[0] + "_watermark_" + date_time + ".pdf";
 
-            if (File.Exists(file_name_qrcode))
-            {
-                SQL_connection sql = new SQL_connection();
-                sql.Insert_watermark(id_doc, id_barcode, 0);
-                File.Delete(file_name_qrcode);
-                Process_file();
-            }
+            if (accept_flag)
+                MessageBox.Show("Documento já aceite");
             else
             {
-                MessageBox.Show("Primeiro tens de clicar em processar, para gerar o ficheiro com o qrcode");
+                if (File.Exists(file_name_qrcode))
+                {
+                    SQL_connection sql = new SQL_connection();
+                    sql.Insert_watermark(id_doc, id_barcode, 0);
+                    File.Delete(file_name_qrcode);
+                    Process_file();
+                }
+                else
+                {
+                    MessageBox.Show(message_error_file_without_watermark);
+                }
             }
+           
         }
 
         /// <summary>

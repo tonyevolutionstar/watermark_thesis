@@ -30,9 +30,9 @@ Packages needed to program run
  
  # Examples 
  Input file <br>
- <img src="9_qrcodes/WatermarkApp/bin/Debug/Ficheiros/NACIONAL_1_2022_01000.png" width="250" height="350">  <br>
+ <img src="9_qrcodes/WatermarkApp/bin/Debug/Ficheiros/examples/NACIONAL_1_2022_01000.png" width="250" height="350">  <br>
  Output file with watermark <br>
- <img src="9_qrcodes/WatermarkApp/bin/Debug/Ficheiros/NACIONAL_1_2022_01000_watermark_9_1_2023_14_57_2.png" width="250" height="350">  <br>
+ <img src="9_qrcodes/WatermarkApp/bin/Debug/Ficheiros/examples/NACIONAL_1_2022_01000_watermark_9_1_2023_14_57_2.png" width="250" height="350">  <br>
  Analise Forense <br> 
- <img src="9_qrcodes/WatermarkApp/bin/Debug/Ficheiros/NACIONAL_1_2022_01000_watermark_9_1_2023_14_57_2_line.png" width="250" height="350">  <br>
+ <img src="9_qrcodes/WatermarkApp/bin/Debug/Ficheiros/examples/NACIONAL_1_2022_01000_watermark_9_1_2023_14_57_2_line.png" width="250" height="350">  <br>
  

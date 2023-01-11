@@ -151,6 +151,36 @@
             <param name="return_list"></param>
             <param name="qrcode_file"></param>
         </member>
+        <member name="T:WatermarkApp.Commom">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Commom.#ctor">
+            <summary>
+            Commom functions between classes
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Commom.Get_file_name_using_split(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="file_name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WatermarkApp.Commom.Get_file_name_without_directory(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="file_name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:WatermarkApp.Commom.Convert_pdf_png(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="file_name_png"></param>
+        </member>
         <member name="T:WatermarkApp.Processamento">
             <summary>
             Parte visual do programa
@@ -205,14 +235,14 @@
         </member>
         <member name="M:WatermarkApp.Processamento.Rejeitar_btn_Click(System.Object,System.EventArgs)">
             <summary>
-            Função que ouve sempre que o butão rejeita seja clicado para inserir o qrcode na base de dados e processar de novo o ficheiro
+            Função que ouve sempre que o botão rejeita seja clicado para inserir o qrcode na base de dados e processar de novo o ficheiro
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
         <member name="M:WatermarkApp.Processamento.Gerar_btn_Click(System.Object,System.EventArgs)">
             <summary>
-            Processa o ficheiro para um novo com watermark
+            Processa de novo o ficheiro com marca de água
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
@@ -232,6 +262,11 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:WatermarkApp.Menu_Principal">
+            <summary>
+            
             </summary>
         </member>
         <member name="M:WatermarkApp.Menu_Principal.#ctor">
@@ -425,6 +460,13 @@
             </summary>
             <param name="id_barcode"></param>
         </member>
+        <member name="M:WatermarkApp.QRcode.Auto_add_watermark_pdf(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="positions"></param>
+            <param name="date_time"></param>
+        </member>
         <member name="M:WatermarkApp.QRcode.Add_barcodes_pdf(System.String,System.String)">
             <summary>
             Vai ler o ficheiro original e a imagem do qrcode, colocando o qrcode numa posição aleatória num ficheiro novo
@@ -447,17 +489,10 @@
         </member>
         <member name="M:WatermarkApp.Retificar.Read_barcode(System.String)">
             <summary>
-            le o código de barras
+            Lê o código de barras
             </summary>
             <param name="file_name"></param>
             <returns></returns>
-        </member>
-        <member name="M:WatermarkApp.Retificar.Convert_pdf_png(System.String)">
-            <summary>
-            Converte o ficheiro pdf para png
-            </summary>
-            <param name="file_name">Nome do ficheiro</param>
-            <returns>Nome do ficheiro + ".png"</returns>
         </member>
         <member name="F:WatermarkApp.Retificar.components">
             <summary>

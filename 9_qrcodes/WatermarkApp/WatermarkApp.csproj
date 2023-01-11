@@ -91,6 +91,7 @@
     </Compile>
     <Compile Include="Analise_Forense.cs" />
     <Compile Include="AuxFunc.cs" />
+    <Compile Include="Commom.cs" />
     <Compile Include="Processamento.cs">
       <SubType>Form</SubType>
     </Compile>

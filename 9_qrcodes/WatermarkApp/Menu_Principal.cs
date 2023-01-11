@@ -4,10 +4,17 @@ using System.Windows.Forms;
 
 namespace WatermarkApp
 {  
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class Menu_Principal : Form
     {
-        private int size_qrcode = 75;
+        private readonly int size_qrcode = 75;
         string file_name;
+        private readonly string errorFile_without_watermark = "O ficheiro que selecionou ainda não tem marca de água";
+        private readonly string errorFileType = "O ficheiro que selecionou é de formato imagem ou não é de formato pdf";
+        private readonly string errorFile_with_watermark = "O ficheiro que selecionou já foi processado";
+        private Commom commom = new Commom();
 
         /// <summary>
         /// Menu principal programa
@@ -27,25 +34,42 @@ namespace WatermarkApp
             if (DialogResult.OK == ofd.ShowDialog())
             {
                 file_name = ofd.FileName;
-                
             }
         }
 
         private void Processar_btn_Click(object sender, EventArgs e)
         {
             Choose_file();
-            Processamento processamento = new Processamento(file_name, size_qrcode);
-            processamento.Show(); 
+            string file_name_without_dir = commom.Get_file_name_without_directory(file_name);
+
+            if (file_name.Contains(".png"))
+            {
+                MessageBox.Show(errorFileType);
+            }
+            else
+            {
+                if (file_name_without_dir.Contains("watermark"))
+                {
+                    MessageBox.Show(errorFile_with_watermark);
+                }
+                else
+                {
+                    Processamento processamento = new Processamento(file_name, size_qrcode);
+                    processamento.Show();
+                }
+             
+            }
+            
         }
 
+        [Obsolete]
         private void Retificar_btn_Click(object sender, EventArgs e)
         {
             Choose_file();
-            string[] show_doc = file_name.Split(new[] { @"Ficheiros\" }, StringSplitOptions.None);
-            string[] file = show_doc[1].Split(new[] { ".pdf" }, StringSplitOptions.None);
-
-
-            if (file[0].Contains("watermark"))
+           
+            string file_name_without_dir = commom.Get_file_name_without_directory(file_name); 
+       
+            if (file_name_without_dir.Contains("watermark"))
             {
                 Retificar retificar = new Retificar(file_name, size_qrcode);
                 try
@@ -59,8 +83,7 @@ namespace WatermarkApp
             }
             else
             {
-
-                MessageBox.Show("O ficheiro que selecionou ainda não tem marca de água");
+                MessageBox.Show(errorFile_without_watermark);
             } 
         }
     }

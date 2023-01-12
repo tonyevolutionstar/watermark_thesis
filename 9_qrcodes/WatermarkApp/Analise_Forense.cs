@@ -72,16 +72,13 @@ namespace WatermarkApp
                 height = (int)reader.GetPageSize(1).Height;
             }
             this.size_qrcode = size_qrcode;
-            Get_positions();
+            Get_positions_qrcodes();
             positions = top_left + "|" + top_middle + "|" + top_right + "|"
                   + middle_left + "|" + middle + "|" + middle_right + "|"
                   + bottom_left + "|" + bottom_middle + "|" + bottom_right;
         }
 
-        /// <summary>
-        /// obtem as posições dos qrcodes
-        /// </summary>
-        public void Get_positions()
+        public void Get_positions_qrcodes()
         {
             int height_top = height - size_qrcode;
             int r = width - size_qrcode - size_qrcode;

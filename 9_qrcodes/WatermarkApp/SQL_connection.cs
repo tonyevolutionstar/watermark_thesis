@@ -4,9 +4,7 @@ using System.Data.SqlClient;
 
 namespace WatermarkApp
 {
-    /// <summary>
-    /// Base de dados
-    /// </summary>
+
     public class SQL_connection
     {
         private int check;
@@ -90,23 +88,6 @@ namespace WatermarkApp
             return result;
         }
 
-        /// <summary>
-        /// Insere o documento na base de dados
-        /// </summary>
-        /// <param name="id"></param>
-        /// <param name="nome_f"></param>
-        /// <param name="n_registo"></param>
-        /// <param name="n_exemplar"></param>
-        /// <param name="n_copy"></param>
-        /// <param name="class_seg"></param>
-        /// <param name="estado_ex"></param>
-        /// <param name="formato_ex"></param>
-        /// <param name="utilizador"></param>
-        /// <param name="data_op"></param>
-        /// <param name="sigla_principal"></param>
-        /// <param name="posto_atual"></param>
-        /// <param name="dominio"></param>
-        /// <param name="date_time"></param>
         public void Insert_doc(int id, string nome_f, string n_registo, int n_exemplar, int n_copy, string class_seg, string estado_ex, string formato_ex, string utilizador, string data_op, string sigla_principal, string posto_atual, string dominio, string date_time)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[document] (id_document, nome_ficheiro, n_registo, n_exemplar, n_copy, class_seg, estado_ex, formato_ex, utilizador, data_op, sigla_principal, posto_atual, dominio, date_time) VALUES ("
@@ -246,17 +227,7 @@ namespace WatermarkApp
             return result;
         }
 
-        /// <summary>
-        /// Insere informações da analise forense na base de dados
-        /// </summary>
-        /// <param name="id_doc"></param>
-        /// <param name="line1"></param>
-        /// <param name="line2"></param>
-        /// <param name="inter_point"></param>
-        /// <param name="inter_char"></param>
-        /// <param name="line1_points"></param>
-        /// <param name="line2_points"></param>
-        /// <example>1; qrcode1_l:qrcode4_r; qrcode2_l:qrcode4_l; 525, 1158; s; 354,37:574,1479;1125,37:354,1479</example>
+       
         public void Insert_forense_analises(int id_doc, string line1, string line2, string inter_point, string inter_char, string line1_points, string line2_points)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[forense_analises] VALUES ("
@@ -277,15 +248,6 @@ namespace WatermarkApp
             }
         }
 
-        /// <summary>
-        /// Insere as posições dos characteres na base de dados 
-        /// </summary>
-        /// <param name="id_doc"></param>
-        /// <param name="value_char"></param>
-        /// <param name="start_x"></param>
-        /// <param name="start_y"></param>
-        /// <param name="stop_x"></param>
-        /// <param name="stop_y"></param>
         public void Insert_position_char_file(int id_doc, string value_char, int start_x, int start_y, int stop_x, int stop_y)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[position_char_file] VALUES ("

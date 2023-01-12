@@ -252,10 +252,7 @@ namespace WatermarkApp
             }
         }
 
-        /// <summary>
-        /// Preence os metadados para os ficheiros
-        /// </summary>
-        /// <returns></returns>
+
         private static Dictionary<Metadata, string> PreencherMetadadosParaFicheiros()
         {
             Dictionary<Metadata, string> conteudos = new Dictionary<Metadata, string>();
@@ -329,11 +326,7 @@ namespace WatermarkApp
             return conteudos;
         }
 
-        /// <summary>
-        /// Função que ouve sempre que o butao aceitar seja clicado para inserir o qrcode na base de dados e passar para o proximo ficheiro
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+
         private void Aceitar_btn_Click(object sender, EventArgs e)
         {
             try
@@ -343,7 +336,6 @@ namespace WatermarkApp
                 string doc_name = commom.Get_file_name_using_split(file_name);
                 string doc_dir = commom.Get_file_name_without_directory(file_name);
 
-                
                 string file_name_qrcode = doc_name + "_watermark_" + date_time + ".pdf";
                 if (File.Exists(file_name_qrcode))
                 {
@@ -363,11 +355,7 @@ namespace WatermarkApp
             }
         }
 
-        /// <summary>
-        /// Função que ouve sempre que o botão rejeita seja clicado para inserir o qrcode na base de dados e processar de novo o ficheiro
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
+ 
         private void Rejeitar_btn_Click(object sender, EventArgs e)
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);

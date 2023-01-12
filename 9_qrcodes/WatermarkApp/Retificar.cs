@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
-using static System.Resources.ResXFileRef;
 
 namespace WatermarkApp
 {
@@ -51,11 +50,7 @@ namespace WatermarkApp
             System.IO.File.WriteAllBytes(filename[0] + ".png", pngByte);
         }
 
-        /// <summary>
-        /// Lê o código de barras
-        /// </summary>
-        /// <param name="file_name"></param>
-        /// <returns></returns>
+
         [Obsolete]
         private string Read_barcode(string file_name)
         {
@@ -94,7 +89,6 @@ namespace WatermarkApp
         }
 
 
-
         private void Forense_btn_Click(object sender, EventArgs e)
         {
             MessageBox.Show(infoAnaliseForense);
@@ -105,12 +99,10 @@ namespace WatermarkApp
 
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
-            
             var doc = new Document();
             var builder = new DocumentBuilder(doc);
             builder.InsertImage(img);
             doc.Save(filename[0] + ".pdf");
-            
 
             string[] file = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
 

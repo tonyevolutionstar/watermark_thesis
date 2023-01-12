@@ -1,11 +1,7 @@
-﻿
-using System;
+﻿using System;
 
 namespace WatermarkApp
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public class Commom
     {   
         /// <summary>
@@ -16,12 +12,6 @@ namespace WatermarkApp
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="file_name"></param>
-        /// <returns></returns>
-
         public string Get_file_name_using_split(string file_name)
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
@@ -29,11 +19,7 @@ namespace WatermarkApp
             return s_doc[0];
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="file_name"></param>
-        /// <returns></returns>
+
         public string Get_file_name_without_directory(string file_name)
         {
             string[] show_doc = file_name.Split(new[] { @"Ficheiros\" }, StringSplitOptions.None);
@@ -42,19 +28,11 @@ namespace WatermarkApp
             return file[0];
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="file_name_png"></param>
         public void Convert_pdf_png(string file_name_png)
         {
             var dd = System.IO.File.ReadAllBytes(file_name_png);
             byte[] pngByte = Freeware.Pdf2Png.Convert(dd, 1);
             System.IO.File.WriteAllBytes(file_name_png+".p", pngByte);
         }
-
-
-    
-
     }
 }

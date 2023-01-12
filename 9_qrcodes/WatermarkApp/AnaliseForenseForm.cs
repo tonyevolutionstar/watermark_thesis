@@ -11,7 +11,6 @@ namespace WatermarkApp
         public AnaliseForenseForm(string file_name)
         {
             InitializeComponent();
-
             axAcroPDF1.src = file_name;
             Controls.Add(axAcroPDF1);
         }

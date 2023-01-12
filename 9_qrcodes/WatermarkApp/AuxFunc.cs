@@ -21,14 +21,6 @@ namespace WatermarkApp
         private List<string> combs;
         private string pngfile;
 
-
-        /// <summary>
-        /// Construtor
-        /// </summary>
-        /// <param name="id_doc"></param>
-        /// <param name="sql"></param>
-        /// <param name="filename"></param>
-        /// <param name="size_qrcode"></param> 
         public AuxFunc(int id_doc, SQL_connection sql, string filename, int size_qrcode)
         {
             this.id_doc = id_doc;
@@ -46,11 +38,7 @@ namespace WatermarkApp
             this.pngfile = Convert_pdf_png(filename);
         }
 
-        /// <summary>
-        /// Converte o ficheiro pdf para png
-        /// </summary>
-        /// <param name="f">Nome do ficheiro</param>
-        /// <returns>Nome do ficheiro + ".png"</returns>
+
         public string Convert_pdf_png(string f)
         {
             var dd = System.IO.File.ReadAllBytes(f);
@@ -60,11 +48,7 @@ namespace WatermarkApp
             return filename[0] + ".png";
         }
 
-        /// <summary>
-        /// Calcula a interseção
-        /// </summary>
-        /// <param name="position"></param>
-        /// <param name="qrcode_file"></param>
+     
         public void CalculateIntersection(string position, string qrcode_file)
         {
             string f = Convert_pdf_png(qrcode_file);
@@ -155,14 +139,7 @@ namespace WatermarkApp
             return qrcode_points;
         }
 
-        /// <summary>
-        /// Calcula a interseção entre duas retas
-        /// </summary>
-        /// <param name="A"></param>
-        /// <param name="B"></param>
-        /// <param name="C"></param>
-        /// <param name="D"></param>
-        /// <returns>Ponto de interseção</returns>
+
         private Point Intersection(Point A, Point B, Point C, Point D)
         {
             int x1 = A.X;
@@ -257,255 +234,6 @@ namespace WatermarkApp
             bmp.Dispose();
             return filename[0] + "_line.png";
         }
-
-
-        /*
-         * 
-         * 
-         * 
-            private Point Intersect(Point A, Point B, Point C, Point D)
-        {
-            int a1 = B.Y - A.Y;
-            int b1 = A.X - B.X;
-            int c1 = a1 * A.X + b1 * A.Y;
-
-            int a2 = D.Y - C.Y;
-            int b2 = C.X - D.X;
-            int c2 = a2 * C.X + b2 * C.Y;
-
-            int determinant = a1 * b2 - a2 * b1;
-
-            if (determinant != 0)
-            {
-                double x = (double) (b2 * c1 - b1 * c2) / determinant;
-                double y = (double) (a1 * c2 - a2 * c1) / determinant;
-                x = Math.Abs(x);
-                y = Math.Abs(y);
-                return new Point(Convert.ToInt32(x), Convert.ToInt32(y));
-                
-            }
-            return new Point(0, 0);
-        }
-
-        
-        private void an_line(Bitmap bmp, Point A, Point B, Point C, Point D)
-        {
-            Graphics g = Graphics.FromImage(bmp);
-            int x1 = A.X;
-            int x2 = B.X;
-            int x3 = C.X;
-            int x4 = D.X;
-
-            int y1 = A.Y;
-            int y2 = B.Y;
-            int y3 = C.Y;
-            int y4 = D.Y;
-
-
-            if ((x2 - x1) != 0)
-            {
-                int b1 = Convert.ToInt32((y2 - y1) / (x2 - x1));
-                if ((x4 - x3) != 0)
-                {
-                    int b2 = Convert.ToInt32((y4 - y3) / (x4 - x3));
-
-                    int c1 = y2 - b1 * x2;
-                    int c2 = y4 - b2 * x4;
-
-                    int y_eq1 = b1 * x1 + c1;
-                    int y_eq2 = b2 * x2 + c2;
-                    if (y_eq1 != y_eq2)
-                    {
-                        if (b1 != 0)
-                        {
-
-                            int x = Convert.ToInt32((y2 - c1) / b1);
-                            int y = y1;
-                            Console.WriteLine("Intersection: " + x + "," + y);
-                            //bmp.SetPixel(x, y, Color.Yellow);
-                            // Create pen.
-                            Pen yellow = new Pen(Color.Yellow, 3);
-
-                            // Create coordinates of the rectangle
-                            // to the bound ellipse.
-                          
-                            int width = 100;
-                            int height = 200;
-
-                            // Create start and sweep
-                            // angles on ellipse.
-                            int startAngle = 0;
-                            int sweepAngle = 360;
-
-                            // Draw arc to screen.
-                            g.DrawArc(yellow, x, y, width,
-                                     height, startAngle, sweepAngle);
-                        }
-                    }
-                }
-            }
-        }
-
-
-        private void line_eq(Bitmap bmp, Point A, Point B, Point C, Point D)
-        {
-            
-            if ((B.X - A.X) > 0 )
-            {
-                int m1 = Convert.ToInt32((B.Y - A.Y) / (B.X - A.X));
-                if ((D.X - C.X) > 0)
-                {
-                    int m2 = Convert.ToInt32((D.Y - C.Y) / (D.X - C.X));
-                    // y - y1 = m(x-x1) <=> y = m(x-x1) + y1 <=> y = mx - mx1 + y1
-                    int y1_t = -m1 * A.X + A.Y;
-                    int y2_t = -m2 * B.X + B.Y;
-                    if ((m1 - m2) > 0)
-                    {
-                        int x = Math.Abs(Convert.ToInt32((y2_t - y1_t) / (m1 - m2)));
-                        int y = Math.Abs(m1 * x + m2);
-                        if (x< bmp.Width && y< bmp.Height)
-                            bmp.SetPixel(x, y, Color.Blue);
-                    }
-                    
-                }
-                
-            }
-        }
-         private Point a_int(Point A, Point B, Point C, Point D)
-        {
-            int x1 = A.X;
-            int x2 = B.X;
-            int x3 = C.X;
-            int x4 = D.X;
-
-            int y1 = A.Y;
-            int y2 = B.Y;
-            int y3 = C.Y;
-            int y4 = D.Y;
-
-            int t1 = (x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4);
-            int t2 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-
-            int u1 = (x1 - x3) * (y1 - y2) - (y1 - y3) * (x1 - x2);
-            int u2 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-
-            if (t2 != 0 && u2 != 0)
-            {
-                double t = (double)t1 / t2;
-                double u = (double)u1 / u2;
-
-                if (0.0 >= t && t <= 1.0 && 0.0 >= u && u <= 1.0)
-                {
-                    int x = Math.Abs(Convert.ToInt32(x3 + u * (x4 - x3)));
-                    int y = Math.Abs(Convert.ToInt32(y3 + u * (y4 - y3)));
-                    return new Point(x, y);
-                }
-            }
-            return new Point(0, 0);
-
-        }
-
-
-
-        private void int_wiki(Bitmap bmp, Point A, Point B, Point C, Point D)
-        {
-            int x1 = A.X;
-            int x2 = B.X;
-            int x3 = C.X;
-            int x4 = D.X;
-
-            int y1 = A.Y;
-            int y2 = B.Y;
-            int y3 = C.Y;
-            int y4 = D.Y;
-
-            int px1 = (x1 * y2 - y1 * x2) * (x3 - x4) - (x1 - x2) * (x3 * y4 - y3 * x4);
-            int px2 = (x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4);
-
-            int py1 = (x1 * y2 - y1 * x2)  * (y3 - y4) - (y1 - y2) * (x3 * y4 - y3 * x4);
-          
-
-            if (px2 > 0)
-            {
-                int px = Math.Abs(Convert.ToInt32(px1 / px2));
-                int py = Math.Abs(Convert.ToInt32(py1 / px2));
-                if (px < bmp.Width && py < bmp.Height)
-                    bmp.SetPixel(px, py, Color.Violet);
-            }
-
-        }
- 
-
-      
-
-
-        private void another_int(Bitmap bmp, Point A, Point B, Point C, Point D)
-        {
-       
-            if ((B.X - C.X) * (B.Y - A.Y) != 0 )
-            {
-                double d = (D.Y - C.Y) * (B.X - A.X) - (B.Y - A.Y) * (D.X - C.X);
-                if (d == 0)
-                    Console.WriteLine("Paralel");
-                else
-                {
-                    int u = Convert.ToInt32(((C.X - A.X) * (D.Y - C.Y) - (C.Y - A.Y) * (D.X - C.X)) / d);
-                    int v = Convert.ToInt32(((C.X - A.X) * (B.Y - A.Y) - (C.Y - A.Y) * (B.X - A.X)) / d);
-
-                    // The fractional point will be between 0 and 1 inclusive if the lines
-                    // intersect.  If the fractional calculation is larger than 1 or smaller
-                    // than 0 the lines would need to be longer to intersect.
-                    if (u >= 0d && u <= 1d && v >= 0d && v <= 1d)
-                    {
-                        int x = A.X + (u * (B.X - A.X));
-                        int y = A.Y + (u * (B.Y - A.Y));
-
-                        Console.WriteLine("Point intersection: " + x + "," + y);
-                        bmp.SetPixel(x, y, Color.Blue);
-                    }
-                }
-            }
-        }
-
-         private string point_intersection(Bitmap bmp, Point A, Point B, Point C, Point D)
-        {
-            Graphics g = Graphics.FromImage(bmp);
-            int a1 = B.Y - A.Y;
-            int b1 = A.X - B.X;
-            int c1 = a1 * A.X + b1 * A.Y;
-
-            int a2 = D.Y - C.Y;
-            int b2 = C.X - D.X;
-            int c2 = a2 * C.X + b2 * C.Y;
-
-            int determinant = a1 * b2 - a2 * b1;
-
-            if (determinant != 0)
-            {
-                double x = (b2 * c1 - b1 * c2) / determinant;
-                double y = (a1 * c2 - a2 * c1) / determinant;
-                x = Math.Abs(x);
-                y = Math.Abs(y);
-
-                if (x < bmp.Width && y < bmp.Height && x != A.X && y!= A.Y && x != B.X && y != B.Y && x != C.X && y != C.Y && x != D.X && y != D.Y)
-                {
-                    Pen yellow = new Pen(Color.Yellow, 3);
-
-                    int width = 25;
-                    int height = 50;
-                    int startAngle = 0;
-                    int sweepAngle = 360;
-                    //bmp.SetPixel(Convert.ToInt32(x) , Convert.ToInt32(y) , Color.Red);
-                    // Draw arc to screen.
-                    //g.DrawArc(yellow, Convert.ToInt32(x), Convert.ToInt32(y), width,height, startAngle, sweepAngle);
-                    return Convert.ToInt32(x) + "," + Convert.ToInt32(y);
-                }        
-                else return "0";
-            }
-            return "0";
-        }
-        */
-
 
     }
 }

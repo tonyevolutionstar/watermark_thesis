@@ -80,7 +80,7 @@ namespace WatermarkApp
 
         public void Get_positions_qrcodes()
         {
-            int height_top = height - size_qrcode;
+            int height_top = height - size_qrcode - 15;
             int r = width - size_qrcode - size_qrcode;
             double m = (width - size_qrcode) / 2;
             double m_h = height / 2;

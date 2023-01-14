@@ -71,6 +71,7 @@ namespace WatermarkApp
             GeneratedBarcode MyBarCode = BarcodeWriter.CreateBarcode(data_qrcode, BarcodeWriterEncoding.Code128);
             MyBarCode.ResizeTo(MyBarCode.Width,5); // pixels
             MyBarCode.ChangeBarCodeColor(Color.Black);
+            
             MyBarCode.SaveAsPng(filename + "_barcode.png");  
         }
 
@@ -158,50 +159,60 @@ namespace WatermarkApp
                 iTextSharp.text.Image qr_code_img_1 = iTextSharp.text.Image.GetInstance(qrcodeStream_1);
                 string[] qrcode1 = positions_qrcode[6].Split(',');
                 qr_code_img_1.SetAbsolutePosition(Int16.Parse(qrcode1[0]), Int16.Parse(qrcode1[1]));
+                qr_code_img_1.SetDpi(1200, 1200);
                 pdfContentByte.AddImage(qr_code_img_1);
 
                 iTextSharp.text.Image qr_code_img_2 = iTextSharp.text.Image.GetInstance(qrcodeStream_2);
                 string[] qrcode2 = positions_qrcode[7].Split(',');
                 qr_code_img_2.SetAbsolutePosition(Int16.Parse(qrcode2[0]), Int16.Parse(qrcode2[1]));
+                qr_code_img_2.SetDpi(1200, 1200);
                 pdfContentByte.AddImage(qr_code_img_2);
 
                 iTextSharp.text.Image qr_code_img_3 = iTextSharp.text.Image.GetInstance(qrcodeStream_3);
                 string[] qrcode3 = positions_qrcode[8].Split(',');
                 qr_code_img_3.SetAbsolutePosition(Int16.Parse(qrcode3[0]), Int16.Parse(qrcode3[1]));
+                qr_code_img_3.SetDpi(1200, 1200);
                 pdfContentByte.AddImage(qr_code_img_3);
 
                 iTextSharp.text.Image qr_code_img_4 = iTextSharp.text.Image.GetInstance(qrcodeStream_4);
                 string[] qrcode4 = positions_qrcode[3].Split(',');
                 qr_code_img_4.SetAbsolutePosition(Int16.Parse(qrcode4[0]), Int16.Parse(qrcode4[1]));
+                qr_code_img_4.SetDpi(1200, 1200);
                 pdfContentByte.AddImage(qr_code_img_4);
 
                 iTextSharp.text.Image qr_code_img_5 = iTextSharp.text.Image.GetInstance(qrcodeStream_5);
                 string[] qrcode5 = positions_qrcode[4].Split(',');
                 qr_code_img_5.SetAbsolutePosition(Int16.Parse(qrcode5[0]), Int16.Parse(qrcode5[1]));
+                qr_code_img_5.SetDpi(1200, 1200);
                 pdfContentByte.AddImage(qr_code_img_5);
 
                 iTextSharp.text.Image qr_code_img_6 = iTextSharp.text.Image.GetInstance(qrcodeStream_6);
                 string[] qrcode6 = positions_qrcode[5].Split(',');
                 qr_code_img_6.SetAbsolutePosition(Int16.Parse(qrcode6[0]), Int16.Parse(qrcode6[1]));
+                qr_code_img_6.SetDpi(1200, 1200);
                 pdfContentByte.AddImage(qr_code_img_6);
 
                 iTextSharp.text.Image qr_code_img_7 = iTextSharp.text.Image.GetInstance(qrcodeStream_7);
                 string[] qrcode7 = positions_qrcode[0].Split(',');
                 qr_code_img_7.SetAbsolutePosition(Int16.Parse(qrcode7[0]), Int16.Parse(qrcode7[1]));
+                qr_code_img_7.SetDpi(1200, 1200);
                 pdfContentByte.AddImage(qr_code_img_7);
 
                 iTextSharp.text.Image qr_code_img_8 = iTextSharp.text.Image.GetInstance(qrcodeStream_8);
                 string[] qrcode8 = positions_qrcode[1].Split(',');
                 qr_code_img_8.SetAbsolutePosition(Int16.Parse(qrcode8[0]), Int16.Parse(qrcode8[1]));
+                qr_code_img_8.SetDpi(1200, 1200);
                 pdfContentByte.AddImage(qr_code_img_8);
 
                 iTextSharp.text.Image qr_code_img_9 = iTextSharp.text.Image.GetInstance(qrcodeStream_9);
                 string[] qrcode9 = positions_qrcode[2].Split(',');
                 qr_code_img_9.SetAbsolutePosition(Int16.Parse(qrcode9[0]), Int16.Parse(qrcode9[1]));
+                qr_code_img_9.SetDpi(1200, 1200);
                 pdfContentByte.AddImage(qr_code_img_9);
 
                 iTextSharp.text.Image barcode_img = iTextSharp.text.Image.GetInstance(barcodeStream);
-                barcode_img.SetAbsolutePosition(middle_w, 5);
+                barcode_img.SetAbsolutePosition(middle_w, 15);
+                barcode_img.SetDpi(100, 100);
                 pdfContentByte.AddImage(barcode_img);
 
                 stamper.Close();

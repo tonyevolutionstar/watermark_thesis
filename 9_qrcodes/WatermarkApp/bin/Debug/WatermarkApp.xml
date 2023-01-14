@@ -84,38 +84,10 @@
             <param name="filename"></param>
             <param name="size_qrcode"></param>
         </member>
-        <member name="M:WatermarkApp.Analise_Forense.Get_positions">
-            <summary>
-            obtem as posições dos qrcodes
-            </summary>
-        </member>
         <member name="T:WatermarkApp.AuxFunc">
             <summary>
             Função auxiliar para operaçoes no ficheiro
             </summary>
-        </member>
-        <member name="M:WatermarkApp.AuxFunc.#ctor(System.Int32,WatermarkApp.SQL_connection,System.String,System.Int32)">
-            <summary>
-            Construtor
-            </summary>
-            <param name="id_doc"></param>
-            <param name="sql"></param>
-            <param name="filename"></param>
-            <param name="size_qrcode"></param> 
-        </member>
-        <member name="M:WatermarkApp.AuxFunc.Convert_pdf_png(System.String)">
-            <summary>
-            Converte o ficheiro pdf para png
-            </summary>
-            <param name="f">Nome do ficheiro</param>
-            <returns>Nome do ficheiro + ".png"</returns>
-        </member>
-        <member name="M:WatermarkApp.AuxFunc.CalculateIntersection(System.String,System.String)">
-            <summary>
-            Calcula a interseção
-            </summary>
-            <param name="position"></param>
-            <param name="qrcode_file"></param>
         </member>
         <member name="M:WatermarkApp.AuxFunc.FillDictionary(System.String,System.Drawing.Bitmap)">
             <summary>
@@ -124,16 +96,6 @@
             <param name="position"></param>
             <param name="bmp"></param>
             <returns>Dicionario com as posições</returns>
-        </member>
-        <member name="M:WatermarkApp.AuxFunc.Intersection(System.Drawing.Point,System.Drawing.Point,System.Drawing.Point,System.Drawing.Point)">
-            <summary>
-            Calcula a interseção entre duas retas
-            </summary>
-            <param name="A"></param>
-            <param name="B"></param>
-            <param name="C"></param>
-            <param name="D"></param>
-            <returns>Ponto de interseção</returns>
         </member>
         <member name="M:WatermarkApp.AuxFunc.Get_Value_in(System.Drawing.Bitmap,System.Int32,System.Int32)">
             <summary>
@@ -151,35 +113,10 @@
             <param name="return_list"></param>
             <param name="qrcode_file"></param>
         </member>
-        <member name="T:WatermarkApp.Commom">
-            <summary>
-            
-            </summary>
-        </member>
         <member name="M:WatermarkApp.Commom.#ctor">
             <summary>
             Commom functions between classes
             </summary>
-        </member>
-        <member name="M:WatermarkApp.Commom.Get_file_name_using_split(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="file_name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WatermarkApp.Commom.Get_file_name_without_directory(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="file_name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:WatermarkApp.Commom.Convert_pdf_png(System.String)">
-            <summary>
-            
-            </summary>
-            <param name="file_name_png"></param>
         </member>
         <member name="T:WatermarkApp.Processamento">
             <summary>
@@ -219,26 +156,6 @@
             <summary>
             Mostra ficheiro com o qrcode
             </summary>
-        </member>
-        <member name="M:WatermarkApp.Processamento.PreencherMetadadosParaFicheiros">
-            <summary>
-            Preence os metadados para os ficheiros
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:WatermarkApp.Processamento.Aceitar_btn_Click(System.Object,System.EventArgs)">
-            <summary>
-            Função que ouve sempre que o butao aceitar seja clicado para inserir o qrcode na base de dados e passar para o proximo ficheiro
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
-        </member>
-        <member name="M:WatermarkApp.Processamento.Rejeitar_btn_Click(System.Object,System.EventArgs)">
-            <summary>
-            Função que ouve sempre que o botão rejeita seja clicado para inserir o qrcode na base de dados e processar de novo o ficheiro
-            </summary>
-            <param name="sender"></param>
-            <param name="e"></param>
         </member>
         <member name="M:WatermarkApp.Processamento.Gerar_btn_Click(System.Object,System.EventArgs)">
             <summary>
@@ -487,13 +404,6 @@
             <param name="file_name"></param>
             <param name="size_qrcode"></param>
         </member>
-        <member name="M:WatermarkApp.Retificar.Read_barcode(System.String)">
-            <summary>
-            Lê o código de barras
-            </summary>
-            <param name="file_name"></param>
-            <returns></returns>
-        </member>
         <member name="F:WatermarkApp.Retificar.components">
             <summary>
             Required designer variable.
@@ -509,11 +419,6 @@
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="T:WatermarkApp.SQL_connection">
-            <summary>
-            Base de dados
             </summary>
         </member>
         <member name="M:WatermarkApp.SQL_connection.#ctor">
@@ -534,25 +439,6 @@
             </summary>
             <param name="id"></param>
             <returns>Dados do ficheiro</returns>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_doc(System.Int32,System.String,System.String,System.Int32,System.Int32,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            Insere o documento na base de dados
-            </summary>
-            <param name="id"></param>
-            <param name="nome_f"></param>
-            <param name="n_registo"></param>
-            <param name="n_exemplar"></param>
-            <param name="n_copy"></param>
-            <param name="class_seg"></param>
-            <param name="estado_ex"></param>
-            <param name="formato_ex"></param>
-            <param name="utilizador"></param>
-            <param name="data_op"></param>
-            <param name="sigla_principal"></param>
-            <param name="posto_atual"></param>
-            <param name="dominio"></param>
-            <param name="date_time"></param>
         </member>
         <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -583,30 +469,6 @@
             </summary>
             <param name="id_document"></param>
             <returns>nome_ficheiro;utilizador;sigla_principal;posto_atual</returns>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_forense_analises(System.Int32,System.String,System.String,System.String,System.String,System.String,System.String)">
-            <summary>
-            Insere informações da analise forense na base de dados
-            </summary>
-            <param name="id_doc"></param>
-            <param name="line1"></param>
-            <param name="line2"></param>
-            <param name="inter_point"></param>
-            <param name="inter_char"></param>
-            <param name="line1_points"></param>
-            <param name="line2_points"></param>
-            <example>1; qrcode1_l:qrcode4_r; qrcode2_l:qrcode4_l; 525, 1158; s; 354,37:574,1479;1125,37:354,1479</example>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_position_char_file(System.Int32,System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Insere as posições dos characteres na base de dados 
-            </summary>
-            <param name="id_doc"></param>
-            <param name="value_char"></param>
-            <param name="start_x"></param>
-            <param name="start_y"></param>
-            <param name="stop_x"></param>
-            <param name="stop_y"></param>
         </member>
         <member name="M:WatermarkApp.SQL_connection.Get_Values_Analise_Forense(System.Int32)">
             <summary>

@@ -46,8 +46,10 @@ def plot_rects(p1, p2, p3, p4, label):
 with open('text_debug.txt', "r") as f:
     content = f.readlines()
 
+co = 1
+
 for i in range(len(content)):
-   
+    
     #remover labels    
     if i % 2 == 0:
             
@@ -55,6 +57,7 @@ for i in range(len(content)):
         #label = label[0].replace(":","_") + "___" + label[1].replace(":","_")
         label = content[i].strip().split(";")
         label = label[0] + ";" + label[1]
+        co += 1
         continue      
     
     # reta 1
@@ -80,9 +83,9 @@ for i in range(len(content)):
         
     pt1_reta2 = (pt1_x, pt1_y)
     pt2_reta2 = (pt2_x, pt2_y)
-
+print(co)
     #print("reta 1: S-" + str(pt1_reta1) + " E-" + str(pt2_reta1))
     #print("reta 2: S-" + str(pt1_reta2) + " E-" + str(pt2_reta2))
 
-    plot_rects(pt1_reta1, pt2_reta1, pt1_reta2, pt2_reta2, label)
+  
 

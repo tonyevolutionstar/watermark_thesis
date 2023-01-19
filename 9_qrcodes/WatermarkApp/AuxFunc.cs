@@ -59,7 +59,7 @@ namespace WatermarkApp
        
             string qrcode_comb;
             combs = new List<string>();
-      
+
             foreach (KeyValuePair<string, Point> entry in qrcode_points)
             {
                 string[] val0 = entry.Key.Split('_');
@@ -74,6 +74,10 @@ namespace WatermarkApp
                     }
                 }
             }
+     
+            Console.WriteLine("Rects without duplicates " + combs.Count);
+
+            int without_p = 1;
 
             // get rects without the origin point be the same
             for(int i = 0; i < combs.Count; i ++)
@@ -86,6 +90,7 @@ namespace WatermarkApp
                     string[] side_qrcode_j = points_j[0].Split('_');
                     if (!side_qrcode_i[0].Equals(side_qrcode_j[0]))
                     {
+                        without_p++;
                         qrcode_points.TryGetValue(points_i[0], out Point A);
                         qrcode_points.TryGetValue(points_i[1], out Point B);
                         qrcode_points.TryGetValue(points_j[0], out Point C);
@@ -107,6 +112,8 @@ namespace WatermarkApp
                     }
                 }
             }
+            Console.WriteLine("Possible rects without the same comb " + without_p);
+
 
             bmp.Dispose();
             getcolors.Dispose();        

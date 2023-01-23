@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using System.Linq;
 
 namespace WatermarkApp
 {
@@ -48,6 +49,27 @@ namespace WatermarkApp
             return filename[0] + ".png";
         }
 
+        private bool CalculateDifferenceBetweenTwoPoints(Point p1, Point p2)
+        {
+            int a1 = p1.X;
+            int a2 = p1.Y;
+            int b1 = p2.X;
+            int b2 = p2.Y;
+
+            int dif_X = (a1 - b1);
+            int dif_Y = (a2 - b2);
+
+            if (dif_X > 0 && dif_X < 5)
+            {
+                return true;
+            }
+            else if (dif_Y > 0 && dif_Y < 5)
+            {
+                return true;
+            }
+            return false;
+
+        }
      
         public void CalculateIntersection(string position, string qrcode_file)
         {
@@ -78,6 +100,9 @@ namespace WatermarkApp
             Console.WriteLine("Rects without duplicates " + combs.Count);
 
             int without_p = 1;
+            List<string> p = new List<string>();
+
+            Dictionary<string,string> analiseDic = new Dictionary<string, string>();
 
             // get rects without the origin point be the same
             for(int i = 0; i < combs.Count; i ++)
@@ -105,6 +130,9 @@ namespace WatermarkApp
                                 string line1_points = A.X + "," + A.Y + ":" + B.X + "," + B.Y;
                                 string line2_points = C.X + "," + C.Y + ":" + D.X + "," + D.Y;
                                 string inter_point = res.X + "," + res.Y;
+                                string delimitador = "|";
+
+                                p.Add(id_doc.ToString() + delimitador + combs[i].ToString() + delimitador + combs[j].ToString() + delimitador + inter_point.ToString() + delimitador + ch + delimitador + line1_points + delimitador + line2_points);
 
                                 sql.Insert_forense_analises(id_doc, combs[i], combs[j], inter_point, ch, line1_points, line2_points);
                             }
@@ -112,8 +140,9 @@ namespace WatermarkApp
                     }
                 }
             }
-            Console.WriteLine("Possible rects without the same comb " + without_p);
 
+            sql.RemoveDuplicatesAnaliseForenseLine1(id_doc);
+            sql.RemoveDuplicatesAnaliseForenseLine2(id_doc);
 
             bmp.Dispose();
             getcolors.Dispose();        
@@ -203,6 +232,32 @@ namespace WatermarkApp
             return ch;
         }
 
+
+        private bool verify_Value_in(Bitmap bmp, int x, int y)
+        {
+            string ch = "";
+            List<string> pos_char = sql.Get_characters_Pos(id_doc);
+
+            foreach (string values in pos_char)
+            {
+                string[] val = values.Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries); ;
+                string[] pos_val = val[1].Split(',');
+                int new_x = Convert.ToInt32(int.Parse(pos_val[0]) * bmp.Width / w);
+                int new_y = Convert.ToInt32(int.Parse(pos_val[1]) * bmp.Height / h);
+                int final_x = Convert.ToInt32(int.Parse(pos_val[2]) * bmp.Width / w);
+                int final_y = Convert.ToInt32(int.Parse(pos_val[3]) * bmp.Height / h);
+
+                // verifica se o valor da interseção está proximo a uma letra
+                if (x >= new_x && x <= final_x && y >= new_y && y <= final_y)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
         /// <summary>
         /// Usado pela Analise Forense
         /// </summary>
@@ -242,5 +297,33 @@ namespace WatermarkApp
             return filename[0] + "_line.png";
         }
 
+
+        private bool verifyAnaliseForense(string ch, int x, int y, Bitmap bmp)
+        {
+            List<string> pos_char = sql.Get_characters_Pos(id_doc);
+            int count = 1;
+
+            foreach (string values in pos_char)
+            {
+                string[] val = values.Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries); ;
+                string[] pos_val = val[1].Split(',');
+                int new_x = Convert.ToInt32(int.Parse(pos_val[0]) * bmp.Width / w);
+                int new_y = Convert.ToInt32(int.Parse(pos_val[1]) * bmp.Height / h);
+                int final_x = Convert.ToInt32(int.Parse(pos_val[2]) * bmp.Width / w);
+                int final_y = Convert.ToInt32(int.Parse(pos_val[3]) * bmp.Height / h);
+
+
+                if (val[0].Equals(ch))
+                {
+                    if (x >= new_x && x <= final_x && y >= new_y && y <= final_y)
+                    {
+                    }
+                }
+            }
+
+    
+
+            return false;
+        }
     }
 }

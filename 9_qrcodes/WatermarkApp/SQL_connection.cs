@@ -4,7 +4,6 @@ using System.Data.SqlClient;
 
 namespace WatermarkApp
 {
-
     public class SQL_connection
     {
         private int check;
@@ -17,7 +16,7 @@ namespace WatermarkApp
         /// <summary>
         /// Destinada a fazer operações na base de dados
         /// </summary>
-        public SQL_connection() 
+        public SQL_connection()
         {
             check = -1;
             connetionString = null;
@@ -117,7 +116,7 @@ namespace WatermarkApp
         public void Insert_watermark(int id_document, int id_barcode, int validation)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[watermark_qrcode] VALUES ("
-            + id_document + "," + id_barcode + "," + validation  + ");";
+            + id_document + "," + id_barcode + "," + validation + ");";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -141,9 +140,9 @@ namespace WatermarkApp
         /// <param name="posicoes_qrcode"></param>
         /// <param name="date"></param>
         public void Insert_posicao(string posicoes_qrcode, string date)
-        {  
+        {
             sql = "Use Watermark;INSERT INTO [dbo].[barcode] VALUES ("
-             + "'" + posicoes_qrcode + "'" + "," + "'" +  date + "'" + ");";
+             + "'" + posicoes_qrcode + "'" + "," + "'" + date + "'" + ");";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -201,9 +200,9 @@ namespace WatermarkApp
             string result = "";
             sql = "Use Watermark;select nome_ficheiro, utilizador, sigla_principal, posto_atual " +
             " from watermark_qrcode inner join barcode on watermark_qrcode.id_barcode = barcode.id_barcode " +
-            " inner join document on document.id_document = watermark_qrcode.id_doc where id_doc = " + id_document; 
+            " inner join document on document.id_document = watermark_qrcode.id_doc where id_doc = " + id_document;
 
-            connection = new SqlConnection(connetionString); 
+            connection = new SqlConnection(connetionString);
             try
             {
                 connection.Open();
@@ -227,7 +226,7 @@ namespace WatermarkApp
             return result;
         }
 
-       
+
         public void Insert_forense_analises(int id_doc, string line1, string line2, string inter_point, string inter_char, string line1_points, string line2_points)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[forense_analises] VALUES ("
@@ -289,7 +288,8 @@ namespace WatermarkApp
                     string inter_char = dataReader.GetValue(1).ToString();
                     string line1_points = dataReader.GetValue(2).ToString();
                     string line2_points = dataReader.GetValue(3).ToString();
-                    returnList.Add(inter_point + "|" + inter_char + "|" + line1_points + "|" + line2_points );
+                    string delimitador = "|";
+                    returnList.Add(inter_point + delimitador + inter_char + delimitador + line1_points + delimitador + line2_points);
                 }
                 dataReader.Close();
                 command.Dispose();
@@ -336,6 +336,46 @@ namespace WatermarkApp
                 Console.WriteLine(ex.Message);
             }
             return returnList;
+        }
+
+
+        public void RemoveDuplicatesAnaliseForenseLine2(int id_doc)
+        {
+            sql = "Use Watermark; WITH cte AS (SELECT line2, inter_char, ROW_NUMBER() OVER(PARTITION BY line2, inter_char ORDER BY line2) row_num FROM forense_analises where id_doc = " + id_doc + ")  DELETE FROM cte WHERE row_num > 1;";
+            connection = new SqlConnection(connetionString);
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
+
+
+        public void RemoveDuplicatesAnaliseForenseLine1(int id_doc)
+        {
+            sql = "Use Watermark;  WITH cte AS (SELECT line1, inter_char, ROW_NUMBER() OVER(PARTITION BY line1, inter_char ORDER BY line1) row_num FROM forense_analises where id_doc = " + id_doc + ")  DELETE FROM cte WHERE row_num > 1;";
+            connection = new SqlConnection(connetionString);
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
         }
     }
 }

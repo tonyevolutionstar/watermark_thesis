@@ -1,7 +1,6 @@
 ﻿using IronBarCode;
 using iTextSharp.text.pdf;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 
@@ -71,58 +70,9 @@ namespace WatermarkApp
             GeneratedBarcode MyBarCode = BarcodeWriter.CreateBarcode(data_qrcode, BarcodeWriterEncoding.Code128);
             MyBarCode.ResizeTo(MyBarCode.Width,5); // pixels
             MyBarCode.ChangeBarCodeColor(Color.Black);
-            
             MyBarCode.SaveAsPng(filename + "_barcode.png");  
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="positions"></param>
-        /// <param name="date_time"></param>
-
-        public void Auto_add_watermark_pdf(string positions, string date_time)
-        {
-            using (Stream inputPdfStream = new FileStream(filename + ".pdf", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream barcodeStream = new FileStream(filename + "_barcode.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream outputPdfStream = new FileStream(filename + "_watermark_" + date_time + ".pdf", FileMode.Create, FileAccess.Write, FileShare.Write))
-            {
-                int[] ind = { 6, 7, 8, 3, 4, 5, 0, 1, 2 };
-                var reader = new PdfReader(inputPdfStream);
-                PdfReader.unethicalreading = true;
-                var stamper = new PdfStamper(reader, outputPdfStream);
-                var pdfContentByte = stamper.GetUnderContent(1);
-                int width = (int)reader.GetPageSize(1).Width;
-                int height = (int)reader.GetPageSize(1).Height;
-
-                float m = width / 3;
-                int middle_w = (int)Math.Round(m);
-
-                string[] positions_qrcode = positions.Split('|');
-
-                for(int i = 0; i < ind.Length; i++)
-                {
-                    using (Stream qrCodeStream = new FileStream(filename + "_qrcode_" + (i + 1) + ".png", FileMode.Open, FileAccess.Read, FileShare.Read))
-                    {
-                        string[] qrCode = positions_qrcode[ind[i]].Split(',');
-                        iTextSharp.text.Image qr_code_img_x = iTextSharp.text.Image.GetInstance(qrCodeStream);
-                        qr_code_img_x.SetAbsolutePosition(Int16.Parse(qrCode[0]), Int16.Parse(qrCode[1]));
-                        pdfContentByte.AddImage(qr_code_img_x);
-                    }
-                }
-
-                iTextSharp.text.Image barcode_img = iTextSharp.text.Image.GetInstance(barcodeStream);
-                barcode_img.SetAbsolutePosition(middle_w, 5);
-                pdfContentByte.AddImage(barcode_img);
-
-                stamper.Close();
-                stamper.Dispose();
-                reader.Dispose();
-                inputPdfStream.Dispose();
-            }
-        }
-
-            
         /// <summary>
         /// Vai ler o ficheiro original e a imagem do qrcode, colocando o qrcode numa posição aleatória num ficheiro novo
         /// </summary>

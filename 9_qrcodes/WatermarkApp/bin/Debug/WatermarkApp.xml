@@ -377,13 +377,6 @@
             </summary>
             <param name="id_barcode"></param>
         </member>
-        <member name="M:WatermarkApp.QRcode.Auto_add_watermark_pdf(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="positions"></param>
-            <param name="date_time"></param>
-        </member>
         <member name="M:WatermarkApp.QRcode.Add_barcodes_pdf(System.String,System.String)">
             <summary>
             Vai ler o ficheiro original e a imagem do qrcode, colocando o qrcode numa posição aleatória num ficheiro novo

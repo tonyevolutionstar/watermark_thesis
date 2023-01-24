@@ -7,10 +7,7 @@ namespace WatermarkApp
         /// <summary>
         /// Commom functions between classes
         /// </summary>
-        public Commom()
-        {
-
-        }
+        public Commom(){}
 
         public string Get_file_name_using_split(string file_name)
         {

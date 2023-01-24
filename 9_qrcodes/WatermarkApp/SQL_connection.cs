@@ -6,7 +6,7 @@ namespace WatermarkApp
 {
     public class SQL_connection
     {
-        private int check;
+        private int check ;
         private string connetionString;
         SqlConnection connection;
         SqlCommand command;

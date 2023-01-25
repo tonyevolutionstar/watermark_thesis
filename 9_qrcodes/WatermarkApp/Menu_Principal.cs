@@ -86,5 +86,41 @@ namespace WatermarkApp
                 MessageBox.Show(errorFile_without_watermark);
             } 
         }
+
+        private void RetificarManual_btn_Click(object sender, EventArgs e)
+        {
+            Choose_file();
+
+            string file_name_without_dir = commom.Get_file_name_without_directory(file_name);
+
+            if (!file_name.Contains(".pdf"))
+            {
+                MessageBox.Show("Extensão de ficheiro não permitida");
+            }
+            else
+            {
+                if (file_name_without_dir.Contains("watermark"))
+                {
+                    RetificarManual retificarManual = new RetificarManual(file_name, size_qrcode);
+                    try
+                    {
+                        retificarManual.Show();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(errorFile_without_watermark);
+                }
+            }
+            
+
+            
+
+
+        }
     }
 }

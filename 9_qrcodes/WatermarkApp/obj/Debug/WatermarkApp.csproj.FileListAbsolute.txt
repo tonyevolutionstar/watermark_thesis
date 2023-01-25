@@ -299,3 +299,4 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\watermark_thesis\9_qrcodes\Watermar
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\watermark_thesis\9_qrcodes\WatermarkApp\obj\Debug\WatermarkApp.csproj.CopyComplete
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\watermark_thesis\9_qrcodes\WatermarkApp\obj\Debug\WatermarkApp.exe
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\watermark_thesis\9_qrcodes\WatermarkApp\obj\Debug\WatermarkApp.pdb
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\9_qrcodes\WatermarkApp\obj\Debug\WatermarkApp.RetificarManual.resources

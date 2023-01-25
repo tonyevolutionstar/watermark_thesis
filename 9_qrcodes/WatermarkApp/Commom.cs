@@ -25,11 +25,17 @@ namespace WatermarkApp
             return file[0];
         }
 
-        public void Convert_pdf_png(string file_name_png)
+
+        public string Convert_pdf_png(string file_name_png)
         {
+
             var dd = System.IO.File.ReadAllBytes(file_name_png);
             byte[] pngByte = Freeware.Pdf2Png.Convert(dd, 1);
-            System.IO.File.WriteAllBytes(file_name_png+".p", pngByte);
+            string[] filename = file_name_png.Split(new[] { ".pdf" }, StringSplitOptions.None);
+
+            System.IO.File.WriteAllBytes(filename[0]+ ".png", pngByte);
+            return filename[0] + ".png";
+
         }
     }
 }

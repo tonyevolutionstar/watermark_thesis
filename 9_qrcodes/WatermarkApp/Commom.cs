@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Aspose.Words;
+using IronBarCode;
+using System;
+using System.Collections.Generic;
+using System.IO;
 
 namespace WatermarkApp
 {
@@ -28,14 +32,45 @@ namespace WatermarkApp
 
         public string Convert_pdf_png(string file_name_png)
         {
-
             var dd = System.IO.File.ReadAllBytes(file_name_png);
             byte[] pngByte = Freeware.Pdf2Png.Convert(dd, 1);
             string[] filename = file_name_png.Split(new[] { ".pdf" }, StringSplitOptions.None);
 
-            System.IO.File.WriteAllBytes(filename[0]+ ".png", pngByte);
-            return filename[0] + ".png";
+            System.IO.File.WriteAllBytes(filename[0]+ "-.png", pngByte);
+            return filename[0] + "-.png";
+        }
 
+        public string Read_barcode(string file_name)
+        {
+            BarcodeResult QRBetterResult = BarcodeReader.QuicklyReadOneBarcode(file_name, BarcodeEncoding.Code128, true);
+            if (QRBetterResult != null)
+                return QRBetterResult.Value;
+            return "insucesso";
+        }
+
+
+        public void retificarAnalise(int id_doc, SQL_connection sql, string file_name, int size_qrcode)
+        {
+            List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
+            AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name, size_qrcode);
+            string img = auxFunc.DrawImage(returnlist, file_name);
+
+            string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
+
+            var doc = new Document();
+            var builder = new DocumentBuilder(doc);
+            builder.InsertImage(img);
+            doc.Save(filename[0] + ".pdf");
+
+            string[] file = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
+
+            AnaliseForenseForm form = new AnaliseForenseForm(filename[0] + ".pdf");
+            form.Show();
+
+            if (File.Exists(file[0] + ".png"))
+                File.Delete(file[0] + ".png");
+            if (File.Exists(filename[0] + ".png"))
+                File.Delete(filename[0] + ".png");
         }
     }
 }

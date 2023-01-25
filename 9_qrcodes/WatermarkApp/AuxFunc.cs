@@ -39,12 +39,31 @@ namespace WatermarkApp
         }
 
 
+        public AuxFunc(string filename, SQL_connection sql, int id_doc, int size_qrcode)
+        {
+            using (Stream inputPdfStream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                var reader = new PdfReader(inputPdfStream);
+                PdfReader.unethicalreading = true;
+                w = (int)reader.GetPageSize(1).Width;
+                h = (int)reader.GetPageSize(1).Height;
+                reader.Close();
+                reader.Dispose();
+            }
+            this.sql = sql;
+            this.id_doc = id_doc;
+            this.size_qrcode = size_qrcode;
+        }
+
+
         public string Convert_pdf_png(string f)
         {
             var dd = System.IO.File.ReadAllBytes(f);
             byte[] pngByte = Freeware.Pdf2Png.Convert(dd, 1);
             string[] filename = f.Split(new[] { ".pdf" }, StringSplitOptions.None);
-            System.IO.File.WriteAllBytes(filename[0] + ".png", pngByte);
+            if (!File.Exists(filename[0] + ".png"))
+                System.IO.File.WriteAllBytes(filename[0] + ".png", pngByte);
+           
             return filename[0] + ".png";
         }
 
@@ -53,8 +72,6 @@ namespace WatermarkApp
         {
             string f = Convert_pdf_png(qrcode_file);
             Bitmap bmp = new Bitmap(f);
-            Bitmap getcolors = new Bitmap(pngfile);
-
             qrcode_points = FillDictionary(position, bmp);
        
             string qrcode_comb;
@@ -80,7 +97,6 @@ namespace WatermarkApp
             int without_p = 1;
             List<string> p = new List<string>();
 
-            Dictionary<string,string> analiseDic = new Dictionary<string, string>();
 
             // get rects without the origin point be the same
             for(int i = 0; i < combs.Count; i ++)
@@ -102,7 +118,7 @@ namespace WatermarkApp
                       
                         if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
                         {
-                            string ch = Get_Value_in(getcolors, res.X, res.Y);
+                            string ch = Get_Value_in(bmp, res.X, res.Y);
                             if (!String.IsNullOrEmpty(ch) && !ch.Equals("") && !String.IsNullOrWhiteSpace(ch))
                             {
                                 string line1_points = A.X + "," + A.Y + ":" + B.X + "," + B.Y;
@@ -123,7 +139,7 @@ namespace WatermarkApp
             sql.RemoveDuplicatesAnaliseForenseLine2(id_doc);
 
             bmp.Dispose();
-            getcolors.Dispose();        
+           
         }
 
         /// <summary>

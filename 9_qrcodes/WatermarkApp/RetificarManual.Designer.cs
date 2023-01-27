@@ -58,7 +58,7 @@
             this.finalizar_btn.BackColor = System.Drawing.Color.Green;
             this.finalizar_btn.Font = new System.Drawing.Font("Arial", 12F);
             this.finalizar_btn.ForeColor = System.Drawing.SystemColors.Control;
-            this.finalizar_btn.Location = new System.Drawing.Point(780, 977);
+            this.finalizar_btn.Location = new System.Drawing.Point(1600, 720);
             this.finalizar_btn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.finalizar_btn.Name = "finalizar_btn";
             this.finalizar_btn.Size = new System.Drawing.Size(175, 69);

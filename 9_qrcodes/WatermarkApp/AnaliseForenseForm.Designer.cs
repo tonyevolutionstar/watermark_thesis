@@ -36,10 +36,10 @@
             // axAcroPDF1
             // 
             this.axAcroPDF1.Enabled = true;
-            this.axAcroPDF1.Location = new System.Drawing.Point(96, 128);
+            this.axAcroPDF1.Location = new System.Drawing.Point(134, 12);
             this.axAcroPDF1.Name = "axAcroPDF1";
             this.axAcroPDF1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axAcroPDF1.OcxState")));
-            this.axAcroPDF1.Size = new System.Drawing.Size(1581, 749);
+            this.axAcroPDF1.Size = new System.Drawing.Size(1058, 687);
             this.axAcroPDF1.TabIndex = 0;
             // 
             // AnaliseForenseForm

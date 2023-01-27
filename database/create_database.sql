@@ -63,12 +63,8 @@ CREATE TABLE position_char_file(
 	stop_y int
 );
 
-
 -- Select * from document;
 -- Select * from barcode;
 -- Select * from watermark_qrcode;
 -- Select * from forense_analises;
--- Select id_doc, value_char, start_x, start_y, stop_x, stop_y from position_char_file;
-
--- select Count(*) as NumeroTotalLetras, (select date_time from document where id_document = 893968789 ) as DataMarcaDeAguaGerada from forense_analises where id_doc = 893968789  group by id_doc 
-
+-- Select *from position_char_file;

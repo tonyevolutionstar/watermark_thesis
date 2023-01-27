@@ -18,7 +18,6 @@ namespace WatermarkApp
         List<string> ficheiros = new List<string>();
         Label document_name = new Label();
 
-       
         private string file_name;
         private string[] characters;
         int id_doc;
@@ -32,7 +31,6 @@ namespace WatermarkApp
         private string in_proccess = "Em processamento";
         private string doc_watermark_generated = "Documento com watermarking gerado, por favor aceite ou reprove";
         
-
         private string accepted_Doc = "Documento aceite";
         private string already_accepted = "Documento já aceite";
         private string rejected_Doc = "Documento rejeitado";
@@ -192,7 +190,6 @@ namespace WatermarkApp
                 }
             }
         }
-
 
         private void Delete_aux_files(string filename)
         {
@@ -378,7 +375,6 @@ namespace WatermarkApp
                     MessageBox.Show(message_error_file_without_watermark);
                 }
             }
-           
         }
 
         /// <summary>

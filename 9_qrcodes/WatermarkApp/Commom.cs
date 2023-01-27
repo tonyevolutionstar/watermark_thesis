@@ -16,7 +16,6 @@ namespace WatermarkApp
         public string Get_file_name_using_split(string file_name)
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-     
             return s_doc[0];
         }
 
@@ -36,8 +35,8 @@ namespace WatermarkApp
             byte[] pngByte = Freeware.Pdf2Png.Convert(dd, 1);
             string[] filename = file_name_png.Split(new[] { ".pdf" }, StringSplitOptions.None);
 
-            System.IO.File.WriteAllBytes(filename[0]+ "-.png", pngByte);
-            return filename[0] + "-.png";
+            System.IO.File.WriteAllBytes(filename[0]+ ".png", pngByte);
+            return filename[0] + ".png";
         }
 
         public string Read_barcode(string file_name)
@@ -47,7 +46,6 @@ namespace WatermarkApp
                 return QRBetterResult.Value;
             return "insucesso";
         }
-
 
         public void retificarAnalise(int id_doc, SQL_connection sql, string file_name, int size_qrcode)
         {
@@ -62,13 +60,9 @@ namespace WatermarkApp
             builder.InsertImage(img);
             doc.Save(filename[0] + ".pdf");
 
-            string[] file = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-
             AnaliseForenseForm form = new AnaliseForenseForm(filename[0] + ".pdf");
             form.Show();
-
-            if (File.Exists(file[0] + ".png"))
-                File.Delete(file[0] + ".png");
+           
             if (File.Exists(filename[0] + ".png"))
                 File.Delete(filename[0] + ".png");
         }

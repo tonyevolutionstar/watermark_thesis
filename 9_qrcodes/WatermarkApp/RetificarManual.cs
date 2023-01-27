@@ -30,6 +30,7 @@ namespace WatermarkApp
 
             this.size_qrcode = size_qrcode;
             positionsQrcodes = new List<Point>();
+            
         }
 
  

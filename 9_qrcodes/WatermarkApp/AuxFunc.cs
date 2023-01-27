@@ -19,7 +19,6 @@ namespace WatermarkApp
         private int w;
         private Dictionary<string, Point> qrcode_points;
         private List<string> combs;
-        private string pngfile;
 
         public AuxFunc(int id_doc, SQL_connection sql, string filename, int size_qrcode)
         {
@@ -35,7 +34,7 @@ namespace WatermarkApp
                 reader.Close();
                 reader.Dispose();
             }   
-            this.pngfile = Convert_pdf_png(filename);
+   
         }
 
 
@@ -54,7 +53,6 @@ namespace WatermarkApp
             this.id_doc = id_doc;
             this.size_qrcode = size_qrcode;
         }
-
 
         public string Convert_pdf_png(string f)
         {
@@ -95,8 +93,8 @@ namespace WatermarkApp
             Console.WriteLine("Rects without duplicates " + combs.Count);
 
             int without_p = 1;
-            List<string> p = new List<string>();
 
+            Dictionary<string, List<string>> charsPos = new Dictionary<string, List<string>>();
 
             // get rects without the origin point be the same
             for(int i = 0; i < combs.Count; i ++)
@@ -124,10 +122,6 @@ namespace WatermarkApp
                                 string line1_points = A.X + "," + A.Y + ":" + B.X + "," + B.Y;
                                 string line2_points = C.X + "," + C.Y + ":" + D.X + "," + D.Y;
                                 string inter_point = res.X + "," + res.Y;
-                                string delimitador = "|";
-
-                                p.Add(id_doc.ToString() + delimitador + combs[i].ToString() + delimitador + combs[j].ToString() + delimitador + inter_point.ToString() + delimitador + ch + delimitador + line1_points + delimitador + line2_points);
-
                                 sql.Insert_forense_analises(id_doc, combs[i], combs[j], inter_point, ch, line1_points, line2_points);
                             }
                         }
@@ -135,11 +129,7 @@ namespace WatermarkApp
                 }
             }
 
-            sql.RemoveDuplicatesAnaliseForenseLine1(id_doc);
-            sql.RemoveDuplicatesAnaliseForenseLine2(id_doc);
-
             bmp.Dispose();
-           
         }
 
         /// <summary>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.IO;
 using System.Windows.Forms;
 
@@ -227,26 +229,66 @@ namespace WatermarkApp
 
         private void Generate_qrcode(string file_name)
         {
-            QRcode qrcode = new QRcode(file_name, sizeQrcode, id_doc);
+            Watermark qrcode = new Watermark(file_name, id_doc);
             
             if (id_doc != 0)
             {
                 Analise_Forense analise = new Analise_Forense(file_name, sizeQrcode);
-                for(int i = 0; i < 9; i++)
-                    qrcode.Generate_qrcode(i+1);
-                
+             
                 DateTime date_time_barcode = DateTime.Now;
 
                 SQL_connection sql = new SQL_connection();
                 sql.Insert_posicao(analise.positions, date_time_barcode.ToString());
+
+                string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
            
+                string p = partialPath + @"\number_qrcode\X.png";
+                System.Drawing.Image img = System.Drawing.Image.FromFile(p);
+                Bitmap b = new Bitmap(img);
+                System.Drawing.Image resImg = resizeImage(b, new Size(25, 25));
+                resImg.Save(partialPath + @"\number_qrcode\X_resize.png");
+
                 id_barcode = sql.Get_id_barcode(date_time_barcode.ToString());
                 qrcode.Generate_barcode(id_barcode);
-                qrcode.Add_barcodes_pdf(analise.positions, date_time);
+                qrcode.Add_watermark_pdf(analise.positions, date_time);
               
                 AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf", sizeQrcode);
                 auxFunc.CalculateIntersection(analise.positions, file_name + "_watermark_" + date_time + ".pdf");
             }
+        }
+
+
+        private static System.Drawing.Image resizeImage(System.Drawing.Image imgToResize, Size size)
+        {
+            //https://www.c-sharpcorner.com/UploadFile/ishbandhu2009/resize-an-image-in-C-Sharp/
+
+            //Get the image current width  
+            int sourceWidth = imgToResize.Width;
+            //Get the image current height  
+            int sourceHeight = imgToResize.Height;
+            float nPercent;
+            float nPercentW;
+            float nPercentH;
+            //Calulate  width with new desired size  
+            nPercentW = ((float)size.Width / (float)sourceWidth);
+            //Calculate height with new desired size  
+            nPercentH = ((float)size.Height / (float)sourceHeight);
+            if (nPercentH < nPercentW)
+                nPercent = nPercentH;
+            else
+                nPercent = nPercentW;
+            //New Width  
+            int destWidth = (int)(sourceWidth * nPercent);
+            //New Height  
+            int destHeight = (int)(sourceHeight * nPercent);
+            Bitmap b = new Bitmap(destWidth, destHeight);
+            Graphics g = Graphics.FromImage((System.Drawing.Image)b);
+            g.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            // Draw image with new width and height  
+            g.DrawImage(imgToResize, 0, 0, destWidth, destHeight);
+            g.Dispose();
+            return (System.Drawing.Image)b;
         }
 
 

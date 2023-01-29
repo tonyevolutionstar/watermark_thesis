@@ -5,4 +5,3 @@ mostrar exemplos de processamento de documento, e retificação - verificação 
 explicar para que usa o github como controlo de versões para melhorar o código
 escrever a conclusão
 escrever abstract
-mudar qrcodes para cruzes no centro

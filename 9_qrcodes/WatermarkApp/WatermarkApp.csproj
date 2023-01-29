@@ -107,7 +107,7 @@
     <Compile Include="Metadata.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Qrcode.cs" />
+    <Compile Include="Watermark.cs" />
     <Compile Include="Retificar.cs">
       <SubType>Form</SubType>
     </Compile>

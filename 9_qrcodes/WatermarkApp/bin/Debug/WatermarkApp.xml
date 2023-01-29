@@ -344,17 +344,15 @@
             The main entry point for the application.
             </summary>
         </member>
-        <member name="T:WatermarkApp.QRcode">
+        <member name="T:WatermarkApp.Watermark">
             <summary>
              Classe destinada a gerar o qrcode e coloca-lo no documento numa posição aleatória
             </summary>
         </member>
-        <member name="F:WatermarkApp.QRcode.version">
+        <member name="M:WatermarkApp.Watermark.#ctor(System.String,System.Int32)">
             <summary>
             posição que vai ser inserido o qrcode no ficheiro
             </summary>
-        </member>
-        <member name="M:WatermarkApp.QRcode.#ctor(System.String,System.Int32,System.Int32)">
             <summary>
             O construtor do qrcode vai receber um ficheiro e vai colocar esse ficheiro em classe, para ser possivel aceder
             </summary>
@@ -363,23 +361,15 @@
             <param name="id">id identificador do documento</param>
             <returns>nome do ficheiro</returns>
         </member>
-        <member name="M:WatermarkApp.QRcode.Generate_qrcode(System.Int32)">
-            <summary>
-            Guarda uma imagem do qrcode gerado com base nas caracteristicas do ficheiro
-            Estrutura do qrcode é version;id_doc;info_char
-            <param name="i">numero identificador do qrcode, max até 9</param> 
-            <returns>imagem qrcode</returns>
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.QRcode.Generate_barcode(System.Int32)">
+        <member name="M:WatermarkApp.Watermark.Generate_barcode(System.Int32)">
             <summary>
             Cria um código de barras
             </summary>
             <param name="id_barcode"></param>
         </member>
-        <member name="M:WatermarkApp.QRcode.Add_barcodes_pdf(System.String,System.String)">
+        <member name="M:WatermarkApp.Watermark.Add_barcodes_pdf(System.String,System.String)">
             <summary>
-            Vai ler o ficheiro original e a imagem do qrcode, colocando o qrcode numa posição aleatória num ficheiro novo
+            Coloca a marca de agua
             </summary>
             <param name="positions">posicoes qrcode</param>
             <param name="date_time"></param>

@@ -302,11 +302,7 @@ namespace WatermarkApp
             return returnList;
         }
 
-        /// <summary>
-        /// Obtem a posicao dos characteres na base de dados
-        /// </summary>
-        /// <param name="id_doc"></param>
-        /// <returns></returns>
+
         public List<string> Get_characters_Pos(int id_doc)
         {
             List<string> returnList = new List<string>();
@@ -339,15 +335,24 @@ namespace WatermarkApp
         }
 
 
-        public void RemoveDuplicatesAnaliseForenseLine2(int id_doc)
+        /// <summary>
+        /// Obtem as posições do circulo que contem um X num documento
+        /// </summary>
+        /// <returns></returns>
+        public string GetPositionsX(int id_doc)
         {
-            sql = "Use Watermark; WITH cte AS (SELECT line2, inter_char, ROW_NUMBER() OVER(PARTITION BY line2, inter_char ORDER BY line2) row_num FROM forense_analises where id_doc = " + id_doc + ")  DELETE FROM cte WHERE row_num > 1;";
+            string positions = "";
+            sql = "Use Watermark; Select posicoes_qrcode from barcode inner join watermark_qrcode on barcode.id_barcode = watermark_qrcode.id_barcode where id_doc = " + id_doc + ";";
             connection = new SqlConnection(connetionString);
             try
             {
                 connection.Open();
                 command = new SqlCommand(sql, connection);
                 dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                    positions = dataReader.GetValue(0).ToString();
+                }
                 dataReader.Close();
                 command.Dispose();
                 connection.Close();
@@ -356,26 +361,9 @@ namespace WatermarkApp
             {
                 Console.WriteLine(ex.Message);
             }
+
+            return positions;
         }
 
-
-        public void RemoveDuplicatesAnaliseForenseLine1(int id_doc)
-        {
-            sql = "Use Watermark;  WITH cte AS (SELECT line1, inter_char, ROW_NUMBER() OVER(PARTITION BY line1, inter_char ORDER BY line1) row_num FROM forense_analises where id_doc = " + id_doc + ")  DELETE FROM cte WHERE row_num > 1;";
-            connection = new SqlConnection(connetionString);
-            try
-            {
-                connection.Open();
-                command = new SqlCommand(sql, connection);
-                dataReader = command.ExecuteReader();
-                dataReader.Close();
-                command.Dispose();
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
-        }
     }
 }

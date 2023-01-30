@@ -27,10 +27,8 @@ namespace WatermarkApp
             result_barcode = commom.Read_barcode(file_name);
             string[] resultado = result_barcode.Split(';');
             id_doc = Int32.Parse(resultado[0]);
-
             this.size_qrcode = size_qrcode;
-            positionsQrcodes = new List<Point>();
-            
+            positionsQrcodes = new List<Point>();  
         }
 
  
@@ -50,7 +48,39 @@ namespace WatermarkApp
                 positionsQrcodes.Add(p);
         }
 
-        private async void finalizar_btn_Click(object sender, EventArgs e)
+
+        private string CalculateAlpha(string positionsOriginal, string positionsClicked)
+        {
+            string newVal = "";
+
+            string[] val_orig = positionsOriginal.Split('|');
+            string[] val_clicked = positionsClicked.Split('|');
+
+            for(int ind = 0; ind < 9; ind++)
+            {
+                string[] pOri = val_orig[ind].Split(',');
+                Point pOriginal = new Point(int.Parse(pOri[0]), int.Parse(pOri[1]));
+
+                string[] pC = val_clicked[ind].Split(',');
+                Point pClicked = new Point(int.Parse(pC[0]), int.Parse(pC[1]));
+
+                double alphaX = (double) pOriginal.X / pClicked.X;
+
+                double alphaY = (double) pOriginal.Y / pClicked.Y;
+                Console.WriteLine("alphaX:" + alphaX + " alphaY:" + alphaY);
+
+                double alphaClickedX = (double) alphaX * pOriginal.X;
+                double alphaClickedY = (double) alphaY * pOriginal.Y;
+
+
+                newVal += Convert.ToInt32(alphaClickedX).ToString() + "," + Convert.ToInt32(alphaClickedY).ToString() + "|";
+            }
+            Console.WriteLine(newVal);
+            return newVal;  
+        }
+
+
+        private void finalizar_btn_Click(object sender, EventArgs e)
         {
             string positionsPrint = "";
 
@@ -62,15 +92,23 @@ namespace WatermarkApp
 
             if (countQrcodes == 9)
             {
-                MessageBox.Show("Podes finalizar, com as posições " + positionsPrint.Substring(0, positionsPrint.Length - 1));
-                Bitmap bmp = new Bitmap(img_file);
-                SQL_connection sql = new SQL_connection();
-                AuxFunc auxfunc = new AuxFunc(file_name, sql,id_doc, size_qrcode);
-                auxfunc.CalculateIntersection(positionsPrint, file_name);
-                Console.WriteLine("Intersection Done");
                 Commom commom = new Commom();
-                commom.retificarAnalise(id_doc, sql, file_name, size_qrcode);
+                string positionsClicked = positionsPrint.Substring(0, positionsPrint.Length - 1);
+                MessageBox.Show("Podes finalizar, com as posições " + positionsClicked);
+                Bitmap bmp = new Bitmap(img_file);
 
+                SQL_connection sql = new SQL_connection();
+                string orignal_positions = sql.GetPositionsX(id_doc);
+
+                string newVal = CalculateAlpha(orignal_positions, positionsClicked);
+                string posCli = newVal.Substring(0, newVal.Length - 1);
+
+                AuxFunc auxfunc = new AuxFunc(file_name, sql, id_doc, size_qrcode);
+                auxfunc.CalculateIntersection(posCli, file_name);
+                Console.WriteLine("Intersection Done");
+
+                commom.retificarAnalise(id_doc, sql, file_name, size_qrcode);
+                MessageBox.Show("Posições originais " + orignal_positions + " \n posições clicadas " + positionsClicked + "\n posições com alpha " + posCli);
                 bmp.Dispose();
             }
             else
@@ -78,7 +116,6 @@ namespace WatermarkApp
                 MessageBox.Show("Erro, clicaste mais vezes na imagem, ou não clicaste em todos os qrcodes, clica no centro dos 9 qrcodes");
                 countQrcodes = 0;
             }
-
         }
     }
 }

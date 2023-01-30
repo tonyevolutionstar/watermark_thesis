@@ -41,9 +41,9 @@ namespace WatermarkApp
 
         public string Read_barcode(string file_name)
         {
-            BarcodeResult QRBetterResult = BarcodeReader.QuicklyReadOneBarcode(file_name, BarcodeEncoding.Code128, true);
-            if (QRBetterResult != null)
-                return QRBetterResult.Value;
+            BarcodeResult BarCodeResult = BarcodeReader.QuicklyReadOneBarcode(file_name, BarcodeEncoding.Code128, true);
+            if (BarCodeResult != null)
+                return BarCodeResult.Value;
             return "insucesso";
         }
 

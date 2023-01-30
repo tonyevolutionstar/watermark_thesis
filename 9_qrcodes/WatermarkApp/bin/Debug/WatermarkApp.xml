@@ -346,34 +346,8 @@
         </member>
         <member name="T:WatermarkApp.Watermark">
             <summary>
-             Classe destinada a gerar o qrcode e coloca-lo no documento numa posição aleatória
+             Classe destinada a fazer a marca de agua do ficheiro
             </summary>
-        </member>
-        <member name="M:WatermarkApp.Watermark.#ctor(System.String,System.Int32)">
-            <summary>
-            posição que vai ser inserido o qrcode no ficheiro
-            </summary>
-            <summary>
-            O construtor do qrcode vai receber um ficheiro e vai colocar esse ficheiro em classe, para ser possivel aceder
-            </summary>
-            <param name="pdf_name">nome do ficheiro</param>
-            <param name="size">tamanho do qrcode</param>
-            <param name="id">id identificador do documento</param>
-            <returns>nome do ficheiro</returns>
-        </member>
-        <member name="M:WatermarkApp.Watermark.Generate_barcode(System.Int32)">
-            <summary>
-            Cria um código de barras
-            </summary>
-            <param name="id_barcode"></param>
-        </member>
-        <member name="M:WatermarkApp.Watermark.Add_barcodes_pdf(System.String,System.String)">
-            <summary>
-            Coloca a marca de agua
-            </summary>
-            <param name="positions">posicoes qrcode</param>
-            <param name="date_time"></param>
-            <returns>nome do ficheiro + "_qrcode.pdf"</returns>
         </member>
         <member name="T:WatermarkApp.Retificar">
             <summary>
@@ -476,11 +450,10 @@
             </summary>
             <param name="id_doc"></param>
         </member>
-        <member name="M:WatermarkApp.SQL_connection.Get_characters_Pos(System.Int32)">
+        <member name="M:WatermarkApp.SQL_connection.GetPositionsX(System.Int32)">
             <summary>
-            Obtem a posicao dos characteres na base de dados
+            Obtem as posições do circulo que contem um X num documento
             </summary>
-            <param name="id_doc"></param>
             <returns></returns>
         </member>
         <member name="T:WatermarkApp.Properties.Resources">

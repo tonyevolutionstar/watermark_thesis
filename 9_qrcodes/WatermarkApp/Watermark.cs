@@ -7,14 +7,14 @@ using System.IO;
 namespace WatermarkApp
 {
     /// <summary>
-    ///  Classe destinada a fazer a marca de agua do ficheiro
+    ///  Classe destinada a fazer a marca de agua no ficheiro
     /// </summary>
     public class Watermark
     {
         private string filename = "";
         private int id_doc;
+        string circleX_img = @"\number_qrcode\X_resized.png";
 
-    
         public Watermark(string pdf_name, int id)
         {
             filename = pdf_name;
@@ -31,21 +31,21 @@ namespace WatermarkApp
             MyBarCode.SaveAsPng(filename + "_barcode.png");  
         }
 
-
+        
         public void Add_watermark_pdf(string positions, string date_time)
         {
             string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
 
             using (Stream inputPdfStream = new FileStream(filename + ".pdf", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream x_stream = new FileStream(partialPath + @"\number_qrcode\X_resize.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream x_stream2 = new FileStream(partialPath + @"\number_qrcode\X_resize.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream x_stream3 = new FileStream(partialPath + @"\number_qrcode\X_resize.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream x_stream4 = new FileStream(partialPath + @"\number_qrcode\X_resize.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream x_stream5 = new FileStream(partialPath + @"\number_qrcode\X_resize.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream x_stream6 = new FileStream(partialPath + @"\number_qrcode\X_resize.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream x_stream7 = new FileStream(partialPath + @"\number_qrcode\X_resize.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream x_stream8 = new FileStream(partialPath + @"\number_qrcode\X_resize.png", FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (Stream x_stream9 = new FileStream(partialPath + @"\number_qrcode\X_resize.png", FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream x_stream = new FileStream(partialPath + circleX_img, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream x_stream2 = new FileStream(partialPath + circleX_img, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream x_stream3 = new FileStream(partialPath + circleX_img, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream x_stream4 = new FileStream(partialPath + circleX_img, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream x_stream5 = new FileStream(partialPath + circleX_img, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream x_stream6 = new FileStream(partialPath + circleX_img, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream x_stream7 = new FileStream(partialPath + circleX_img, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream x_stream8 = new FileStream(partialPath + circleX_img, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (Stream x_stream9 = new FileStream(partialPath + circleX_img, FileMode.Open, FileAccess.Read, FileShare.Read))
             using (Stream barcodeStream = new FileStream(filename + "_barcode.png", FileMode.Open, FileAccess.Read, FileShare.Read))
             using (Stream outputPdfStream = new FileStream(filename + "_watermark_" + date_time + ".pdf", FileMode.Create, FileAccess.Write, FileShare.Write))
             {

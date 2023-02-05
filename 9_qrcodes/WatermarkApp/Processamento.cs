@@ -14,7 +14,7 @@ namespace WatermarkApp
     /// </summary>
     public partial class Processamento : Form
     {
-        int sizeQrcode; //pixels
+        private int sizeCircleX; //pixels
 
         Dictionary<Metadata, string> dados;
         List<string> ficheiros = new List<string>();
@@ -45,11 +45,11 @@ namespace WatermarkApp
         /// Processamento do ficheiro para a originação do documento com watermark
         /// </summary>
         /// <param name="file_name">Nome do ficheiro sem watermark</param>
-        /// <param name="size_qrcode">Tamanho do qrcode</param>
-        public Processamento(string file_name, int size_qrcode)
+        /// <param name="sizeCircleX">Tamanho da watermark</param>
+        public Processamento(string file_name, int sizeCircleX)
         {
             InitializeComponent();
-            sizeQrcode = size_qrcode;   
+            this.sizeCircleX = sizeCircleX;   
             dados = PreencherMetadadosParaFicheiros();
 
             foreach (var kvp in dados)
@@ -77,7 +77,6 @@ namespace WatermarkApp
             {
                 string[] values = val.Split('|'); 
                 string value_char = values[0];
-         
                 string[] positions = values[1].Split(',');
                 int start_x = int.Parse(positions[0]);
                 int start_y = int.Parse(positions[1]);
@@ -153,7 +152,7 @@ namespace WatermarkApp
         }
 
         /// <summary>
-        /// Mostra ficheiro com o qrcode
+        /// Mostra ficheiro com o watermark
         /// </summary>
         private void Process_file()
         {
@@ -169,7 +168,7 @@ namespace WatermarkApp
                 MessageBox.Show(in_proccess);
                 document_name.Text = show_doc[1];
                 Controls.Add(document_name);
-                Generate_qrcode(doc_file);
+                Generate_watermark(doc_file);
     
                 axAcroPDF1.src = doc_file + "_watermark_" + date_time + ".pdf";
                 Controls.Add(axAcroPDF1);
@@ -227,33 +226,32 @@ namespace WatermarkApp
         }
 
 
-        private void Generate_qrcode(string file_name)
+        private void Generate_watermark(string file_name)
         {
-            Watermark qrcode = new Watermark(file_name, id_doc);
+            Watermark watermark = new Watermark(file_name, id_doc);
             
             if (id_doc != 0)
             {
-                Analise_Forense analise = new Analise_Forense(file_name, sizeQrcode);
+                Analise_Forense analise = new Analise_Forense(file_name, sizeCircleX);
              
                 DateTime date_time_barcode = DateTime.Now;
 
                 SQL_connection sql = new SQL_connection();
                 sql.Insert_posicao(analise.positions, date_time_barcode.ToString());
 
+                // Fazer resized da imagem X
                 string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-
-           
                 string p = partialPath + @"\number_qrcode\X.png";
                 System.Drawing.Image img = System.Drawing.Image.FromFile(p);
                 Bitmap b = new Bitmap(img);
                 System.Drawing.Image resImg = resizeImage(b, new Size(25, 25));
-                resImg.Save(partialPath + @"\number_qrcode\X_resize.png");
+                resImg.Save(partialPath + @"\number_qrcode\X_resized.png");
 
                 id_barcode = sql.Get_id_barcode(date_time_barcode.ToString());
-                qrcode.Generate_barcode(id_barcode);
-                qrcode.Add_watermark_pdf(analise.positions, date_time);
+                watermark.Generate_barcode(id_barcode);
+                watermark.Add_watermark_pdf(analise.positions, date_time);
               
-                AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf", sizeQrcode);
+                AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf", sizeCircleX);
                 auxFunc.CalculateIntersection(analise.positions, file_name + "_watermark_" + date_time + ".pdf");
             }
         }

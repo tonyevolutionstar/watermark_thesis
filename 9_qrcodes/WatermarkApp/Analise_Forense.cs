@@ -11,7 +11,7 @@ namespace WatermarkApp
     {
         private int width;
         private int height;
-        private int size_qrcode;
+        private int sizeCircleX;
         private string file_name;
         public string positions;
 
@@ -57,11 +57,10 @@ namespace WatermarkApp
         #endregion
 
         /// <summary>
-        /// Obtem as coordenadas dos qrcodes 
-        /// </summary>
+        /// Obtem as margins        /// </summary>
         /// <param name="filename"></param>
-        /// <param name="size_qrcode"></param>
-        public Analise_Forense(string filename, int size_qrcode)
+        /// <param name="sizeCircleX"></param>
+        public Analise_Forense(string filename, int sizeCircleX)
         {
             file_name = filename+".pdf";
             using (Stream inputPdfStream = new FileStream(file_name, FileMode.Open, FileAccess.Read, FileShare.Read))
@@ -71,31 +70,33 @@ namespace WatermarkApp
                 width = (int)reader.GetPageSize(1).Width;
                 height = (int)reader.GetPageSize(1).Height;
             }
-            this.size_qrcode = size_qrcode;
-            Get_positions_qrcodes();
+            this.sizeCircleX = sizeCircleX;
+            Get_margins();
             positions = top_left + "|" + top_middle + "|" + top_right + "|"
                   + middle_left + "|" + middle + "|" + middle_right + "|"
                   + bottom_left + "|" + bottom_middle + "|" + bottom_right;
         }
 
-        public void Get_positions_qrcodes()
+        public void Get_margins()
         {
-            int height_top = height - size_qrcode - 15;
-            int r = width - size_qrcode - size_qrcode;
-            double m = (width - size_qrcode) / 2;
+            int height_top = height - sizeCircleX - 55;
+            int r = width - 80; // margem direita
+            int l = sizeCircleX + 55; // margem esquerda
+            
+            double m = width/ 2;
             double m_h = height / 2;
 
-            top_left = size_qrcode.ToString() + "," + size_qrcode.ToString();
-            top_middle = Math.Round(m).ToString() + "," + size_qrcode.ToString();
-            top_right = r.ToString() + "," + size_qrcode.ToString();
+            top_left = l.ToString() + "," + l.ToString();
+            top_middle = Math.Round(m).ToString() + "," + l.ToString();
+            top_right = r.ToString() + "," + l.ToString(); 
 
-            middle_left = size_qrcode.ToString() + "," + Math.Round(m_h).ToString();
+            middle_left = l.ToString() + "," + Math.Round(m_h).ToString();
             middle = Math.Round(m).ToString() + "," + Math.Round(m_h).ToString();
             middle_right = r.ToString() + "," + Math.Round(m_h).ToString();
 
-            bottom_left = size_qrcode.ToString() + "," + height_top.ToString();
+            bottom_left = l.ToString() + "," + height_top.ToString();
             bottom_right = r.ToString() + "," + height_top.ToString();
-            bottom_middle = Math.Round(m).ToString() + "," + height_top;
+            bottom_middle = Math.Round(m).ToString() + "," + height_top.ToString();
         }
     }
 }

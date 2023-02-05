@@ -24,7 +24,6 @@ namespace WatermarkApp
         {
             string[] show_doc = file_name.Split(new[] { @"Ficheiros\" }, StringSplitOptions.None);
             string[] file = show_doc[1].Split(new[] { ".pdf" }, StringSplitOptions.None);
-            
             return file[0];
         }
 
@@ -34,8 +33,8 @@ namespace WatermarkApp
             var dd = System.IO.File.ReadAllBytes(file_name_png);
             byte[] pngByte = Freeware.Pdf2Png.Convert(dd, 1);
             string[] filename = file_name_png.Split(new[] { ".pdf" }, StringSplitOptions.None);
-
-            System.IO.File.WriteAllBytes(filename[0]+ ".png", pngByte);
+            if(!File.Exists(filename[0] + ".png"))
+                System.IO.File.WriteAllBytes(filename[0]+ ".png", pngByte);
             return filename[0] + ".png";
         }
 

@@ -14,17 +14,18 @@ namespace WatermarkApp
         private string[] filename;
         private int id_doc;
         private SQL_connection sql;
-        private int size_qrcode;
+        private int sizeCircleX;
         private int h;
         private int w;
         private Dictionary<string, Point> qrcode_points;
         private List<string> combs;
+        private Commom commom = new Commom();
 
-        public AuxFunc(int id_doc, SQL_connection sql, string filename, int size_qrcode)
+        public AuxFunc(int id_doc, SQL_connection sql, string filename, int sizeCircleX)
         {
             this.id_doc = id_doc;
             this.sql = sql;
-            this.size_qrcode = size_qrcode;
+            this.sizeCircleX = sizeCircleX;
             using (Stream inputPdfStream = new FileStream(filename , FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 var reader = new PdfReader(inputPdfStream);
@@ -34,11 +35,9 @@ namespace WatermarkApp
                 reader.Close();
                 reader.Dispose();
             }   
-   
         }
 
-
-        public AuxFunc(string filename, SQL_connection sql, int id_doc, int size_qrcode)
+        public AuxFunc(string filename, SQL_connection sql, int id_doc, int sizeCircleX)
         {
             using (Stream inputPdfStream = new FileStream(filename, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
@@ -51,25 +50,14 @@ namespace WatermarkApp
             }
             this.sql = sql;
             this.id_doc = id_doc;
-            this.size_qrcode = size_qrcode;
+            this.sizeCircleX = sizeCircleX;
         }
-
-        public string Convert_pdf_png(string f)
-        {
-            var dd = System.IO.File.ReadAllBytes(f);
-            byte[] pngByte = Freeware.Pdf2Png.Convert(dd, 1);
-            string[] filename = f.Split(new[] { ".pdf" }, StringSplitOptions.None);
-            if (!File.Exists(filename[0] + ".png"))
-                System.IO.File.WriteAllBytes(filename[0] + ".png", pngByte);
-           
-            return filename[0] + ".png";
-        }
-
 
         public void CalculateIntersection(string position, string qrcode_file)
         {
-            string f = Convert_pdf_png(qrcode_file);
+            string f = commom.Convert_pdf_png(qrcode_file);
             Bitmap bmp = new Bitmap(f);
+
             qrcode_points = FillDictionary(position, bmp);
        
             string qrcode_comb;
@@ -89,12 +77,6 @@ namespace WatermarkApp
                     }
                 }
             }
-     
-            Console.WriteLine("Rects without duplicates " + combs.Count);
-
-            int without_p = 1;
-
-            Dictionary<string, List<string>> charsPos = new Dictionary<string, List<string>>();
 
             // get rects without the origin point be the same
             for(int i = 0; i < combs.Count; i ++)
@@ -107,7 +89,6 @@ namespace WatermarkApp
                     string[] side_qrcode_j = points_j[0].Split('_');
                     if (!side_qrcode_i[0].Equals(side_qrcode_j[0]))
                     {
-                        without_p++;
                         qrcode_points.TryGetValue(points_i[0], out Point A);
                         qrcode_points.TryGetValue(points_i[1], out Point B);
                         qrcode_points.TryGetValue(points_j[0], out Point C);
@@ -140,25 +121,27 @@ namespace WatermarkApp
         /// <returns>Dicionario com as posições</returns>
         private Dictionary<string, Point> FillDictionary(string position, Bitmap bmp)
         {
-            Dictionary<string, Point> qrcode_points = new Dictionary<string, Point>();
+            string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            Bitmap x_circle = new Bitmap(partialPath + @"\number_qrcode\X_resized.png");
+
+            Dictionary<string, Point> circle_points = new Dictionary<string, Point>();
             for (int i = 0; i < 9; i++)
             {
-                string[] pos_qrcodes = position.Split('|');
-                string[] qrcode = pos_qrcodes[i].Split(',');
+                string[] pos_circles = position.Split('|');
+                string[] circles = pos_circles[i].Split(',');
                 
-                int x_qrcode = int.Parse(qrcode[0]) * bmp.Width / w ;
-                int y_qrcode = int.Parse(qrcode[1]) * bmp.Height / h;
-                Point qrcode_l = new Point(x_qrcode + Convert.ToInt32(size_qrcode/2) + 5, y_qrcode - size_qrcode * 2 - size_qrcode - 50);
-                Point qrcode_r = new Point(x_qrcode + size_qrcode * 3 + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode * 2 - size_qrcode - 50); 
-                Point qrcode_b = new Point(x_qrcode + Convert.ToInt32(size_qrcode / 2), y_qrcode - size_qrcode + Convert.ToInt32(size_qrcode / 2)); 
-                qrcode_points.Add("qrcode" + (i + 1) + "_l", qrcode_l);
-                qrcode_points.Add("qrcode" + (i + 1) + "_r", qrcode_r);
-                qrcode_points.Add("qrcode" + (i + 1) + "_b", qrcode_b);
+                int x_circles = int.Parse(circles[0]) * bmp.Width / w ;
+                int y_circles = int.Parse(circles[1]) * bmp.Height / h;
+
+                Point circles_l = new Point(x_circles + sizeCircleX + x_circle.Width, y_circles - sizeCircleX - x_circle.Height);
+                Point circles_r = new Point(x_circles - x_circle.Width, y_circles - sizeCircleX - x_circle.Height); 
+                Point circles_b = new Point(x_circles - x_circle.Width, y_circles);
+                circle_points.Add("qrcode" + (i + 1) + "_l", circles_l);
+                circle_points.Add("qrcode" + (i + 1) + "_r", circles_r);
+                circle_points.Add("qrcode" + (i + 1) + "_b", circles_b);
             }
-
-            return qrcode_points;
+            return circle_points;
         }
-
 
         private Point Intersection(Point A, Point B, Point C, Point D)
         {
@@ -179,10 +162,8 @@ namespace WatermarkApp
             {
                 double x = x3 + u * (x4 - x3);
                 double y = y3 + u * (y4 - y3);
-
                 inter = new Point((int)x, (int)y);
             }
-
             return inter;
         }
 
@@ -224,7 +205,7 @@ namespace WatermarkApp
         /// <param name="qrcode_file"></param>
         public string DrawImage(List<string> return_list, string qrcode_file)
         {
-            string f = Convert_pdf_png(qrcode_file);
+            string f = commom.Convert_pdf_png(qrcode_file);
             Bitmap bmp = new Bitmap(f);
             Graphics g = Graphics.FromImage(bmp);
             Pen yellow = new Pen(Color.Yellow, 3);
@@ -251,9 +232,9 @@ namespace WatermarkApp
             }
 
             filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
-            bmp.Save(filename[0] + "_line.png");
+            bmp.Save(filename[0] + "_integrity.png");
             bmp.Dispose();
-            return filename[0] + "_line.png";
+            return filename[0] + "_integrity.png";
         }
     }
 }

@@ -50,9 +50,7 @@ namespace WatermarkApp
             {
                 Console.WriteLine(ex.Message);
             }
-
             return check;
-
         }
 
         /// <summary>
@@ -222,10 +220,8 @@ namespace WatermarkApp
             {
                 Console.WriteLine(ex.Message);
             }
-
             return result;
         }
-
 
         public void Insert_forense_analises(int id_doc, string line1, string line2, string inter_point, string inter_char, string line1_points, string line2_points)
         {
@@ -361,9 +357,7 @@ namespace WatermarkApp
             {
                 Console.WriteLine(ex.Message);
             }
-
             return positions;
         }
-
     }
 }

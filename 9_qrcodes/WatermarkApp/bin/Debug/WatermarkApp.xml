@@ -79,10 +79,9 @@
         </member>
         <member name="M:WatermarkApp.Analise_Forense.#ctor(System.String,System.Int32)">
             <summary>
-            Obtem as coordenadas dos qrcodes 
-            </summary>
+            Obtem as margins        /// </summary>
             <param name="filename"></param>
-            <param name="size_qrcode"></param>
+            <param name="sizeCircleX"></param>
         </member>
         <member name="T:WatermarkApp.AuxFunc">
             <summary>
@@ -128,7 +127,7 @@
             Processamento do ficheiro para a originação do documento com watermark
             </summary>
             <param name="file_name">Nome do ficheiro sem watermark</param>
-            <param name="size_qrcode">Tamanho do qrcode</param>
+            <param name="sizeCircleX">Tamanho da watermark</param>
         </member>
         <member name="M:WatermarkApp.Processamento.Insert_info_char_database">
             <summary>
@@ -154,7 +153,7 @@
         </member>
         <member name="M:WatermarkApp.Processamento.Process_file">
             <summary>
-            Mostra ficheiro com o qrcode
+            Mostra ficheiro com o watermark
             </summary>
         </member>
         <member name="M:WatermarkApp.Processamento.Gerar_btn_Click(System.Object,System.EventArgs)">
@@ -346,7 +345,7 @@
         </member>
         <member name="T:WatermarkApp.Watermark">
             <summary>
-             Classe destinada a fazer a marca de agua do ficheiro
+             Classe destinada a fazer a marca de agua no ficheiro
             </summary>
         </member>
         <member name="T:WatermarkApp.Retificar">

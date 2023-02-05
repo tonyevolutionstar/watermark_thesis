@@ -16,7 +16,7 @@ namespace WatermarkApp
         private int size_qrcode;
         private int countQrcodes = 0; // até 9
         List<Point> positionsQrcodes;
-      
+        string positionsPrint = "";
 
         public RetificarManual(string file_name, int size_qrcode)
         {
@@ -49,46 +49,13 @@ namespace WatermarkApp
         }
 
 
-        private string CalculateAlpha(string positionsOriginal, string positionsClicked)
-        {
-            string newVal = "";
-
-            string[] val_orig = positionsOriginal.Split('|');
-            string[] val_clicked = positionsClicked.Split('|');
-
-            for(int ind = 0; ind < 9; ind++)
-            {
-                string[] pOri = val_orig[ind].Split(',');
-                Point pOriginal = new Point(int.Parse(pOri[0]), int.Parse(pOri[1]));
-
-                string[] pC = val_clicked[ind].Split(',');
-                Point pClicked = new Point(int.Parse(pC[0]), int.Parse(pC[1]));
-
-                double alphaX = (double) pOriginal.X / pClicked.X;
-
-                double alphaY = (double) pOriginal.Y / pClicked.Y;
-                Console.WriteLine("alphaX:" + alphaX + " alphaY:" + alphaY);
-
-                double alphaClickedX = (double) alphaX * pOriginal.X;
-                double alphaClickedY = (double) alphaY * pOriginal.Y;
-
-
-                newVal += Convert.ToInt32(alphaClickedX).ToString() + "," + Convert.ToInt32(alphaClickedY).ToString() + "|";
-            }
-            Console.WriteLine(newVal);
-            return newVal;  
-        }
-
-
         private void finalizar_btn_Click(object sender, EventArgs e)
         {
-            string positionsPrint = "";
-
             for(int i = 0; i < positionsQrcodes.Count; i++)
             {
                 positionsPrint += positionsQrcodes[i].X + "," + positionsQrcodes[i].Y + "|";
             }
-
+            
 
             if (countQrcodes == 9)
             {
@@ -100,21 +67,75 @@ namespace WatermarkApp
                 SQL_connection sql = new SQL_connection();
                 string orignal_positions = sql.GetPositionsX(id_doc);
 
-                string newVal = CalculateAlpha(orignal_positions, positionsClicked);
-                string posCli = newVal.Substring(0, newVal.Length - 1);
+                string[] ori_pos = orignal_positions.Split('|');
+                string[] cli_pos = positionsClicked.Split('|');
+
+                for (int i = 0; i < 9; i++)
+                {
+                    int j = i + 1;
+                    if (j == 9)
+                        j = 7;
+
+                    string[] ori_p = ori_pos[i].Split(',');
+                    string[] ori2_p = ori_pos[j].Split(',');
+                    string[] cli_p = cli_pos[i].Split(',');
+                    string[] cli2_p = cli_pos[j].Split(',');
+
+                    Point p1 = new Point(int.Parse(ori_p[0]), int.Parse(ori_p[1]));
+                    Point p2 = new Point(int.Parse(ori2_p[0]), int.Parse(ori2_p[1]));
+
+                    int lx = p1.X - p2.X;
+                    int ly = p1.Y - p2.Y;
+
+                    int dx = p2.X - p1.X;
+                    int dy = p2.Y - p1.Y;
+
+                    Point p1_l = new Point(int.Parse(cli_p[0]), int.Parse(cli_p[1]));
+                    Point p2_l = new Point(int.Parse(cli2_p[0]), int.Parse(cli2_p[1]));
+
+                    int lx_l = p1_l.X - p2_l.X;
+                    int ly_l = p1_l.Y - p2_l.Y;
+
+                    if (lx == 0)
+                    {
+                        lx = 1;
+                    }else if (ly == 0)
+                    {
+                        ly = 1;
+                    }
+                    else if (ly_l == 0)
+                    {
+                        ly_l = 1;
+                    }
+                    else if (lx_l == 0)
+                    {
+                        lx_l = 1;
+                    }
+                               
+                    int dx_l = dx * lx_l / lx;
+                    int dy_l = dy * ly_l / ly;
+
+                    Point p_new = new Point(p1_l.X + dx_l, p2_l.Y + dy_l);
+                    Console.WriteLine("i,j:" + i.ToString() + "," + j.ToString() + " Translate point " + p_new.ToString());
+       
+                }
+
+                Console.WriteLine("Posições originais " + orignal_positions + " \n posições clicadas " + positionsClicked);
 
                 AuxFunc auxfunc = new AuxFunc(file_name, sql, id_doc, size_qrcode);
-                auxfunc.CalculateIntersection(posCli, file_name);
+                auxfunc.CalculateIntersection(positionsClicked, file_name);
                 Console.WriteLine("Intersection Done");
 
                 commom.retificarAnalise(id_doc, sql, file_name, size_qrcode);
-                MessageBox.Show("Posições originais " + orignal_positions + " \n posições clicadas " + positionsClicked + "\n posições com alpha " + posCli);
+                MessageBox.Show("Posições originais " + orignal_positions + " \n posições clicadas " + positionsClicked);
                 bmp.Dispose();
             }
             else
             {
                 MessageBox.Show("Erro, clicaste mais vezes na imagem, ou não clicaste em todos os qrcodes, clica no centro dos 9 qrcodes");
                 countQrcodes = 0;
+                positionsQrcodes = new List<Point>();
+                positionsPrint = "";
             }
         }
     }

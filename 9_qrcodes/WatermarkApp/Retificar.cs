@@ -1,7 +1,4 @@
-﻿using Aspose.Words;
-using IronBarCode;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.IO;
 using System.Windows.Forms;
 
@@ -12,8 +9,8 @@ namespace WatermarkApp
     /// </summary>
     public partial class Retificar : Form
     {
-        private readonly string file_name;
-        private readonly int size_qrcode;
+        private string file_name;
+        private readonly int sizeCircleX;
         private readonly string resultado_barcode;
         private int id_doc;
         private readonly string errorFileDatabase = "O ficheiro que selecionou não foi aprovado nem aceite na base de dados";
@@ -32,7 +29,7 @@ namespace WatermarkApp
             Commom commom = new Commom();
 
             this.file_name = file_name;
-            this.size_qrcode = size_qrcode;
+            sizeCircleX = size_qrcode;
             commom.Convert_pdf_png(file_name);
             file_qrcode.src = file_name;
             Controls.Add(file_qrcode);
@@ -78,7 +75,7 @@ namespace WatermarkApp
             MessageBox.Show(infoAnaliseForense);
             SQL_connection sql = new SQL_connection();
             Commom commom = new Commom();
-            commom.retificarAnalise(id_doc, sql, file_name, size_qrcode);
+            commom.retificarAnalise(id_doc, sql, file_name, sizeCircleX);
         }
     }
 }

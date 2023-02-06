@@ -40,9 +40,9 @@
             this.label1.Font = new System.Drawing.Font("Arial", 14F);
             this.label1.Location = new System.Drawing.Point(445, 9);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(554, 27);
+            this.label1.Size = new System.Drawing.Size(596, 27);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Por favor clique no centro das posições do Qrcode";
+            this.label1.Text = "Por favor clique no centro do círculo que contém um X";
             // 
             // pictureBox1
             // 

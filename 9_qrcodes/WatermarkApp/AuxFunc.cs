@@ -7,7 +7,7 @@ using System.IO;
 namespace WatermarkApp
 {
     /// <summary>
-    /// Função auxiliar para operaçoes no ficheiro
+    /// Classe auxiliar para operações no ficheiro
     /// </summary>
     public class AuxFunc
     {

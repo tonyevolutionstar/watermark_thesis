@@ -1,22 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 using System.Windows.Forms;
 
 namespace WatermarkApp
 {
     public partial class RetificarManual : Form
     {
-
         private string file_name;
         private string img_file;
         private string result_barcode;
         private int id_doc; 
         private int sizeCircleX;
-        private int countQrcodes = 0; // até 9
-        List<Point> positionsQrcodes;
+        private int countCirclesX = 0; // até 9
+        List<Point> positionsCirclesX;
         string positionsPrint = "";
+        private string errorNotEnoughtData = "Erro, clicaste mais vezes na imagem, ou não clicaste em todos os qrcodes, clica no centro dos 9 circulos com x";
 
         public RetificarManual(string file_name, int size_qrcode)
         {
@@ -28,7 +27,7 @@ namespace WatermarkApp
             string[] resultado = result_barcode.Split(';');
             id_doc = Int32.Parse(resultado[0]);
             this.sizeCircleX = size_qrcode;
-            positionsQrcodes = new List<Point>();  
+            positionsCirclesX = new List<Point>();  
         }
 
  
@@ -41,23 +40,22 @@ namespace WatermarkApp
         private void pictureBox1_Click(object sender, MouseEventArgs e)
         {
             base.OnMouseClick(e);
-            countQrcodes++;
+            countCirclesX++;
             Point p = new Point(e.X, e.Y);
-            MessageBox.Show("Cliquei no ponto " + p.ToString() + " o total de cliques está em " + countQrcodes.ToString());
-            if (countQrcodes >= 0 && countQrcodes <= 9)
-                positionsQrcodes.Add(p);
+            MessageBox.Show("Cliquei no ponto " + p.ToString() + " o total de cliques está em " + countCirclesX.ToString());
+            if (countCirclesX >= 0 && countCirclesX <= 9)
+                positionsCirclesX.Add(p);
         }
 
 
         private void finalizar_btn_Click(object sender, EventArgs e)
         {
-            for(int i = 0; i < positionsQrcodes.Count; i++)
+            for(int i = 0; i < positionsCirclesX.Count; i++)
             {
-                positionsPrint += positionsQrcodes[i].X + "," + positionsQrcodes[i].Y + "|";
+                positionsPrint += positionsCirclesX[i].X + "," + positionsCirclesX[i].Y + "|";
             }
             
-
-            if (countQrcodes == 9)
+            if (countCirclesX == 9)
             {
                 Commom commom = new Commom();
                 string positionsClicked = positionsPrint.Substring(0, positionsPrint.Length - 1);
@@ -72,72 +70,56 @@ namespace WatermarkApp
 
                 string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
                 Bitmap x_circle = new Bitmap(partialPath + @"\number_qrcode\X_resized.png");
+                int m_x = x_circle.Width / 2;
+                int m_y = x_circle.Height / 2;
+
+                string new_points = "";
 
                 for (int i = 0; i < 9; i++)
                 {
-                    int j = i + 1;
-                    if (j == 9)
-                        j = 7;
-
                     string[] ori_p = ori_pos[i].Split(',');
-                    string[] ori2_p = ori_pos[j].Split(',');
                     string[] cli_p = cli_pos[i].Split(',');
-                    string[] cli2_p = cli_pos[j].Split(',');
 
                     Point p1 = new Point(int.Parse(ori_p[0]), int.Parse(ori_p[1]));
-                    Point p2 = new Point(int.Parse(ori2_p[0]), int.Parse(ori2_p[1]));
-
-                    int lx = p1.X - p2.X;
-                    int ly = p1.Y - p2.Y;
-
-                    int dx = p1.X - x_circle.Width;
-                    int dy = p1.Y - x_circle.Height;
-
-                    Point p1_l = new Point(int.Parse(cli_p[0]), int.Parse(cli_p[1]));
-                    Point p2_l = new Point(int.Parse(cli2_p[0]), int.Parse(cli2_p[1]));
-
-                    int lx_l = p1_l.X - p2_l.X;
-                    int ly_l = p1_l.Y - p2_l.Y;
-
-                    if (lx == 0)
+                    Point p2 = new Point(int.Parse(cli_p[0]), int.Parse(cli_p[1]));
+                    
+                    if(p2.X > p1.X && p2.Y < p1.Y)
                     {
-                        lx = 1;
-                    }else if (ly == 0)
-                    {
-                        ly = 1;
+                        Point p_new = new Point(p2.X - m_x, p2.Y + m_y);
+                        new_points += p_new.X + "," + p_new.Y + "|";
                     }
-                    else if (ly_l == 0)
+                    else if (p2.X > p1.X && p2.Y > p1.Y)
                     {
-                        ly_l = 1;
+                        Point p_new = new Point(p2.X - m_x, p2.Y - m_y);
+                        new_points += p_new.X + "," + p_new.Y + "|";
                     }
-                    else if (lx_l == 0)
+                    else if (p2.X < p1.X && p2.Y > p1.Y)
                     {
-                        lx_l = 1;
+                        Point p_new = new Point(p2.X + m_x, p2.Y - m_y);
+                        new_points += p_new.X + "," + p_new.Y + "|";
                     }
-                               
-                    int dx_l = dx * lx_l / lx;
-                    int dy_l = dy * ly_l / ly;
-
-                    Point p_new = new Point(p1_l.X + dx_l, p2_l.Y + dy_l);
-                    Console.WriteLine("i,j:" + i.ToString() + "," + j.ToString() + " Translate point " + p_new.ToString());
-       
+                    else if (p2.X < p1.X && p2.Y < p1.Y)
+                    {
+                        Point p_new = new Point(p2.X + m_x, p2.Y + m_y);
+                        new_points += p_new.X + "," + p_new.Y + "|";
+                    }
                 }
 
-                Console.WriteLine("Posições originais " + orignal_positions + " \n posições clicadas " + positionsClicked);
+                string positionsFixed = new_points.Substring(0, positionsPrint.Length - 1);
 
                 AuxFunc auxfunc = new AuxFunc(file_name, sql, id_doc, sizeCircleX);
-                auxfunc.CalculateIntersection(positionsClicked, file_name);
+                auxfunc.CalculateIntersection(positionsFixed, file_name);
                 Console.WriteLine("Intersection Done");
 
                 commom.retificarAnalise(id_doc, sql, file_name, sizeCircleX);
-                MessageBox.Show("Posições originais " + orignal_positions + " \n posições clicadas " + positionsClicked);
+                MessageBox.Show("Posições originais " + orignal_positions + " \n Posições clicadas " + positionsClicked + " \n Posições corrigidas " + positionsFixed);
                 bmp.Dispose();
             }
             else
             {
-                MessageBox.Show("Erro, clicaste mais vezes na imagem, ou não clicaste em todos os qrcodes, clica no centro dos 9 qrcodes");
-                countQrcodes = 0;
-                positionsQrcodes = new List<Point>();
+                MessageBox.Show(errorNotEnoughtData);
+                countCirclesX = 0;
+                positionsCirclesX = new List<Point>();
                 positionsPrint = "";
             }
         }

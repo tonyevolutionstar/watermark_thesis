@@ -61,7 +61,7 @@ namespace WatermarkApp
             this.gerar_btn.TabIndex = 9;
             this.gerar_btn.Text = "Processar";
             this.gerar_btn.UseVisualStyleBackColor = false;
-            this.gerar_btn.Click += new System.EventHandler(this.Gerar_btn_Click);
+            this.gerar_btn.Click += new System.EventHandler(this.Process_btn_Click);
             // 
             // rejeitar_btn
             // 
@@ -89,7 +89,7 @@ namespace WatermarkApp
             this.aceitar_btn.TabIndex = 5;
             this.aceitar_btn.Text = "Aceitar";
             this.aceitar_btn.UseVisualStyleBackColor = false;
-            this.aceitar_btn.Click += new System.EventHandler(this.Aceitar_btn_Click);
+            this.aceitar_btn.Click += new System.EventHandler(this.Accept_btn_Click);
             // 
             // axAcroPDF1
             // 

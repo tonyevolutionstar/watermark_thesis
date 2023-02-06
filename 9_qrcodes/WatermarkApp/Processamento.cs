@@ -364,7 +364,7 @@ namespace WatermarkApp
         }
 
 
-        private void Aceitar_btn_Click(object sender, EventArgs e)
+        private void Accept_btn_Click(object sender, EventArgs e)
         {
             try
             {
@@ -393,7 +393,7 @@ namespace WatermarkApp
         }
 
  
-        private void Rejeitar_btn_Click(object sender, EventArgs e)
+        private void Reject_btn_Click(object sender, EventArgs e)
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
             string file_name_qrcode = s_doc[0] + "_watermark_" + date_time + ".pdf";
@@ -422,7 +422,7 @@ namespace WatermarkApp
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Gerar_btn_Click(object sender, EventArgs e)
+        private void Process_btn_Click(object sender, EventArgs e)
         {
             Process_file();
         }

@@ -67,4 +67,4 @@ CREATE TABLE position_char_file(
 -- Select * from barcode;
 -- Select * from watermark_qrcode;
 -- Select * from forense_analises;
--- Select *from position_char_file;
+-- Select * from position_char_file;

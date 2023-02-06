@@ -68,7 +68,8 @@ class PositionCharacter extends PDFTextStripper
                 else if (ch.equals("’"))
                     ch = "";
 
-                file.write(ch + "|" + Math.round(text.getX()) + "," + Math.round(Math.abs(text.getHeight() - text.getY())) + "," + Math.round(text.getEndX() - text.getWidthOfSpace()) + "," +  Math.round(text.getY()) +  "\n");
+                if(!ch.isBlank() && !ch.isEmpty()) // remove spaces
+                    file.write(ch + "|" + Math.round(text.getX()) + "," + Math.round(Math.abs(text.getHeight() - text.getY())) + "," + Math.round(text.getEndX() - text.getWidthOfSpace()) + "," +  Math.round(text.getY()) +  "\n");
             }
             file.close();
 

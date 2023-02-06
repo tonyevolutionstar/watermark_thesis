@@ -343,14 +343,36 @@
             The main entry point for the application.
             </summary>
         </member>
+        <member name="M:WatermarkApp.SQL_connection.#ctor">
+            <summary>
+            Destinada a fazer operações na base de dados
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.Check_generate_id(System.Int32)">
+            <summary>
+            Verifica se o id gerado está na base de dados
+            </summary>
+            <param name="ID">número de identificação ficheiro</param>
+            <returns>0 - não tem, >1 se tem</returns>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Faz registo de cada vez que um documento com watermark é gerado, guardando se o utilizador aceitou ou rejeitou
+            </summary>
+            <param name="id_document"></param>
+            <param name="id_barcode"></param>
+            <param name="validation">validação do documento 0-rejeição, 1-aceitação</param>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.Search_document(System.Int32)">
+            <summary>
+            Vai retornar alguns metadados sobre o ficheiro com o id retirado do código de barras para a retificação
+            </summary>
+            <param name="id_document"></param>
+            <returns>nome_ficheiro;utilizador;sigla_principal;posto_atual</returns>
+        </member>
         <member name="T:WatermarkApp.Watermark">
             <summary>
              Classe destinada a fazer a marca de agua no ficheiro
-            </summary>
-        </member>
-        <member name="T:WatermarkApp.Retificar">
-            <summary>
-            Menu retificar
             </summary>
         </member>
         <member name="M:WatermarkApp.Retificar.#ctor(System.String,System.Int32)">
@@ -393,67 +415,6 @@
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.#ctor">
-            <summary>
-            Destinada a fazer operações na base de dados
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.Check_generate_id(System.Int32)">
-            <summary>
-            Verifica se o id gerado está na base de dados
-            </summary>
-            <param name="ID">número de identificação ficheiro</param>
-            <returns>0 - não tem, >1 se tem</returns>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.Read_database_doc(System.String)">
-            <summary>
-            Vai retirar as caracteristicas do ficheiro da base de dados
-            </summary>
-            <param name="id"></param>
-            <returns>Dados do ficheiro</returns>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Faz registo de cada vez que um documento com watermark é gerado, guardando se o utilizador aceitou ou rejeitou
-            </summary>
-            <param name="id_document"></param>
-            <param name="id_barcode"></param>
-            <param name="validation">validação do documento 0-rejeição, 1-aceitação</param>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_posicao(System.String,System.String)">
-            <summary>
-            Insere o código de barras na base de dados
-            id_barcode,posicoes_qrcode,date_time
-            </summary>
-            <param name="posicoes_qrcode"></param>
-            <param name="date"></param>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.Get_id_barcode(System.String)">
-            <summary>
-            Função para obter o id do código de barras que se inseriu previamente com base no date time
-            <param name="date_time"></param>
-            </summary>
-            <returns>retorna id </returns>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.Search_document(System.Int32)">
-            <summary>
-            Vai retornar alguns metadados sobre o ficheiro com o id retirado do código de barras para a retificação
-            </summary>
-            <param name="id_document"></param>
-            <returns>nome_ficheiro;utilizador;sigla_principal;posto_atual</returns>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.Get_Values_Analise_Forense(System.Int32)">
-            <summary>
-            Obtem os valores da base de dados e compara
-            </summary>
-            <param name="id_doc"></param>
-        </member>
-        <member name="M:WatermarkApp.SQL_connection.GetPositionsX(System.Int32)">
-            <summary>
-            Obtem as posições do circulo que contem um X num documento
-            </summary>
-            <returns></returns>
         </member>
         <member name="T:WatermarkApp.Properties.Resources">
             <summary>

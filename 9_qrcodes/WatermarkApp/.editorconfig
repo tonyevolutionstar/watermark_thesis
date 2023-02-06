@@ -11,3 +11,6 @@ dotnet_diagnostic.IDE0044.severity = none
 
 # CS0618: Type or member is obsolete
 dotnet_diagnostic.CS0618.severity = none
+
+# CS0612: Type or member is obsolete
+dotnet_diagnostic.CS0612.severity = none

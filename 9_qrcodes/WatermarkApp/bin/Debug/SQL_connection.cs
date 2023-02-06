@@ -6,7 +6,7 @@ namespace WatermarkApp
 {
     public class SQL_connection
     {
-        private int check;
+        private int check ;
         private string connetionString;
         SqlConnection connection;
         SqlCommand command;
@@ -50,10 +50,17 @@ namespace WatermarkApp
             {
                 Console.WriteLine(ex.Message);
             }
+
             return check;
+
         }
 
-        public string ObtainCaracteristicsFile(string id)
+        /// <summary>
+        /// Vai retirar as caracteristicas do ficheiro da base de dados
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>Dados do ficheiro</returns>
+        public string Read_database_doc(string id)
         {
             string result = "";
 
@@ -126,11 +133,16 @@ namespace WatermarkApp
             }
         }
 
-
-        public void Insert_barcode(string positions_circleX, string date)
+        /// <summary>
+        /// Insere o código de barras na base de dados
+        /// id_barcode,posicoes_qrcode,date_time
+        /// </summary>
+        /// <param name="posicoes_qrcode"></param>
+        /// <param name="date"></param>
+        public void Insert_posicao(string posicoes_qrcode, string date)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[barcode] VALUES ("
-             + "'" + positions_circleX + "'" + "," + "'" + date + "'" + ");";
+             + "'" + posicoes_qrcode + "'" + "," + "'" + date + "'" + ");";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -147,7 +159,11 @@ namespace WatermarkApp
             }
         }
 
-
+        /// <summary>
+        /// Função para obter o id do código de barras que se inseriu previamente com base no date time
+        /// <param name="date_time"></param>
+        /// </summary>
+        /// <returns>retorna id </returns>
         public int Get_id_barcode(string date_time)
         {
             int id_barcode = 0;
@@ -206,6 +222,7 @@ namespace WatermarkApp
             {
                 Console.WriteLine(ex.Message);
             }
+
             return result;
         }
 
@@ -250,7 +267,10 @@ namespace WatermarkApp
             }
         }
 
-
+        /// <summary>
+        /// Obtem os valores da base de dados e compara
+        /// </summary>
+        /// <param name="id_doc"></param>
         public List<string> Get_Values_Analise_Forense(int id_doc)
         {
             List<string> returnList = new List<string>();
@@ -315,10 +335,14 @@ namespace WatermarkApp
         }
 
 
-        public string Get_Positions_CircleX(int id_doc)
+        /// <summary>
+        /// Obtem as posições do circulo que contem um X num documento
+        /// </summary>
+        /// <returns></returns>
+        public string GetPositionsX(int id_doc)
         {
             string positions = "";
-            sql = "Use Watermark; Select positions_circleX from barcode inner join watermark_qrcode on barcode.id_barcode = watermark_qrcode.id_barcode where id_doc = " + id_doc + ";";
+            sql = "Use Watermark; Select posicoes_qrcode from barcode inner join watermark_qrcode on barcode.id_barcode = watermark_qrcode.id_barcode where id_doc = " + id_doc + ";";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -337,7 +361,9 @@ namespace WatermarkApp
             {
                 Console.WriteLine(ex.Message);
             }
+
             return positions;
         }
+
     }
 }

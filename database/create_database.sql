@@ -34,7 +34,7 @@ CREATE TABLE document (
 
 CREATE TABLE barcode(
 	id_barcode INT IDENTITY(1,1) PRIMARY KEY,
-	posicoes_qrcode VARCHAR(200),
+	positions_circleX VARCHAR(200),
 	date_time VARCHAR(20) NOT NULL
 );
 

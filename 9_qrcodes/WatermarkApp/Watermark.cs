@@ -62,7 +62,6 @@ namespace WatermarkApp
                 string img_file = commom.Convert_pdf_png(filename + ".pdf");
 
                 string[] positions_qrcode = positions.Split('|');
-                int[] indices = { 6, 7, 8, 3, 4, 5, 0, 1, 2};
 
                 iTextSharp.text.Image x_img = iTextSharp.text.Image.GetInstance(x_stream);
                 string[] qrcode = positions_qrcode[6].Split(',');

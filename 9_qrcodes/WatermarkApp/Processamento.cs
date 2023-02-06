@@ -237,7 +237,7 @@ namespace WatermarkApp
                 DateTime date_time_barcode = DateTime.Now;
 
                 SQL_connection sql = new SQL_connection();
-                sql.Insert_posicao(analise.positions, date_time_barcode.ToString());
+                sql.Insert_barcode(analise.positions, date_time_barcode.ToString());
 
                 // Fazer resized da imagem X
                 string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);

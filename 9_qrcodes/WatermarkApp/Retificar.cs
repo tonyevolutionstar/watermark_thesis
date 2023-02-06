@@ -4,9 +4,6 @@ using System.Windows.Forms;
 
 namespace WatermarkApp
 {
-    /// <summary>
-    /// Menu retificar
-    /// </summary>
     public partial class Retificar : Form
     {
         private string file_name;

@@ -13,7 +13,7 @@ namespace WatermarkApp
         private string img_file;
         private string result_barcode;
         private int id_doc; 
-        private int size_qrcode;
+        private int sizeCircleX;
         private int countQrcodes = 0; // até 9
         List<Point> positionsQrcodes;
         string positionsPrint = "";
@@ -27,7 +27,7 @@ namespace WatermarkApp
             result_barcode = commom.Read_barcode(file_name);
             string[] resultado = result_barcode.Split(';');
             id_doc = Int32.Parse(resultado[0]);
-            this.size_qrcode = size_qrcode;
+            this.sizeCircleX = size_qrcode;
             positionsQrcodes = new List<Point>();  
         }
 
@@ -65,10 +65,13 @@ namespace WatermarkApp
                 Bitmap bmp = new Bitmap(img_file);
 
                 SQL_connection sql = new SQL_connection();
-                string orignal_positions = sql.GetPositionsX(id_doc);
+                string orignal_positions = sql.Get_Positions_CircleX(id_doc);
 
                 string[] ori_pos = orignal_positions.Split('|');
                 string[] cli_pos = positionsClicked.Split('|');
+
+                string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+                Bitmap x_circle = new Bitmap(partialPath + @"\number_qrcode\X_resized.png");
 
                 for (int i = 0; i < 9; i++)
                 {
@@ -87,8 +90,8 @@ namespace WatermarkApp
                     int lx = p1.X - p2.X;
                     int ly = p1.Y - p2.Y;
 
-                    int dx = p2.X - p1.X;
-                    int dy = p2.Y - p1.Y;
+                    int dx = p1.X - x_circle.Width;
+                    int dy = p1.Y - x_circle.Height;
 
                     Point p1_l = new Point(int.Parse(cli_p[0]), int.Parse(cli_p[1]));
                     Point p2_l = new Point(int.Parse(cli2_p[0]), int.Parse(cli2_p[1]));
@@ -122,11 +125,11 @@ namespace WatermarkApp
 
                 Console.WriteLine("Posições originais " + orignal_positions + " \n posições clicadas " + positionsClicked);
 
-                AuxFunc auxfunc = new AuxFunc(file_name, sql, id_doc, size_qrcode);
+                AuxFunc auxfunc = new AuxFunc(file_name, sql, id_doc, sizeCircleX);
                 auxfunc.CalculateIntersection(positionsClicked, file_name);
                 Console.WriteLine("Intersection Done");
 
-                commom.retificarAnalise(id_doc, sql, file_name, size_qrcode);
+                commom.retificarAnalise(id_doc, sql, file_name, sizeCircleX);
                 MessageBox.Show("Posições originais " + orignal_positions + " \n posições clicadas " + positionsClicked);
                 bmp.Dispose();
             }

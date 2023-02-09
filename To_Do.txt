@@ -1,7 +1,6 @@
 colocar diagrama classes programa
 falar sobre os packages, ironBarCode, Apache.
 falar sobre o porque de se criar uma classe em java e não em c# para ler os caracteres do ficheiro
-mostrar exemplos de processamento de documento, e retificação - verificação de integridade
 explicar para que usa o github como controlo de versões para melhorar o código
 escrever a conclusão
 escrever abstract

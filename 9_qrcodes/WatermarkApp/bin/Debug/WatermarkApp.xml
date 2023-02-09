@@ -85,7 +85,7 @@
         </member>
         <member name="T:WatermarkApp.AuxFunc">
             <summary>
-            Função auxiliar para operaçoes no ficheiro
+            Classe auxiliar para operações no ficheiro
             </summary>
         </member>
         <member name="M:WatermarkApp.AuxFunc.FillDictionary(System.String,System.Drawing.Bitmap)">
@@ -119,7 +119,7 @@
         </member>
         <member name="T:WatermarkApp.Processamento">
             <summary>
-            Parte visual do programa
+            Parte visual do processamento
             </summary>
         </member>
         <member name="M:WatermarkApp.Processamento.#ctor(System.String,System.Int32)">
@@ -156,7 +156,7 @@
             Mostra ficheiro com o watermark
             </summary>
         </member>
-        <member name="M:WatermarkApp.Processamento.Gerar_btn_Click(System.Object,System.EventArgs)">
+        <member name="M:WatermarkApp.Processamento.Process_btn_Click(System.Object,System.EventArgs)">
             <summary>
             Processa de novo o ficheiro com marca de água
             </summary>
@@ -372,7 +372,7 @@
         </member>
         <member name="T:WatermarkApp.Watermark">
             <summary>
-             Classe destinada a fazer a marca de agua no ficheiro
+             Classe destinada a colocar a marca de agua no ficheiro
             </summary>
         </member>
         <member name="M:WatermarkApp.Retificar.#ctor(System.String,System.Int32)">

@@ -134,9 +134,9 @@
             // forense_btn
             // 
             this.forense_btn.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.forense_btn.Location = new System.Drawing.Point(1720, 839);
+            this.forense_btn.Location = new System.Drawing.Point(1662, 838);
             this.forense_btn.Name = "forense_btn";
-            this.forense_btn.Size = new System.Drawing.Size(188, 72);
+            this.forense_btn.Size = new System.Drawing.Size(246, 84);
             this.forense_btn.TabIndex = 11;
             this.forense_btn.Text = "Análise Forense";
             this.forense_btn.UseVisualStyleBackColor = true;

@@ -75,7 +75,7 @@ namespace WatermarkApp
             this.rejeitar_btn.TabIndex = 3;
             this.rejeitar_btn.Text = "Rejeitar";
             this.rejeitar_btn.UseVisualStyleBackColor = false;
-            this.rejeitar_btn.Click += new System.EventHandler(this.Rejeitar_btn_Click);
+            this.rejeitar_btn.Click += new System.EventHandler(this.Reject_btn_Click);
             // 
             // aceitar_btn
             // 

@@ -121,9 +121,6 @@ namespace WatermarkApp
         /// <returns>Dicionario com as posições</returns>
         private Dictionary<string, Point> FillDictionary(string position, Bitmap bmp)
         {
-            string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            Bitmap x_circle = new Bitmap(partialPath + @"\number_qrcode\X_resized.png");
-
             Dictionary<string, Point> circle_points = new Dictionary<string, Point>();
             for (int i = 0; i < 9; i++)
             {
@@ -133,9 +130,9 @@ namespace WatermarkApp
                 int x_circles = int.Parse(circles[0]) * bmp.Width / w ;
                 int y_circles = int.Parse(circles[1]) * bmp.Height / h;
 
-                Point circles_l = new Point(x_circles + sizeCircleX + x_circle.Width, y_circles - sizeCircleX - x_circle.Height);
-                Point circles_r = new Point(x_circles - x_circle.Width, y_circles - sizeCircleX - x_circle.Height); 
-                Point circles_b = new Point(x_circles - x_circle.Width, y_circles);
+                Point circles_l = new Point(x_circles + sizeCircleX + 12, y_circles - sizeCircleX - 12);
+                Point circles_r = new Point(x_circles - 12, y_circles - sizeCircleX - 12); 
+                Point circles_b = new Point(x_circles - 12, y_circles);
                 circle_points.Add("qrcode" + (i + 1) + "_l", circles_l);
                 circle_points.Add("qrcode" + (i + 1) + "_r", circles_r);
                 circle_points.Add("qrcode" + (i + 1) + "_b", circles_b);

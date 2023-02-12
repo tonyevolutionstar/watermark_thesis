@@ -231,7 +231,7 @@ namespace WatermarkApp
             
             if (id_doc != 0)
             {
-                File analise = new File(file_name, sizeCircleX);
+                Integrity analise = new Integrity(file_name, sizeCircleX);
              
                 DateTime date_time_barcode = DateTime.Now;
 

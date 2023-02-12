@@ -27,12 +27,12 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:WatermarkApp.File">
+        <member name="T:WatermarkApp.Integrity">
             <summary>
             Classe para obter as margens do documento
             </summary>
         </member>
-        <member name="M:WatermarkApp.File.#ctor(System.String,System.Int32)">
+        <member name="M:WatermarkApp.Integrity.#ctor(System.String,System.Int32)">
             <summary>
             Obtem as margens        
             </summary>

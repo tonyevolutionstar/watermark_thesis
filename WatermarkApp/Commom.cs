@@ -60,6 +60,30 @@ namespace WatermarkApp
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";
+            string[] s_doc = file_name.Split(new[] { "_integrity" }, StringSplitOptions.None);
+
+            using (FileStream sourceStream = new FileStream(s_doc[0], FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                using (FileStream outputStream = new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    PdfReader reader = new PdfReader(sourceStream);
+                    PdfStamper stamper = new PdfStamper(reader, outputStream);
+
+                    Image image = Image.GetInstance(img);
+                    image.SetAbsolutePosition(0, 0);
+                    Rectangle pageSize = reader.GetPageSizeWithRotation(1);
+                    image.ScaleToFit(pageSize.Width, pageSize.Height);
+
+                    PdfContentByte content = stamper.GetOverContent(1);
+                    content.AddImage(image);
+
+                    stamper.Close();
+                    reader.Close();
+                }
+            }
+
+            /*
+            File.Copy(s_doc[0] + ".pdf", output);
 
             Image image = Image.GetInstance(img);
 
@@ -75,9 +99,7 @@ namespace WatermarkApp
                     pdfDoc.Close();
                 }
             }
-
-
-
+            */
             AnaliseForenseForm form = new AnaliseForenseForm(filename[0] + ".pdf");
             form.Show();
         }

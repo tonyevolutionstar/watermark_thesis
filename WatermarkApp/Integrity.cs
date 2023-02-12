@@ -1,12 +1,9 @@
-﻿using iTextSharp.text.pdf;
-using System.IO;
-
-namespace WatermarkApp
+﻿namespace WatermarkApp
 {
     /// <summary>
     /// Classe para obter as margens do documento
     /// </summary>
-    public class File
+    public class Integrity
     {
         private int width;
         private int height;
@@ -33,11 +30,11 @@ namespace WatermarkApp
         /// </summary>
         /// <param name="filename"></param>
         /// <param name="sizeCircleX"></param>
-        public File(string filename, int sizeCircleX)
+        public Integrity(string filename, int sizeCircleX)
         {
-            this.file_name = filename+".pdf";
+            file_name = filename+".pdf";
             Commom commom = new Commom();
-            commom.getDimensionsDocument(filename);
+            commom.getDimensionsDocument(file_name);
             width = commom.width;
             height = commom.height;
 

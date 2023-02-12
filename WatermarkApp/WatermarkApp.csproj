@@ -86,7 +86,7 @@
     <Compile Include="AnaliseForenseForm.Designer.cs">
       <DependentUpon>AnaliseForenseForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="File.cs" />
+    <Compile Include="Integrity.cs" />
     <Compile Include="AuxFunc.cs" />
     <Compile Include="Commom.cs" />
     <Compile Include="Processamento.cs">

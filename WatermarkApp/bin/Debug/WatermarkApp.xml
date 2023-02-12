@@ -1,0 +1,385 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WatermarkApp</name>
+    </assembly>
+    <members>
+        <member name="M:WatermarkApp.AnaliseForenseForm.#ctor(System.String)">
+            <summary>
+            Mostrar resultado da análise forense através de um documento criado com as letras que se devia ter em azul
+            </summary>
+            <param name="file_name"></param>
+        </member>
+        <member name="F:WatermarkApp.AnaliseForenseForm.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.AnaliseForenseForm.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:WatermarkApp.AnaliseForenseForm.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:WatermarkApp.File">
+            <summary>
+            Classe para obter as margens do documento
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.File.#ctor(System.String,System.Int32)">
+            <summary>
+            Obtem as margens        
+            </summary>
+            <param name="filename"></param>
+            <param name="sizeCircleX"></param>
+        </member>
+        <member name="T:WatermarkApp.AuxFunc">
+            <summary>
+            Classe auxiliar para operações no ficheiro
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.AuxFunc.Get_Value_in(System.Drawing.Bitmap,System.Int32,System.Int32)">
+            <summary>
+            Obtem a letra próxima ao valor da interseção
+            </summary>
+            <param name="bmp"></param>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns>Letra</returns>
+        </member>
+        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String)">
+            <summary>
+            Usado pela Analise Forense
+            </summary>
+            <param name="return_list"></param>
+            <param name="qrcode_file"></param>
+        </member>
+        <member name="F:WatermarkApp.Commom.width">
+            <summary>
+            Commom functions between classes
+            </summary>
+            
+        </member>
+        <member name="T:WatermarkApp.Processamento">
+            <summary>
+            Parte visual do processamento
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Processamento.#ctor(System.String,System.Int32)">
+            <summary>
+            Processamento do ficheiro para a originação do documento com watermark
+            </summary>
+            <param name="file_name">Nome do ficheiro sem watermark</param>
+            <param name="sizeCircleX">Tamanho da watermark</param>
+        </member>
+        <member name="M:WatermarkApp.Processamento.Insert_info_char_database">
+            <summary>
+            Insere as posiçoes dos caracteres do ficheiro na base de dados
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Processamento.Get_PositionChar">
+            <summary>
+            Executa o ficheiro jar que vai gerar um ficheiro txt com as posições dos 
+            caracteres que estão no pdf
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Processamento.Read_positionChar_file">
+            <summary>
+            Vai ler o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
+            </summary>
+            <returns>Linhas do documento</returns>
+        </member>
+        <member name="M:WatermarkApp.Processamento.Generate_id">
+            <summary>
+            Gera um id aleatorio que corresponde ao documento que porventura se obtem pela da leitura do barcode
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Processamento.Process_file">
+            <summary>
+            Mostra ficheiro com o watermark
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Processamento.Process_btn_Click(System.Object,System.EventArgs)">
+            <summary>
+            Processa de novo o ficheiro com marca de água
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="F:WatermarkApp.Processamento.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Processamento.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:WatermarkApp.Processamento.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:WatermarkApp.Menu_Principal">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Menu_Principal.#ctor">
+            <summary>
+            Menu principal programa
+            </summary>
+        </member>
+        <member name="F:WatermarkApp.Menu_Principal.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Menu_Principal.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:WatermarkApp.Menu_Principal.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:WatermarkApp.Formato">
+            <summary>
+            Possiveis formatos de um exemplar
+            </summary>
+        </member>
+        <member name="F:WatermarkApp.Formato.Eletronico">
+            <summary>
+            eletronico
+            </summary>
+        </member>
+        <member name="F:WatermarkApp.Formato.Extraido">
+            <summary>
+            extraido
+            </summary>
+        </member>
+        <member name="T:WatermarkApp.Estado">
+            <summary>
+            Possiveis estados de um exemplar
+            </summary>
+        </member>
+        <member name="F:WatermarkApp.Estado.Ativo">
+            <summary>
+            ativo
+            </summary>
+        </member>
+        <member name="F:WatermarkApp.Estado.Transferido">
+            <summary>
+            transferido
+            </summary>
+        </member>
+        <member name="F:WatermarkApp.Estado.Arquivado">
+            <summary>
+            arquivado
+            </summary>
+        </member>
+        <member name="F:WatermarkApp.Estado.Destruido">
+            <summary>
+            destruido
+            </summary>
+        </member>
+        <member name="F:WatermarkApp.Estado.EmTransferencia">
+            <summary>
+            em transferencia
+            </summary>
+        </member>
+        <member name="F:WatermarkApp.Estado.EmDestruicao">
+            <summary>
+            em destruição
+            </summary>
+        </member>
+        <member name="T:WatermarkApp.Metadata">
+            <summary>
+            Classe destinada a informações relativas a documentos
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.NumeroRegisto">
+            <summary>
+            numero de registo do documento
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.NumeroExemplar">
+            <summary>
+            numero exemplar do documento
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.NumeroCopia">
+            <summary>
+            numero de cópia do documento
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.ClassificacaoSeguranca">
+            <summary>
+            classificacao de segurança do documento
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.Utilizador">
+            <summary>
+            utilizador que tem o documento ou assinou
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.DataOperacao">
+            <summary>
+            data de alteração de algo em relação ao documento
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.EstadoExemplar">
+            <summary>
+            qual é o estado do documento, se está ativo,...
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.FormatoExemplar">
+            <summary>
+            define o formato do documento
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.SiglaPrincipal">
+            <summary>
+            sigla do documento
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.PostoAtual">
+            <summary>
+            posto atual em que o documento se encontra
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Metadata.Dominio">
+            <summary>
+            dominio do documento
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Metadata.#ctor">
+            <summary>
+            Construtor
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Metadata.#ctor(System.String,System.Int32,System.Int32,System.String,WatermarkApp.Estado,WatermarkApp.Formato,System.String,System.DateTime,System.String,System.String,System.String)">
+            <summary>
+            Instancia um documento
+            </summary>
+            <param name="numeroRegisto"></param>
+            <param name="numeroExemplar"></param>
+            <param name="numeroCopia"></param>
+            <param name="classificacaoSeguranca"></param>
+            <param name="estadoExemplar"></param>
+            <param name="formatoExemplar"></param>
+            <param name="utilizador"></param>
+            <param name="dataOperacao"></param>
+            <param name="siglaPrincipal"></param>
+            <param name="postoAtual"></param>
+            <param name="dominio"></param>
+        </member>
+        <member name="M:WatermarkApp.Program.Main">
+            <summary>
+            The main entry point for the application.
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.#ctor">
+            <summary>
+            Destinada a fazer operações na base de dados
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.Check_generate_id(System.Int32)">
+            <summary>
+            Verifica se o id gerado está na base de dados
+            </summary>
+            <param name="ID">número de identificação ficheiro</param>
+            <returns>0 - não tem, >1 se tem</returns>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Faz registo de cada vez que um documento com watermark é gerado, guardando se o utilizador aceitou ou rejeitou
+            </summary>
+            <param name="id_document"></param>
+            <param name="id_barcode"></param>
+            <param name="validation">validação do documento 0-rejeição, 1-aceitação</param>
+        </member>
+        <member name="M:WatermarkApp.SQL_connection.Search_document(System.Int32)">
+            <summary>
+            Vai retornar alguns metadados sobre o ficheiro com o id retirado do código de barras para a retificação
+            </summary>
+            <param name="id_document"></param>
+            <returns>nome_ficheiro;utilizador;sigla_principal;posto_atual</returns>
+        </member>
+        <member name="T:WatermarkApp.Watermark">
+            <summary>
+             Classe destinada a colocar a marca de agua no ficheiro
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Retificar.#ctor(System.String,System.Int32)">
+            <summary>
+            Retica um documento com watermark
+            </summary>
+            <param name="file_name"></param>
+            <param name="size_qrcode"></param>
+        </member>
+        <member name="F:WatermarkApp.Retificar.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Retificar.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:WatermarkApp.Retificar.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="F:WatermarkApp.RetificarManual.components">
+            <summary>
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.RetificarManual.Dispose(System.Boolean)">
+            <summary>
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:WatermarkApp.RetificarManual.InitializeComponent">
+            <summary>
+            Required method for Designer support - do not modify
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="T:WatermarkApp.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:WatermarkApp.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+    </members>
+</doc>

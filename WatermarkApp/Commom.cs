@@ -32,7 +32,6 @@ namespace WatermarkApp
             return file[0];
         }
 
-
         public string Convert_pdf_png(string file_name_png)
         {
             var dd = System.IO.File.ReadAllBytes(file_name_png);
@@ -76,30 +75,11 @@ namespace WatermarkApp
 
                     PdfContentByte content = stamper.GetOverContent(1);
                     content.AddImage(image);
-
                     stamper.Close();
                     reader.Close();
                 }
             }
 
-            /*
-            File.Copy(s_doc[0] + ".pdf", output);
-
-            Image image = Image.GetInstance(img);
-
-            using (Document pdfDoc = new Document(image))
-            {
-                pdfDoc.SetPageSize(image);
-
-                using (FileStream fs = new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.None))
-                {
-                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, fs);
-                    pdfDoc.Open();
-                    pdfDoc.Add(image);
-                    pdfDoc.Close();
-                }
-            }
-            */
             AnaliseForenseForm form = new AnaliseForenseForm(filename[0] + ".pdf");
             form.Show();
         }

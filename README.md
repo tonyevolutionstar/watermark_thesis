@@ -9,7 +9,6 @@ This solution allows the possibility of printing classified documents, which mus
     <li>9_qrcodes - main project</li>
     <li>Database - files to create user and database</li>
     <li>Qrcode Tests - testing the ideal number of qrcodes to use on project</li>
-    <li>TestIntersection - develop on python to test intersection</li>
   </ul>
   <h4>Files</h2>
   <ul style="list-style-type:circle">

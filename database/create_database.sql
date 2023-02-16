@@ -11,7 +11,7 @@ USE Watermark;
 
 DROP TABLE IF EXISTS position_char_file;
 DROP TABLE IF EXISTS forense_analises;
-DROP TABLE IF EXISTS watermark_qrcode;
+DROP TABLE IF EXISTS watermark;
 DROP TABLE IF EXISTS barcode;
 DROP TABLE IF EXISTS document;
 
@@ -38,7 +38,7 @@ CREATE TABLE barcode(
 	date_time VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE watermark_qrcode(
+CREATE TABLE watermark(
 	id_doc INT FOREIGN KEY REFERENCES document(id_document),
 	id_barcode INT FOREIGN KEY REFERENCES barcode(id_barcode),
 	validacao INT -- 0 reject, 1 acept 
@@ -65,6 +65,6 @@ CREATE TABLE position_char_file(
 
 -- Select * from document;
 -- Select * from barcode;
--- Select * from watermark_qrcode;
+-- Select * from watermark;
 -- Select * from forense_analises;
 -- Select * from position_char_file;

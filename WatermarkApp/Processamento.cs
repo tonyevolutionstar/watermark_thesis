@@ -26,10 +26,10 @@ namespace WatermarkApp
         private string jar_file = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Ficheiros\thesis_watermark.jar";
         private bool accept_flag = false;
 
-        private string message_error_file_without_watermark = "Primeiro tens de clicar em processar, para gerar o ficheiro com a marca de água";
+        private string message_error_file_without_watermark = "Primeiro tem de clicar em processar, para gerar o ficheiro com a marca de água";
         private string already_processed = "Já processei o ficheiro, por favor aceite ou rejeite";
         private string in_proccess = "Em processamento";
-        private string doc_watermark_generated = "Documento com watermarking gerado, por favor aceite ou reprove";
+        private string doc_watermark_generated = "Documento com marca de água gerado, por favor aceite ou reprove";
         
         private string accepted_Doc = "Documento aceite";
         private string already_accepted = "Documento já aceite";
@@ -360,13 +360,13 @@ namespace WatermarkApp
                 MessageBox.Show(already_accepted);
             else
             {
-                MessageBox.Show(rejected_Doc);
                 if (System.IO.File.Exists(file_name_qrcode))
                 {
                     SQL_connection sql = new SQL_connection();
                     sql.Insert_watermark(id_doc, id_barcode, 0);
                     System.IO.File.Delete(file_name_qrcode);
                     Process_file();
+                    MessageBox.Show(rejected_Doc);
                 }
                 else
                 {

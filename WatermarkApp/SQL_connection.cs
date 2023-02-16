@@ -108,7 +108,7 @@ namespace WatermarkApp
         /// <param name="validation">validação do documento 0-rejeição, 1-aceitação</param>
         public void Insert_watermark(int id_document, int id_barcode, int validation)
         {
-            sql = "Use Watermark;INSERT INTO [dbo].[watermark_qrcode] VALUES ("
+            sql = "Use Watermark;INSERT INTO [dbo].[watermark] VALUES ("
             + id_document + "," + id_barcode + "," + validation + ");";
             connection = new SqlConnection(connetionString);
             try
@@ -183,8 +183,8 @@ namespace WatermarkApp
         {
             string result = "";
             sql = "Use Watermark;select nome_ficheiro, utilizador, sigla_principal, posto_atual " +
-            " from watermark_qrcode inner join barcode on watermark_qrcode.id_barcode = barcode.id_barcode " +
-            " inner join document on document.id_document = watermark_qrcode.id_doc where id_doc = " + id_document;
+            " from watermark inner join barcode on watermark.id_barcode = barcode.id_barcode " +
+            " inner join document on document.id_document = watermark.id_doc where id_doc = " + id_document;
 
             connection = new SqlConnection(connetionString);
             try
@@ -318,7 +318,7 @@ namespace WatermarkApp
         public string Get_Positions_CircleX(int id_doc)
         {
             string positions = "";
-            sql = "Use Watermark; Select positions_circleX from barcode inner join watermark_qrcode on barcode.id_barcode = watermark_qrcode.id_barcode where id_doc = " + id_doc + ";";
+            sql = "Use Watermark; Select positions_circleX from barcode inner join watermark on barcode.id_barcode = watermark.id_barcode where id_doc = " + id_doc + ";";
             connection = new SqlConnection(connetionString);
             try
             {

@@ -117,9 +117,9 @@ namespace WatermarkApp
                 Point circles_r = new Point(x_circle - randomX, y_circle - sizeCircleX - randomY); 
                 Point circles_b = new Point(x_circle - randomX, y_circle);
 
-                circle_points.Add("qrcode" + (i + 1) + "_l", circles_l);
-                circle_points.Add("qrcode" + (i + 1) + "_r", circles_r);
-                circle_points.Add("qrcode" + (i + 1) + "_b", circles_b);
+                circle_points.Add("point" + (i + 1) + "_l", circles_l);
+                circle_points.Add("point" + (i + 1) + "_r", circles_r);
+                circle_points.Add("point" + (i + 1) + "_b", circles_b);
             }
             return circle_points;
         }

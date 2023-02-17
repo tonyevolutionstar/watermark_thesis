@@ -1,5 +1,4 @@
 ﻿using System;
-using System.IO;
 using System.Windows.Forms;
 
 namespace WatermarkApp
@@ -11,7 +10,7 @@ namespace WatermarkApp
         private readonly string resultado_barcode;
         private int id_doc;
         private readonly string errorFileDatabase = "O ficheiro que selecionou não foi aprovado nem aceite na base de dados";
-        private readonly string infoAnaliseForense = "Processedendo à Análise Forense, aguarde!";
+        private readonly string infoAnaliseForense = "Procedendo à Análise Forense, aguarde!";
         private string watermark_file;
 
 

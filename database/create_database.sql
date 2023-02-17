@@ -1,5 +1,4 @@
 ---CREATE DATABASE AND PARAMETERS 
-
 ALTER DATABASE Watermark SET OFFLINE;
 -- se der erro ir à diretoria C:\Program Files\Microsoft SQL Server\MSSQL15.MSSQLSERVER\MSSQL\DATA e apagar o ficheiro Watermark.mdf e Watermark_log.ldf
 

@@ -25,7 +25,6 @@ namespace WatermarkApp
             InitializeComponent();
         }
 
-        private void Form2_Load(object sender, EventArgs e) { }
 
         private bool Choose_file()
         {

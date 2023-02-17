@@ -14,8 +14,6 @@ class PositionCharacter extends PDFTextStripper
         * @throws IOException If there is an error parsing the document.
         */
     public static void main(String[] args) throws IOException {
-
-
         PDDocument document = null;
         file_name = args[0];
         String[] f = file_name.split(".pdf");
@@ -33,7 +31,6 @@ class PositionCharacter extends PDFTextStripper
         String fileName = args[0];
         try {
             document = PDDocument.load( new File(fileName) );
-            System.out.println(document);
             PDFTextStripper stripper = new PositionCharacter();
             stripper.setSortByPosition( true );
             stripper.setStartPage( 0 );
@@ -69,10 +66,10 @@ class PositionCharacter extends PDFTextStripper
                     ch = "";
 
                 if(!ch.isBlank() && !ch.isEmpty()) // remove spaces
-                    file.write(ch + "|" + Math.round(text.getX()) + "," + Math.round(Math.abs(text.getHeight() - text.getY())) + "," + Math.round(text.getEndX() - text.getWidthOfSpace()) + "," +  Math.round(text.getY()) +  "\n");
+                    file.write(ch + "|" + Math.round(text.getX()) + "," + Math.round(Math.abs(text.getHeight() - text.getY()))
+                            + "," + Math.round(text.getEndX() - text.getWidthOfSpace()) + "," +  Math.round(text.getY()) +  "\n");
             }
             file.close();
-
         } catch (IOException e){
             System.out.println("An error occurred");
             e.printStackTrace();

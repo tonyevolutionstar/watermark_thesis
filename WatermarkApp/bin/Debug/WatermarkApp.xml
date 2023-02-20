@@ -73,7 +73,7 @@
         </member>
         <member name="M:WatermarkApp.Processamento.#ctor(System.String,System.Int32)">
             <summary>
-            Processamento do ficheiro para a originação do documento com watermark
+            Processamento do ficheiro para a originação do documento com marca de água
             </summary>
             <param name="file_name">Nome do ficheiro sem watermark</param>
             <param name="sizeCircleX">Tamanho da watermark</param>
@@ -91,7 +91,7 @@
         </member>
         <member name="M:WatermarkApp.Processamento.Read_positionChar_file">
             <summary>
-            Vai ler o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
+            Le o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
             </summary>
             <returns>Linhas do documento</returns>
         </member>
@@ -326,10 +326,10 @@
         </member>
         <member name="M:WatermarkApp.Retificar.#ctor(System.String,System.Int32)">
             <summary>
-            Retica um documento com watermark
+            Retifica um documento com marca de água
             </summary>
             <param name="file_name"></param>
-            <param name="size_qrcode"></param>
+            <param name="sizeCircleX"></param>
         </member>
         <member name="F:WatermarkApp.Retificar.components">
             <summary>

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Windows.Forms;
 
 namespace WatermarkApp
@@ -6,60 +7,71 @@ namespace WatermarkApp
     public partial class Retificar : Form
     {
         private string file_name;
-        private readonly int sizeCircleX;
+        private int sizeCircleX;
         private readonly string resultado_barcode;
         private int id_doc;
         private readonly string errorFileDatabase = "O ficheiro que selecionou não foi aprovado nem aceite na base de dados";
         private readonly string infoAnaliseForense = "Procedendo à Análise Forense, aguarde!";
         private string watermark_file;
-
+        private string error_readBarcode = "Não consegui ler o código de barras";
+        private Commom commom;
 
         /// <summary>
-        /// Retica um documento com watermark
+        /// Retifica um documento com marca de água
         /// </summary>
         /// <param name="file_name"></param>
-        /// <param name="size_qrcode"></param>
+        /// <param name="sizeCircleX"></param>
         [Obsolete]
-        public Retificar(string file_name, int size_qrcode)
+        public Retificar(string file_name, int sizeCircleX)
         {
             InitializeComponent();
-            Commom commom = new Commom();
+            commom = new Commom();
 
             this.file_name = file_name;
-            sizeCircleX = size_qrcode;
+            this.sizeCircleX = sizeCircleX;
             commom.Convert_pdf_png(file_name);
             file_qrcode.src = file_name;
             Controls.Add(file_qrcode);
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
             watermark_file = s_doc[0] + ".png";
-            resultado_barcode = commom.Read_barcode(watermark_file);
+            resultado_barcode = commom.Read_barcode(file_name);
+
+            if (resultado_barcode == "insucesso")
+            {
+                MessageBox.Show(error_readBarcode);
+                this.Close();
+                this.Dispose();
+            }
         }
 
 
         private void Retificar_Load(object sender, EventArgs e)
         {
             SQL_connection sql = new SQL_connection();
-            string[] resultado = resultado_barcode.Split(';');
-            id_doc = Int32.Parse(resultado[0]);
-            string res_doc = sql.Search_document(id_doc);
-            if (String.IsNullOrEmpty(res_doc))
+            if(!String.IsNullOrEmpty(resultado_barcode))
             {
-                MessageBox.Show(errorFileDatabase);
-                this.Close();
-                this.Dispose();
-            } 
-            else
-            {
-                string[] col_sql = res_doc.Split(';');
-                dct_name.Text = col_sql[0];
-                user.Text = col_sql[1];
-                sigla.Text = col_sql[2];
-                posto.Text = col_sql[3];
-                Controls.Add(dct_name);
-                Controls.Add(user);
-                Controls.Add(sigla);
-                Controls.Add(posto);
-                this.Show();
+                string[] resultado = resultado_barcode.Split(';');
+                id_doc = Int32.Parse(resultado[0]);
+                string res_doc = sql.Search_document(id_doc);
+                if (String.IsNullOrEmpty(res_doc))
+                {
+                    MessageBox.Show(errorFileDatabase);
+                    this.Close();
+                    this.Dispose();
+                }
+                else
+                {
+                    string[] col_sql = res_doc.Split(';');
+                    dct_name.Text = col_sql[0];
+                    user.Text = col_sql[1];
+                    sigla.Text = col_sql[2];
+                    posto.Text = col_sql[3];
+                    Controls.Add(dct_name);
+                    Controls.Add(user);
+                    Controls.Add(sigla);
+                    Controls.Add(posto);
+                    this.Show();
+                }
             }
         }
 
@@ -68,8 +80,14 @@ namespace WatermarkApp
         {
             MessageBox.Show(infoAnaliseForense);
             SQL_connection sql = new SQL_connection();
-            Commom commom = new Commom();
             commom.retificarAnalise(id_doc, sql, file_name, sizeCircleX);
+        }
+
+        private void Retificar_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string file_png = commom.Get_file_name_using_split(file_name)+ ".png";
+            if (File.Exists(file_png))
+                File.Delete(file_png);
         }
     }
 }

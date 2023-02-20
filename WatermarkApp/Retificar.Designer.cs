@@ -46,7 +46,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(261, 788);
+            this.label1.Location = new System.Drawing.Point(565, 719);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(124, 27);
             this.label1.TabIndex = 0;
@@ -56,7 +56,7 @@
             // 
             this.dct_name.AutoSize = true;
             this.dct_name.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dct_name.Location = new System.Drawing.Point(424, 789);
+            this.dct_name.Location = new System.Drawing.Point(728, 720);
             this.dct_name.Name = "dct_name";
             this.dct_name.Size = new System.Drawing.Size(71, 26);
             this.dct_name.TabIndex = 1;
@@ -65,17 +65,17 @@
             // file_qrcode
             // 
             this.file_qrcode.Enabled = true;
-            this.file_qrcode.Location = new System.Drawing.Point(12, 12);
+            this.file_qrcode.Location = new System.Drawing.Point(272, 12);
             this.file_qrcode.Name = "file_qrcode";
             this.file_qrcode.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("file_qrcode.OcxState")));
-            this.file_qrcode.Size = new System.Drawing.Size(1316, 589);
+            this.file_qrcode.Size = new System.Drawing.Size(1000, 533);
             this.file_qrcode.TabIndex = 4;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(261, 839);
+            this.label2.Location = new System.Drawing.Point(565, 770);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(103, 27);
             this.label2.TabIndex = 5;
@@ -85,7 +85,7 @@
             // 
             this.user.AutoSize = true;
             this.user.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.user.Location = new System.Drawing.Point(424, 839);
+            this.user.Location = new System.Drawing.Point(728, 770);
             this.user.Name = "user";
             this.user.Size = new System.Drawing.Size(71, 26);
             this.user.TabIndex = 6;
@@ -95,7 +95,7 @@
             // 
             this.sigla.AutoSize = true;
             this.sigla.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sigla.Location = new System.Drawing.Point(424, 896);
+            this.sigla.Location = new System.Drawing.Point(728, 827);
             this.sigla.Name = "sigla";
             this.sigla.Size = new System.Drawing.Size(71, 26);
             this.sigla.TabIndex = 8;
@@ -105,7 +105,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(261, 896);
+            this.label4.Location = new System.Drawing.Point(565, 827);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(63, 27);
             this.label4.TabIndex = 7;
@@ -115,7 +115,7 @@
             // 
             this.posto.AutoSize = true;
             this.posto.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.posto.Location = new System.Drawing.Point(425, 959);
+            this.posto.Location = new System.Drawing.Point(729, 890);
             this.posto.Name = "posto";
             this.posto.Size = new System.Drawing.Size(71, 26);
             this.posto.TabIndex = 10;
@@ -125,7 +125,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial Narrow", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(262, 957);
+            this.label5.Location = new System.Drawing.Point(566, 888);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(123, 27);
             this.label5.TabIndex = 9;
@@ -134,7 +134,7 @@
             // forense_btn
             // 
             this.forense_btn.Font = new System.Drawing.Font("Arial", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.forense_btn.Location = new System.Drawing.Point(1662, 838);
+            this.forense_btn.Location = new System.Drawing.Point(1644, 832);
             this.forense_btn.Name = "forense_btn";
             this.forense_btn.Size = new System.Drawing.Size(246, 84);
             this.forense_btn.TabIndex = 11;
@@ -147,7 +147,7 @@
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1920, 1055);
+            this.ClientSize = new System.Drawing.Size(1902, 993);
             this.Controls.Add(this.forense_btn);
             this.Controls.Add(this.posto);
             this.Controls.Add(this.label5);
@@ -161,6 +161,7 @@
             this.Name = "Retificar";
             this.Text = "Retificar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Retificar_FormClosed);
             this.Load += new System.EventHandler(this.Retificar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.file_qrcode)).EndInit();
             this.ResumeLayout(false);

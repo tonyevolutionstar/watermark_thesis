@@ -1,4 +1,2 @@
-falar sobre os packages, ironBarCode, Apache.
-falar sobre o porque de se criar uma classe em java e não em c# para ler os caracteres do ficheiro
 escrever a conclusão
 escrever abstract

@@ -5,6 +5,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
+
+
 namespace WatermarkApp
 {
     public class Commom
@@ -49,6 +51,7 @@ namespace WatermarkApp
                 return BarCodeResult.Value;
             return "insucesso";
         }
+
 
         public void retificarAnalise(int id_doc, SQL_connection sql, string file_name, int size_qrcode)
         {

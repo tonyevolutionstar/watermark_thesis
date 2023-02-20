@@ -39,11 +39,12 @@ namespace WatermarkApp
         private string doc_file = "";
         private string extension_pos = "_pos.txt";
         private string dir_ficheiros = @"Ficheiros\";
+        private string add_file = "_watermark_"; // distinguir ficheiros com e sem marca de água
 
 
 
         /// <summary>
-        /// Processamento do ficheiro para a originação do documento com watermark
+        /// Processamento do ficheiro para a originação do documento com marca de água
         /// </summary>
         /// <param name="file_name">Nome do ficheiro sem watermark</param>
         /// <param name="sizeCircleX">Tamanho da watermark</param>
@@ -104,7 +105,7 @@ namespace WatermarkApp
         }
 
         /// <summary>
-        /// Vai ler o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
+        /// Le o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
         /// </summary>
         /// <returns>Linhas do documento</returns>
         private string[] Read_positionChar_file()
@@ -159,7 +160,7 @@ namespace WatermarkApp
         {
             string[] show_doc = file_name.Split(new[] { dir_ficheiros }, StringSplitOptions.None);
      
-            if (System.IO.File.Exists(doc_file + "_watermark_" + date_time + ".pdf"))
+            if (System.IO.File.Exists(doc_file + add_file + date_time + ".pdf"))
             {
                 MessageBox.Show(already_processed);  
             }
@@ -171,7 +172,7 @@ namespace WatermarkApp
                 Controls.Add(document_name);
                 Generate_watermark(doc_file);
 
-                axAcroPDF1.src = doc_file + "_watermark_" + date_time + ".pdf";
+                axAcroPDF1.src = doc_file + add_file + date_time + ".pdf";
                 Controls.Add(axAcroPDF1);
                 MessageBox.Show(doc_watermark_generated);
                 Delete_aux_files(doc_file);
@@ -205,7 +206,7 @@ namespace WatermarkApp
             string pos = filename + extension_pos;
             delete_files.Add(pos);
 
-            string qrcode_png = filename + "_watermark_" + date_time + ".png";
+            string qrcode_png = filename + add_file + date_time + ".png";
             delete_files.Add(qrcode_png);
             
             try
@@ -243,7 +244,7 @@ namespace WatermarkApp
                 watermark.Add_watermark_pdf(date_time);
               
                 AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf", sizeCircleX);
-                auxFunc.CalculateIntersection(analise.positions, file_name + "_watermark_" + date_time + ".pdf");
+                auxFunc.CalculateIntersection(analise.positions, file_name + add_file + date_time + ".pdf");
             }
         }
 
@@ -331,7 +332,7 @@ namespace WatermarkApp
                 string doc_name = commom.Get_file_name_using_split(file_name);
                 string doc_dir = commom.Get_file_name_without_directory(file_name);
 
-                string file_name_qrcode = doc_name + "_watermark_" + date_time + ".pdf";
+                string file_name_qrcode = doc_name + add_file + date_time + ".pdf";
                 if (System.IO.File.Exists(file_name_qrcode))
                 {
                     SQL_connection sql = new SQL_connection();
@@ -354,7 +355,7 @@ namespace WatermarkApp
         private void Reject_btn_Click(object sender, EventArgs e)
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-            string file_name_qrcode = s_doc[0] + "_watermark_" + date_time + ".pdf";
+            string file_name_qrcode = s_doc[0] + add_file + date_time + ".pdf";
 
             if (accept_flag)
                 MessageBox.Show(already_accepted);

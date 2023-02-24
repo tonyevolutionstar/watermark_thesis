@@ -26,7 +26,7 @@ namespace WatermarkApp
 
         public void Generate_barcode(int id_barcode)
         {  
-            string data_barcode = id_doc.ToString() + ";" + id_barcode;
+            string data_barcode = id_doc.ToString() + ";" + id_barcode.ToString();
             GeneratedBarcode MyBarCode = BarcodeWriter.CreateBarcode(data_barcode, BarcodeWriterEncoding.Code128);
             MyBarCode.ResizeTo(MyBarCode.Width, resizedBarcode); // pixels
             MyBarCode.ChangeBarCodeColor(Color.Black);

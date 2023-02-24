@@ -126,12 +126,6 @@
     <Compile Include="Retificar.Designer.cs">
       <DependentUpon>Retificar.cs</DependentUpon>
     </Compile>
-    <Compile Include="RetificarManual.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="RetificarManual.Designer.cs">
-      <DependentUpon>RetificarManual.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="AnaliseForenseForm.resx">
       <DependentUpon>AnaliseForenseForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,9 +147,6 @@
     </Compile>
     <EmbeddedResource Include="Retificar.resx">
       <DependentUpon>Retificar.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="RetificarManual.resx">
-      <DependentUpon>RetificarManual.cs</DependentUpon>
     </EmbeddedResource>
     <None Include=".editorconfig" />
     <None Include="ClassDiagram1.cd" />

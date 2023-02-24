@@ -312,7 +312,6 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\Watermark
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.Processamento.resources
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.Properties.Resources.resources
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.Retificar.resources
-C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.RetificarManual.resources
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.csproj.GenerateResource.cache
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.csproj.CoreCompileInputs.cache
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.exe

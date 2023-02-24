@@ -5,8 +5,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-
-
 namespace WatermarkApp
 {
     public class Commom

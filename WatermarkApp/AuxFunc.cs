@@ -1,8 +1,6 @@
-﻿using iTextSharp.text.pdf;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.IO;
 
 namespace WatermarkApp
 {
@@ -17,14 +15,14 @@ namespace WatermarkApp
         private int sizeCircleX;
         private int h;
         private int w;
-        private Dictionary<string, Point> qrcode_points;
+        private Dictionary<string, Point> circle_points;
         private List<string> combs;
         private Commom commom = new Commom();
         private int numberCircles = 9;
         
         private int min_random = 10; 
         private int max_random = 70;
-
+        private string integrity_extension = "_integrity";
 
         public AuxFunc(int id_doc, SQL_connection sql, string filename, int sizeCircleX)
         {
@@ -37,27 +35,27 @@ namespace WatermarkApp
         }
 
 
-        public void CalculateIntersection(string position, string qrcode_file)
+        public void CalculateIntersection(string position, string watermark_file)
         {
-            string f = commom.Convert_pdf_png(qrcode_file);
+            string f = commom.Convert_pdf_png(watermark_file);
             Bitmap bmp = new Bitmap(f);
 
-            qrcode_points = Obtain_points_surround_circle(position, bmp);
+            circle_points = Obtain_points_surround_circle(position, bmp);
        
-            string qrcode_comb;
+            string circle_comb;
             combs = new List<string>();
 
-            foreach (KeyValuePair<string, Point> entry in qrcode_points)
+            foreach (KeyValuePair<string, Point> entry in circle_points)
             {
                 string[] val0 = entry.Key.Split('_');
-                foreach (KeyValuePair<string, Point> entry2 in qrcode_points)
+                foreach (KeyValuePair<string, Point> entry2 in circle_points)
                 {
                     string[] val1 = entry2.Key.Split('_');
                     if (!val0[0].Equals(val1[0]))
                     {
-                        qrcode_comb = entry.Key + ":" + entry2.Key;
+                        circle_comb = entry.Key + ":" + entry2.Key;
                         if (!combs.Contains(entry2.Key + ":" + entry.Key))
-                            combs.Add(qrcode_comb);
+                            combs.Add(circle_comb);
                     }
                 }
             }
@@ -66,17 +64,17 @@ namespace WatermarkApp
             for(int i = 0; i < combs.Count; i ++)
             {
                 string[] points_i = combs[i].Split(':');
-                string[] side_qrcode_i = points_i[0].Split('_');
+                string[] side_watermark_i = points_i[0].Split('_');
                 for (int j = 0; j < combs.Count; j ++)
                 {
                     string[] points_j = combs[j].Split(':');
-                    string[] side_qrcode_j = points_j[0].Split('_');
-                    if (!side_qrcode_i[0].Equals(side_qrcode_j[0]))
+                    string[] side_watermark_j = points_j[0].Split('_');
+                    if (!side_watermark_i[0].Equals(side_watermark_j[0]))
                     {
-                        qrcode_points.TryGetValue(points_i[0], out Point A);
-                        qrcode_points.TryGetValue(points_i[1], out Point B);
-                        qrcode_points.TryGetValue(points_j[0], out Point C);
-                        qrcode_points.TryGetValue(points_j[1], out Point D);
+                        circle_points.TryGetValue(points_i[0], out Point A);
+                        circle_points.TryGetValue(points_i[1], out Point B);
+                        circle_points.TryGetValue(points_j[0], out Point C);
+                        circle_points.TryGetValue(points_j[1], out Point D);
                         Point res = Intersection(A, B, C, D);
                       
                         if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
@@ -183,10 +181,10 @@ namespace WatermarkApp
         /// Usado pela Analise Forense
         /// </summary>
         /// <param name="return_list"></param>
-        /// <param name="qrcode_file"></param>
-        public string DrawImage(List<string> return_list, string qrcode_file)
+        /// <param name="watermark_file"></param>
+        public string DrawImage(List<string> return_list, string watermark_file)
         {
-            string f = commom.Convert_pdf_png(qrcode_file);
+            string f = commom.Convert_pdf_png(watermark_file);
             using (Bitmap bmp = new Bitmap(f))
             {
                 using (Graphics g = Graphics.FromImage(bmp))
@@ -214,12 +212,12 @@ namespace WatermarkApp
                         g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);
                     }
                     filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
-                    bmp.Save(filename[0] + "_integrity.png");
+                    bmp.Save(filename[0] + integrity_extension + ".png");
                     g.Dispose();
                     bmp.Dispose();
                 }
             }
-            return filename[0] + "_integrity.png";
+            return filename[0] + integrity_extension + ".png";
         }
     }
 }

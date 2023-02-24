@@ -58,7 +58,7 @@
             Usado pela Analise Forense
             </summary>
             <param name="return_list"></param>
-            <param name="qrcode_file"></param>
+            <param name="watermark_file"></param>
         </member>
         <member name="F:WatermarkApp.Commom.width">
             <summary>
@@ -343,23 +343,6 @@
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
         <member name="M:WatermarkApp.Retificar.InitializeComponent">
-            <summary>
-            Required method for Designer support - do not modify
-            the contents of this method with the code editor.
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.RetificarManual.components">
-            <summary>
-            Required designer variable.
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.RetificarManual.Dispose(System.Boolean)">
-            <summary>
-            Clean up any resources being used.
-            </summary>
-            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
-        </member>
-        <member name="M:WatermarkApp.RetificarManual.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

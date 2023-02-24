@@ -32,7 +32,7 @@
         /// <param name="sizeCircleX"></param>
         public Integrity(string filename, int sizeCircleX)
         {
-            file_name = filename+".pdf";
+            file_name = filename + ".pdf";
             Commom commom = new Commom();
             commom.getDimensionsDocument(file_name);
             width = commom.width;

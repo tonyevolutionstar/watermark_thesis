@@ -8,11 +8,10 @@ namespace WatermarkApp
     {
         private string file_name;
         private int sizeCircleX;
-        private readonly string resultado_barcode;
+        private readonly string result_barcode;
         private int id_doc;
         private readonly string errorFileDatabase = "O ficheiro que selecionou não foi aprovado nem aceite na base de dados";
         private readonly string infoAnaliseForense = "Procedendo à Análise Forense, aguarde!";
-        private string watermark_file;
         private string error_readBarcode = "Não consegui ler o código de barras";
         private Commom commom;
 
@@ -31,16 +30,14 @@ namespace WatermarkApp
             this.sizeCircleX = sizeCircleX;
             commom.Convert_pdf_png(file_name);
             file_qrcode.src = file_name;
-            Controls.Add(file_qrcode);
-            string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-            watermark_file = s_doc[0] + ".png";
-            resultado_barcode = commom.Read_barcode(file_name);
+            Controls.Add(file_qrcode);            
+            result_barcode = commom.Read_barcode(file_name);
 
-            if (resultado_barcode == "insucesso")
+            if (result_barcode == "insucesso")
             {
                 MessageBox.Show(error_readBarcode);
-                this.Close();
-                this.Dispose();
+                Close();
+                Dispose();
             }
         }
 
@@ -48,16 +45,16 @@ namespace WatermarkApp
         private void Retificar_Load(object sender, EventArgs e)
         {
             SQL_connection sql = new SQL_connection();
-            if(!String.IsNullOrEmpty(resultado_barcode))
+            if(!String.IsNullOrEmpty(result_barcode))
             {
-                string[] resultado = resultado_barcode.Split(';');
+                string[] resultado = result_barcode.Split(';');
                 id_doc = Int32.Parse(resultado[0]);
                 string res_doc = sql.Search_document(id_doc);
                 if (String.IsNullOrEmpty(res_doc))
                 {
                     MessageBox.Show(errorFileDatabase);
-                    this.Close();
-                    this.Dispose();
+                    Close();
+                    Dispose();
                 }
                 else
                 {
@@ -70,7 +67,7 @@ namespace WatermarkApp
                     Controls.Add(user);
                     Controls.Add(sigla);
                     Controls.Add(posto);
-                    this.Show();
+                    Show();
                 }
             }
         }
@@ -83,9 +80,9 @@ namespace WatermarkApp
             commom.retificarAnalise(id_doc, sql, file_name, sizeCircleX);
         }
 
-        private void Retificar_FormClosed(object sender, FormClosedEventArgs e)
+        private void Retificate_FormClosed(object sender, FormClosedEventArgs e)
         {
-            string file_png = commom.Get_file_name_using_split(file_name)+ ".png";
+            string file_png = commom.Get_file_name_using_split(file_name) + ".png";
             if (File.Exists(file_png))
                 File.Delete(file_png);
         }

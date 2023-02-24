@@ -161,7 +161,7 @@
             this.Name = "Retificar";
             this.Text = "Retificar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Retificar_FormClosed);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Retificate_FormClosed);
             this.Load += new System.EventHandler(this.Retificar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.file_qrcode)).EndInit();
             this.ResumeLayout(false);

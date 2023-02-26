@@ -106,10 +106,12 @@ namespace WatermarkApp
         /// <param name="id_document"></param>
         /// <param name="id_barcode"></param>
         /// <param name="validation">validação do documento 0-rejeição, 1-aceitação</param>
-        public void Insert_watermark(int id_document, int id_barcode, int validation)
+        /// <param name="x"></param>
+        /// <param name="y"></param>
+        public void Insert_watermark(int id_document, int id_barcode, int validation, int x, int y)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[watermark] VALUES ("
-            + id_document + "," + id_barcode + "," + validation + ");";
+            + id_document + "," + id_barcode + "," + validation + "," + x + "," + y + ");";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -315,10 +317,10 @@ namespace WatermarkApp
         }
 
 
-        public string Get_Positions_CircleX(int id_doc)
+        public string Get_Positions_Barcode(int id_doc)
         {
-            string positions = "";
-            sql = "Use Watermark; Select positions_circleX from barcode inner join watermark on barcode.id_barcode = watermark.id_barcode where id_doc = " + id_doc + ";";
+            string pos_barcode = "";
+            sql = "Use Watermark; Select x, y from barcode inner join watermark on barcode.id_barcode = watermark.id_barcode where id_doc = " + id_doc + ";";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -327,7 +329,7 @@ namespace WatermarkApp
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    positions = dataReader.GetValue(0).ToString();
+                    pos_barcode = dataReader.GetValue(0).ToString() + ":" +  dataReader.GetValue(1).ToString();
                 }
                 dataReader.Close();
                 command.Dispose();
@@ -337,7 +339,8 @@ namespace WatermarkApp
             {
                 Console.WriteLine(ex.Message);
             }
-            return positions;
+            return pos_barcode;
         }
+
     }
 }

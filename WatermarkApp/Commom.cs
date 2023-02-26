@@ -46,7 +46,24 @@ namespace WatermarkApp
         {
             BarcodeResult BarCodeResult = BarcodeReader.QuicklyReadOneBarcode(file_name, BarcodeEncoding.Code128, true);
             if (BarCodeResult != null)
+            {
                 return BarCodeResult.Value;
+            }
+
+            return "insucesso";
+        }
+
+        public string Return_PositionBarcode(string file_name)
+        {
+            BarcodeResult BarCodeResult = BarcodeReader.QuicklyReadOneBarcode(file_name, BarcodeEncoding.Code128, true);
+            if (BarCodeResult != null)
+            {
+                int x1 = (int)BarCodeResult.X1;
+                int y1 = (int)BarCodeResult.Y1;
+                int y2 = (int)BarCodeResult.Y2;
+           
+                return $"{x1}:{y1}";
+            }
             return "insucesso";
         }
 

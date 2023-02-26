@@ -304,13 +304,15 @@
             <param name="ID">número de identificação ficheiro</param>
             <returns>0 - não tem, >1 se tem</returns>
         </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32)">
+        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Faz registo de cada vez que um documento com watermark é gerado, guardando se o utilizador aceitou ou rejeitou
             </summary>
             <param name="id_document"></param>
             <param name="id_barcode"></param>
             <param name="validation">validação do documento 0-rejeição, 1-aceitação</param>
+            <param name="x"></param>
+            <param name="y"></param>
         </member>
         <member name="M:WatermarkApp.SQL_connection.Search_document(System.Int32)">
             <summary>

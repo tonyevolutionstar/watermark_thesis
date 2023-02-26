@@ -13,7 +13,7 @@ namespace WatermarkApp
     {
         private string filename = "";
         private int id_doc;
-        private int resizedBarcode = 5;
+        private int resizedBarcode = 20;
         private int height_barcode = 15; // o 0 começa em baixo
         private int dpiBarcode = 100;
 

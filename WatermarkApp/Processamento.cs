@@ -41,6 +41,8 @@ namespace WatermarkApp
         private string dir_ficheiros = @"Ficheiros\";
         private string add_file = "_watermark_"; // distinguir ficheiros com e sem marca de água
 
+        private int x_barcode_pos = 0;
+        private int y_barcode_pos = 0;
 
 
         /// <summary>
@@ -238,13 +240,13 @@ namespace WatermarkApp
 
                 SQL_connection sql = new SQL_connection();
                 sql.Insert_barcode(analise.positions, date_time_barcode.ToString());
-
                 id_barcode = sql.Get_id_barcode(date_time_barcode.ToString());
                 watermark.Generate_barcode(id_barcode);
                 watermark.Add_watermark_pdf(date_time);
-              
+
                 AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf", sizeCircleX);
                 auxFunc.CalculateIntersection(analise.positions, file_name + add_file + date_time + ".pdf");
+              
             }
         }
 
@@ -332,11 +334,15 @@ namespace WatermarkApp
                 string doc_name = commom.Get_file_name_using_split(file_name);
                 string doc_dir = commom.Get_file_name_without_directory(file_name);
 
-                string file_name_qrcode = doc_name + add_file + date_time + ".pdf";
-                if (System.IO.File.Exists(file_name_qrcode))
+                string file_name_watermark = doc_name + add_file + date_time + ".pdf";
+                if (System.IO.File.Exists(file_name_watermark))
                 {
                     SQL_connection sql = new SQL_connection();
-                    sql.Insert_watermark(id_doc, id_barcode, 1);
+                    string pos_barcode = commom.Return_PositionBarcode(file_name_watermark);
+                    string[] val_pos_barcode = pos_barcode.Split(':');
+                    x_barcode_pos = int.Parse(val_pos_barcode[0]);
+                    y_barcode_pos = int.Parse(val_pos_barcode[1]);
+                    sql.Insert_watermark(id_doc, id_barcode, 1, x_barcode_pos, y_barcode_pos);
                     MessageBox.Show(accepted_Doc);
                     accept_flag = true;
                 }
@@ -355,17 +361,21 @@ namespace WatermarkApp
         private void Reject_btn_Click(object sender, EventArgs e)
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-            string file_name_qrcode = s_doc[0] + add_file + date_time + ".pdf";
+            string file_name_watermark = s_doc[0] + add_file + date_time + ".pdf";
 
             if (accept_flag)
                 MessageBox.Show(already_accepted);
             else
             {
-                if (System.IO.File.Exists(file_name_qrcode))
+                if (System.IO.File.Exists(file_name_watermark))
                 {
                     SQL_connection sql = new SQL_connection();
-                    sql.Insert_watermark(id_doc, id_barcode, 0);
-                    System.IO.File.Delete(file_name_qrcode);
+                    string pos_barcode = commom.Return_PositionBarcode(file_name_watermark);
+                    string[] val_pos_barcode = pos_barcode.Split(':');
+                    x_barcode_pos = int.Parse(val_pos_barcode[0]);
+                    y_barcode_pos = int.Parse(val_pos_barcode[1]);
+                    sql.Insert_watermark(id_doc, id_barcode, 0, x_barcode_pos, y_barcode_pos);
+                    System.IO.File.Delete(file_name_watermark);
                     Process_file();
                     MessageBox.Show(rejected_Doc);
                 }

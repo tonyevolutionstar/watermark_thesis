@@ -14,6 +14,9 @@ namespace WatermarkApp
         private readonly string infoAnaliseForense = "Procedendo à Análise Forense, aguarde!";
         private string error_readBarcode = "Não consegui ler o código de barras";
         private Commom commom;
+        private int difference_x = 0;
+        private int difference_y = 0;
+
 
         /// <summary>
         /// Retifica um documento com marca de água
@@ -49,6 +52,7 @@ namespace WatermarkApp
             {
                 string[] resultado = result_barcode.Split(';');
                 id_doc = Int32.Parse(resultado[0]);
+               
                 string res_doc = sql.Search_document(id_doc);
                 if (String.IsNullOrEmpty(res_doc))
                 {
@@ -58,6 +62,31 @@ namespace WatermarkApp
                 }
                 else
                 {
+                    string barcode_pos = sql.Get_Positions_Barcode(id_doc);
+                    string[] val_barcode_pos = barcode_pos.Split(':');
+                    // or = original
+                    int x_or = int.Parse(val_barcode_pos[0]);
+                    int y_or = int.Parse(val_barcode_pos[1]);
+              
+
+                    string ret_pos_barcode = commom.Return_PositionBarcode(file_name);
+                    string[] res_barcode_pos = ret_pos_barcode.Split(':');
+                    //Dig = digitalizado
+                    int x_dig = int.Parse(res_barcode_pos[0]);
+                    int y_dig = int.Parse(res_barcode_pos[1]);
+
+                 
+                    // significa que o ficheiro de entrada não tem as mesmas coordenadas do que o ficheiro original,
+                    // ou seja o ficheiro é digitalizado
+                    if (!ret_pos_barcode.Equals(barcode_pos)) 
+                    {
+                        difference_x = x_or - x_dig;
+                        difference_y = y_or - y_dig;
+                    }
+
+                    Console.WriteLine($"original barcode position {barcode_pos}, retificar barcode position {ret_pos_barcode}");
+                    Console.WriteLine($"difference x {difference_x}, difference y {difference_y}");
+
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];
                     user.Text = col_sql[1];

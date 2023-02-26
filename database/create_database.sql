@@ -40,7 +40,9 @@ CREATE TABLE barcode(
 CREATE TABLE watermark(
 	id_doc INT FOREIGN KEY REFERENCES document(id_document),
 	id_barcode INT FOREIGN KEY REFERENCES barcode(id_barcode),
-	validacao INT -- 0 reject, 1 acept 
+	validacao INT, -- 0 reject, 1 accept
+	x INT, -- start x position barcode
+	y INT  -- start y position barcode
 );
 
 CREATE TABLE forense_analises(

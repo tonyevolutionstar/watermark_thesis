@@ -1,15 +1,14 @@
-﻿namespace WatermarkApp
+﻿using System;
+
+namespace WatermarkApp
 {
     /// <summary>
     /// Classe para obter as margens do documento
     /// </summary>
     public class Integrity
     {
-        private int width;
-        private int height;
-        private int sizeCircleX;
-        private string file_name;
         public string positions;
+
 
         #region positions
 
@@ -28,30 +27,20 @@
         /// <summary>
         /// Obtem as margens        
         /// </summary>
-        /// <param name="filename"></param>
-        /// <param name="sizeCircleX"></param>
-        public Integrity(string filename, int sizeCircleX)
-        {
-            file_name = filename + ".pdf";
-            Commom commom = new Commom();
-            commom.getDimensionsDocument(file_name);
-            width = commom.width;
-            height = commom.height;
 
-            this.sizeCircleX = sizeCircleX;
-            Get_margins();
-            positions = top_left + "|" + top_middle + "|" + top_right + "|"
-                + middle_left + "|" + middle + "|" + middle_right + "|"
-                + bottom_left + "|" + bottom_middle + "|" + bottom_right;
-        }
-
-        public void Get_margins()
+        /// <param name="x_left_barcode"></param>
+        /// <param name="y_barcode"></param>
+        /// <param name="x_right_barcode"></param>
+        public Integrity(int x_left_barcode, int y_barcode, int x_right_barcode)
         {
-            int height_top = height - 25;
-            int right_margin = width - 70;
-            int left_margin = sizeCircleX - 25;
-            int m_w = width / 2;
-            int m_h = height / 2;
+            int barcode_width = x_right_barcode - x_left_barcode;
+
+            int right_margin = x_right_barcode*2;
+            int left_margin = x_left_barcode - barcode_width/2;
+            int bottom = y_barcode * 2 - y_barcode/2;
+
+            int m_w = barcode_width * 2;
+            int m_h = (y_barcode + y_barcode/2) / 2;
 
             top_left = left_margin.ToString() + "," + left_margin.ToString();
             top_middle = m_w.ToString() + "," + left_margin.ToString();
@@ -61,9 +50,14 @@
             middle = m_w.ToString() + "," + m_h.ToString();
             middle_right = right_margin.ToString() + "," + m_h.ToString();
 
-            bottom_left = left_margin.ToString() + "," + height_top.ToString();
-            bottom_middle = m_w.ToString() + "," + height_top.ToString();
-            bottom_right = right_margin.ToString() + "," + height_top.ToString();
+            bottom_left = left_margin.ToString() + "," + bottom.ToString();
+            bottom_middle = m_w.ToString() + "," + bottom.ToString();
+            bottom_right = right_margin.ToString() + "," + bottom.ToString();
+
+            positions = top_left + "|" + top_middle + "|" + top_right + "|"
+                + middle_left + "|" + middle + "|" + middle_right + "|"
+                + bottom_left + "|" + bottom_middle + "|" + bottom_right;
+            //Console.WriteLine(positions);
         }
     }
 }

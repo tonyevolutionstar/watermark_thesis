@@ -4,17 +4,17 @@
   <description asmv2:publisher="HP" asmv2:product="WatermarkApp" xmlns="urn:schemas-microsoft-com:asm.v1" />
   <deployment install="true" mapFileExtensions="true" />
   <compatibleFrameworks xmlns="urn:schemas-microsoft-com:clickonce.v2">
-    <framework targetVersion="4.6" profile="Full" supportedRuntime="4.0.30319" />
+    <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="WatermarkApp.exe.manifest" size="7498">
+    <dependentAssembly dependencyType="install" codebase="WatermarkApp.exe.manifest" size="11734">
       <assemblyIdentity name="WatermarkApp.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>dehS6yHrJ+7EWixLcOVuD9U+nwHXBWTJpeLYxF83/hM=</dsig:DigestValue>
+        <dsig:DigestValue>Es0v2KHeDYnlvSZ8yyydzBXCe9Dj5WAXt1KgD9QCeNY=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

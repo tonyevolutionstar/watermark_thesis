@@ -211,7 +211,6 @@ namespace WatermarkApp
             return result;
         }
 
-
         public void Insert_forense_analises(int id_doc, string line1, string line2, string inter_point, string inter_char, string line1_points, string line2_points)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[forense_analises] VALUES ("
@@ -251,7 +250,6 @@ namespace WatermarkApp
                 Console.WriteLine(ex.Message);
             }
         }
-
 
         public List<string> Get_Values_Analise_Forense(int id_doc)
         {
@@ -316,7 +314,6 @@ namespace WatermarkApp
             return returnList;
         }
 
-
         public string Get_Positions_Barcode(int id_doc)
         {
             string pos_barcode = "";
@@ -329,7 +326,7 @@ namespace WatermarkApp
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    pos_barcode = dataReader.GetValue(0).ToString() + ":" +  dataReader.GetValue(1).ToString();
+                    pos_barcode = dataReader.GetValue(0).ToString() + ":" + dataReader.GetValue(1).ToString();
                 }
                 dataReader.Close();
                 command.Dispose();
@@ -341,6 +338,5 @@ namespace WatermarkApp
             }
             return pos_barcode;
         }
-
     }
 }

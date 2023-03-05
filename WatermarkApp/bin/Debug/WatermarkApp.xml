@@ -32,12 +32,13 @@
             Classe para obter as margens do documento
             </summary>
         </member>
-        <member name="M:WatermarkApp.Integrity.#ctor(System.String,System.Int32)">
+        <member name="M:WatermarkApp.Integrity.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
             Obtem as margens        
             </summary>
-            <param name="filename"></param>
-            <param name="sizeCircleX"></param>
+            <param name="x_left_barcode"></param>
+            <param name="y_barcode"></param>
+            <param name="x_right_barcode"></param>
         </member>
         <member name="T:WatermarkApp.AuxFunc">
             <summary>
@@ -53,104 +54,101 @@
             <param name="y"></param>
             <returns>Letra</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String)">
+        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32,System.Int32)">
             <summary>
             Usado pela Analise Forense
             </summary>
             <param name="return_list"></param>
             <param name="watermark_file"></param>
+            <param name="difference_x"></param>
+            <param name="difference_y"></param>
+            <param name="angle"></param>
         </member>
-        <member name="F:WatermarkApp.Commom.width">
+        <member name="T:WatermarkApp.Commom">
             <summary>
             Commom functions between classes
             </summary>
             
         </member>
-        <member name="T:WatermarkApp.Processamento">
+        <member name="F:WatermarkApp.Commom.files">
+            <summary>
+            here the files are and the jar file
+            </summary>
+        </member>
+        <member name="T:WatermarkApp.Process">
             <summary>
             Parte visual do processamento
             </summary>
         </member>
-        <member name="M:WatermarkApp.Processamento.#ctor(System.String,System.Int32)">
+        <member name="M:WatermarkApp.Process.#ctor(System.String)">
             <summary>
             Processamento do ficheiro para a originação do documento com marca de água
             </summary>
             <param name="file_name">Nome do ficheiro sem watermark</param>
-            <param name="sizeCircleX">Tamanho da watermark</param>
         </member>
-        <member name="M:WatermarkApp.Processamento.Insert_info_char_database">
+        <member name="M:WatermarkApp.Process.Insert_info_char_database">
             <summary>
             Insere as posiçoes dos caracteres do ficheiro na base de dados
             </summary>
         </member>
-        <member name="M:WatermarkApp.Processamento.Get_PositionChar">
+        <member name="M:WatermarkApp.Process.Get_PositionChar">
             <summary>
             Executa o ficheiro jar que vai gerar um ficheiro txt com as posições dos 
             caracteres que estão no pdf
             </summary>
         </member>
-        <member name="M:WatermarkApp.Processamento.Read_positionChar_file">
+        <member name="M:WatermarkApp.Process.Read_positionChar_file">
             <summary>
             Le o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
             </summary>
             <returns>Linhas do documento</returns>
         </member>
-        <member name="M:WatermarkApp.Processamento.Generate_id">
+        <member name="M:WatermarkApp.Process.Generate_id">
             <summary>
             Gera um id aleatorio que corresponde ao documento que porventura se obtem pela da leitura do barcode
             </summary>
         </member>
-        <member name="M:WatermarkApp.Processamento.Process_file">
+        <member name="M:WatermarkApp.Process.Process_file">
             <summary>
-            Mostra ficheiro com o watermark
+            Mostra ficheiro com a marca de água
             </summary>
         </member>
-        <member name="M:WatermarkApp.Processamento.Process_btn_Click(System.Object,System.EventArgs)">
+        <member name="M:WatermarkApp.Process.Process_btn_Click(System.Object,System.EventArgs)">
             <summary>
             Processa de novo o ficheiro com marca de água
             </summary>
             <param name="sender"></param>
             <param name="e"></param>
         </member>
-        <member name="F:WatermarkApp.Processamento.components">
+        <member name="F:WatermarkApp.Process.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:WatermarkApp.Processamento.Dispose(System.Boolean)">
+        <member name="M:WatermarkApp.Process.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:WatermarkApp.Processamento.InitializeComponent">
+        <member name="M:WatermarkApp.Process.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:WatermarkApp.Menu_Principal">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.Menu_Principal.#ctor">
-            <summary>
-            Menu principal programa
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.Menu_Principal.components">
+        <member name="F:WatermarkApp.Principal_Menu.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:WatermarkApp.Menu_Principal.Dispose(System.Boolean)">
+        <member name="M:WatermarkApp.Principal_Menu.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:WatermarkApp.Menu_Principal.InitializeComponent">
+        <member name="M:WatermarkApp.Principal_Menu.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.
@@ -326,25 +324,24 @@
              Classe destinada a colocar a marca de agua no ficheiro
             </summary>
         </member>
-        <member name="M:WatermarkApp.Retificar.#ctor(System.String,System.Int32)">
+        <member name="M:WatermarkApp.Retificate.#ctor(System.String)">
             <summary>
             Retifica um documento com marca de água
             </summary>
             <param name="file_name"></param>
-            <param name="sizeCircleX"></param>
         </member>
-        <member name="F:WatermarkApp.Retificar.components">
+        <member name="F:WatermarkApp.Retificate.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:WatermarkApp.Retificar.Dispose(System.Boolean)">
+        <member name="M:WatermarkApp.Retificate.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:WatermarkApp.Retificar.InitializeComponent">
+        <member name="M:WatermarkApp.Retificate.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

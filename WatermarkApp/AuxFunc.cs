@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
-
+using System.Linq;
 namespace WatermarkApp
 {
     /// <summary>
@@ -12,28 +12,28 @@ namespace WatermarkApp
         private string[] filename;
         private int id_doc;
         private SQL_connection sql;
-        private int sizeCircleX;
-        private int h;
-        private int w;
+        public int h;
+        public int w;
         private Dictionary<string, Point> circle_points;
         private List<string> combs;
-        private Commom commom = new Commom();
-        private int numberCircles = 9;
+        private Commom commom;
+        private int numberPoints;
         
         private int min_random = 10; 
         private int max_random = 70;
-        private string integrity_extension = "_integrity";
+        private string integrity_extension = "_";
 
-        public AuxFunc(int id_doc, SQL_connection sql, string filename, int sizeCircleX)
+        public AuxFunc(int id_doc, SQL_connection sql, string filename)
         {
             this.id_doc = id_doc;
             this.sql = sql;
-            this.sizeCircleX = sizeCircleX;
-            commom.getDimensionsDocument(filename);
+            commom = new Commom();
+            commom.GetDimensionsDocument(filename);
+            integrity_extension += commom.extension_integrity;
+            numberPoints = commom.number_points;
             w = commom.width;
             h = commom.height;
         }
-
 
         public void CalculateIntersection(string position, string watermark_file)
         {
@@ -44,6 +44,8 @@ namespace WatermarkApp
        
             string circle_comb;
             combs = new List<string>();
+            Dictionary<string, List<Point>> values_inter = new Dictionary<string, List<Point>>();
+            List<string> values = new List<string>();
 
             foreach (KeyValuePair<string, Point> entry in circle_points)
             {
@@ -85,20 +87,87 @@ namespace WatermarkApp
                                 string line1_points = A.X + "," + A.Y + ":" + B.X + "," + B.Y;
                                 string line2_points = C.X + "," + C.Y + ":" + D.X + "," + D.Y;
                                 string inter_point = res.X + "," + res.Y;
-                                sql.Insert_forense_analises(id_doc, combs[i], combs[j], inter_point, ch, line1_points, line2_points);
+
+                                if(values_inter.TryGetValue(ch, out List<Point> list))
+                                {
+                                    list.Add(res);
+                                }
+                                else
+                                {
+                                    list = new List<Point> ();
+                                    list.Add(res);
+                                    values_inter.Add(ch, list);
+                                }
+                                values.Add(id_doc + "|" + combs[i] + "|" + combs[j] + "|" + inter_point + "|" + ch + "|" + line1_points + "|" + line2_points);
                             }
                         }
                     }
                 }
             }
 
+            //tem repetidos, é necessário remover
+
+            // SORT DICTIONARY 
+            Dictionary<string, List<Point>> sorted_value_int = values_inter.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.OrderBy(p => p.Y).ThenBy(p => p.X).ToList());
+            Dictionary<string, List<Point>> pointCount = sorted_value_int
+                .Select(pair => new KeyValuePair<string, List<Point>>(pair.Key, pair.Value.Distinct().ToList()))
+                .ToDictionary(pair => pair.Key, pair => pair.Value);
+
+            foreach (List<Point> pointList in pointCount.Values)
+            {
+                for (int i = 0; i < pointList.Count - 1; i++)
+                {
+                    Point p1 = pointList[i];
+                    Point p2 = pointList[i + 1];
+
+                    int threshold = 10; // set the threshold for the absolute difference between the coordinates
+                    bool isWithinThreshold = false;
+                    for (int j = 1; j <= threshold; j++)
+                    {
+                        if (Math.Abs(p1.X - p2.X) == j || Math.Abs(p1.Y - p2.Y) == j || Math.Abs(p1.X - p2.X) == j && Math.Abs(p1.Y - p2.Y) == j)
+                        {
+                            isWithinThreshold = true;
+                            break;
+                        }
+                    }
+                    if (isWithinThreshold)
+                    {
+                        pointList.RemoveAt(i + 1);
+                        i--;
+                    }
+                }
+            }
+
+            foreach (KeyValuePair<string, List<Point>> pair in pointCount)
+            {
+                foreach(Point p in pair.Value)
+                {
+                    for (int i = 0; i < values.Count; i++)
+                    { 
+                        string[] val = values[i].Split('|');
+                        string combs_i = val[1];
+                        string combs_j = val[2];
+                        string[] p_i = val[3].Split(',');
+                        string ch = val[4];
+                        string line1_points = val[5];
+                        string line2_points = val[6];
+
+                        Point inter_point = new Point(int.Parse(p_i[0]), int.Parse(p_i[1]));
+
+                        if (p == inter_point)
+                        {
+                            sql.Insert_forense_analises(id_doc, combs_i, combs_j, val[3], ch, line1_points, line2_points);
+                        }
+                    }
+                }
+            }
             bmp.Dispose();
         }
 
         private Dictionary<string, Point> Obtain_points_surround_circle(string position, Bitmap bmp)
         {
             Dictionary<string, Point> circle_points = new Dictionary<string, Point>();
-            for (int i = 0; i < numberCircles; i++)
+            for (int i = 0; i < numberPoints; i++)
             {
                 string[] pos_circles = position.Split('|');
                 string[] circles = pos_circles[i].Split(',');
@@ -110,17 +179,32 @@ namespace WatermarkApp
                 Random random = new Random();
                 int randomX = random.Next(min_random, max_random);
                 int randomY = random.Next(min_random, max_random);
+                //Console.WriteLine($"Ponto {i+1} com desfazamento no x de {randomX} e no y de {randomY}");
               
-                Point circles_l = new Point(x_circle + randomX, y_circle - sizeCircleX - randomY);
-                Point circles_r = new Point(x_circle - randomX, y_circle - sizeCircleX - randomY); 
+                Point circles_l = new Point(x_circle + randomX, y_circle - randomY);
+                Point circles_r = new Point(x_circle - randomX, y_circle - randomY); 
                 Point circles_b = new Point(x_circle - randomX, y_circle);
+                //Point p = new Point(x_circle, y_circle);
 
                 circle_points.Add("point" + (i + 1) + "_l", circles_l);
                 circle_points.Add("point" + (i + 1) + "_r", circles_r);
                 circle_points.Add("point" + (i + 1) + "_b", circles_b);
+                /*
+                using(Graphics g = Graphics.FromImage(bmp))
+                {
+                    Font drawFont = new Font("Arial", 8);
+                    SolidBrush drawBrush = new SolidBrush(Color.Blue);
+                    g.DrawString("p", drawFont, drawBrush, p);
+                    g.DrawString("l", drawFont, drawBrush, circles_l);
+                    g.DrawString("r", drawFont, drawBrush, circles_r);
+                    g.DrawString("b", drawFont, drawBrush, circles_b);
+                }
+                bmp.Save("test.png");
+                */
             }
             return circle_points;
         }
+
 
         private Point Intersection(Point A, Point B, Point C, Point D)
         {
@@ -162,13 +246,13 @@ namespace WatermarkApp
             {
                 string[] val = values.Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries); ;
                 string[] pos_val = val[1].Split(',');
-                int new_x = Convert.ToInt32(int.Parse(pos_val[0]) * bmp.Width / w);
-                int new_y = Convert.ToInt32(int.Parse(pos_val[1]) * bmp.Height / h);
-                int final_x = Convert.ToInt32(int.Parse(pos_val[2]) * bmp.Width / w);
+                int start_x = Convert.ToInt32(int.Parse(pos_val[0]) * bmp.Width / w);
+                int start_y = Convert.ToInt32(int.Parse(pos_val[1]) * bmp.Height / h);
+                int stop_x = Convert.ToInt32(int.Parse(pos_val[2]) * bmp.Width / w);
                 int final_y = Convert.ToInt32(int.Parse(pos_val[3]) * bmp.Height / h);
 
                 // verifica se o valor da interseção está proximo a uma letra
-                if (x >= new_x && x <= final_x && y >= new_y && y <= final_y)
+                if (x >= start_x && x <= stop_x && y >= start_y && y <= final_y)
                 {
                     return val[0]; 
                 }
@@ -182,9 +266,14 @@ namespace WatermarkApp
         /// </summary>
         /// <param name="return_list"></param>
         /// <param name="watermark_file"></param>
-        public string DrawImage(List<string> return_list, string watermark_file)
+        /// <param name="difference_x"></param>
+        /// <param name="difference_y"></param>
+        /// <param name="angle"></param>
+      
+        public string DrawImage(List<string> return_list, string watermark_file, int difference_x, int difference_y, int angle)
         {
             string f = commom.Convert_pdf_png(watermark_file);
+        
             using (Bitmap bmp = new Bitmap(f))
             {
                 using (Graphics g = Graphics.FromImage(bmp))
@@ -206,11 +295,15 @@ namespace WatermarkApp
 
                         int res_x = Convert.ToInt32(inter_point[0]);
                         int res_y = Convert.ToInt32(inter_point[1]);
-                        Point intersection = new Point(res_x, res_y);
 
+                        int new_x = res_x + difference_x * (int)Math.Cos(angle);
+                        int new_y = res_y + difference_y * (int)Math.Sin(angle);
+
+                        Point intersection = new Point(new_x, new_y);
                         g.DrawString(ch, drawFont, drawBrush, intersection);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);
                     }
+
                     filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
                     bmp.Save(filename[0] + integrity_extension + ".png");
                     g.Dispose();

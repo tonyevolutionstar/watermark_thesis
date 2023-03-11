@@ -1,0 +1,7 @@
+o problema no programa talvez esteja em obter logo os valores do código de barras no ficheiro digitalizado e depois quando se escreve
+as interseções no ficheiro na image de novo corrigindo a perseção do documeto skew. As posições ficam as anteriores.
+Pela lógica, quando o utilizador clica no ficheiro digitalizado "scan" deve automaticamente fazer skew para corrigir a rotação da imagem caso estiver torta, assim garante sempre que se consegue ler um documento. 
+Para isso tenho de alterar para que se faça no inicio. 
+
+
+Talvez o problema esteja nas dimensoes do documento.

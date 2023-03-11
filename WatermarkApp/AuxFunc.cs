@@ -77,6 +77,7 @@ namespace WatermarkApp
                         circle_points.TryGetValue(points_i[1], out Point B);
                         circle_points.TryGetValue(points_j[0], out Point C);
                         circle_points.TryGetValue(points_j[1], out Point D);
+                  
                         Point res = Intersection(A, B, C, D);
                       
                         if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
@@ -171,7 +172,6 @@ namespace WatermarkApp
             {
                 string[] pos_circles = position.Split('|');
                 string[] circles = pos_circles[i].Split(',');
-                
                 int x_circle = int.Parse(circles[0]) * bmp.Width / w ;
                 int y_circle = int.Parse(circles[1]) * bmp.Height / h;
 
@@ -179,28 +179,14 @@ namespace WatermarkApp
                 Random random = new Random();
                 int randomX = random.Next(min_random, max_random);
                 int randomY = random.Next(min_random, max_random);
-                //Console.WriteLine($"Ponto {i+1} com desfazamento no x de {randomX} e no y de {randomY}");
               
                 Point circles_l = new Point(x_circle + randomX, y_circle - randomY);
                 Point circles_r = new Point(x_circle - randomX, y_circle - randomY); 
                 Point circles_b = new Point(x_circle - randomX, y_circle);
-                //Point p = new Point(x_circle, y_circle);
 
                 circle_points.Add("point" + (i + 1) + "_l", circles_l);
                 circle_points.Add("point" + (i + 1) + "_r", circles_r);
                 circle_points.Add("point" + (i + 1) + "_b", circles_b);
-                /*
-                using(Graphics g = Graphics.FromImage(bmp))
-                {
-                    Font drawFont = new Font("Arial", 8);
-                    SolidBrush drawBrush = new SolidBrush(Color.Blue);
-                    g.DrawString("p", drawFont, drawBrush, p);
-                    g.DrawString("l", drawFont, drawBrush, circles_l);
-                    g.DrawString("r", drawFont, drawBrush, circles_r);
-                    g.DrawString("b", drawFont, drawBrush, circles_b);
-                }
-                bmp.Save("test.png");
-                */
             }
             return circle_points;
         }
@@ -266,14 +252,17 @@ namespace WatermarkApp
         /// </summary>
         /// <param name="return_list"></param>
         /// <param name="watermark_file"></param>
-        /// <param name="difference_x"></param>
-        /// <param name="difference_y"></param>
-        /// <param name="angle"></param>
-      
-        public string DrawImage(List<string> return_list, string watermark_file, int difference_x, int difference_y, int angle)
+        /// <param name="diff_x"></param>
+        /// <param name="diff_y"></param>
+        /// <param name="prop_x"></param>
+        /// <param name="prop_y"></param>
+
+        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y, int prop_x, int prop_y)
         {
             string f = commom.Convert_pdf_png(watermark_file);
-        
+
+            int sizeLetter = 10;
+
             using (Bitmap bmp = new Bitmap(f))
             {
                 using (Graphics g = Graphics.FromImage(bmp))
@@ -284,7 +273,7 @@ namespace WatermarkApp
                     int startAngle = 0;
                     int sweepAngle = 360;
 
-                    Font drawFont = new Font("Arial", 8);
+                    Font drawFont = new Font("Arial", sizeLetter);
                     SolidBrush drawBrush = new SolidBrush(Color.Blue);
 
                     for (int i = 0; i < return_list.Count; i++)
@@ -296,15 +285,20 @@ namespace WatermarkApp
                         int res_x = Convert.ToInt32(inter_point[0]);
                         int res_y = Convert.ToInt32(inter_point[1]);
 
-                        int new_x = res_x + difference_x * (int)Math.Cos(angle);
-                        int new_y = res_y + difference_y * (int)Math.Sin(angle);
+                        //Console.WriteLine($"orig_w = {orig_w}, orig_h = {orig_h}");
+                        //Console.WriteLine($"scan_w = {commom.width}, scan_h = {commom.height}");
+
+                        int new_x = res_x + diff_x;
+                        int new_y = res_y - diff_y;
 
                         Point intersection = new Point(new_x, new_y);
+
                         g.DrawString(ch, drawFont, drawBrush, intersection);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);
                     }
 
                     filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
+
                     bmp.Save(filename[0] + integrity_extension + ".png");
                     g.Dispose();
                     bmp.Dispose();

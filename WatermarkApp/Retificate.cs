@@ -1,28 +1,33 @@
-﻿using System;
+﻿using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
+using Microsoft.VisualBasic.FileIO;
 
 namespace WatermarkApp
 {
     public partial class Retificate : Form
     {
+        //messages error
+        private string errorFileDatabase = "O ficheiro que selecionou não foi aprovado nem aceite na base de dados";
+        private string infoAnaliseForense = "Procedendo à Análise Forense, aguarde!";
+        private string error_readBarcode = "Não consegui ler o código de barras";
+        //----
+
+        private Commom commom;
         private string file_name;
         private readonly string result_barcode;
         private int id_doc;
-        private readonly string errorFileDatabase = "O ficheiro que selecionou não foi aprovado nem aceite na base de dados";
-        private readonly string infoAnaliseForense = "Procedendo à Análise Forense, aguarde!";
-        private string error_readBarcode = "Não consegui ler o código de barras";
-        private Commom commom;
-
-        private int difference_x;
-        private int difference_y;
-        private int angle;
+        private int x_or;
+        private int y_or;
         private int prop_x;
         private int prop_y;
+        private int diff_x;
+        private int diff_y;
         private string img;
-        private int width;
-        private int height;
+        private string rotated_img;
 
         /// <summary>
         /// Retifica um documento com marca de água
@@ -34,14 +39,43 @@ namespace WatermarkApp
         {
             InitializeComponent();
             commom = new Commom();
-            commom.GetDimensionsDocument(file_name);
-            width = commom.width;
-            height = commom.height;
 
             this.file_name = file_name;
             img = commom.Convert_pdf_png(file_name);
+
+            string val = Fix_Rotation();
+            string[] values = val.Split('|');
+            rotated_img = values[0];
+
+
+            if (rotated_img.Contains("rotated"))
+            {
+                string[] file_val = rotated_img.Split(new[] { "_rotated" }, StringSplitOptions.None);
+                FileStream sourceStream = new FileStream(file_val[0] + ".pdf", FileMode.Open, FileAccess.Read, FileShare.Read);
+                iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(sourceStream);
+                iTextSharp.text.Rectangle pageSize = reader.GetPageSizeWithRotation(1);
+                sourceStream.Close();
+                Document doc = new Document();
+                PdfWriter.GetInstance(doc, new FileStream(file_val[0] + "_rotated.pdf", FileMode.Create));
+                doc.Open();
+                iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rotated_img);
+                image.SetAbsolutePosition(0, 0);
+                image.ScaleToFit(pageSize.Width, pageSize.Height);
+                doc.Add(image);
+                doc.Close();
+
+                if ((file_val[0] + "_rotated.pdf").Contains("_rotated"))
+                {
+                    FileSystem.DeleteFile(file_val[0] + ".pdf", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                    File.Copy(file_val[0] + "_rotated.pdf", file_val[0] + ".pdf");
+                    File.Delete(file_val[0] + "_rotated.png");
+                    File.Delete(file_val[0] + "_rotated.pdf");
+                    file_name = file_val[0] + ".pdf";
+                }
+            }
+
             file_qrcode.src = file_name;
-            Controls.Add(file_qrcode);            
+            Controls.Add(file_qrcode);
             result_barcode = commom.Read_barcode(file_name);
 
             if (result_barcode == "insucesso")
@@ -52,21 +86,43 @@ namespace WatermarkApp
             }
         }
 
-   
-        private int Calculate_angle(int x1, int y1, int x2, int y2)
+
+        private string Fix_Rotation()
         {
-            angle = Convert.ToInt16(Math.Atan2(y2 - y1, x2 - x1) * (180 / Math.PI));
-            return angle;
+            string[] s_doc = img.Split(new[] { ".png" }, StringSplitOptions.None);
+
+            var copy_image = (Bitmap)System.Drawing.Image.FromFile(img);
+
+            //create strips
+            var stripCount = 10;
+
+            var compact = new Compact(copy_image, stripCount);
+
+            //find rotation angle
+            var stripX1 = 2;//take 3-rd strip
+            var stripX2 = 6;//take 7-th strip
+
+            var angle = SkewCalculator.FindRotateAngle(compact, stripX1, stripX2);
+            angle = (angle * 180 / Math.PI);//to degrees
+
+            Bitmap rotated = Rotator.Rotate(copy_image, angle);
+            rotated.Save(s_doc[0] + "_rotated.png");
+            rotated.Dispose();
+
+            return s_doc[0] + "_rotated.png" + "|" + angle;
         }
+
+
 
         private void Retificate_Load(object sender, EventArgs e)
         {
             SQL_connection sql = new SQL_connection();
-            if(!String.IsNullOrEmpty(result_barcode))
+            if (!String.IsNullOrEmpty(result_barcode))
             {
                 string[] resultado = result_barcode.Split(';');
+
                 id_doc = int.Parse(resultado[0]);
-               
+
                 string res_doc = sql.Search_document(id_doc);
                 if (String.IsNullOrEmpty(res_doc))
                 {
@@ -76,35 +132,27 @@ namespace WatermarkApp
                 }
                 else
                 {
-                    Bitmap bmp = new Bitmap(img);
                     string barcode_pos = sql.Get_Positions_Barcode(id_doc);
                     string[] val_barcode_pos = barcode_pos.Split(':');
                     // or = original
-                    int x_or = int.Parse(val_barcode_pos[0]);
-                    int y_or = int.Parse(val_barcode_pos[1]);
+                    x_or = int.Parse(val_barcode_pos[0]);
+                    y_or = int.Parse(val_barcode_pos[1]);
 
                     string ret_pos_barcode = commom.Return_PositionBarcode(file_name);
                     string[] res_barcode_pos = ret_pos_barcode.Split(':');
                     //Dig = digitalizado
-                    int x_dig = int.Parse(res_barcode_pos[0]) * bmp.Width / width;
-                    int y_dig = int.Parse(res_barcode_pos[1]) * bmp.Height / height;
+                    int x_dig = int.Parse(res_barcode_pos[0]);
+                    int y_dig = int.Parse(res_barcode_pos[1]);
 
-
-                    // significa que o ficheiro de entrada não tem as mesmas coordenadas do que o ficheiro original,
-                    // ou seja o ficheiro é digitalizado
-                    if (!ret_pos_barcode.Equals(barcode_pos))
-                    {
-                        difference_x = x_or - x_dig;
-                        difference_y = y_or - y_dig;
-                    }
+                    diff_x = x_dig - x_or;
+                    diff_y = y_dig - y_or;
 
                     Console.WriteLine($"original barcode position {barcode_pos}, retificar barcode position {ret_pos_barcode}");
-                    Console.WriteLine($"difference x {difference_x}, difference y {difference_y}");
-                    angle = Calculate_angle(x_or, y_or, x_dig, y_dig);
+                    Console.WriteLine($"diffence between barcode x = {diff_x}, y = {diff_y}");
 
-                    prop_x = x_or / x_dig;
-                    prop_y = y_or / y_dig;
-                   
+                    prop_x = x_dig / x_or;
+                    prop_y = y_dig / y_or;
+
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];
                     user.Text = col_sql[1];
@@ -115,7 +163,6 @@ namespace WatermarkApp
                     Controls.Add(sigla);
                     Controls.Add(posto);
                     Show();
-                    bmp.Dispose();
                 }
             }
         }
@@ -125,7 +172,7 @@ namespace WatermarkApp
         {
             MessageBox.Show(infoAnaliseForense);
             SQL_connection sql = new SQL_connection();
-            commom.RetificateAnalise(id_doc, sql, file_name, difference_x, difference_y, angle);
+            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y, prop_x, prop_y);
         }
 
         private void Retificate_FormClosed(object sender, FormClosedEventArgs e)

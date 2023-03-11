@@ -18,7 +18,7 @@ namespace WatermarkApp
         public int width;
         public int height;
         /// <summary>
-        /// here the files are and the jar file
+        /// Here are the files and the jar file
         /// </summary>
         public string files;
         public string files_dir = @"Ficheiros\";
@@ -94,12 +94,12 @@ namespace WatermarkApp
         }
 
 
-        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, int angle)
+        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, int prop_x, int prop_y)
         {   
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name);
 
-            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, angle);
+            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, prop_x, prop_y);
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";

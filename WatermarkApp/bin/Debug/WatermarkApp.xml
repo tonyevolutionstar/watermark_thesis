@@ -54,15 +54,16 @@
             <param name="y"></param>
             <returns>Letra</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32,System.Int32)">
+        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Usado pela Analise Forense
             </summary>
             <param name="return_list"></param>
             <param name="watermark_file"></param>
-            <param name="difference_x"></param>
-            <param name="difference_y"></param>
-            <param name="angle"></param>
+            <param name="diff_x"></param>
+            <param name="diff_y"></param>
+            <param name="prop_x"></param>
+            <param name="prop_y"></param>
         </member>
         <member name="T:WatermarkApp.Commom">
             <summary>
@@ -72,7 +73,7 @@
         </member>
         <member name="F:WatermarkApp.Commom.files">
             <summary>
-            here the files are and the jar file
+            Here are the files and the jar file
             </summary>
         </member>
         <member name="T:WatermarkApp.Process">

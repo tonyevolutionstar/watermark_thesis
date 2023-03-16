@@ -35,7 +35,6 @@ class PositionCharacter extends PDFTextStripper
             stripper.setSortByPosition( true );
             stripper.setStartPage( 0 );
             stripper.setEndPage( 1 );
-
             Writer dummy = new OutputStreamWriter(new ByteArrayOutputStream());
             stripper.writeText(document, dummy);
         }

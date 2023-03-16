@@ -329,28 +329,34 @@ namespace WatermarkApp
 
         private void Accept_btn_Click(object sender, EventArgs e)
         {
-            try
+            if (accept_flag)
+                MessageBox.Show(already_accepted);
+            else
             {
-                string[] show_doc = file_name.Split(new[] { commom.files_dir }, StringSplitOptions.None);
-                string doc_name = commom.Get_file_name_using_split(file_name);
+                try
+                {
+                    string[] show_doc = file_name.Split(new[] { commom.files_dir }, StringSplitOptions.None);
+                    string doc_name = commom.Get_file_name_using_split(file_name);
 
-                string file_name_watermark = doc_name + add_file + date_time + ".pdf";
-                if (System.IO.File.Exists(file_name_watermark))
-                {
-                    SQL_connection sql = new SQL_connection();
-                    sql.Insert_watermark(id_doc, id_barcode, 1, x_barcode_pos, y_barcode_pos);
-                    MessageBox.Show(accepted_Doc);
-                    accept_flag = true;
+                    string file_name_watermark = doc_name + add_file + date_time + ".pdf";
+                    if (System.IO.File.Exists(file_name_watermark))
+                    {
+                        SQL_connection sql = new SQL_connection();
+                        sql.Insert_watermark(id_doc, id_barcode, 1, x_barcode_pos, y_barcode_pos);
+                        MessageBox.Show(accepted_Doc);
+                        accept_flag = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show(message_error_file_without_watermark);
+                    }
                 }
-                else
+                catch (ArgumentOutOfRangeException argumentOutOfRangeException)
                 {
-                    MessageBox.Show(message_error_file_without_watermark);
+                    MessageBox.Show("Último ficheiro na diretoria Ficheiros " + argumentOutOfRangeException);
                 }
             }
-            catch (ArgumentOutOfRangeException argumentOutOfRangeException)
-            {
-                MessageBox.Show("Último ficheiro na diretoria Ficheiros " + argumentOutOfRangeException);
-            }
+
         }
 
  

@@ -1,5 +1,10 @@
 ﻿using System;
 using System.Windows.Forms;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.Drawing;
+using Microsoft.VisualBasic.FileIO;
+using System.IO;
 
 namespace WatermarkApp
 {  
@@ -12,6 +17,7 @@ namespace WatermarkApp
         private readonly string errorFile_with_watermark = "O ficheiro que selecionou já foi processado";
        
         private Commom commom = new Commom();
+        double angle;
 
 
         public Principal_Menu()
@@ -71,6 +77,70 @@ namespace WatermarkApp
             }
         }
 
+
+        private void ChangeFile_Rotated()
+        {
+            string val = Fix_Rotation();
+            string[] values = val.Split('|');
+            string rotated_img = values[0];
+            angle = double.Parse(values[1]);
+
+            if (angle != 0.0)
+            {
+                if (rotated_img.Contains("rotated"))
+                {
+                    string[] file_val = rotated_img.Split(new[] { "_rotated" }, StringSplitOptions.None);
+             
+                    Document doc = new Document();
+                    PdfWriter.GetInstance(doc, new FileStream(file_val[0] + "_rotated.pdf", FileMode.Create));
+                    doc.Open();
+                    iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rotated_img);
+
+                    image.SetDpi(300, 300);
+                    image.SetAbsolutePosition(0, 0); // canto superior esquerdo
+                    image.ScaleToFit(doc.PageSize.Width, doc.PageSize.Height);
+  
+                    doc.Add(image);
+                    
+                    doc.Close();
+                    FileSystem.DeleteFile(file_val[0] + ".pdf", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                    FileSystem.CopyFile(file_val[0] + "_rotated.pdf", file_val[0] + ".pdf", UIOption.OnlyErrorDialogs);
+                    //File.Copy(file_val[0] + "_rotated.pdf", file_val[0] + ".pdf", true);
+                   
+                    File.Delete(file_val[0] + "_rotated.pdf");
+                    FileSystem.DeleteFile(file_val[0] + "_rotated.png", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                    FileSystem.DeleteFile(file_val[0] + ".png", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                }
+            }
+        }
+
+        private string Fix_Rotation()
+        {
+            string img = commom.Convert_pdf_png(file_name);
+            string[] s_doc = img.Split(new[] { ".png" }, StringSplitOptions.None);
+
+            var copy_image = (Bitmap)System.Drawing.Image.FromFile(img);
+
+            var stripCount = 10;
+
+            var compact = new Compact(copy_image, stripCount);
+
+            //find rotation angle
+            var stripX1 = 2;//take 3-rd strip
+            var stripX2 = 6;//take 7-th strip
+
+            var angle = SkewCalculator.FindRotateAngle(compact, stripX1, stripX2);
+            angle = (angle * 180 / Math.PI);//to degrees
+
+            Bitmap rotated = Rotator.Rotate(copy_image, angle);
+            rotated.Save(s_doc[0] + "_rotated.png");
+            rotated.Dispose();
+
+            return s_doc[0] + "_rotated.png" + "|" + angle;
+        }
+
+
+
         private void Retificate_btn_Click(object sender, EventArgs e)
         {
             if (Choose_file())
@@ -79,7 +149,12 @@ namespace WatermarkApp
 
                 if (file_name_without_dir.Contains(commom.extension_watermark))
                 {
-                    Retificate retificar = new Retificate(file_name);
+                    if(file_name.Contains("scan"))
+                    {
+                        ChangeFile_Rotated();
+                    }
+
+                    Retificate retificar = new Retificate(file_name, angle);
                     try
                     {
                         retificar.Show();

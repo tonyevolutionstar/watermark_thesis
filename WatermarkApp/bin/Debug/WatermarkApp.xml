@@ -54,7 +54,7 @@
             <param name="y"></param>
             <returns>Letra</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32,System.Double,System.Double,System.Double)">
             <summary>
             Usado pela Analise Forense
             </summary>
@@ -325,11 +325,12 @@
              Classe destinada a colocar a marca de agua no ficheiro
             </summary>
         </member>
-        <member name="M:WatermarkApp.Retificate.#ctor(System.String)">
+        <member name="M:WatermarkApp.Retificate.#ctor(System.String,System.Double)">
             <summary>
             Retifica um documento com marca de água
             </summary>
             <param name="file_name"></param>
+            <param name="angle"></param>
         </member>
         <member name="F:WatermarkApp.Retificate.components">
             <summary>

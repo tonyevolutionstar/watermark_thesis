@@ -28,10 +28,10 @@ namespace WatermarkApp
 
         public int number_points = 9;
         public int height_barcode = 15; // o 0 começa em baixo
-        public int right_barcode;
-        public int left_barcode;
+
         private int x;
         private int y;
+        private Point positionBarcode = new Point(210, 800);
 
         public Commom()
         {
@@ -75,31 +75,38 @@ namespace WatermarkApp
 
         public string Return_PositionBarcode(string file_name)
         {
-            BarcodeResult BarCodeResult = BarcodeReader.QuicklyReadOneBarcode(file_name, BarcodeEncoding.Code128, true);
+          
+            string img = Convert_pdf_png(file_name);
             GetDimensionsDocument(file_name);
+            BarcodeResult BarCodeResult = BarcodeReader.QuicklyReadOneBarcode(img, BarcodeEncoding.Code128, true);
             if (BarCodeResult != null)
             {
-                string img = Convert_pdf_png(file_name);
                 Bitmap bmp = new Bitmap(img);
-
                 x = (int)BarCodeResult.X1 * width / bmp.Width;
                 y = (int)BarCodeResult.Y1 * height / bmp.Height;
-                int x2 = (int)BarCodeResult.X2 * width / bmp.Width; 
-                right_barcode = x2;
-                left_barcode = x;
+                int x2 = (int)BarCodeResult.X2 * width / bmp.Width;
+                int y2 = (int)BarCodeResult.Y2 * height / bmp.Height;
                 bmp.Dispose();
-                return $"{x}:{y}:{x2}";
+
+                if(!file_name.Contains("scan"))
+                {
+                    x = positionBarcode.X;
+                    y = positionBarcode.Y;
+                }
+
+                return $"{x}:{y}:{x2}:{y2}";
             }
+           
             return "insucesso";
         }
 
 
-        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, int prop_x, int prop_y)
+        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double prop_x, double prop_y, double angle)
         {   
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name);
 
-            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, prop_x, prop_y);
+            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, prop_x, prop_y, angle);
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";

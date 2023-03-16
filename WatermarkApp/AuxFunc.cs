@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 namespace WatermarkApp
 {
@@ -257,11 +258,12 @@ namespace WatermarkApp
         /// <param name="prop_x"></param>
         /// <param name="prop_y"></param>
 
-        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y, int prop_x, int prop_y)
+        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y, double prop_x, double prop_y, double angle)
         {
             string f = commom.Convert_pdf_png(watermark_file);
 
             int sizeLetter = 10;
+            Point intersection;
 
             using (Bitmap bmp = new Bitmap(f))
             {
@@ -272,9 +274,10 @@ namespace WatermarkApp
                     int height = 20;
                     int startAngle = 0;
                     int sweepAngle = 360;
-
+            
                     Font drawFont = new Font("Arial", sizeLetter);
                     SolidBrush drawBrush = new SolidBrush(Color.Blue);
+                  
 
                     for (int i = 0; i < return_list.Count; i++)
                     {
@@ -284,14 +287,18 @@ namespace WatermarkApp
 
                         int res_x = Convert.ToInt32(inter_point[0]);
                         int res_y = Convert.ToInt32(inter_point[1]);
+                        double new_x = 0;
+                        double new_y = 0;
 
-                        //Console.WriteLine($"orig_w = {orig_w}, orig_h = {orig_h}");
-                        //Console.WriteLine($"scan_w = {commom.width}, scan_h = {commom.height}");
+                        int center_x = width / 2;
+                        int center_y = height / 2;
 
-                        int new_x = res_x + diff_x;
-                        int new_y = res_y - diff_y;
-
-                        Point intersection = new Point(new_x, new_y);
+                        new_x = res_x + diff_x;
+                        new_y = res_y + diff_y;
+                        if (!watermark_file.Contains("scan"))
+                            intersection = new Point(res_x, res_y);
+                        else
+                            intersection = new Point((int) new_x, (int) new_y); //adjust point barcode
 
                         g.DrawString(ch, drawFont, drawBrush, intersection);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);
@@ -302,6 +309,8 @@ namespace WatermarkApp
                     bmp.Save(filename[0] + integrity_extension + ".png");
                     g.Dispose();
                     bmp.Dispose();
+                    if(File.Exists(f))
+                        File.Delete(f);
                 }
             }
             return filename[0] + integrity_extension + ".png";

@@ -35,12 +35,12 @@ namespace WatermarkApp
         {
             int barcode_width = x_right_barcode - x_left_barcode;
 
-            int right_margin = x_right_barcode*2;
+            int right_margin = x_right_barcode + barcode_width / 2;
             int left_margin = x_left_barcode - barcode_width/2;
-            int bottom = y_barcode * 2 - y_barcode/2;
+            int bottom = y_barcode;
 
-            int m_w = barcode_width * 2;
-            int m_h = (y_barcode + y_barcode/2) / 2;
+            int m_w = (right_margin + left_margin) /2 ;
+            int m_h = y_barcode / 3;
 
             top_left = left_margin.ToString() + "," + left_margin.ToString();
             top_middle = m_w.ToString() + "," + left_margin.ToString();
@@ -57,7 +57,7 @@ namespace WatermarkApp
             positions = top_left + "|" + top_middle + "|" + top_right + "|"
                 + middle_left + "|" + middle + "|" + middle_right + "|"
                 + bottom_left + "|" + bottom_middle + "|" + bottom_right;
-            //Console.WriteLine(positions);
+            Console.WriteLine($"positions {positions}");
         }
     }
 }

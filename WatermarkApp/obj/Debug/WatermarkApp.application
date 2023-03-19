@@ -7,14 +7,14 @@
     <framework targetVersion="4.7.2" profile="Full" supportedRuntime="4.0.30319" />
   </compatibleFrameworks>
   <dependency>
-    <dependentAssembly dependencyType="install" codebase="WatermarkApp.exe.manifest" size="11734">
+    <dependentAssembly dependencyType="install" codebase="WatermarkApp.exe.manifest" size="16580">
       <assemblyIdentity name="WatermarkApp.exe" version="1.0.0.0" publicKeyToken="0000000000000000" language="neutral" processorArchitecture="msil" type="win32" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>Hd5tO3jJmODvY7AbgLywrSWfgIuv6BFgTiI5ruetYtM=</dsig:DigestValue>
+        <dsig:DigestValue>wQL4kCHbmx4K60NsfZ7soq88Mmwm7SxXpmewa5+qT8M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

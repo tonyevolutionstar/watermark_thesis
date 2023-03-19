@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
-
 namespace WatermarkApp
 {
     /// <summary>
@@ -40,7 +39,9 @@ namespace WatermarkApp
 
         private int x_barcode_pos;
         private int y_barcode_pos;
+        private int x2_barcode_pos;
 
+        private TrackerServices tracker = new TrackerServices();
 
         /// <summary>
         /// Processamento do ficheiro para a originação do documento com marca de água
@@ -48,6 +49,7 @@ namespace WatermarkApp
         /// <param name="file_name">Nome do ficheiro sem watermark</param>
         public Process(string file_name)
         {
+            tracker.WriteFile("---------- Novo Processamento -----------");
             InitializeComponent();
 
             dados = PreencherMetadadosParaFicheiros();
@@ -62,8 +64,10 @@ namespace WatermarkApp
             document_name.AutoSize = true;
             document_name.TabIndex = 9;
             this.file_name = file_name;
+
             Get_PositionChar();
             characters = Read_positionChar_file();
+            tracker.WriteFile($"obtenção da posição dos caracteres do ficheiro {file_name} {tracker.finnishState}");
             doc_file = commom.Get_file_name_using_split(file_name);
         }
 
@@ -83,7 +87,7 @@ namespace WatermarkApp
                 int stop_x = int.Parse(positions[2]);
                 int stop_y = int.Parse(positions[3]);
                 sql.Insert_position_char_file(id_doc, value_char, start_x, start_y, stop_x, stop_y);
-            }    
+            }
         }
        
 
@@ -130,6 +134,7 @@ namespace WatermarkApp
             SQL_connection sql = new SQL_connection();
             if (sql.Check_generate_id(rand_num) == 0)
                 return rand_num;
+   
             return 0;
         }
 
@@ -137,7 +142,7 @@ namespace WatermarkApp
         private void Show_file_without_watermark()
         {
             id_doc = Generate_id();
-           
+       
             string[] show_doc = file_name.Split(new[] { commom.files_dir }, StringSplitOptions.None);
             string[] file = show_doc[1].Split(new[] { ".pdf" }, StringSplitOptions.None);
 
@@ -146,6 +151,7 @@ namespace WatermarkApp
             axAcroPDF1.src = file_name;
             Controls.Add(axAcroPDF1);
             date_time = DateTime.Now.Day + "_" + DateTime.Now.Month + "_" + DateTime.Now.Year + "_" + DateTime.Now.Hour + "_" + DateTime.Now.Minute + "_" + DateTime.Now.Second;
+            tracker.WriteFile("ficheiro mostrado ao utilizador");
 
             Insert_info_doc_database(file_name, file[0], date_time);
             Insert_info_char_database();
@@ -204,8 +210,8 @@ namespace WatermarkApp
             string pos = filename + extension_pos;
             delete_files.Add(pos);
 
-            string qrcode_png = filename + add_file + date_time + ".png";
-            delete_files.Add(qrcode_png);
+            string watermark_png = filename + add_file + date_time + ".png";
+            delete_files.Add(watermark_png);
             
             try
             {
@@ -213,13 +219,14 @@ namespace WatermarkApp
                 {
                     if (System.IO.File.Exists(file))
                     {
+                        tracker.WriteFile($"ficheiro auxiliar {file} apagado");
                         System.IO.File.Delete(file);
                     }
                 }
             }
             catch (IOException ioExp)
             {
-                Console.WriteLine(ioExp.Message);
+                tracker.WriteFile($"erro ao apagar os ficheiros auxiliar - {ioExp.Message}");
             }
         }
 
@@ -233,15 +240,20 @@ namespace WatermarkApp
                 DateTime date_time_barcode = DateTime.Now;
 
                 watermark.Generate_barcode(id_barcode);
+                tracker.WriteFile("código de barras criado");
                 watermark.Add_watermark_pdf(date_time);
+                tracker.WriteFile("código de barras adicionado ao ficheiro");
 
                 string pos_barcode = commom.Return_PositionBarcode(file_name + add_file + date_time + ".pdf");
+                tracker.WriteFile("obtenção das posições do código de barras no ficheiro " + tracker.finnishState);
+                Console.WriteLine($"pos_barcode = {pos_barcode}");
                 string[] val_pos_barcode = pos_barcode.Split(':');
                 x_barcode_pos = int.Parse(val_pos_barcode[0]);
                 y_barcode_pos = int.Parse(val_pos_barcode[1]);
-                int x2 = int.Parse(val_pos_barcode[2]);
+                x2_barcode_pos = int.Parse(val_pos_barcode[2]);
 
-                Integrity analise = new Integrity(x_barcode_pos, y_barcode_pos, x2);
+                Integrity analise = new Integrity(x_barcode_pos, y_barcode_pos, x2_barcode_pos);
+                tracker.WriteFile("determinação dos pontos para a análise forense " + tracker.finnishState);
 
                 SQL_connection sql = new SQL_connection();
                 sql.Insert_barcode(analise.positions, date_time_barcode.ToString());
@@ -342,7 +354,8 @@ namespace WatermarkApp
                     if (System.IO.File.Exists(file_name_watermark))
                     {
                         SQL_connection sql = new SQL_connection();
-                        sql.Insert_watermark(id_doc, id_barcode, 1, x_barcode_pos, y_barcode_pos);
+                        sql.Insert_watermark(id_doc, id_barcode, 1, x_barcode_pos, y_barcode_pos, x2_barcode_pos);
+                        tracker.WriteFile("documento aceite na base de dados");
                         MessageBox.Show(accepted_Doc);
                         accept_flag = true;
                     }
@@ -372,7 +385,8 @@ namespace WatermarkApp
                 if (System.IO.File.Exists(file_name_watermark))
                 {
                     SQL_connection sql = new SQL_connection();
-                    sql.Insert_watermark(id_doc, id_barcode, 0, x_barcode_pos, y_barcode_pos);
+                    sql.Insert_watermark(id_doc, id_barcode, 0, x_barcode_pos, y_barcode_pos, x2_barcode_pos);
+                    tracker.WriteFile("documento reijatado na base de dados");
                     System.IO.File.Delete(file_name_watermark);
                     Process_file();
                     MessageBox.Show(rejected_Doc);
@@ -391,6 +405,7 @@ namespace WatermarkApp
         /// <param name="e"></param>
         private void Process_btn_Click(object sender, EventArgs e)
         {
+            tracker.WriteFile("processamento do ficheiro a iniciar");
             Process_file();
         }
     }

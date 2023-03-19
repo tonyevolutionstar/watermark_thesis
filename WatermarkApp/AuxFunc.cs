@@ -168,6 +168,10 @@ namespace WatermarkApp
 
         private Dictionary<string, Point> Obtain_points_surround_circle(string position, Bitmap bmp)
         {
+            //Graphics g = Graphics.FromImage(bmp);
+            //Font drawFont = new Font("Arial", 8);
+            //SolidBrush drawBrush = new SolidBrush(Color.Red);
+
             Dictionary<string, Point> circle_points = new Dictionary<string, Point>();
             for (int i = 0; i < numberPoints; i++)
             {
@@ -180,15 +184,25 @@ namespace WatermarkApp
                 Random random = new Random();
                 int randomX = random.Next(min_random, max_random);
                 int randomY = random.Next(min_random, max_random);
-              
+
+                //Point origin_point = new Point(x_circle, y_circle);
                 Point circles_l = new Point(x_circle + randomX, y_circle - randomY);
                 Point circles_r = new Point(x_circle - randomX, y_circle - randomY); 
                 Point circles_b = new Point(x_circle - randomX, y_circle);
+
+                //g.DrawString("p", drawFont, drawBrush, origin_point);
+                //g.DrawString("l", drawFont, drawBrush, circles_l);
+                //g.DrawString("r", drawFont, drawBrush, circles_r);
+                //g.DrawString("b", drawFont, drawBrush, circles_b);
 
                 circle_points.Add("point" + (i + 1) + "_l", circles_l);
                 circle_points.Add("point" + (i + 1) + "_r", circles_r);
                 circle_points.Add("point" + (i + 1) + "_b", circles_b);
             }
+
+            //string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Ficheiros\spefications.png";
+            //bmp.Save(path);
+
             return circle_points;
         }
 
@@ -255,10 +269,8 @@ namespace WatermarkApp
         /// <param name="watermark_file"></param>
         /// <param name="diff_x"></param>
         /// <param name="diff_y"></param>
-        /// <param name="prop_x"></param>
-        /// <param name="prop_y"></param>
 
-        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y, double prop_x, double prop_y, double angle)
+        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y)
         {
             string f = commom.Convert_pdf_png(watermark_file);
 
@@ -277,7 +289,6 @@ namespace WatermarkApp
             
                     Font drawFont = new Font("Arial", sizeLetter);
                     SolidBrush drawBrush = new SolidBrush(Color.Blue);
-                  
 
                     for (int i = 0; i < return_list.Count; i++)
                     {
@@ -298,7 +309,7 @@ namespace WatermarkApp
                         if (!watermark_file.Contains("scan"))
                             intersection = new Point(res_x, res_y);
                         else
-                            intersection = new Point((int) new_x, (int) new_y); //adjust point barcode
+                            intersection = new Point((int) res_x, (int) res_y); //adjust point barcode
 
                         g.DrawString(ch, drawFont, drawBrush, intersection);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);

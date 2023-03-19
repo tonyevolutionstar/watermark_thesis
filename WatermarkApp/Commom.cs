@@ -1,37 +1,34 @@
-﻿using IronBarCode;
-using iTextSharp.text;
+﻿using iTextSharp.text;
 using iTextSharp.text.pdf;
+using iTextSharp.text.pdf.parser;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
-
+using ZXing;
+using ZXing.Common;
 
 namespace WatermarkApp
 {
     /// <summary>
-    /// Commom functions between classes
+    /// Funções comuns entre classes
     /// </summary>
     /// 
     public class Commom
     {
-        public int width;
-        public int height;
-        /// <summary>
-        /// Here are the files and the jar file
-        /// </summary>
+        public int width; //comprimento do ficheiro
+        public int height; //altura do ficheiro
         public string files;
         public string files_dir = @"Ficheiros\";
         public string extension_watermark = "watermark";
         public string extension_integrity = "integrity";
         public string extension_barcode = "_barcode.png";
-
         public int number_points = 9;
         public int height_barcode = 15; // o 0 começa em baixo
+        public string errorReadBarcode = "insucesso";
 
-        private int x;
-        private int y;
-        private Point positionBarcode = new Point(210, 800);
+        private TrackerServices trackerServices = new TrackerServices();
 
         public Commom()
         {
@@ -55,6 +52,7 @@ namespace WatermarkApp
 
         public string Convert_pdf_png(string file_name_png)
         {
+            trackerServices.WriteFile($"converção do ficheiro {file_name_png} concluída");
             var dd = System.IO.File.ReadAllBytes(file_name_png);
             byte[] pngByte = Freeware.Pdf2Png.Convert(dd, 1);
             string[] filename = file_name_png.Split(new[] { ".pdf" }, StringSplitOptions.None);
@@ -65,48 +63,106 @@ namespace WatermarkApp
 
         public string Read_barcode(string file_name)
         {
-            BarcodeResult BarCodeResult = BarcodeReader.QuicklyReadOneBarcode(file_name, BarcodeEncoding.Code128, true);
-            if (BarCodeResult != null)
+            trackerServices.WriteFile($"lendo o código de barras do ficheiro {file_name}");
+            PdfReader reader = new PdfReader(file_name);
+            PdfDictionary page = reader.GetPageN(1);
+            PdfDictionary resources = page.GetAsDict(PdfName.RESOURCES);
+            PdfDictionary xObjects = resources.GetAsDict(PdfName.XOBJECT);
+
+            foreach (PdfName name in xObjects.Keys)
             {
-                return BarCodeResult.Value;
+                PdfObject obj = xObjects.GetDirectObject(name);
+
+                if (obj.IsStream())
+                {
+                    PdfDictionary imgObject = (PdfDictionary)PdfReader.GetPdfObject(obj);
+                    if (imgObject != null && imgObject.Get(PdfName.SUBTYPE).Equals(PdfName.IMAGE))
+                    {
+                        PdfImageObject imageObject = new PdfImageObject((PRStream)imgObject);
+                        Bitmap image = (Bitmap)imageObject.GetDrawingImage();
+                        BarcodeReader barcodeReader = new BarcodeReader();
+                        barcodeReader.AutoRotate = true; // Allow rotation of barcode image
+
+                        barcodeReader.Options = new DecodingOptions
+                        {
+                            PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_128 }, // Specify the barcode format to read
+                            TryHarder = true // check on scan documents
+                        };
+                        var barcodeRes = barcodeReader.Decode(image);
+                        if (barcodeRes != null)
+                        {
+                            Console.WriteLine("Barcode data: " + barcodeRes.Text);
+                            return barcodeRes.Text;
+                        }
+                    }
+                }
             }
-            return "insucesso";
+
+            return errorReadBarcode;
         }
+
 
         public string Return_PositionBarcode(string file_name)
         {
-          
-            string img = Convert_pdf_png(file_name);
             GetDimensionsDocument(file_name);
-            BarcodeResult BarCodeResult = BarcodeReader.QuicklyReadOneBarcode(img, BarcodeEncoding.Code128, true);
-            if (BarCodeResult != null)
+            PdfReader reader = new PdfReader(file_name);
+            PdfDictionary page = reader.GetPageN(1);
+            PdfDictionary resources = page.GetAsDict(PdfName.RESOURCES);
+            PdfDictionary xObjects = resources.GetAsDict(PdfName.XOBJECT);
+
+            foreach (PdfName name in xObjects.Keys)
             {
-                Bitmap bmp = new Bitmap(img);
-                x = (int)BarCodeResult.X1 * width / bmp.Width;
-                y = (int)BarCodeResult.Y1 * height / bmp.Height;
-                int x2 = (int)BarCodeResult.X2 * width / bmp.Width;
-                int y2 = (int)BarCodeResult.Y2 * height / bmp.Height;
-                bmp.Dispose();
+                PdfObject obj = xObjects.GetDirectObject(name);
 
-                if(!file_name.Contains("scan"))
+                if (obj.IsStream())
                 {
-                    x = positionBarcode.X;
-                    y = positionBarcode.Y;
-                }
+                    PdfDictionary imgObject = (PdfDictionary)PdfReader.GetPdfObject(obj);
+                    if (imgObject != null && imgObject.Get(PdfName.SUBTYPE).Equals(PdfName.IMAGE))
+                    {
+                        PdfImageObject imageObject = new PdfImageObject((PRStream)imgObject);
+                        Bitmap image = (Bitmap)imageObject.GetDrawingImage();
+                        BarcodeReader barcodeReader = new BarcodeReader();
+                        barcodeReader.AutoRotate = true; // Allow rotation of barcode image
 
-                return $"{x}:{y}:{x2}:{y2}";
+                        barcodeReader.Options = new DecodingOptions
+                        {
+                            PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_128 }, // Specify the barcode format to read
+                            TryHarder = true // check on scan documents
+                        };
+                        var barcodeRes = barcodeReader.Decode(image);
+                        if (barcodeRes != null)
+                        {
+                            if (file_name.Contains("scan"))
+                            {
+                                int x1 = (int)barcodeRes.ResultPoints[0].X * width / image.Width + 160;
+                                int y1 = height- (int)barcodeRes.ResultPoints[0].Y ;
+                                int x2 = (int)barcodeRes.ResultPoints[1].X * width / image.Width - 109;
+                                int y2 = (int)barcodeRes.ResultPoints[1].Y * height / image.Height;
+                                return $"{x1}:{y1}:{x2}:{y2}";
+                            }
+                            else
+                            {
+                                int x1 = (int)barcodeRes.ResultPoints[0].X * width / image.Width + 160;
+                                int y1 = height - (int)barcodeRes.ResultPoints[0].Y - 30;
+                                int x2 = (int)barcodeRes.ResultPoints[1].X * width / image.Width - 109;
+                                int y2 = (int)barcodeRes.ResultPoints[1].Y;
+                                return $"{x1}:{y1}:{x2}:{y2}";
+                            }
+                        }
+                    }
+                }
             }
-           
-            return "insucesso";
+
+            return errorReadBarcode;
         }
 
 
-        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double prop_x, double prop_y, double angle)
+        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y)
         {   
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name);
 
-            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, prop_x, prop_y, angle);
+            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y);
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";

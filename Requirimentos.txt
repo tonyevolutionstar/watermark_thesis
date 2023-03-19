@@ -1,0 +1,3 @@
+Para ficheiros scan, renomear ficheiro scan que foi utilizado para x_scan.pdf, por exemplo 
+NACIONAL_1_2022_01000_watermark_9_3_2023_17_14_4.pdf foi digitalizado, então o nome na entrada do programa deve ficar
+NACIONAL_1_2022_01000_watermark_9_3_2023_17_14_4_scan.pdf para poder funcionar a leitura de ficheiros scan

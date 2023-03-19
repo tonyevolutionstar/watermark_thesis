@@ -42,7 +42,8 @@ CREATE TABLE watermark(
 	id_barcode INT FOREIGN KEY REFERENCES barcode(id_barcode),
 	validacao INT, -- 0 reject, 1 accept
 	x INT, -- start x position barcode
-	y INT  -- start y position barcode
+	y INT,  -- start y position barcode
+	x2 INT
 );
 
 CREATE TABLE forense_analises(
@@ -66,6 +67,9 @@ CREATE TABLE position_char_file(
 
 -- Select * from document;
 -- Select * from barcode;
--- Select * from watermark;
+-- Select id_doc, id_barcode, validacao, x, y,  from watermark inner join document on watermark.id_doc;
 -- Select * from forense_analises;
 -- Select * from position_char_file;
+
+Select nome_ficheiro, id_barcode, validacao, x, y, x2, date_time
+from watermark inner join document on watermark.id_doc = document.id_document

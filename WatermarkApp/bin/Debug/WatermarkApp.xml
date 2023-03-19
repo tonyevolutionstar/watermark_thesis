@@ -54,7 +54,7 @@
             <param name="y"></param>
             <returns>Letra</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32,System.Double,System.Double,System.Double)">
+        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32)">
             <summary>
             Usado pela Analise Forense
             </summary>
@@ -62,19 +62,12 @@
             <param name="watermark_file"></param>
             <param name="diff_x"></param>
             <param name="diff_y"></param>
-            <param name="prop_x"></param>
-            <param name="prop_y"></param>
         </member>
         <member name="T:WatermarkApp.Commom">
             <summary>
-            Commom functions between classes
+            Funções comuns entre classes
             </summary>
             
-        </member>
-        <member name="F:WatermarkApp.Commom.files">
-            <summary>
-            Here are the files and the jar file
-            </summary>
         </member>
         <member name="T:WatermarkApp.Process">
             <summary>
@@ -303,7 +296,7 @@
             <param name="ID">número de identificação ficheiro</param>
             <returns>0 - não tem, >1 se tem</returns>
         </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Faz registo de cada vez que um documento com watermark é gerado, guardando se o utilizador aceitou ou rejeitou
             </summary>
@@ -312,6 +305,7 @@
             <param name="validation">validação do documento 0-rejeição, 1-aceitação</param>
             <param name="x"></param>
             <param name="y"></param>
+            <param name="x2"></param>
         </member>
         <member name="M:WatermarkApp.SQL_connection.Search_document(System.Int32)">
             <summary>
@@ -320,17 +314,21 @@
             <param name="id_document"></param>
             <returns>nome_ficheiro;utilizador;sigla_principal;posto_atual</returns>
         </member>
+        <member name="T:WatermarkApp.TrackerServices">
+            <summary>
+            Responsavel por fazer tracking da aplicação
+            </summary>
+        </member>
         <member name="T:WatermarkApp.Watermark">
             <summary>
              Classe destinada a colocar a marca de agua no ficheiro
             </summary>
         </member>
-        <member name="M:WatermarkApp.Retificate.#ctor(System.String,System.Double)">
+        <member name="M:WatermarkApp.Retificate.#ctor(System.String)">
             <summary>
             Retifica um documento com marca de água
             </summary>
             <param name="file_name"></param>
-            <param name="angle"></param>
         </member>
         <member name="F:WatermarkApp.Retificate.components">
             <summary>

@@ -3,16 +3,13 @@ using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
 
-
 namespace WatermarkApp
 {
     public partial class Retificate : Form
     {
-        //messages error
         private string errorFileDatabase = "O ficheiro que selecionou não foi aprovado nem aceite na base de dados";
         private string infoAnaliseForense = "Procedendo à Análise Forense, aguarde!";
         private string error_readBarcode = "Não consegui ler o código de barras";
-        //----
 
         private Commom commom;
         private string file_name;
@@ -20,32 +17,33 @@ namespace WatermarkApp
         private int id_doc;
         private int x_or;
         private int y_or;
-        private double prop_x;
-        private double prop_y;
+
         private int diff_x;
         private int diff_y;
-        private double angle;
+  
+        private TrackerServices tracker = new TrackerServices(); 
 
         /// <summary>
         /// Retifica um documento com marca de água
         /// </summary>
         /// <param name="file_name"></param>
-        /// <param name="angle"></param>
 
         [Obsolete]
-        public Retificate(string file_name, double angle)
+        public Retificate(string file_name)
         {
+            tracker.WriteFile("---------- Retificar -----------");
+            tracker.WriteFile($"retificação do ficheiro {file_name} a iniciar");
             InitializeComponent();
             commom = new Commom();
             this.file_name = file_name;
-            this.angle = angle;
 
             file_qrcode.src = file_name;
             Controls.Add(file_qrcode);
             result_barcode = commom.Read_barcode(file_name);
 
-            if (result_barcode == "insucesso")
+            if (result_barcode == commom.errorReadBarcode)
             {
+                tracker.WriteFile($"retificação do ficheiro {file_name} falhou - {error_readBarcode}");
                 MessageBox.Show(error_readBarcode);
                 Close();
                 Dispose();
@@ -59,7 +57,6 @@ namespace WatermarkApp
             if (!String.IsNullOrEmpty(result_barcode))
             {
                 string[] resultado = result_barcode.Split(';');
-
                 id_doc = int.Parse(resultado[0]);
 
                 string res_doc = sql.Search_document(id_doc);
@@ -72,21 +69,23 @@ namespace WatermarkApp
                 else
                 {
                     string barcode_pos = sql.Get_Positions_Barcode(id_doc);
+                    Console.WriteLine($"barcode_pos {barcode_pos}");
                     string[] val_barcode_pos = barcode_pos.Split(':');
                     // or = original
                     x_or = int.Parse(val_barcode_pos[0]);
                     y_or = int.Parse(val_barcode_pos[1]);
+                    int x2_or = int.Parse(val_barcode_pos[2]);
+
                     string img = commom.Convert_pdf_png(file_name);
                     commom.GetDimensionsDocument(file_name);
-
-                 
                         
                     string ret_pos_barcode = commom.Return_PositionBarcode(file_name);
                     string[] res_barcode_pos = ret_pos_barcode.Split(':');
                     //Dig = digitalizado
                     int x_dig = int.Parse(res_barcode_pos[0]);
                     int y_dig = int.Parse(res_barcode_pos[1]);
-
+                    int x2_dig = int.Parse(res_barcode_pos[2]);
+                    /*
 
                     using (Bitmap bmp = new Bitmap(img))
                     {
@@ -94,26 +93,25 @@ namespace WatermarkApp
                         {
                             SolidBrush drawBrush = new SolidBrush(Color.Chocolate);
                             Font drawFont = new Font("Arial", 10);
-                            int p_x = x_or * bmp.Width / commom.width; // +20
-                            int p_y = y_or * bmp.Height / commom.height; //+20
+                            int p_x = x_or * bmp.Width / commom.width; 
+                            int p_y = y_or * bmp.Height / commom.height; 
+                            int p2_x = x2_or * bmp.Width / commom.width;
+                            int p2_y = y_or * bmp.Height / commom.height;
                             Point p = new Point(p_x, p_y);
-                       
-                            g.DrawString("p", drawFont, drawBrush, p);
+                            Point p2 = new Point(p2_x, p2_y);
+                            g.DrawString("p1", drawFont, drawBrush, p);
+                            g.DrawString("p2", drawFont, drawBrush, p2);
                         }
                         string name = commom.Get_file_name_using_split(file_name);
                         bmp.Save(file_name + "_pos_barcode.png", System.Drawing.Imaging.ImageFormat.Png);
                         bmp.Dispose();
                     }
-
+                    */
                     diff_x = x_dig - x_or;
                     diff_y = y_dig - y_or;
 
                     Console.WriteLine($"original barcode position {barcode_pos}, retificar barcode position {ret_pos_barcode}");
                     Console.WriteLine($"diffence between barcode x = {diff_x}, y = {diff_y}");
-
-                    prop_x = (double) x_dig / x_or;
-                    prop_y = (double) y_dig / y_or;
-                    Console.WriteLine($"prop_x = {prop_x}, prop_y = {prop_y}"); 
 
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];
@@ -134,14 +132,9 @@ namespace WatermarkApp
         {
             MessageBox.Show(infoAnaliseForense);
             SQL_connection sql = new SQL_connection();
-            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y, prop_x, prop_y, angle);
+            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y);
         }
 
-        private void Retificate_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            string file_png = commom.Get_file_name_using_split(file_name) + ".png";
-            if (File.Exists(file_png))
-                File.Delete(file_png);
-        }
+    
     }
 }

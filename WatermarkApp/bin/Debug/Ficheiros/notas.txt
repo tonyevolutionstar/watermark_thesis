@@ -1,2 +1,1 @@
-2479, height = 3508
-os documentos podem ter dimensões diferentes. é melhor fazer um set 
+adicionar num fim do processamento um sql statemente a verificar se o documento foi inserte ou nao na tabela watermark, senao apagar a row correspondente.

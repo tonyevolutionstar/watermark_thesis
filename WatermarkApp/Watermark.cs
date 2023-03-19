@@ -1,8 +1,8 @@
-﻿using IronBarCode;
+﻿using ZXing;
+using ZXing.Common;
 using iTextSharp.text.pdf;
-using System;
-using System.Drawing;
 using System.IO;
+using System;
 
 namespace WatermarkApp
 {
@@ -13,10 +13,8 @@ namespace WatermarkApp
     {
         private string filename;
         private int id_doc;
-        private int resizedBarcode = 20;
-        private int dpiBarcode = 100;
+        private int dpiBarcode = 300;
         private Commom commom;
-
 
         public Watermark(string pdf_name, int id)
         {
@@ -26,12 +24,21 @@ namespace WatermarkApp
         }
 
         public void Generate_barcode(int id_barcode)
-        {  
+        {
             string data_barcode = id_doc.ToString() + ";" + id_barcode.ToString();
-            GeneratedBarcode MyBarCode = BarcodeWriter.CreateBarcode(data_barcode, BarcodeWriterEncoding.Code128);
-            MyBarCode.ResizeTo(MyBarCode.Width, resizedBarcode); // pixels
-            MyBarCode.ChangeBarCodeColor(Color.Black);
-            MyBarCode.SaveAsPng(filename + commom.extension_barcode);  
+            var writer = new BarcodeWriter();
+            writer.Format = BarcodeFormat.CODE_128;
+            writer.Options = new EncodingOptions
+            {
+                Width = 250,
+                Height = 20,
+                Margin = 0,
+                PureBarcode = true // exclude text under barcode
+            };
+            
+            var result_barcode = writer.Write(data_barcode);
+            result_barcode.Save(filename + commom.extension_barcode);
+            result_barcode.Dispose();
         }
 
         

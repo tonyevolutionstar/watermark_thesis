@@ -315,7 +315,6 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\Watermark
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\WatermarkApp.pdb
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Freeware.Pdf2Png.dll
-C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\IronBarCode.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\itextsharp.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\System.Buffers.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\System.Memory.dll
@@ -323,7 +322,6 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\Watermark
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\System.Runtime.CompilerServices.Unsafe.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\System.ValueTuple.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\BouncyCastle.Crypto.xml
-C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\IronBarCode.xml
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\itextsharp.xml
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\System.Buffers.xml
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\System.Memory.xml
@@ -388,3 +386,20 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\watermark_thesis\WatermarkApp\obj\D
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.csproj.CopyComplete
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.exe
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.pdb
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\BitMiracle.LibTiff.NET.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\SixLabors.ImageSharp.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\System.Text.Encoding.CodePages.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\BitMiracle.LibTiff.NET.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\SixLabors.ImageSharp.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\System.Text.Encoding.CodePages.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Newtonsoft.Json.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\System.Drawing.Common.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\zxing.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\ZXing.ImageSharp.V2.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\zxing.presentation.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Newtonsoft.Json.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\System.Drawing.Common.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\zxing.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\ZXing.ImageSharp.V2.pdb
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\ZXing.ImageSharp.V2.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\zxing.presentation.xml

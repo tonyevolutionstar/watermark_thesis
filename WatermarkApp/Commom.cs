@@ -1,13 +1,12 @@
-﻿using iTextSharp.text;
+﻿using IronBarCode;
+using iTextSharp.text;
 using iTextSharp.text.pdf;
 using iTextSharp.text.pdf.parser;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
-using ZXing;
-using ZXing.Common;
+
 
 namespace WatermarkApp
 {
@@ -64,39 +63,14 @@ namespace WatermarkApp
         public string Read_barcode(string file_name)
         {
             trackerServices.WriteFile($"lendo o código de barras do ficheiro {file_name}");
-            PdfReader reader = new PdfReader(file_name);
-            PdfDictionary page = reader.GetPageN(1);
-            PdfDictionary resources = page.GetAsDict(PdfName.RESOURCES);
-            PdfDictionary xObjects = resources.GetAsDict(PdfName.XOBJECT);
-
-            foreach (PdfName name in xObjects.Keys)
+            string img_file = Convert_pdf_png(file_name);
+            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium, BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+            if(result != null)
             {
-                PdfObject obj = xObjects.GetDirectObject(name);
-
-                if (obj.IsStream())
-                {
-                    PdfDictionary imgObject = (PdfDictionary)PdfReader.GetPdfObject(obj);
-                    if (imgObject != null && imgObject.Get(PdfName.SUBTYPE).Equals(PdfName.IMAGE))
-                    {
-                        PdfImageObject imageObject = new PdfImageObject((PRStream)imgObject);
-                        Bitmap image = (Bitmap)imageObject.GetDrawingImage();
-                        BarcodeReader barcodeReader = new BarcodeReader();
-                        barcodeReader.AutoRotate = true; // Allow rotation of barcode image
-
-                        barcodeReader.Options = new DecodingOptions
-                        {
-                            PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_128 }, // Specify the barcode format to read
-                            TryHarder = true // check on scan documents
-                        };
-                        var barcodeRes = barcodeReader.Decode(image);
-                        if (barcodeRes != null)
-                        {
-                            Console.WriteLine("Barcode data: " + barcodeRes.Text);
-                            return barcodeRes.Text;
-                        }
-                    }
-                }
+                return result.Value;
             }
+            else
+                trackerServices.WriteFile("erro na leitura do código de barras");
 
             return errorReadBarcode;
         }
@@ -105,53 +79,29 @@ namespace WatermarkApp
         public string Return_PositionBarcode(string file_name)
         {
             GetDimensionsDocument(file_name);
-            PdfReader reader = new PdfReader(file_name);
-            PdfDictionary page = reader.GetPageN(1);
-            PdfDictionary resources = page.GetAsDict(PdfName.RESOURCES);
-            PdfDictionary xObjects = resources.GetAsDict(PdfName.XOBJECT);
-
-            foreach (PdfName name in xObjects.Keys)
+            trackerServices.WriteFile("lendo as posições do código de barras");
+            string img_file = Convert_pdf_png(file_name);
+            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium, BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+            if (result != null)
             {
-                PdfObject obj = xObjects.GetDirectObject(name);
-
-                if (obj.IsStream())
+                using (Bitmap bmp = new Bitmap(img_file)) // garantir o fechar do bitmap - fecha todos os recursos usados
                 {
-                    PdfDictionary imgObject = (PdfDictionary)PdfReader.GetPdfObject(obj);
-                    if (imgObject != null && imgObject.Get(PdfName.SUBTYPE).Equals(PdfName.IMAGE))
+                    // é necessário compor as posições do código barras pois ele tem espaço branco na imagem, os valores foram ajustados manualmente
+                    // com a ajuda da criação de uma imagem auxiliar que permite a visualização dos pontos
+                    int x = (int)result.X1 * width / bmp.Width + 95;
+                    int y = (int)result.Y1 * height / bmp.Height + 15;
+                    int x2 = (int)result.X2 * width / bmp.Width - 65;
+                    if (file_name.Contains("scan"))
                     {
-                        PdfImageObject imageObject = new PdfImageObject((PRStream)imgObject);
-                        Bitmap image = (Bitmap)imageObject.GetDrawingImage();
-                        BarcodeReader barcodeReader = new BarcodeReader();
-                        barcodeReader.AutoRotate = true; // Allow rotation of barcode image
-
-                        barcodeReader.Options = new DecodingOptions
-                        {
-                            PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_128 }, // Specify the barcode format to read
-                            TryHarder = true // check on scan documents
-                        };
-                        var barcodeRes = barcodeReader.Decode(image);
-                        if (barcodeRes != null)
-                        {
-                            if (file_name.Contains("scan"))
-                            {
-                                int x1 = (int)barcodeRes.ResultPoints[0].X * width / image.Width + 160;
-                                int y1 = height- (int)barcodeRes.ResultPoints[0].Y ;
-                                int x2 = (int)barcodeRes.ResultPoints[1].X * width / image.Width - 109;
-                                int y2 = (int)barcodeRes.ResultPoints[1].Y * height / image.Height;
-                                return $"{x1}:{y1}:{x2}:{y2}";
-                            }
-                            else
-                            {
-                                int x1 = (int)barcodeRes.ResultPoints[0].X * width / image.Width + 160;
-                                int y1 = height - (int)barcodeRes.ResultPoints[0].Y - 30;
-                                int x2 = (int)barcodeRes.ResultPoints[1].X * width / image.Width - 109;
-                                int y2 = (int)barcodeRes.ResultPoints[1].Y;
-                                return $"{x1}:{y1}:{x2}:{y2}";
-                            }
-                        }
+                        x = (int)result.X1 + 70;
+                        y = (int)result.Y1+15;
+                        x2 = (int)result.X2 - 95;
                     }
+                    return $"{x}:{y}:{x2}";
                 }
             }
+            else
+                trackerServices.WriteFile("erro ao obter as posições do código de barras");
 
             return errorReadBarcode;
         }

@@ -85,7 +85,6 @@ namespace WatermarkApp
             string rotated_img = values[0];
             angle = double.Parse(values[1]);
             Console.WriteLine($"angle = {angle}");
-            string[] file_n = rotated_img.Split(new[] { "_rotated" }, StringSplitOptions.None);
 
             if (angle != 0.0)
             {
@@ -111,8 +110,6 @@ namespace WatermarkApp
                     tracker.WriteFile("ficheiro scan composto");
                 }
             }
-
-
 
             tracker.WriteFile("ficheiro scan está direito");
         }

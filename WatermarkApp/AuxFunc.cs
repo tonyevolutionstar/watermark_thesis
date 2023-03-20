@@ -304,12 +304,20 @@ namespace WatermarkApp
                         int center_x = width / 2;
                         int center_y = height / 2;
 
-                        new_x = res_x + diff_x;
-                        new_y = res_y + diff_y;
+                        if (diff_x < 0)
+                        {
+                            new_x = res_x + diff_x * 2;
+                        }
+                        else
+                        {
+                            new_x = res_x - diff_x * 2;
+                        }
+                       
+                        new_y = res_y + diff_y*2;
                         if (!watermark_file.Contains("scan"))
                             intersection = new Point(res_x, res_y);
                         else
-                            intersection = new Point((int) res_x, (int) res_y); //adjust point barcode
+                            intersection = new Point((int) new_x, (int) new_y); //adjust point barcode
 
                         g.DrawString(ch, drawFont, drawBrush, intersection);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);

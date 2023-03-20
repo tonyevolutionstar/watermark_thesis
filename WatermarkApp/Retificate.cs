@@ -69,7 +69,6 @@ namespace WatermarkApp
                 else
                 {
                     string barcode_pos = sql.Get_Positions_Barcode(id_doc);
-                    Console.WriteLine($"barcode_pos {barcode_pos}");
                     string[] val_barcode_pos = barcode_pos.Split(':');
                     // or = original
                     x_or = int.Parse(val_barcode_pos[0]);
@@ -85,7 +84,7 @@ namespace WatermarkApp
                     int x_dig = int.Parse(res_barcode_pos[0]);
                     int y_dig = int.Parse(res_barcode_pos[1]);
                     int x2_dig = int.Parse(res_barcode_pos[2]);
-                    /*
+                    
 
                     using (Bitmap bmp = new Bitmap(img))
                     {
@@ -93,22 +92,21 @@ namespace WatermarkApp
                         {
                             SolidBrush drawBrush = new SolidBrush(Color.Chocolate);
                             Font drawFont = new Font("Arial", 10);
-                            int p_x = x_or * bmp.Width / commom.width; 
-                            int p_y = y_or * bmp.Height / commom.height; 
-                            int p2_x = x2_or * bmp.Width / commom.width;
-                            int p2_y = y_or * bmp.Height / commom.height;
+                            int p_x = x_dig * bmp.Width / commom.width; 
+                            int p_y = y_dig * bmp.Height / commom.height; 
+                            int p2_x = x2_dig * bmp.Width / commom.width;
                             Point p = new Point(p_x, p_y);
-                            Point p2 = new Point(p2_x, p2_y);
+                            Point p2 = new Point(p2_x, p_y);
                             g.DrawString("p1", drawFont, drawBrush, p);
                             g.DrawString("p2", drawFont, drawBrush, p2);
                         }
-                        string name = commom.Get_file_name_using_split(file_name);
-                        bmp.Save(file_name + "_pos_barcode.png", System.Drawing.Imaging.ImageFormat.Png);
+                        string[] filename = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
+                        bmp.Save(filename[0] + "_pos_barcode.png", System.Drawing.Imaging.ImageFormat.Png);
                         bmp.Dispose();
                     }
-                    */
-                    diff_x = x_dig - x_or;
-                    diff_y = y_dig - y_or;
+                    
+                    diff_x = x_or - x_dig;
+                    diff_y = y_or - y_dig;
 
                     Console.WriteLine($"original barcode position {barcode_pos}, retificar barcode position {ret_pos_barcode}");
                     Console.WriteLine($"diffence between barcode x = {diff_x}, y = {diff_y}");

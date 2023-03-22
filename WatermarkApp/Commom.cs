@@ -64,7 +64,8 @@ namespace WatermarkApp
         {
             trackerServices.WriteFile($"lendo o código de barras do ficheiro {file_name}");
             string img_file = Convert_pdf_png(file_name);
-            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium, BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium,
+                BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
             if(result != null)
             {
                 return result.Value;
@@ -81,7 +82,8 @@ namespace WatermarkApp
             GetDimensionsDocument(file_name);
             trackerServices.WriteFile("lendo as posições do código de barras");
             string img_file = Convert_pdf_png(file_name);
-            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium, BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium,
+                BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
             if (result != null)
             {
                 using (Bitmap bmp = new Bitmap(img_file)) // garantir o fechar do bitmap - fecha todos os recursos usados
@@ -94,8 +96,15 @@ namespace WatermarkApp
                     if (file_name.Contains("scan"))
                     {
                         x = (int)result.X1 + 70;
-                        y = (int)result.Y1+15;
+                        y = (int)result.Y1 + 15;
                         x2 = (int)result.X2 - 95;
+
+                        //verify values of y
+                        if (y >= 1000)
+                            y = Math.Abs(height - y);
+                        if (x >= 250)
+                            x = Math.Abs(width - x - 70);
+
                     }
                     return $"{x}:{y}:{x2}";
                 }

@@ -43,7 +43,7 @@ CREATE TABLE watermark(
 	validacao INT, -- 0 reject, 1 accept
 	x INT, -- start x position barcode
 	y INT,  -- start y position barcode
-	x2 INT
+	x2 INT -- end x position barcode
 );
 
 CREATE TABLE forense_analises(

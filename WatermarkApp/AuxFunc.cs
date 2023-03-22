@@ -90,17 +90,18 @@ namespace WatermarkApp
                                 string line2_points = C.X + "," + C.Y + ":" + D.X + "," + D.Y;
                                 string inter_point = res.X + "," + res.Y;
 
-                                if(values_inter.TryGetValue(ch, out List<Point> list))
+                                if (values_inter.TryGetValue(ch, out List<Point> list))
                                 {
                                     list.Add(res);
                                 }
                                 else
                                 {
-                                    list = new List<Point> ();
+                                    list = new List<Point>();
                                     list.Add(res);
                                     values_inter.Add(ch, list);
                                 }
                                 values.Add(id_doc + "|" + combs[i] + "|" + combs[j] + "|" + inter_point + "|" + ch + "|" + line1_points + "|" + line2_points);
+                                
                             }
                         }
                     }
@@ -168,10 +169,6 @@ namespace WatermarkApp
 
         private Dictionary<string, Point> Obtain_points_surround_circle(string position, Bitmap bmp)
         {
-            //Graphics g = Graphics.FromImage(bmp);
-            //Font drawFont = new Font("Arial", 8);
-            //SolidBrush drawBrush = new SolidBrush(Color.Red);
-
             Dictionary<string, Point> circle_points = new Dictionary<string, Point>();
             for (int i = 0; i < numberPoints; i++)
             {
@@ -185,24 +182,14 @@ namespace WatermarkApp
                 int randomX = random.Next(min_random, max_random);
                 int randomY = random.Next(min_random, max_random);
 
-                //Point origin_point = new Point(x_circle, y_circle);
                 Point circles_l = new Point(x_circle + randomX, y_circle - randomY);
                 Point circles_r = new Point(x_circle - randomX, y_circle - randomY); 
                 Point circles_b = new Point(x_circle - randomX, y_circle);
-
-                //g.DrawString("p", drawFont, drawBrush, origin_point);
-                //g.DrawString("l", drawFont, drawBrush, circles_l);
-                //g.DrawString("r", drawFont, drawBrush, circles_r);
-                //g.DrawString("b", drawFont, drawBrush, circles_b);
 
                 circle_points.Add("point" + (i + 1) + "_l", circles_l);
                 circle_points.Add("point" + (i + 1) + "_r", circles_r);
                 circle_points.Add("point" + (i + 1) + "_b", circles_b);
             }
-
-            //string path = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Ficheiros\spefications.png";
-            //bmp.Save(path);
-
             return circle_points;
         }
 
@@ -282,8 +269,8 @@ namespace WatermarkApp
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
                     Pen yellow = new Pen(Color.Yellow, 3);
-                    int width = 15;
-                    int height = 20;
+                    int width = 10;
+                    int height = 15;
                     int startAngle = 0;
                     int sweepAngle = 360;
             
@@ -300,9 +287,6 @@ namespace WatermarkApp
                         int res_y = Convert.ToInt32(inter_point[1]);
                         double new_x = 0;
                         double new_y = 0;
-
-                        int center_x = width / 2;
-                        int center_y = height / 2;
 
                         if (diff_x < 0)
                         {

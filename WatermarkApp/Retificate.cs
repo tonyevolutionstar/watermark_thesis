@@ -73,43 +73,15 @@ namespace WatermarkApp
                     // or = original
                     x_or = int.Parse(val_barcode_pos[0]);
                     y_or = int.Parse(val_barcode_pos[1]);
-                    int x2_or = int.Parse(val_barcode_pos[2]);
-
-                    string img = commom.Convert_pdf_png(file_name);
-                    commom.GetDimensionsDocument(file_name);
-                        
+           
                     string ret_pos_barcode = commom.Return_PositionBarcode(file_name);
                     string[] res_barcode_pos = ret_pos_barcode.Split(':');
                     //Dig = digitalizado
                     int x_dig = int.Parse(res_barcode_pos[0]);
                     int y_dig = int.Parse(res_barcode_pos[1]);
-                    int x2_dig = int.Parse(res_barcode_pos[2]);
-                    
-
-                    using (Bitmap bmp = new Bitmap(img))
-                    {
-                        using (Graphics g = Graphics.FromImage(bmp))
-                        {
-                            SolidBrush drawBrush = new SolidBrush(Color.Chocolate);
-                            Font drawFont = new Font("Arial", 10);
-                            int p_x = x_dig * bmp.Width / commom.width; 
-                            int p_y = y_dig * bmp.Height / commom.height; 
-                            int p2_x = x2_dig * bmp.Width / commom.width;
-                            Point p = new Point(p_x, p_y);
-                            Point p2 = new Point(p2_x, p_y);
-                            g.DrawString("p1", drawFont, drawBrush, p);
-                            g.DrawString("p2", drawFont, drawBrush, p2);
-                        }
-                        string[] filename = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-                        bmp.Save(filename[0] + "_pos_barcode.png", System.Drawing.Imaging.ImageFormat.Png);
-                        bmp.Dispose();
-                    }
-                    
+               
                     diff_x = x_or - x_dig;
                     diff_y = y_or - y_dig;
-
-                    Console.WriteLine($"original barcode position {barcode_pos}, retificar barcode position {ret_pos_barcode}");
-                    Console.WriteLine($"diffence between barcode x = {diff_x}, y = {diff_y}");
 
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];
@@ -132,7 +104,5 @@ namespace WatermarkApp
             SQL_connection sql = new SQL_connection();
             commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y);
         }
-
-    
     }
 }

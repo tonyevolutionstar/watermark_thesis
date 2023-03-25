@@ -20,6 +20,8 @@ namespace WatermarkApp
 
         private int diff_x;
         private int diff_y;
+        private double coef_x;
+        private double coef_y;  
   
         private TrackerServices tracker = new TrackerServices(); 
 
@@ -73,15 +75,28 @@ namespace WatermarkApp
                     // or = original
                     x_or = int.Parse(val_barcode_pos[0]);
                     y_or = int.Parse(val_barcode_pos[1]);
+                    int x2_or = int.Parse(val_barcode_pos[2]);
            
                     string ret_pos_barcode = commom.Return_PositionBarcode(file_name);
                     string[] res_barcode_pos = ret_pos_barcode.Split(':');
                     //Dig = digitalizado
                     int x_dig = int.Parse(res_barcode_pos[0]);
                     int y_dig = int.Parse(res_barcode_pos[1]);
-               
+                    int x_2_dig = int.Parse(res_barcode_pos[2]);   
+
+
                     diff_x = x_or - x_dig;
                     diff_y = y_or - y_dig;
+                    Console.WriteLine($"Original pos {barcode_pos}, digital pos {ret_pos_barcode}"); 
+                    Console.WriteLine($"Diference x {diff_x}, diference y {diff_y}");
+                    int x_diff_or = x2_or - x_or;
+                    int x_diff_dig = x_2_dig - x_dig;
+                    coef_x = (double) x_diff_dig / x_diff_or;
+
+
+                    Console.WriteLine($"X original {x_diff_or}, x retificar {x_diff_dig}");
+                    Console.WriteLine($"Coeficient x {coef_x}");
+
 
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];
@@ -102,7 +117,7 @@ namespace WatermarkApp
         {
             MessageBox.Show(infoAnaliseForense);
             SQL_connection sql = new SQL_connection();
-            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y);
+            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y, coef_x, coef_y);
         }
     }
 }

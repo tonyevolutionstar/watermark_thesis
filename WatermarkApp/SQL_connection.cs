@@ -231,7 +231,7 @@ namespace WatermarkApp
             }
 
             if(insertSuc)
-                tracker.WriteFile("inserceção de valores acerca da análise forense na base de dados " + tracker.finnishState);
+                tracker.WriteFile("inserceção de valores acerca da análise forense " + inter_char.Trim() + " na base de dados " + tracker.finnishState);
             else
                 tracker.WriteFile("inserceção de valores acerca da análise forense na base de dados " + tracker.insertionError);
         }
@@ -257,9 +257,9 @@ namespace WatermarkApp
 
 
             if(numberRecords > 0)
-                tracker.WriteFile("inserceção de valores acerca das posições dos caracteres no ficheiro na base de dados " + tracker.finnishState);
+                tracker.WriteFile("inserceção de valores acerca das posições dos caractere " +  value_char + " no ficheiro na base de dados " + tracker.finnishState);
             else
-                tracker.WriteFile("inserceção de valores acerca das posições dos caracteres no ficheiro na base de dados " + tracker.insertionError);
+                tracker.WriteFile("inserceção de valores acerca das posições dos caractere no ficheiro na base de dados " + tracker.insertionError);
         }
 
         public List<string> Get_Values_Analise_Forense(int id_doc)
@@ -345,9 +345,70 @@ namespace WatermarkApp
             }
             catch (Exception ex)
             {
-                tracker.WriteFile($"erro ao obter as posições do código de barra da base de dados {ex.Message}");
+                tracker.WriteFile($"erro ao obter as posições do código de barra da base de dados - {ex.Message}");
             }
             return pos_barcode;
         }
+
+
+        public void Remove_Forense(int id_doc)
+        {
+            sql = "Use Watermark; Delete from forense_analises where id_doc = " + id_doc + ";";
+            connection = new SqlConnection(connetionString);
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                tracker.WriteFile($"erro ao eliminar a analise forense - {ex.Message}");
+            }
+        }
+
+        public void Remove_position_char_file(int id_doc)
+        {
+            sql = "Use Watermark; Delete from position_char_file where id_doc = " + id_doc + ";";
+            connection = new SqlConnection(connetionString);
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                tracker.WriteFile($"erro ao eliminar as posições do documento - {ex.Message}");
+            }
+        }
+
+
+
+        public void Remove_document(int id_doc)
+        {
+            sql = "Use Watermark; Delete from Document where id_document = " + id_doc + ";";
+            connection = new SqlConnection(connetionString);
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                tracker.WriteFile($"erro ao eliminar o documento por não ser aceite nem rejeitado {ex.Message}");
+            }
+        }
+
     }
 }

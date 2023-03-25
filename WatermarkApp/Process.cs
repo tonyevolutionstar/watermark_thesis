@@ -35,13 +35,15 @@ namespace WatermarkApp
         private string doc_file = "";
         private string extension_pos = "_pos.txt";
       
-        private string add_file = "_watermark_"; // distinguir ficheiros com e sem marca de água
+        private string watermark_file = "_watermark_"; // distinguir ficheiros com e sem marca de água
 
         private int x_barcode_pos;
         private int y_barcode_pos;
         private int x2_barcode_pos;
 
         private TrackerServices tracker = new TrackerServices();
+        int status = -1; // 0 rejected, 1 accepted;
+   
 
         /// <summary>
         /// Processamento do ficheiro para a originação do documento com marca de água
@@ -164,7 +166,7 @@ namespace WatermarkApp
         {
             string[] show_doc = file_name.Split(new[] { commom.files_dir }, StringSplitOptions.None);
      
-            if (System.IO.File.Exists(doc_file + add_file + date_time + ".pdf"))
+            if (System.IO.File.Exists(doc_file + watermark_file + date_time + ".pdf"))
             {
                 MessageBox.Show(already_processed);  
             }
@@ -176,7 +178,7 @@ namespace WatermarkApp
                 Controls.Add(document_name);
                 Generate_watermark(doc_file);
 
-                axAcroPDF1.src = doc_file + add_file + date_time + ".pdf";
+                axAcroPDF1.src = doc_file + watermark_file + date_time + ".pdf";
                 Controls.Add(axAcroPDF1);
                 MessageBox.Show(doc_watermark_generated);
                 Delete_aux_files(doc_file);
@@ -210,7 +212,7 @@ namespace WatermarkApp
             string pos = filename + extension_pos;
             delete_files.Add(pos);
 
-            string watermark_png = filename + add_file + date_time + ".png";
+            string watermark_png = filename + watermark_file + date_time + ".png";
             delete_files.Add(watermark_png);
             
             try
@@ -244,7 +246,7 @@ namespace WatermarkApp
                 watermark.Add_watermark_pdf(date_time);
                 tracker.WriteFile("código de barras adicionado ao ficheiro");
 
-                string pos_barcode = commom.Return_PositionBarcode(file_name + add_file + date_time + ".pdf");
+                string pos_barcode = commom.Return_PositionBarcode(file_name + watermark_file + date_time + ".pdf");
                 tracker.WriteFile("obtenção das posições do código de barras no ficheiro " + tracker.finnishState);
                 Console.WriteLine($"pos_barcode = {pos_barcode}");
                 string[] val_pos_barcode = pos_barcode.Split(':');
@@ -260,7 +262,7 @@ namespace WatermarkApp
                 id_barcode = sql.Get_id_barcode(date_time_barcode.ToString());
 
                 AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf");
-                auxFunc.CalculateIntersection(analise.positions, file_name + add_file + date_time + ".pdf");
+                auxFunc.CalculateIntersection(analise.positions, file_name + watermark_file + date_time + ".pdf");
             }
         }
 
@@ -350,11 +352,12 @@ namespace WatermarkApp
                     string[] show_doc = file_name.Split(new[] { commom.files_dir }, StringSplitOptions.None);
                     string doc_name = commom.Get_file_name_using_split(file_name);
 
-                    string file_name_watermark = doc_name + add_file + date_time + ".pdf";
+                    string file_name_watermark = doc_name + watermark_file + date_time + ".pdf";
                     if (System.IO.File.Exists(file_name_watermark))
                     {
+                        status = 1;
                         SQL_connection sql = new SQL_connection();
-                        sql.Insert_watermark(id_doc, id_barcode, 1, x_barcode_pos, y_barcode_pos, x2_barcode_pos);
+                        sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos);
                         tracker.WriteFile("documento aceite na base de dados");
                         MessageBox.Show(accepted_Doc);
                         accept_flag = true;
@@ -376,7 +379,7 @@ namespace WatermarkApp
         private void Reject_btn_Click(object sender, EventArgs e)
         {
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-            string file_name_watermark = s_doc[0] + add_file + date_time + ".pdf";
+            string file_name_watermark = s_doc[0] + watermark_file + date_time + ".pdf";
 
             if (accept_flag)
                 MessageBox.Show(already_accepted);
@@ -384,9 +387,10 @@ namespace WatermarkApp
             {
                 if (System.IO.File.Exists(file_name_watermark))
                 {
+                    status = 0;
                     SQL_connection sql = new SQL_connection();
-                    sql.Insert_watermark(id_doc, id_barcode, 0, x_barcode_pos, y_barcode_pos, x2_barcode_pos);
-                    tracker.WriteFile("documento reijatado na base de dados");
+                    sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos);
+                    tracker.WriteFile("documento rejeitado na base de dados");
                     System.IO.File.Delete(file_name_watermark);
                     Process_file();
                     MessageBox.Show(rejected_Doc);
@@ -408,5 +412,38 @@ namespace WatermarkApp
             tracker.WriteFile("processamento do ficheiro a iniciar");
             Process_file();
         }
+
+
+        private void Remove_doc()
+        {
+            if (status == -1)
+            {
+                SQL_connection sql = new SQL_connection();
+                sql.Remove_Forense(id_doc);
+                tracker.WriteFile("eliminado informações da analise forense, já que o formulário foi fechado sem o documento ser aceite ou rejeitado");
+                sql.Remove_position_char_file(id_doc);
+                tracker.WriteFile("eliminado informações das posições, já que o formulário foi fechado sem o documento ser aceite ou rejeitado");
+                sql.Remove_document(id_doc);
+                tracker.WriteFile("eliminado informações do documento, já que o formulário foi fechado sem o documento ser aceite ou rejeitado");
+            }
+        }
+
+
+
+        private void Process_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Remove_doc();
+            string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
+            string png_file = s_doc[0] + watermark_file + date_time + ".png";
+            string file_name_watermark = s_doc[0] + watermark_file + date_time + ".pdf";
+
+            if (File.Exists(file_name_watermark))
+                File.Delete(file_name_watermark);
+
+            if (File.Exists(png_file))
+                File.Delete(png_file);
+        }
+
+
     }
 }

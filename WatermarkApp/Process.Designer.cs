@@ -100,7 +100,7 @@ namespace WatermarkApp
             this.axAcroPDF1.Size = new System.Drawing.Size(1084, 629);
             this.axAcroPDF1.TabIndex = 10;
             // 
-            // Processamento
+            // Process
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -110,9 +110,10 @@ namespace WatermarkApp
             this.Controls.Add(this.doc_label);
             this.Controls.Add(this.rejeitar_btn);
             this.Controls.Add(this.aceitar_btn);
-            this.Name = "Processamento";
+            this.Name = "Process";
             this.Text = "Watermark";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Process_FormClosed);
             this.Load += new System.EventHandler(this.Process_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axAcroPDF1)).EndInit();
             this.ResumeLayout(false);

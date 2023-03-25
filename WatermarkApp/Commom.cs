@@ -104,6 +104,8 @@ namespace WatermarkApp
                             y = Math.Abs(height - y);
                         if (x >= 250)
                             x = Math.Abs(width - x - 70);
+                        if (x2 >= 500)
+                            x2 = Math.Abs(width - x2 - 90);
 
                     }
                     return $"{x}:{y}:{x2}";
@@ -116,12 +118,12 @@ namespace WatermarkApp
         }
 
 
-        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y)
+        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double coef_x, double coef_y)
         {   
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name);
 
-            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y);
+            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, coef_x, coef_y);
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";

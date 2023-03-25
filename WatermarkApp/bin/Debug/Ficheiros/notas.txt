@@ -1,1 +1,2 @@
 adicionar num fim do processamento um sql statemente a verificar se o documento foi inserte ou nao na tabela watermark, senao apagar a row correspondente.
+adicionar retas para visualizar o problema, compor os pontos

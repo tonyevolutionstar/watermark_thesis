@@ -40,6 +40,8 @@ namespace WatermarkApp
         {
             string f = commom.Convert_pdf_png(watermark_file);
             Bitmap bmp = new Bitmap(f);
+            Pen pen = new Pen(Color.Black); 
+            Graphics g = Graphics.FromImage(bmp);
 
             circle_points = Obtain_points_surround_circle(position, bmp);
        
@@ -80,6 +82,7 @@ namespace WatermarkApp
                         circle_points.TryGetValue(points_j[1], out Point D);
                   
                         Point res = Intersection(A, B, C, D);
+                        g.DrawLine(pen, A, B);
                       
                         if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
                         {
@@ -165,6 +168,7 @@ namespace WatermarkApp
                 }
             }
             bmp.Dispose();
+            g.Dispose();
         }
 
         private Dictionary<string, Point> Obtain_points_surround_circle(string position, Bitmap bmp)
@@ -257,9 +261,10 @@ namespace WatermarkApp
         /// <param name="diff_x"></param>
         /// <param name="diff_y"></param>
 
-        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y)
+        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y, double coef_x, double coef_y)
         {
             string f = commom.Convert_pdf_png(watermark_file);
+
 
             int sizeLetter = 10;
             Point intersection;
@@ -269,8 +274,8 @@ namespace WatermarkApp
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
                     Pen yellow = new Pen(Color.Yellow, 3);
-                    int width = 10;
-                    int height = 15;
+                    int width = 5;
+                    int height = 5;
                     int startAngle = 0;
                     int sweepAngle = 360;
             
@@ -290,14 +295,14 @@ namespace WatermarkApp
 
                         if (diff_x < 0)
                         {
-                            new_x = res_x + diff_x * 2;
+                            new_x = res_x - diff_x * coef_x;
                         }
                         else
                         {
-                            new_x = res_x - diff_x * 2;
+                            new_x = res_x + diff_x * coef_x;
                         }
                        
-                        new_y = res_y + diff_y*2;
+                        new_y = res_y + diff_y;
                         if (!watermark_file.Contains("scan"))
                             intersection = new Point(res_x, res_y);
                         else

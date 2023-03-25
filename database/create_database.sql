@@ -67,9 +67,32 @@ CREATE TABLE position_char_file(
 
 -- Select * from document;
 -- Select * from barcode;
--- Select id_doc, id_barcode, validacao, x, y,  from watermark inner join document on watermark.id_doc;
+-- Select * from watermark;
 -- Select * from forense_analises;
 -- Select * from position_char_file;
+Select nome_ficheiro, date_time 
+from document inner join watermark 
+	on watermark.id_doc = document.id_document 
+	order by date_time desc;
 
-Select nome_ficheiro, id_barcode, validacao, x, y, x2, date_time
-from watermark inner join document on watermark.id_doc = document.id_document
+---
+delete from forense_analises
+where id_doc in (
+select document.id_document from document left join watermark 
+on document.id_document = watermark.id_doc left join forense_analises 
+on forense_analises.id_doc = document.id_document where validacao IS NULL )
+
+delete from position_char_file 
+where id_doc in (
+select position_char_file.id_doc from document left join watermark
+	on document.id_document = watermark.id_doc left join position_char_file 
+	on position_char_file.id_doc = document.id_document where validacao IS NULL)
+
+delete from Document 
+where id_document in (select document.id_document 
+from document left join watermark on document.id_document = watermark.id_doc
+left join forense_analises on forense_analises.id_doc = document.id_document where validacao IS NULL )
+
+delete from barcode where id_barcode in (select id_barcode
+from document left join watermark on document.id_document = watermark.id_doc
+left join forense_analises on forense_analises.id_doc = document.id_document where validacao IS NULL) 

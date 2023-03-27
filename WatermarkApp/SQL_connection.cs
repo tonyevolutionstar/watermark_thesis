@@ -95,10 +95,11 @@ namespace WatermarkApp
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <param name="x2"></param>
-        public void Insert_watermark(int id_document, int id_barcode, int validation, int x, int y, int x2)
+        /// <param name="y2"></param>
+        public void Insert_watermark(int id_document, int id_barcode, int validation, int x, int y, int x2, int y2)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[watermark] VALUES ("
-            + id_document + "," + id_barcode + "," + validation + "," + x + "," + y + "," + x2 + ");";
+            + id_document + "," + id_barcode + "," + validation + "," + x + "," + y + "," + x2 + "," + y2 + ");";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -328,7 +329,7 @@ namespace WatermarkApp
         public string Get_Positions_Barcode(int id_doc)
         {
             string pos_barcode = "";
-            sql = "Use Watermark; Select x, y, x2 from barcode inner join watermark on barcode.id_barcode = watermark.id_barcode where id_doc = " + id_doc + ";";
+            sql = "Use Watermark; Select x, y, x2, y2 from barcode inner join watermark on barcode.id_barcode = watermark.id_barcode where id_doc = " + id_doc + ";";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -337,7 +338,7 @@ namespace WatermarkApp
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    pos_barcode = dataReader.GetValue(0).ToString() + ":" + dataReader.GetValue(1).ToString() + ":" + dataReader.GetValue(2).ToString();
+                    pos_barcode = dataReader.GetValue(0).ToString() + ":" + dataReader.GetValue(1).ToString() + ":" + dataReader.GetValue(2).ToString() + ":" + dataReader.GetValue(3).ToString();
                 }
                 dataReader.Close();
                 command.Dispose();

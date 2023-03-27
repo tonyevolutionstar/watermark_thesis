@@ -142,7 +142,7 @@
             this.forense_btn.UseVisualStyleBackColor = true;
             this.forense_btn.Click += new System.EventHandler(this.Forense_btn_Click);
             // 
-            // Retificar
+            // Retificate
             // 
             this.AccessibleRole = System.Windows.Forms.AccessibleRole.ScrollBar;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -158,10 +158,10 @@
             this.Controls.Add(this.file_qrcode);
             this.Controls.Add(this.dct_name);
             this.Controls.Add(this.label1);
-            this.Name = "Retificar";
+            this.Name = "Retificate";
             this.Text = "Retificar";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
-          
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Retificate_FormClosed);
             this.Load += new System.EventHandler(this.Retificate_Load);
             ((System.ComponentModel.ISupportInitialize)(this.file_qrcode)).EndInit();
             this.ResumeLayout(false);

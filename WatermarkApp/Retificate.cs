@@ -76,27 +76,52 @@ namespace WatermarkApp
                     x_or = int.Parse(val_barcode_pos[0]);
                     y_or = int.Parse(val_barcode_pos[1]);
                     int x2_or = int.Parse(val_barcode_pos[2]);
+                    int y2_or = int.Parse(val_barcode_pos[3]);
            
                     string ret_pos_barcode = commom.Return_PositionBarcode(file_name);
                     string[] res_barcode_pos = ret_pos_barcode.Split(':');
                     //Dig = digitalizado
                     int x_dig = int.Parse(res_barcode_pos[0]);
                     int y_dig = int.Parse(res_barcode_pos[1]);
-                    int x_2_dig = int.Parse(res_barcode_pos[2]);   
+                    int x2_dig = int.Parse(res_barcode_pos[2]);   
+                    int y2_dig = int.Parse(res_barcode_pos[3]);
+                    int x_diff_or = x2_or - x_or;
+                    int x_diff_dig = x2_dig - x_dig;
+                    int y_diff_dig = y2_dig - y_dig;
+                    int y_diff_or = y2_or - y_or;
 
-
-                    diff_x = x_or - x_dig;
-                    diff_y = y_or - y_dig;
+                    diff_x = x_dig - x_or;
+                    diff_y = y_dig - y_or;
                     Console.WriteLine($"Original pos {barcode_pos}, digital pos {ret_pos_barcode}"); 
                     Console.WriteLine($"Diference x {diff_x}, diference y {diff_y}");
-                    int x_diff_or = x2_or - x_or;
-                    int x_diff_dig = x_2_dig - x_dig;
+                    
+
                     coef_x = (double) x_diff_dig / x_diff_or;
-
-
+                    coef_y = (double) y_diff_dig / y_diff_or;
+                  
                     Console.WriteLine($"X original {x_diff_or}, x retificar {x_diff_dig}");
-                    Console.WriteLine($"Coeficient x {coef_x}");
+                    Console.WriteLine($"Coeficient x {coef_x}, Coeficient y {coef_y}");
+               
+                    
+                    string img_file = commom.Convert_pdf_png(file_name);
+                    Font drawFont = new Font("Arial", 10);
+                    SolidBrush drawBrush = new SolidBrush(Color.Blue);
+                    commom.GetDimensionsDocument(file_name);
 
+
+                    using (Bitmap bmp = new Bitmap(img_file))
+                    {
+                        using(Graphics g = Graphics.FromImage(bmp))
+                        {
+                            g.DrawString("p1_d_l_u", drawFont, drawBrush, x_dig * bmp.Width / commom.width, y_dig * bmp.Height/commom.height);
+                            g.DrawString("p1_d_l_b", drawFont, drawBrush, x_dig * bmp.Width / commom.width, y2_dig * bmp.Height / commom.height);
+                            g.DrawString("p1_d_r_u", drawFont, drawBrush, x2_dig * bmp.Width / commom.width, y_dig * bmp.Height / commom.height);
+                            g.DrawString("p1_d_r_b", drawFont, drawBrush, x2_dig * bmp.Width / commom.width, y2_dig * bmp.Height / commom.height);
+                        }
+
+                        bmp.Save(commom.files_dir + @"\test.png");
+                    }
+                   
 
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];
@@ -118,6 +143,17 @@ namespace WatermarkApp
             MessageBox.Show(infoAnaliseForense);
             SQL_connection sql = new SQL_connection();
             commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y, coef_x, coef_y);
+        }
+
+        private void Retificate_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            string name_file = commom.Get_file_name_using_split(file_name);
+            string file_rotated = name_file + "_rotated.png";
+            string img_file = name_file + ".png";
+            if (File.Exists(file_rotated))
+                File.Delete(file_rotated);  
+            if (File.Exists(img_file))
+                File.Delete(img_file);
         }
     }
 }

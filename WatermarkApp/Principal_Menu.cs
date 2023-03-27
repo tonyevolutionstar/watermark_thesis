@@ -84,6 +84,7 @@ namespace WatermarkApp
             string[] values = val.Split('|');
             string rotated_img = values[0];
             angle = double.Parse(values[1]);
+            
             Console.WriteLine($"angle = {angle}");
 
             if (angle != 0.0)
@@ -102,11 +103,13 @@ namespace WatermarkApp
                     image.ScaleToFit(doc.PageSize.Width, doc.PageSize.Height);
                     doc.Add(image);
                     doc.Close();
+                    
                     FileSystem.DeleteFile(file_val[0] + ".pdf", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
                     FileSystem.CopyFile(file_val[0] + "_rotated.pdf", file_val[0] + ".pdf", UIOption.OnlyErrorDialogs);                   
                     File.Delete(file_val[0] + "_rotated.pdf");
                     FileSystem.DeleteFile(file_val[0] + "_rotated.png", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
                     FileSystem.DeleteFile(file_val[0] + ".png", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                    
                     tracker.WriteFile("ficheiro scan composto");
                 }
             }
@@ -120,8 +123,8 @@ namespace WatermarkApp
             string[] s_doc = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             var copy_image = (Bitmap)System.Drawing.Image.FromFile(img);
-            int stripCount = 10;
-            Compact compact = new Compact(copy_image, stripCount);
+            int stripCount = 10; // se o scan nao ter posições ou estiver muito torto alterar para 30
+            var compact = new Compact(copy_image, stripCount);
 
             //find rotation angle
             int stripX1 = 2;//take 3-rd strip
@@ -130,13 +133,11 @@ namespace WatermarkApp
             double angle = SkewCalculator.FindRotateAngle(compact, stripX1, stripX2);
             angle = (angle * 180 / Math.PI);//to degrees
 
-            Bitmap rotated = Rotator.Rotate(copy_image, angle);
+            var rotated = Rotator.Rotate(copy_image, angle);
             rotated.Save(s_doc[0] + "_rotated.png");
-            rotated.Dispose();
 
             return s_doc[0] + "_rotated.png" + "|" + angle;
         }
-
 
 
         private void Retificate_btn_Click(object sender, EventArgs e)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+
 namespace WatermarkApp
 {
     /// <summary>
@@ -82,7 +83,7 @@ namespace WatermarkApp
                         circle_points.TryGetValue(points_j[1], out Point D);
                   
                         Point res = Intersection(A, B, C, D);
-                        g.DrawLine(pen, A, B);
+                        //g.DrawLine(pen, A, B);
                       
                         if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
                         {
@@ -168,7 +169,7 @@ namespace WatermarkApp
                 }
             }
             bmp.Dispose();
-            g.Dispose();
+            //g.Dispose();
         }
 
         private Dictionary<string, Point> Obtain_points_surround_circle(string position, Bitmap bmp)
@@ -260,12 +261,12 @@ namespace WatermarkApp
         /// <param name="watermark_file"></param>
         /// <param name="diff_x"></param>
         /// <param name="diff_y"></param>
+        /// <param name="coef_x"></param>
+        /// <param name="coef_y"></param>
 
         public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y, double coef_x, double coef_y)
         {
             string f = commom.Convert_pdf_png(watermark_file);
-
-
             int sizeLetter = 10;
             Point intersection;
 
@@ -281,6 +282,7 @@ namespace WatermarkApp
             
                     Font drawFont = new Font("Arial", sizeLetter);
                     SolidBrush drawBrush = new SolidBrush(Color.Blue);
+      
 
                     for (int i = 0; i < return_list.Count; i++)
                     {
@@ -290,24 +292,26 @@ namespace WatermarkApp
 
                         int res_x = Convert.ToInt32(inter_point[0]);
                         int res_y = Convert.ToInt32(inter_point[1]);
-                        double new_x = 0;
-                        double new_y = 0;
 
-                        if (diff_x < 0)
-                        {
-                            new_x = res_x - diff_x * coef_x;
-                        }
-                        else
-                        {
-                            new_x = res_x + diff_x * coef_x;
-                        }
-                       
-                        new_y = res_y + diff_y;
+                        //convert points in bitmap values to doc values
+                        Console.WriteLine($"diff inside analise {diff_x}, {diff_y}");
+
+                        int new_p_x = res_x * w / bmp.Width; 
+                        int new_p_y = res_y * h / bmp.Height;
+                        int new_x = new_p_x + diff_x;
+                        int new_y = new_p_y - diff_y;
+
+
+                        Console.WriteLine($"ch {ch}");
+                        Console.WriteLine($"Original point {new_p_x},{new_p_y} ");
+                        Console.WriteLine($"Scan point {new_x},{new_y}");
+
+
                         if (!watermark_file.Contains("scan"))
                             intersection = new Point(res_x, res_y);
                         else
-                            intersection = new Point((int) new_x, (int) new_y); //adjust point barcode
-
+                            intersection = new Point(new_x*bmp.Width/w, new_y*bmp.Height/h); //adjust point barcode
+               
                         g.DrawString(ch, drawFont, drawBrush, intersection);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);
                     }

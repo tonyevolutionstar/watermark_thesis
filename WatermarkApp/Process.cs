@@ -40,6 +40,7 @@ namespace WatermarkApp
         private int x_barcode_pos;
         private int y_barcode_pos;
         private int x2_barcode_pos;
+        private int y2_barcode_pos;
 
         private TrackerServices tracker = new TrackerServices();
         int status = -1; // 0 rejected, 1 accepted;
@@ -248,11 +249,11 @@ namespace WatermarkApp
 
                 string pos_barcode = commom.Return_PositionBarcode(file_name + watermark_file + date_time + ".pdf");
                 tracker.WriteFile("obtenção das posições do código de barras no ficheiro " + tracker.finnishState);
-                Console.WriteLine($"pos_barcode = {pos_barcode}");
                 string[] val_pos_barcode = pos_barcode.Split(':');
                 x_barcode_pos = int.Parse(val_pos_barcode[0]);
                 y_barcode_pos = int.Parse(val_pos_barcode[1]);
                 x2_barcode_pos = int.Parse(val_pos_barcode[2]);
+                y2_barcode_pos = int.Parse(val_pos_barcode[3]);
 
                 Integrity analise = new Integrity(x_barcode_pos, y_barcode_pos, x2_barcode_pos);
                 tracker.WriteFile("determinação dos pontos para a análise forense " + tracker.finnishState);
@@ -357,7 +358,7 @@ namespace WatermarkApp
                     {
                         status = 1;
                         SQL_connection sql = new SQL_connection();
-                        sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos);
+                        sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos, y2_barcode_pos);
                         tracker.WriteFile("documento aceite na base de dados");
                         MessageBox.Show(accepted_Doc);
                         accept_flag = true;
@@ -389,7 +390,7 @@ namespace WatermarkApp
                 {
                     status = 0;
                     SQL_connection sql = new SQL_connection();
-                    sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos);
+                    sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos, y2_barcode_pos);
                     tracker.WriteFile("documento rejeitado na base de dados");
                     System.IO.File.Delete(file_name_watermark);
                     Process_file();
@@ -429,7 +430,6 @@ namespace WatermarkApp
         }
 
 
-
         private void Process_FormClosed(object sender, FormClosedEventArgs e)
         {
             Remove_doc();
@@ -443,7 +443,5 @@ namespace WatermarkApp
             if (File.Exists(png_file))
                 File.Delete(png_file);
         }
-
-
     }
 }

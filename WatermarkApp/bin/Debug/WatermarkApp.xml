@@ -62,6 +62,8 @@
             <param name="watermark_file"></param>
             <param name="diff_x"></param>
             <param name="diff_y"></param>
+            <param name="coef_x"></param>
+            <param name="coef_y"></param>
         </member>
         <member name="T:WatermarkApp.Commom">
             <summary>
@@ -296,7 +298,7 @@
             <param name="ID">número de identificação ficheiro</param>
             <returns>0 - não tem, >1 se tem</returns>
         </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Faz registo de cada vez que um documento com watermark é gerado, guardando se o utilizador aceitou ou rejeitou
             </summary>
@@ -306,6 +308,7 @@
             <param name="x"></param>
             <param name="y"></param>
             <param name="x2"></param>
+            <param name="y2"></param>
         </member>
         <member name="M:WatermarkApp.SQL_connection.Search_document(System.Int32)">
             <summary>

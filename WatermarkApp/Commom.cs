@@ -1,12 +1,9 @@
 ﻿using IronBarCode;
-using iTextSharp.text;
 using iTextSharp.text.pdf;
-using iTextSharp.text.pdf.parser;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-
 
 namespace WatermarkApp
 {
@@ -93,22 +90,26 @@ namespace WatermarkApp
                     int x = (int)result.X1 * width / bmp.Width + 95;
                     int y = (int)result.Y1 * height / bmp.Height + 15;
                     int x2 = (int)result.X2 * width / bmp.Width - 65;
+                    int y2 = (int)result.Y2 * height / bmp.Height;
                     if (file_name.Contains("scan"))
                     {
-                        x = (int)result.X1 + 70;
-                        y = (int)result.Y1 + 15;
-                        x2 = (int)result.X2 - 95;
+                        x = (int)result.X1 * width / bmp.Width + 95;
+                        y = (int)result.Y1 * height / bmp.Height + 15;
+                        x2 = (int)result.X2 * width / bmp.Width - 65;
+                        y2 = (int)result.Y2 * height / bmp.Height;
 
-                        //verify values of y
+                        //fixing the values of scan image 
                         if (y >= 1000)
-                            y = Math.Abs(height - y);
-                        if (x >= 250)
-                            x = Math.Abs(width - x - 70);
+                            y = Math.Abs(height - y+15);
+                        if (x >= 220)
+                            x = Math.Abs(width - x-70);
                         if (x2 >= 500)
-                            x2 = Math.Abs(width - x2 - 90);
+                            x2 = Math.Abs(width - x2-40);
+                        if (y2 >= 1000)
+                            y2 = Math.Abs(height - y2+70);
 
                     }
-                    return $"{x}:{y}:{x2}";
+                    return $"{x}:{y}:{x2}:{y2}";
                 }
             }
             else

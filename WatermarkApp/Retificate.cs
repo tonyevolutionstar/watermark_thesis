@@ -90,38 +90,50 @@ namespace WatermarkApp
                     int y_diff_dig = y2_dig - y_dig;
                     int y_diff_or = y2_or - y_or;
 
-                    diff_x = x_dig - x_or;
+                    diff_x = (x_diff_dig - x_diff_or);
                     diff_y = y_dig - y_or;
                     Console.WriteLine($"Original pos {barcode_pos}, digital pos {ret_pos_barcode}"); 
-                    Console.WriteLine($"Diference x {diff_x}, diference y {diff_y}");
-                    
+                    Console.WriteLine($"Diference x {diff_x}, diference y {diff_y}"); 
 
                     coef_x = (double) x_diff_dig / x_diff_or;
                     coef_y = (double) y_diff_dig / y_diff_or;
                   
                     Console.WriteLine($"X original {x_diff_or}, x retificar {x_diff_dig}");
                     Console.WriteLine($"Coeficient x {coef_x}, Coeficient y {coef_y}");
-               
-                    
-                    string img_file = commom.Convert_pdf_png(file_name);
-                    Font drawFont = new Font("Arial", 10);
-                    SolidBrush drawBrush = new SolidBrush(Color.Blue);
+
+                    string img = commom.Convert_pdf_png(file_name);
                     commom.GetDimensionsDocument(file_name);
+                    //arc
+                    int w_arc = 5;
+                    int h_arc = 5;
+                    int startAngle = 0;
+                    int sweepAngle = 360;
+                    Pen yellow = new Pen(Color.Yellow, 3);
 
-
-                    using (Bitmap bmp = new Bitmap(img_file))
+                    using (Bitmap bmp = new Bitmap(img))
                     {
-                        using(Graphics g = Graphics.FromImage(bmp))
+                        using (Graphics g = Graphics.FromImage(bmp))
                         {
-                            g.DrawString("p1_d_l_u", drawFont, drawBrush, x_dig * bmp.Width / commom.width, y_dig * bmp.Height/commom.height);
-                            g.DrawString("p1_d_l_b", drawFont, drawBrush, x_dig * bmp.Width / commom.width, y2_dig * bmp.Height / commom.height);
-                            g.DrawString("p1_d_r_u", drawFont, drawBrush, x2_dig * bmp.Width / commom.width, y_dig * bmp.Height / commom.height);
-                            g.DrawString("p1_d_r_b", drawFont, drawBrush, x2_dig * bmp.Width / commom.width, y2_dig * bmp.Height / commom.height);
-                        }
-
-                        bmp.Save(commom.files_dir + @"\test.png");
+                            SolidBrush drawBrush = new SolidBrush(Color.Chocolate);
+                            Font drawFont = new Font("Arial", 10);
+                            int p_x = x_dig * bmp.Width / commom.width;
+                            int p_y = y_dig * bmp.Height / commom.height;
+                            int p2_x = x2_dig * bmp.Width / commom.width;
+                            int p2_y = y2_dig * bmp.Height / commom.height;
+                            Point p1_l_u_o = new Point(p_x, p_y);
+                            Point p1_r_u_o = new Point(p2_x, p_y);
+                            Point p1_r_b_o = new Point(p2_x, p2_y);
+                            Point p1_l_b_o = new Point(p_x, p2_y);
+                            g.DrawArc(yellow, p1_l_u_o.X, p1_l_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(yellow, p1_r_u_o.X, p1_r_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(yellow, p1_l_b_o.X, p1_l_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(yellow, p1_r_b_o.X, p1_r_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.Dispose();                        }
+                        string[] filename = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
+                        bmp.Save(filename[0] + "_pos_barcode.png", System.Drawing.Imaging.ImageFormat.Png);
+                        bmp.Dispose();
+                        
                     }
-                   
 
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];

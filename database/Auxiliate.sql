@@ -32,3 +32,14 @@ left join forense_analises on forense_analises.id_doc = document.id_document whe
 delete from barcode where id_barcode in (select id_barcode
 from document left join watermark on document.id_document = watermark.id_doc
 left join forense_analises on forense_analises.id_doc = document.id_document where validacao IS NULL) 
+
+
+-- delete aux
+DELETE FROM forense_analises
+WHERE inter_point IN (
+    SELECT inter_point
+    FROM forense_analises
+    GROUP BY id_doc, inter_point
+	having  Count(inter_point) > 1
+)
+and id_doc = 1614377065

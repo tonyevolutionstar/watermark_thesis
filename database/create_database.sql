@@ -51,7 +51,7 @@ CREATE TABLE forense_analises(
 	id_doc INT FOREIGN KEY REFERENCES document(id_document),
 	line1 varchar(200),
 	line2 varchar(200),
-	inter_point varchar(10), -- intersection point
+	inter_point varchar(100), -- intersection point
 	inter_char nvarchar(2),    -- character on that position
 	line1_points varchar(200),
 	line2_points varchar(200)
@@ -71,4 +71,3 @@ CREATE TABLE position_char_file(
 -- Select * from watermark;
 -- Select * from forense_analises;
 -- Select * from position_char_file;
-

@@ -100,7 +100,7 @@ namespace WatermarkApp
                     iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rotated_img);
                     image.SetDpi(300, 300);
                     image.SetAbsolutePosition(0, 0); // canto superior esquerdo
-                    image.ScaleToFit(doc.PageSize.Width, doc.PageSize.Height);
+                    image.ScaleToFit(doc.PageSize.Width-1, doc.PageSize.Height);
                     doc.Add(image);
                     doc.Close();
                     
@@ -113,6 +113,7 @@ namespace WatermarkApp
                     tracker.WriteFile("ficheiro scan composto");
                 }
             }
+        
 
             tracker.WriteFile("ficheiro scan está direito");
         }
@@ -123,7 +124,7 @@ namespace WatermarkApp
             string[] s_doc = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             var copy_image = (Bitmap)System.Drawing.Image.FromFile(img);
-            int stripCount = 10; // se o scan nao ter posições ou estiver muito torto alterar para 30
+            int stripCount = 30; // se o scan nao ter posições ou estiver muito torto alterar para 30
             var compact = new Compact(copy_image, stripCount);
 
             //find rotation angle

@@ -110,7 +110,7 @@ namespace WatermarkApp
         }
 
         /// <summary>
-        /// Le o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
+        /// Lê o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
         /// </summary>
         /// <returns>Linhas do documento</returns>
         private string[] Read_positionChar_file()
@@ -121,7 +121,6 @@ namespace WatermarkApp
             return lines;
         }
 
-    
         private void Process_Load(object sender, EventArgs e)
         {
             Show_file_without_watermark();
@@ -181,10 +180,10 @@ namespace WatermarkApp
 
                 axAcroPDF1.src = doc_file + watermark_file + date_time + ".pdf";
                 Controls.Add(axAcroPDF1);
-                MessageBox.Show(doc_watermark_generated);
-                Delete_aux_files(doc_file);
                 watch.Stop();
+                Delete_aux_files(doc_file);
                 Console.WriteLine($"Execution Time {TimeSpan.FromMilliseconds(watch.ElapsedMilliseconds)}");
+                MessageBox.Show(doc_watermark_generated);
             }
         }
 
@@ -213,9 +212,9 @@ namespace WatermarkApp
             string pos = filename + extension_pos;
             delete_files.Add(pos);
 
-            string watermark_png = filename + watermark_file + date_time + ".png";
-            delete_files.Add(watermark_png);
-            
+            string png_file = filename + watermark_file + date_time + ".png";
+            delete_files.Add(png_file);
+
             try
             {
                 foreach (string file in delete_files)
@@ -429,19 +428,15 @@ namespace WatermarkApp
             }
         }
 
-
+        /// <summary>
+        /// Remover ficheiros na base de dados que não foram aceites nem rejeitados pelo utilizador,
+        /// só funciona se o utilizador fechar o formulario, caso a aplicação crashar os dados ficam na base de dados e têm de ser apagados manualmente
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Process_FormClosed(object sender, FormClosedEventArgs e)
         {
             Remove_doc();
-            string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-            string png_file = s_doc[0] + watermark_file + date_time + ".png";
-            string file_name_watermark = s_doc[0] + watermark_file + date_time + ".pdf";
-
-            if (File.Exists(file_name_watermark))
-                File.Delete(file_name_watermark);
-
-            if (File.Exists(png_file))
-                File.Delete(png_file);
         }
     }
 }

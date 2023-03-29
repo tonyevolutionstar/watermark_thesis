@@ -45,7 +45,7 @@
             Classe auxiliar para operações no ficheiro
             </summary>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.Get_Value_in(System.Drawing.Bitmap,System.Int32,System.Int32)">
+        <member name="M:WatermarkApp.AuxFunc.Get_Value_in(System.Drawing.Bitmap,System.Single,System.Single)">
             <summary>
             Obtem a letra próxima ao valor da interseção
             </summary>
@@ -95,7 +95,7 @@
         </member>
         <member name="M:WatermarkApp.Process.Read_positionChar_file">
             <summary>
-            Le o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
+            Lê o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
             </summary>
             <returns>Linhas do documento</returns>
         </member>
@@ -112,6 +112,14 @@
         <member name="M:WatermarkApp.Process.Process_btn_Click(System.Object,System.EventArgs)">
             <summary>
             Processa de novo o ficheiro com marca de água
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:WatermarkApp.Process.Process_FormClosed(System.Object,System.Windows.Forms.FormClosedEventArgs)">
+            <summary>
+            Remover ficheiros na base de dados que não foram aceites nem rejeitados pelo utilizador,
+            só funciona se o utilizador fechar o formulario, caso a aplicação crashar os dados ficam na base de dados e têm de ser apagados manualmente
             </summary>
             <param name="sender"></param>
             <param name="e"></param>

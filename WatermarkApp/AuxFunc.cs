@@ -16,7 +16,7 @@ namespace WatermarkApp
         private SQL_connection sql;
         public int h;
         public int w;
-        private Dictionary<string, Point> circle_points;
+        private Dictionary<string, PointF> circle_points;
         private List<string> combs;
         private Commom commom;
         private int numberPoints;
@@ -41,20 +41,18 @@ namespace WatermarkApp
         {
             string f = commom.Convert_pdf_png(watermark_file);
             Bitmap bmp = new Bitmap(f);
-            Pen pen = new Pen(Color.Black); 
-            Graphics g = Graphics.FromImage(bmp);
 
             circle_points = Obtain_points_surround_circle(position, bmp);
        
             string circle_comb;
             combs = new List<string>();
-            Dictionary<string, List<Point>> values_inter = new Dictionary<string, List<Point>>();
+            Dictionary<string, List<PointF>> values_inter = new Dictionary<string, List<PointF>>();
             List<string> values = new List<string>();
 
-            foreach (KeyValuePair<string, Point> entry in circle_points)
+            foreach (KeyValuePair<string, PointF> entry in circle_points)
             {
                 string[] val0 = entry.Key.Split('_');
-                foreach (KeyValuePair<string, Point> entry2 in circle_points)
+                foreach (KeyValuePair<string, PointF> entry2 in circle_points)
                 {
                     string[] val1 = entry2.Key.Split('_');
                     if (!val0[0].Equals(val1[0]))
@@ -77,13 +75,12 @@ namespace WatermarkApp
                     string[] side_watermark_j = points_j[0].Split('_');
                     if (!side_watermark_i[0].Equals(side_watermark_j[0]))
                     {
-                        circle_points.TryGetValue(points_i[0], out Point A);
-                        circle_points.TryGetValue(points_i[1], out Point B);
-                        circle_points.TryGetValue(points_j[0], out Point C);
-                        circle_points.TryGetValue(points_j[1], out Point D);
+                        circle_points.TryGetValue(points_i[0], out PointF A);
+                        circle_points.TryGetValue(points_i[1], out PointF B);
+                        circle_points.TryGetValue(points_j[0], out PointF C);
+                        circle_points.TryGetValue(points_j[1], out PointF D);
                   
-                        Point res = Intersection(A, B, C, D);
-                        //g.DrawLine(pen, A, B);
+                        PointF res = Intersection(A, B, C, D);
                       
                         if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
                         {
@@ -94,16 +91,17 @@ namespace WatermarkApp
                                 string line2_points = C.X + "," + C.Y + ":" + D.X + "," + D.Y;
                                 string inter_point = res.X + "," + res.Y;
 
-                                if (values_inter.TryGetValue(ch, out List<Point> list))
+                                if (values_inter.TryGetValue(ch, out List<PointF> list))
                                 {
                                     list.Add(res);
                                 }
                                 else
                                 {
-                                    list = new List<Point>();
+                                    list = new List<PointF>();
                                     list.Add(res);
                                     values_inter.Add(ch, list);
                                 }
+                                
                                 values.Add(id_doc + "|" + combs[i] + "|" + combs[j] + "|" + inter_point + "|" + ch + "|" + line1_points + "|" + line2_points);
                                 
                             }
@@ -115,23 +113,23 @@ namespace WatermarkApp
             //tem repetidos, é necessário remover
 
             // SORT DICTIONARY 
-            Dictionary<string, List<Point>> sorted_value_int = values_inter.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.OrderBy(p => p.Y).ThenBy(p => p.X).ToList());
-            Dictionary<string, List<Point>> pointCount = sorted_value_int
-                .Select(pair => new KeyValuePair<string, List<Point>>(pair.Key, pair.Value.Distinct().ToList()))
+            Dictionary<string, List<PointF>> sorted_value_int = values_inter.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.OrderBy(p => p.Y).ThenBy(p => p.X).ToList());
+            Dictionary<string, List<PointF>> pointCount = sorted_value_int
+                .Select(pair => new KeyValuePair<string, List<PointF>>(pair.Key, pair.Value.Distinct().ToList()))
                 .ToDictionary(pair => pair.Key, pair => pair.Value);
 
-            foreach (List<Point> pointList in pointCount.Values)
+            foreach (List<PointF> pointList in pointCount.Values)
             {
                 for (int i = 0; i < pointList.Count - 1; i++)
                 {
-                    Point p1 = pointList[i];
-                    Point p2 = pointList[i + 1];
+                    PointF p1 = pointList[i];
+                    PointF p2 = pointList[i + 1];
 
-                    int threshold = 10; // set the threshold for the absolute difference between the coordinates
+                    int threshold = 30; // set the threshold for the absolute difference between the coordinates
                     bool isWithinThreshold = false;
-                    for (int j = 1; j <= threshold; j++)
+                    for (int j = 0; j <= threshold; j++)
                     {
-                        if (Math.Abs(p1.X - p2.X) == j || Math.Abs(p1.Y - p2.Y) == j || Math.Abs(p1.X - p2.X) == j && Math.Abs(p1.Y - p2.Y) == j)
+                        if (Math.Abs((int)p1.X - (int)p2.X) == j || Math.Abs((int)p1.Y - (int)p2.Y) == j || Math.Abs((int)p1.X - (int)p2.X) == j && Math.Abs((int)p1.Y - (int)p2.Y) == j)
                         {
                             isWithinThreshold = true;
                             break;
@@ -145,9 +143,11 @@ namespace WatermarkApp
                 }
             }
 
-            foreach (KeyValuePair<string, List<Point>> pair in pointCount)
+
+            //Remove equals
+            foreach (KeyValuePair<string, List<PointF>> pair in pointCount)
             {
-                foreach(Point p in pair.Value)
+                foreach(PointF p in pair.Value)
                 {
                     for (int i = 0; i < values.Count; i++)
                     { 
@@ -159,37 +159,37 @@ namespace WatermarkApp
                         string line1_points = val[5];
                         string line2_points = val[6];
 
-                        Point inter_point = new Point(int.Parse(p_i[0]), int.Parse(p_i[1]));
+                        PointF inter_point = new PointF((float)Math.Round(float.Parse(p_i[0]), 1), (float)Math.Round(float.Parse(p_i[1]), 1));
 
                         if (p == inter_point)
                         {
                             sql.Insert_forense_analises(id_doc, combs_i, combs_j, val[3], ch, line1_points, line2_points);
+                            break;
                         }
                     }
                 }
             }
             bmp.Dispose();
-            //g.Dispose();
         }
 
-        private Dictionary<string, Point> Obtain_points_surround_circle(string position, Bitmap bmp)
+        private Dictionary<string, PointF> Obtain_points_surround_circle(string position, Bitmap bmp)
         {
-            Dictionary<string, Point> circle_points = new Dictionary<string, Point>();
+            Dictionary<string, PointF> circle_points = new Dictionary<string, PointF>();
             for (int i = 0; i < numberPoints; i++)
             {
                 string[] pos_circles = position.Split('|');
                 string[] circles = pos_circles[i].Split(',');
-                int x_circle = int.Parse(circles[0]) * bmp.Width / w ;
-                int y_circle = int.Parse(circles[1]) * bmp.Height / h;
+                int x_circle = Convert.ToInt32(int.Parse(circles[0]) * (float) bmp.Width / w) ;
+                int y_circle = Convert.ToInt32(int.Parse(circles[1]) * (float) bmp.Height / h);
 
                 // escolher posição adicional aleatóriamente para dificultar a vida aos hackers
                 Random random = new Random();
                 int randomX = random.Next(min_random, max_random);
                 int randomY = random.Next(min_random, max_random);
 
-                Point circles_l = new Point(x_circle + randomX, y_circle - randomY);
-                Point circles_r = new Point(x_circle - randomX, y_circle - randomY); 
-                Point circles_b = new Point(x_circle - randomX, y_circle);
+                PointF circles_l = new PointF(x_circle + randomX, y_circle - randomY);
+                PointF circles_r = new PointF(x_circle - randomX, y_circle - randomY); 
+                PointF circles_b = new PointF(x_circle - randomX, y_circle);
 
                 circle_points.Add("point" + (i + 1) + "_l", circles_l);
                 circle_points.Add("point" + (i + 1) + "_r", circles_r);
@@ -199,26 +199,26 @@ namespace WatermarkApp
         }
 
 
-        private Point Intersection(Point A, Point B, Point C, Point D)
+        private PointF Intersection(PointF A, PointF B, PointF C, PointF D)
         {
-            int x1 = A.X;
-            int x2 = B.X;
-            int x3 = C.X;
-            int x4 = D.X;
+            float x1 = A.X;
+            float x2 = B.X;
+            float x3 = C.X;
+            float x4 = D.X;
 
-            int y1 = A.Y;
-            int y2 = B.Y;
-            int y3 = C.Y;
-            int y4 = D.Y;
-            double t = (double) ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4));
-            double u = (double) ((x1 - x3) * (y1 - y2) - (y1 - y3) * (x1 - x2)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4));
+            float y1 = A.Y;
+            float y2 = B.Y;
+            float y3 = C.Y;
+            float y4 = D.Y;
+            float t = (float) ((x1 - x3) * (y3 - y4) - (y1 - y3) * (x3 - x4)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4));
+            float u = (float) ((x1 - x3) * (y1 - y2) - (y1 - y3) * (x1 - x2)) / ((x1 - x2) * (y3 - y4) - (y1 - y2) * (x3 - x4));
 
-            Point inter = new Point();
+            PointF inter = new PointF();
             if ((t >= 0 && t <= 1) && (u >= 0 && u <= 1))
             {
-                double x = x3 + u * (x4 - x3);
-                double y = y3 + u * (y4 - y3);
-                inter = new Point((int)x, (int)y);
+                float x = x3 + u * (x4 - x3);
+                float y = y3 + u * (y4 - y3);
+                inter = new PointF((float)Math.Round(x, 1), (float)Math.Round(y, 1));
             }
             return inter;
         }
@@ -230,7 +230,7 @@ namespace WatermarkApp
         /// <param name="x"></param>
         /// <param name="y"></param>
         /// <returns>Letra</returns>
-        private string Get_Value_in(Bitmap bmp, int x, int y)
+        private string Get_Value_in(Bitmap bmp, float x, float y)
         {
             string ch = "";
             List<string> pos_char = sql.Get_characters_Pos(id_doc);
@@ -239,13 +239,13 @@ namespace WatermarkApp
             {
                 string[] val = values.Split(new[] { "|" }, StringSplitOptions.RemoveEmptyEntries); ;
                 string[] pos_val = val[1].Split(',');
-                int start_x = Convert.ToInt32(int.Parse(pos_val[0]) * bmp.Width / w);
-                int start_y = Convert.ToInt32(int.Parse(pos_val[1]) * bmp.Height / h);
-                int stop_x = Convert.ToInt32(int.Parse(pos_val[2]) * bmp.Width / w);
-                int final_y = Convert.ToInt32(int.Parse(pos_val[3]) * bmp.Height / h);
+                int start_x = Convert.ToInt32(int.Parse(pos_val[0]) * (float)bmp.Width / w);
+                int start_y = Convert.ToInt32(int.Parse(pos_val[1]) * (float)bmp.Height / h);
+                int stop_x = Convert.ToInt32(int.Parse(pos_val[2]) * (float)bmp.Width / w);
+                int final_y = Convert.ToInt32(int.Parse(pos_val[3]) * (float)bmp.Height / h);
 
                 // verifica se o valor da interseção está proximo a uma letra
-                if (x >= start_x && x <= stop_x && y >= start_y && y <= final_y)
+                if ((int)x > start_x && x < stop_x && (int)y > start_y && (int)y < final_y)
                 {
                     return val[0]; 
                 }
@@ -268,7 +268,7 @@ namespace WatermarkApp
         {
             string f = commom.Convert_pdf_png(watermark_file);
             int sizeLetter = 10;
-            Point intersection;
+            PointF intersection;
 
             using (Bitmap bmp = new Bitmap(f))
             {
@@ -282,7 +282,6 @@ namespace WatermarkApp
             
                     Font drawFont = new Font("Arial", sizeLetter);
                     SolidBrush drawBrush = new SolidBrush(Color.Blue);
-      
 
                     for (int i = 0; i < return_list.Count; i++)
                     {
@@ -290,27 +289,29 @@ namespace WatermarkApp
                         string[] inter_point = values[0].Split(',');
                         string ch = values[1];
 
-                        int res_x = Convert.ToInt32(inter_point[0]);
-                        int res_y = Convert.ToInt32(inter_point[1]);
+                        double res_x = Convert.ToDouble(inter_point[0]);
+                        double res_y = Convert.ToDouble(inter_point[1]);
+                        float w_d = (float)w / bmp.Width;
+                        float h_d = (float)h / bmp.Height;
+
+                        float bmp_w = (float)Math.Round((float)bmp.Width / w, 1);
+                        float bmp_h = (float)Math.Round((float)bmp.Height / h, 1);
 
                         //convert points in bitmap values to doc values
-                        Console.WriteLine($"diff inside analise {diff_x}, {diff_y}");
+                        float new_p_x = (float)Math.Round(res_x * w_d, 1); 
+                        float new_p_y = (float)Math.Round(res_y * h_d, 1);
 
-                        int new_p_x = res_x * w / bmp.Width; 
-                        int new_p_y = res_y * h / bmp.Height;
-                        int new_x = new_p_x + diff_x;
-                        int new_y = new_p_y - diff_y;
-
+                        float new_x = new_p_x + diff_x*(float)coef_x;
+                        float new_y = new_p_y - diff_y*(float)coef_y;
 
                         Console.WriteLine($"ch {ch}");
                         Console.WriteLine($"Original point {new_p_x},{new_p_y} ");
                         Console.WriteLine($"Scan point {new_x},{new_y}");
 
-
                         if (!watermark_file.Contains("scan"))
-                            intersection = new Point(res_x, res_y);
+                            intersection = new PointF((float)res_x,(float) res_y);
                         else
-                            intersection = new Point(new_x*bmp.Width/w, new_y*bmp.Height/h); //adjust point barcode
+                            intersection = new PointF(new_x*bmp_w, new_y*bmp_h); //adjust point barcode
                
                         g.DrawString(ch, drawFont, drawBrush, intersection);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);

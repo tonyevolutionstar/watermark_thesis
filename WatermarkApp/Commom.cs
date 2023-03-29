@@ -87,34 +87,39 @@ namespace WatermarkApp
                 {
                     // é necessário compor as posições do código barras pois ele tem espaço branco na imagem, os valores foram ajustados manualmente
                     // com a ajuda da criação de uma imagem auxiliar que permite a visualização dos pontos
-                    int x = (int)result.X1 * width / bmp.Width + 95;
-                    int y = (int)result.Y1 * height / bmp.Height + 15;
-                    int x2 = (int)result.X2 * width / bmp.Width - 65;
-                    int y2 = (int)result.Y2 * height / bmp.Height;
+                    int x = (int)result.X1 * width / bmp.Width + 99;
+                    int y = (int)result.Y1 * height / bmp.Height + 27;
+                    //<50, 64 - 70 not working
+                    int x2 = (int)result.X2 * width / bmp.Width - 62; // se for maior que -55 vai para a direita, -70 vai para a esquerda
+                    int y2 = (int)result.Y2 * height / bmp.Height + 4;
+
                     if (file_name.Contains("scan"))
                     {
-                        x = (int)result.X1 * width / bmp.Width + 95;
-                        y = (int)result.Y1 * height / bmp.Height + 15;
-                        x2 = (int)result.X2 * width / bmp.Width - 65;
-                        y2 = (int)result.Y2 * height / bmp.Height;
-
+                        x = (int)result.X1 * width / bmp.Width + 99;
+                        y = (int)result.Y1 * height / bmp.Height + 27;
+                        x2 = (int)result.X2 * width / bmp.Width - 62;
+                        y2 = (int)result.Y2 * height / bmp.Height + 4;
+                        //change
                         //fixing the values of scan image 
                         if (y >= 1000)
-                            y = Math.Abs(height - y+15);
+                            y = Math.Abs(height-y+15);
                         if (x >= 220)
-                            x = Math.Abs(width - x-70);
+                            x = Math.Abs(width-x-63);
                         if (x2 >= 500)
-                            x2 = Math.Abs(width - x2-40);
+                            x2 = Math.Abs(width-x2);
                         if (y2 >= 1000)
-                            y2 = Math.Abs(height - y2+70);
+                            y2 = Math.Abs(height - y2 + 90);
+                        if (x2 <= 100)
+                            x2 += width/2 + 41;
 
                     }
+                    bmp.Dispose();
                     return $"{x}:{y}:{x2}:{y2}";
                 }
             }
             else
                 trackerServices.WriteFile("erro ao obter as posições do código de barras");
-
+            
             return errorReadBarcode;
         }
 

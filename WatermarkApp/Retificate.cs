@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -15,14 +16,18 @@ namespace WatermarkApp
         private string file_name;
         private readonly string result_barcode;
         private int id_doc;
+      
         private int x_or;
         private int y_or;
 
         private int diff_x;
         private int diff_y;
-        private double coef_x;
-        private double coef_y;  
-  
+
+        private int x_second_barcode;
+        private int y_second_barcode;
+        private int x_second_barcode_res;
+        private int y_second_barcode_res;
+
         private TrackerServices tracker = new TrackerServices(); 
 
         /// <summary>
@@ -52,7 +57,6 @@ namespace WatermarkApp
             }
         }
 
-
         private void Retificate_Load(object sender, EventArgs e)
         {
             SQL_connection sql = new SQL_connection();
@@ -77,64 +81,36 @@ namespace WatermarkApp
                     y_or = int.Parse(val_barcode_pos[1]);
                     int x2_or = int.Parse(val_barcode_pos[2]);
                     int y2_or = int.Parse(val_barcode_pos[3]);
-           
-                    string ret_pos_barcode = commom.Return_PositionBarcode(file_name);
-                    string[] res_barcode_pos = ret_pos_barcode.Split(':');
+                    x_second_barcode = int.Parse(val_barcode_pos[4]);
+                    y_second_barcode = int.Parse(val_barcode_pos[5]);
+
+                    List<string> res_barcode = commom.Return_PositionBarcode(file_name);
+                    string[] res_barcode39 = res_barcode[0].Split(':'); 
+                    x_second_barcode_res = int.Parse(res_barcode39[0]);
+                    y_second_barcode_res = int.Parse(res_barcode39[1]);
+                    
+                    string[] res_barcode_pos = res_barcode[1].Split(':');
                     //Dig = digitalizado
                     int x_dig = int.Parse(res_barcode_pos[0]);
                     int y_dig = int.Parse(res_barcode_pos[1]);
-                    int x2_dig = int.Parse(res_barcode_pos[2]);   
+                    int x2_dig = int.Parse(res_barcode_pos[2]);
                     int y2_dig = int.Parse(res_barcode_pos[3]);
+                    
                     int x_diff_or = x2_or - x_or;
                     int x_diff_dig = x2_dig - x_dig;
-                    int y_diff_dig = y2_dig - y_dig;
+                    int y_heigth_or = y_second_barcode - y_or;
+                    int y_heigth_dig = y_second_barcode_res - y_dig;
                     int y_diff_or = y2_or - y_or;
-
-                    diff_x = (x_diff_dig - x_diff_or);
-                    diff_y = y_dig - y_or;
-                    Console.WriteLine($"Original pos {barcode_pos}, digital pos {ret_pos_barcode}"); 
-                    Console.WriteLine($"Diference x {diff_x}, diference y {diff_y}"); 
-
-                    coef_x = (double) x_diff_dig / x_diff_or;
-                    coef_y = (double) y_diff_dig / y_diff_or;
-                  
+                    int y_diff_dig = y2_dig - y_dig;
+                    
+                    diff_x = x_dig - x_or;
+                    diff_y = y_diff_dig - y_diff_or;
+                    if (!file_name.Contains("scan"))
+                        diff_y = 0;
+                    Console.WriteLine($"Original pos {barcode_pos}, digital pos {res_barcode[0]} | {res_barcode[1]}"); 
+                    Console.WriteLine($"Diference x {diff_x}, diference y {diff_y/2}"); 
                     Console.WriteLine($"X original {x_diff_or}, x retificar {x_diff_dig}");
-                    Console.WriteLine($"Coeficient x {coef_x}, Coeficient y {coef_y}");
-
-                    string img = commom.Convert_pdf_png(file_name);
-                    commom.GetDimensionsDocument(file_name);
-                    //arc
-                    int w_arc = 5;
-                    int h_arc = 5;
-                    int startAngle = 0;
-                    int sweepAngle = 360;
-                    Pen yellow = new Pen(Color.Yellow, 3);
-
-                    using (Bitmap bmp = new Bitmap(img))
-                    {
-                        using (Graphics g = Graphics.FromImage(bmp))
-                        {
-                            SolidBrush drawBrush = new SolidBrush(Color.Chocolate);
-                            Font drawFont = new Font("Arial", 10);
-                            int p_x = x_dig * bmp.Width / commom.width;
-                            int p_y = y_dig * bmp.Height / commom.height;
-                            int p2_x = x2_dig * bmp.Width / commom.width;
-                            int p2_y = y2_dig * bmp.Height / commom.height;
-                            Point p1_l_u_o = new Point(p_x, p_y);
-                            Point p1_r_u_o = new Point(p2_x, p_y);
-                            Point p1_r_b_o = new Point(p2_x, p2_y);
-                            Point p1_l_b_o = new Point(p_x, p2_y);
-                            g.DrawArc(yellow, p1_l_u_o.X, p1_l_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(yellow, p1_r_u_o.X, p1_r_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(yellow, p1_l_b_o.X, p1_l_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(yellow, p1_r_b_o.X, p1_r_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.Dispose();                        }
-                        string[] filename = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-                        bmp.Save(filename[0] + "_pos_barcode.png", System.Drawing.Imaging.ImageFormat.Png);
-                        bmp.Dispose();
-                        
-                    }
-
+                    
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];
                     user.Text = col_sql[1];
@@ -154,7 +130,7 @@ namespace WatermarkApp
         {
             MessageBox.Show(infoAnaliseForense);
             SQL_connection sql = new SQL_connection();
-            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y, coef_x, coef_y);
+            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y);
         }
 
         private void Retificate_FormClosed(object sender, FormClosedEventArgs e)

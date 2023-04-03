@@ -8,8 +8,8 @@ CREATE DATABASE Watermark;
 
 USE Watermark;
 
-DROP TABLE IF EXISTS position_char_file;
 DROP TABLE IF EXISTS forense_analises;
+DROP TABLE IF EXISTS position_char_file;
 DROP TABLE IF EXISTS watermark;
 DROP TABLE IF EXISTS barcode;
 DROP TABLE IF EXISTS document;
@@ -44,7 +44,18 @@ CREATE TABLE watermark(
 	x INT, -- start x position barcode
 	y INT,  -- start y position barcode
 	x2 INT, -- end x position barcode
-	y2 INT -- end y position barcode
+	y2 INT, -- end y position barcode
+	x_barcode39 INT,
+	y_barcode39 INT
+);
+
+CREATE TABLE position_char_file(
+	id_doc INT FOREIGN KEY REFERENCES document(id_document),
+	value_char char(20),
+	start_x int,
+	start_y int,
+	stop_x int,
+	stop_y int
 );
 
 CREATE TABLE forense_analises(
@@ -57,14 +68,14 @@ CREATE TABLE forense_analises(
 	line2_points varchar(200)
 );
 
-CREATE TABLE position_char_file(
-	id_doc INT FOREIGN KEY REFERENCES document(id_document),
-	value_char char(20),
-	start_x int,
-	start_y int,
-	stop_x int,
-	stop_y int
+CREATE TABLE dimensions_document(
+id_doc INT FOREIGN KEY REFERENCES document(id_document),
+width int,
+height int,
+width_bmp int,
+height_bmp int 
 );
+
 
 -- Select * from document;
 -- Select * from barcode;

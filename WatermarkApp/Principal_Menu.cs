@@ -15,6 +15,7 @@ namespace WatermarkApp
         private string errorFile_without_watermark = "O ficheiro que selecionou ainda não tem marca de água";
         private string errorFileType = "O ficheiro que selecionou é de formato imagem ou não é de formato pdf";
         private string errorFile_with_watermark = "O ficheiro que selecionou já foi processado";
+        private string verify_scan_angle = "verificar se o ficheiro scan está torto";
        
         private Commom commom = new Commom();
         double angle;
@@ -77,7 +78,6 @@ namespace WatermarkApp
             }
         }
 
-
         private void ChangeFile_Rotated()
         {
             string val = Fix_Rotation();
@@ -113,7 +113,6 @@ namespace WatermarkApp
                     tracker.WriteFile("ficheiro scan composto");
                 }
             }
-        
 
             tracker.WriteFile("ficheiro scan está direito");
         }
@@ -124,7 +123,7 @@ namespace WatermarkApp
             string[] s_doc = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             var copy_image = (Bitmap)System.Drawing.Image.FromFile(img);
-            int stripCount = 30; // se o scan nao ter posições ou estiver muito torto alterar para 30
+            int stripCount = 10; // se o scan nao ter posições ou estiver muito torto alterar para 30
             var compact = new Compact(copy_image, stripCount);
 
             //find rotation angle
@@ -133,10 +132,12 @@ namespace WatermarkApp
 
             double angle = SkewCalculator.FindRotateAngle(compact, stripX1, stripX2);
             angle = (angle * 180 / Math.PI);//to degrees
-
-            var rotated = Rotator.Rotate(copy_image, angle);
-            rotated.Save(s_doc[0] + "_rotated.png");
-
+            if (angle != 0)
+            {
+                var rotated = Rotator.Rotate(copy_image, angle);
+                rotated.Save(s_doc[0] + "_rotated.png");
+            }
+      
             return s_doc[0] + "_rotated.png" + "|" + angle;
         }
 
@@ -151,7 +152,8 @@ namespace WatermarkApp
                 {
                     if(file_name.Contains("scan"))
                     {
-                        tracker.WriteFile("verificar se o ficheiro scan está torto");
+                        tracker.WriteFile(verify_scan_angle);
+                        MessageBox.Show(verify_scan_angle);
                         ChangeFile_Rotated();
                     }
 

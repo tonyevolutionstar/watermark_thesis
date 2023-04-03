@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace WatermarkApp
 {
@@ -96,10 +97,12 @@ namespace WatermarkApp
         /// <param name="y"></param>
         /// <param name="x2"></param>
         /// <param name="y2"></param>
-        public void Insert_watermark(int id_document, int id_barcode, int validation, int x, int y, int x2, int y2)
+        /// <param name="x_barcode39"></param>
+        /// <param name="y_barcode39"></param>
+        public void Insert_watermark(int id_document, int id_barcode, int validation, int x, int y, int x2, int y2, int x_barcode39, int y_barcode39)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[watermark] VALUES ("
-            + id_document + "," + id_barcode + "," + validation + "," + x + "," + y + "," + x2 + "," + y2 + ");";
+            + id_document + "," + id_barcode + "," + validation + "," + x + "," + y + "," + x2 + "," + y2 + "," + x_barcode39 + "," + y_barcode39 + ");";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -208,11 +211,12 @@ namespace WatermarkApp
             return result;
         }
 
+
         public void Insert_forense_analises(int id_doc, string line1, string line2, string inter_point, string inter_char, string line1_points, string line2_points)
         {
             bool insertSuc = false;
             sql = "Use Watermark;INSERT INTO [dbo].[forense_analises] VALUES ("
-             + id_doc + "," + "'" + line1 + "'" + "," + "'" + line2 + "'" + "," + "'" + inter_point + "'" + "," + "'" + inter_char + "'" + "," + "'" + line1_points + "'" + "," + "'" + line2_points + "'" + ");";
+            + id_doc + "," + "'" + line1 + "'" + "," + "'" + line2 + "'" + "," + "'" + inter_point + "'" + "," + "'" + inter_char + "'" + "," + "'" + line1_points + "'" + "," + "'" + line2_points + "'" + ");";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -237,6 +241,7 @@ namespace WatermarkApp
                 tracker.WriteFile("inserceção de valores acerca da análise forense na base de dados " + tracker.insertionError);
         }
 
+
         public void Insert_position_char_file(int id_doc, string value_char, int start_x, int start_y, int stop_x, int stop_y)
         {
             int numberRecords = 0;
@@ -255,7 +260,6 @@ namespace WatermarkApp
             {
                 tracker.WriteFile("inserceção de valores acerca das posições dos caracteres no ficheiro na base de dados " + tracker.insertionError + " - " + ex.Message);
             }
-
 
             if(numberRecords > 0)
                 tracker.WriteFile("inserceção de valores acerca das posições dos caractere " +  value_char + " no ficheiro na base de dados " + tracker.finnishState);
@@ -291,7 +295,12 @@ namespace WatermarkApp
             {
                 tracker.WriteFile($"erro ao obter os valores da análise forense na base de dados - {ex.Message}");
             }
-            return returnList;
+
+            var sortedList = returnList.OrderBy(s => float.Parse(s.Split('|')[0].Split(',')[1]))
+                           .ThenByDescending(s => float.Parse(s.Split('|')[0].Split(',')[0]))
+                           .ToList();
+
+            return sortedList;
         }
 
 
@@ -329,7 +338,7 @@ namespace WatermarkApp
         public string Get_Positions_Barcode(int id_doc)
         {
             string pos_barcode = "";
-            sql = "Use Watermark; Select x, y, x2, y2 from barcode inner join watermark on barcode.id_barcode = watermark.id_barcode where id_doc = " + id_doc + ";";
+            sql = "Use Watermark; Select x, y, x2, y2, x_barcode39, y_barcode39 from barcode inner join watermark on barcode.id_barcode = watermark.id_barcode where id_doc = " + id_doc + ";";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -338,7 +347,7 @@ namespace WatermarkApp
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    pos_barcode = dataReader.GetValue(0).ToString() + ":" + dataReader.GetValue(1).ToString() + ":" + dataReader.GetValue(2).ToString() + ":" + dataReader.GetValue(3).ToString();
+                    pos_barcode = dataReader.GetValue(0).ToString() + ":" + dataReader.GetValue(1).ToString() + ":" + dataReader.GetValue(2).ToString() + ":" + dataReader.GetValue(3).ToString() + ":" + dataReader.GetValue(4).ToString() + ":" + dataReader.GetValue(5).ToString();
                 }
                 dataReader.Close();
                 command.Dispose();
@@ -390,8 +399,6 @@ namespace WatermarkApp
             }
         }
 
-
-
         public void Remove_document(int id_doc)
         {
             sql = "Use Watermark; Delete from Document where id_document = " + id_doc + ";";
@@ -407,9 +414,8 @@ namespace WatermarkApp
             }
             catch (Exception ex)
             {
-                tracker.WriteFile($"erro ao eliminar o documento por não ser aceite nem rejeitado {ex.Message}");
+                tracker.WriteFile($"erro ao eliminar o documento por não ser aceite nem rejeitado - {ex.Message}");
             }
         }
-
     }
 }

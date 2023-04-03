@@ -23,6 +23,7 @@ namespace WatermarkApp
         public int number_points = 9;
         public int height_barcode = 15; // o 0 começa em baixo
         public string errorReadBarcode = "insucesso";
+        private string jar_file = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Ficheiros\thesis_watermark.jar";
 
         private TrackerServices trackerServices = new TrackerServices();
 
@@ -31,6 +32,35 @@ namespace WatermarkApp
             string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             files = partialPath + files_dir;
         }
+
+        /// <summary>
+        /// Executa o ficheiro jar que vai gerar um ficheiro txt com as posições dos 
+        /// caracteres que estão no pdf
+        /// </summary>
+        public void Get_PositionChar(string file_name)
+        {
+            System.Diagnostics.Process process_file = new System.Diagnostics.Process();
+            process_file.StartInfo.UseShellExecute = false;
+            process_file.StartInfo.RedirectStandardOutput = true;
+            process_file.StartInfo.FileName = "java";
+            process_file.StartInfo.Arguments = "-jar " + '"' + jar_file + '"' + " " + '"' + file_name + '"';
+            process_file.Start();
+            process_file.WaitForExit();
+        }
+
+
+        /// <summary>
+        /// Lê o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
+        /// </summary>
+        /// <returns>Linhas do documento</returns>
+        public string[] Read_positionChar_file(string file_name)
+        {
+            string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
+            string posFile = s_doc[0] + "_pos.txt";
+            string[] lines = System.IO.File.ReadAllLines(posFile, System.Text.Encoding.UTF7);
+            return lines;
+        }
+
 
         public string Get_file_name_using_split(string file_name)
         {
@@ -61,11 +91,22 @@ namespace WatermarkApp
         {
             trackerServices.WriteFile($"lendo o código de barras do ficheiro {file_name}");
             string img_file = Convert_pdf_png(file_name);
-            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium,
-                BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+            BarcodeReaderOptions readerOptions = new BarcodeReaderOptions()
+            {
+                ExpectMultipleBarcodes = true,
+                ExpectBarcodeTypes = BarcodeEncoding.Code128
+            };
+            List<string> res = new List<string>();
+
+            var result = BarcodeReader.Read(img_file, readerOptions);
             if(result != null)
             {
-                return result.Value;
+                foreach(var barcode in result)
+                {
+                    res.Add(barcode.Value);
+                }
+                // os valores que estão dentro do código são iguais, exceto as posições, por isso para obter o texto do código de barras tanto faz ser 0 como 1  
+                return res[0];
             }
             else
                 trackerServices.WriteFile("erro na leitura do código de barras");
@@ -74,62 +115,84 @@ namespace WatermarkApp
         }
 
 
-        public string Return_PositionBarcode(string file_name)
+        public List<string> Return_PositionBarcode(string file_name)
         {
             GetDimensionsDocument(file_name);
             trackerServices.WriteFile("lendo as posições do código de barras");
             string img_file = Convert_pdf_png(file_name);
-            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium,
-                BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
-            if (result != null)
+            List<string> res = new List<string>();
+
+            BarcodeReaderOptions readerOptions = new BarcodeReaderOptions()
+            {
+                Speed = ReadingSpeed.ExtremeDetail,
+                ExpectMultipleBarcodes= true,
+                ExpectBarcodeTypes = BarcodeEncoding.Code128
+            };
+
+            var result = BarcodeReader.Read(img_file, readerOptions);
+
+            var result2 = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code39, BarcodeReader.BarcodeRotationCorrection.Medium,
+            BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+
+            if (result != null || result2 != null)
             {
                 using (Bitmap bmp = new Bitmap(img_file)) // garantir o fechar do bitmap - fecha todos os recursos usados
                 {
-                    // é necessário compor as posições do código barras pois ele tem espaço branco na imagem, os valores foram ajustados manualmente
-                    // com a ajuda da criação de uma imagem auxiliar que permite a visualização dos pontos
-                    int x = (int)result.X1 * width / bmp.Width + 99;
-                    int y = (int)result.Y1 * height / bmp.Height + 27;
-                    //<50, 64 - 70 not working
-                    int x2 = (int)result.X2 * width / bmp.Width - 62; // se for maior que -55 vai para a direita, -70 vai para a esquerda
-                    int y2 = (int)result.Y2 * height / bmp.Height + 4;
+                    //mudar aqui adicionar lista do result2, compor posições, eliminar code39
+                    int x_39 = (int)result2.X1 * width / bmp.Width + 103;
+                    int y_39 = (int)result2.Y1 * height / bmp.Height + 27;
+                    int x2_39 = (int)result2.X2 * width / bmp.Width - 70;
+                    int y2_39 = (int)result2.Y2 * height / bmp.Height - 34;
+                    res.Add($"{x_39}:{y_39}:{x2_39}:{y2_39}");
 
-                    if (file_name.Contains("scan"))
+                    foreach(var barcode in result)
                     {
-                        x = (int)result.X1 * width / bmp.Width + 99;
-                        y = (int)result.Y1 * height / bmp.Height + 27;
-                        x2 = (int)result.X2 * width / bmp.Width - 62;
-                        y2 = (int)result.Y2 * height / bmp.Height + 4;
-                        //change
-                        //fixing the values of scan image 
-                        if (y >= 1000)
-                            y = Math.Abs(height-y+15);
-                        if (x >= 220)
-                            x = Math.Abs(width-x-63);
-                        if (x2 >= 500)
-                            x2 = Math.Abs(width-x2);
-                        if (y2 >= 1000)
-                            y2 = Math.Abs(height - y2 + 90);
-                        if (x2 <= 100)
-                            x2 += width/2 + 41;
+                        // é necessário compor as posições do código barras pois ele tem espaço branco na imagem, os valores foram ajustados manualmente
+                        // com a ajuda da criação de uma imagem auxiliar que permite a visualização dos pontos
+                        int x = (int)barcode.X1 * width / bmp.Width + 97;
+                        int y = (int)barcode.Y1 * height / bmp.Height + 25;
+                        int x2 = (int)barcode.X2 * width / bmp.Width - 60; // se for maior que -55 vai para a direita, -70 vai para a esquerda
+                        int y2 = (int)barcode.Y2 * height / bmp.Height;
 
+                        if (file_name.Contains("scan"))
+                        {
+                            x = (int)barcode.X1 * width / bmp.Width + 97;
+                            y = (int)barcode.Y1 * height / bmp.Height + 25;
+                            x2 = (int)barcode.X2 * width / bmp.Width - 60;
+                            y2 = (int)barcode.Y2 * height / bmp.Height;
+                            //change
+                            //fixing the values of scan image 
+                            if (y >= 1000)
+                                y = Math.Abs(height - y + 15);
+                            if (x >= 220)
+                                x = Math.Abs(width - x - 63);
+                            if (x2 >= 500)
+                                x2 = Math.Abs(width - x2);
+                            if (y2 >= 1000)
+                                y2 = Math.Abs(height - y2 + 90);
+                            if (x2 <= 100)
+                                x2 += width / 2 + 41;
+                        }
+                        res.Add($"{x}:{y}:{x2}:{y2}");
                     }
+                   
                     bmp.Dispose();
-                    return $"{x}:{y}:{x2}:{y2}";
+                    return res;
                 }
             }
             else
                 trackerServices.WriteFile("erro ao obter as posições do código de barras");
             
-            return errorReadBarcode;
+            return res;
         }
 
 
-        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double coef_x, double coef_y)
+        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y)
         {   
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name);
 
-            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, coef_x, coef_y);
+            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y);
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";

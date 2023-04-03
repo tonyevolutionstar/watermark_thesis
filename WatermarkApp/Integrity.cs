@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace WatermarkApp
+﻿namespace WatermarkApp
 {
     /// <summary>
     /// Classe para obter as margens do documento
@@ -34,7 +32,6 @@ namespace WatermarkApp
         public Integrity(int x_left_barcode, int y_barcode, int x_right_barcode)
         {
             int barcode_width = x_right_barcode - x_left_barcode;
-
             int right_margin = x_right_barcode + barcode_width / 2;
             int left_margin = x_left_barcode - barcode_width/2;
             int bottom = y_barcode;
@@ -57,7 +54,6 @@ namespace WatermarkApp
             positions = top_left + "|" + top_middle + "|" + top_right + "|"
                 + middle_left + "|" + middle + "|" + middle_right + "|"
                 + bottom_left + "|" + bottom_middle + "|" + bottom_right;
-            Console.WriteLine($"positions {positions}");
         }
     }
 }

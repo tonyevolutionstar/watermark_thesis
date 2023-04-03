@@ -19,7 +19,6 @@ namespace WatermarkApp
         int id_doc;
         int id_barcode;
         private string date_time;
-        private string jar_file = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Ficheiros\thesis_watermark.jar";
         private bool accept_flag = false;
 
         private string message_error_file_without_watermark = "Primeiro tem de clicar em processar, para gerar o ficheiro com a marca de água";
@@ -41,6 +40,9 @@ namespace WatermarkApp
         private int y_barcode_pos;
         private int x2_barcode_pos;
         private int y2_barcode_pos;
+        private int x_barcode39;
+        private int y_barcode39;
+
 
         private TrackerServices tracker = new TrackerServices();
         int status = -1; // 0 rejected, 1 accepted;
@@ -67,9 +69,9 @@ namespace WatermarkApp
             document_name.AutoSize = true;
             document_name.TabIndex = 9;
             this.file_name = file_name;
-
-            Get_PositionChar();
-            characters = Read_positionChar_file();
+            Commom commom = new Commom();
+            commom.Get_PositionChar(file_name);
+            characters = commom.Read_positionChar_file(file_name);
             tracker.WriteFile($"obtenção da posição dos caracteres do ficheiro {file_name} {tracker.finnishState}");
             doc_file = commom.Get_file_name_using_split(file_name);
         }
@@ -93,34 +95,6 @@ namespace WatermarkApp
             }
         }
        
-
-        /// <summary>
-        /// Executa o ficheiro jar que vai gerar um ficheiro txt com as posições dos 
-        /// caracteres que estão no pdf
-        /// </summary>
-        private void Get_PositionChar()
-        {
-            System.Diagnostics.Process process_file = new System.Diagnostics.Process();
-            process_file.StartInfo.UseShellExecute = false;
-            process_file.StartInfo.RedirectStandardOutput = true;
-            process_file.StartInfo.FileName = "java";
-            process_file.StartInfo.Arguments = "-jar " + '"' + jar_file + '"' + " " + '"' + file_name + '"';
-            process_file.Start();
-            process_file.WaitForExit();
-        }
-
-        /// <summary>
-        /// Lê o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
-        /// </summary>
-        /// <returns>Linhas do documento</returns>
-        private string[] Read_positionChar_file()
-        {
-            string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);    
-            string posFile = s_doc[0] + extension_pos;
-            string[] lines = System.IO.File.ReadAllLines(posFile, System.Text.Encoding.UTF7);
-            return lines;
-        }
-
         private void Process_Load(object sender, EventArgs e)
         {
             Show_file_without_watermark();
@@ -136,7 +110,6 @@ namespace WatermarkApp
             SQL_connection sql = new SQL_connection();
             if (sql.Check_generate_id(rand_num) == 0)
                 return rand_num;
-   
             return 0;
         }
 
@@ -215,6 +188,9 @@ namespace WatermarkApp
             string png_file = filename + watermark_file + date_time + ".png";
             delete_files.Add(png_file);
 
+            string barcode_39 = filename + "_code39.png";
+            delete_files.Add(barcode_39);
+
             try
             {
                 foreach (string file in delete_files)
@@ -242,17 +218,22 @@ namespace WatermarkApp
                 DateTime date_time_barcode = DateTime.Now;
 
                 watermark.Generate_barcode(id_barcode);
+                watermark.Generate_barcode_38(id_barcode);
                 tracker.WriteFile("código de barras criado");
                 watermark.Add_watermark_pdf(date_time);
                 tracker.WriteFile("código de barras adicionado ao ficheiro");
-
-                string pos_barcode = commom.Return_PositionBarcode(file_name + watermark_file + date_time + ".pdf");
+                List<string> barcode_res = commom.Return_PositionBarcode(file_name + watermark_file + date_time + ".pdf");
+   
                 tracker.WriteFile("obtenção das posições do código de barras no ficheiro " + tracker.finnishState);
-                string[] val_pos_barcode = pos_barcode.Split(':');
+                string[] val_pos_barcode = barcode_res[1].Split(':');
                 x_barcode_pos = int.Parse(val_pos_barcode[0]);
                 y_barcode_pos = int.Parse(val_pos_barcode[1]);
                 x2_barcode_pos = int.Parse(val_pos_barcode[2]);
                 y2_barcode_pos = int.Parse(val_pos_barcode[3]);
+
+                string[] barcode39 = barcode_res[0].Split(':');
+                x_barcode39 = int.Parse(barcode39[0]);
+                y_barcode39 = int.Parse(barcode39[1]);  
 
                 Integrity analise = new Integrity(x_barcode_pos, y_barcode_pos, x2_barcode_pos);
                 tracker.WriteFile("determinação dos pontos para a análise forense " + tracker.finnishState);
@@ -357,7 +338,7 @@ namespace WatermarkApp
                     {
                         status = 1;
                         SQL_connection sql = new SQL_connection();
-                        sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos, y2_barcode_pos);
+                        sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos, y2_barcode_pos, x_barcode39, y_barcode39);
                         tracker.WriteFile("documento aceite na base de dados");
                         MessageBox.Show(accepted_Doc);
                         accept_flag = true;
@@ -389,7 +370,7 @@ namespace WatermarkApp
                 {
                     status = 0;
                     SQL_connection sql = new SQL_connection();
-                    sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos, y2_barcode_pos);
+                    sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos, y2_barcode_pos, x_barcode39, y_barcode39);
                     tracker.WriteFile("documento rejeitado na base de dados");
                     System.IO.File.Delete(file_name_watermark);
                     Process_file();

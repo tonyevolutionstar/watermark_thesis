@@ -54,7 +54,7 @@
             <param name="y"></param>
             <returns>Letra</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32,System.Double,System.Double)">
+        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32)">
             <summary>
             Usado pela Analise Forense
             </summary>
@@ -62,14 +62,24 @@
             <param name="watermark_file"></param>
             <param name="diff_x"></param>
             <param name="diff_y"></param>
-            <param name="coef_x"></param>
-            <param name="coef_y"></param>
         </member>
         <member name="T:WatermarkApp.Commom">
             <summary>
             Funções comuns entre classes
             </summary>
             
+        </member>
+        <member name="M:WatermarkApp.Commom.Get_PositionChar(System.String)">
+            <summary>
+            Executa o ficheiro jar que vai gerar um ficheiro txt com as posições dos 
+            caracteres que estão no pdf
+            </summary>
+        </member>
+        <member name="M:WatermarkApp.Commom.Read_positionChar_file(System.String)">
+            <summary>
+            Lê o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
+            </summary>
+            <returns>Linhas do documento</returns>
         </member>
         <member name="T:WatermarkApp.Process">
             <summary>
@@ -86,18 +96,6 @@
             <summary>
             Insere as posiçoes dos caracteres do ficheiro na base de dados
             </summary>
-        </member>
-        <member name="M:WatermarkApp.Process.Get_PositionChar">
-            <summary>
-            Executa o ficheiro jar que vai gerar um ficheiro txt com as posições dos 
-            caracteres que estão no pdf
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.Process.Read_positionChar_file">
-            <summary>
-            Lê o ficheiro gerado das posições dos caracteres no documento e colocar os valores numa variavel 
-            </summary>
-            <returns>Linhas do documento</returns>
         </member>
         <member name="M:WatermarkApp.Process.Generate_id">
             <summary>
@@ -306,7 +304,7 @@
             <param name="ID">número de identificação ficheiro</param>
             <returns>0 - não tem, >1 se tem</returns>
         </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Faz registo de cada vez que um documento com watermark é gerado, guardando se o utilizador aceitou ou rejeitou
             </summary>
@@ -317,6 +315,8 @@
             <param name="y"></param>
             <param name="x2"></param>
             <param name="y2"></param>
+            <param name="x_barcode39"></param>
+            <param name="y_barcode39"></param>
         </member>
         <member name="M:WatermarkApp.SQL_connection.Search_document(System.Int32)">
             <summary>

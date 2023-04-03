@@ -24,6 +24,8 @@ namespace WatermarkApp
         public int height_barcode = 15; // o 0 começa em baixo
         public string errorReadBarcode = "insucesso";
         private string jar_file = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Ficheiros\thesis_watermark.jar";
+        public int width_bmp;
+        public int height_bmp;
 
         private TrackerServices trackerServices = new TrackerServices();
 
@@ -156,6 +158,7 @@ namespace WatermarkApp
 
                         if (file_name.Contains("scan"))
                         {
+
                             x = (int)barcode.X1 * width / bmp.Width + 97;
                             y = (int)barcode.Y1 * height / bmp.Height + 25;
                             x2 = (int)barcode.X2 * width / bmp.Width - 60;
@@ -217,6 +220,17 @@ namespace WatermarkApp
 
             AnaliseForenseForm form = new AnaliseForenseForm(filename[0] + ".pdf");
             form.Show();
+        }
+
+        public void GetDimensionsImage(string file_name)
+        {
+            if (!file_name.Contains(".pdf"))
+                file_name += ".pdf";
+            string img_file = Convert_pdf_png(file_name);
+            Bitmap bmp = new Bitmap(img_file);
+            width_bmp = bmp.Width;
+            height_bmp = bmp.Height;
+            bmp.Dispose();
         }
 
         public void GetDimensionsDocument(string file_name)

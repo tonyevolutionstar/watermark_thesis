@@ -100,7 +100,7 @@ namespace WatermarkApp
                     iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rotated_img);
                     image.SetDpi(300, 300);
                     image.SetAbsolutePosition(0, 0); // canto superior esquerdo
-                    image.ScaleToFit(doc.PageSize.Width-1, doc.PageSize.Height);
+                    image.ScaleToFit(doc.PageSize.Width, doc.PageSize.Height);
                     doc.Add(image);
                     doc.Close();
                     

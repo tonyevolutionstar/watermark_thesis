@@ -102,15 +102,43 @@ namespace WatermarkApp
                     int y_heigth_dig = y_second_barcode_res - y_dig;
                     int y_diff_or = y2_or - y_or;
                     int y_diff_dig = y2_dig - y_dig;
-                    
+
+                    //get dimensions doc 
+                    string dimensions = sql.GetDimensionsDoc_db(id_doc);
+                    string[] val_dim = dimensions.Split(':');
+                    int width_doc_or = int.Parse(val_dim[0]);
+                    int height_doc_or = int.Parse(val_dim[1]);
+                    int width_bmp_or = int.Parse(val_dim[2]);
+                    int heigth_bmp_or = int.Parse(val_dim[3]);
+
+                    commom.GetDimensionsDocument(file_name);
+                    commom.GetDimensionsImage(file_name);
+                    int width_doc_scan = commom.width;
+                    int height_doc_scan = commom.height;
+                    int width_bmp_scan = commom.width_bmp;
+                    int height_bmp_scan = commom.height_bmp;
+                    string scan_dimen = $"{width_doc_scan}:{height_doc_scan}:{width_bmp_scan}:{height_bmp_scan}";
+
+                    int diff_width_doc = width_doc_or - width_doc_scan;
+                    int diff_height_doc = height_doc_or - height_doc_scan;
+                    int diff_width_bmp = width_bmp_or - width_bmp_scan;
+                    int diff_heigth_bmp = heigth_bmp_or - height_bmp_scan;
+                    string diff_dimen = $"{diff_width_doc}:{diff_height_doc}:{diff_width_bmp}:{diff_heigth_bmp}";
+
                     diff_x = x_dig - x_or;
                     diff_y = y_diff_dig - y_diff_or;
+                    double prop_x = (double) x_diff_dig / x_diff_or;
+                    double prop_y = (double) y_diff_dig / y_diff_or;
+
                     if (!file_name.Contains("scan"))
                         diff_y = 0;
                     Console.WriteLine($"Original pos {barcode_pos}, digital pos {res_barcode[0]} | {res_barcode[1]}"); 
                     Console.WriteLine($"Diference x {diff_x}, diference y {diff_y/2}"); 
                     Console.WriteLine($"X original {x_diff_or}, x retificar {x_diff_dig}");
-                    
+                    Console.WriteLine($"Y original {y_diff_or}, y retificar {prop_y}");
+                    Console.WriteLine($"prop x {prop_x}, prop y {y_diff_dig}");
+                    Console.WriteLine($"original dim {dimensions}, Scan positions {scan_dimen}, diff {diff_dimen}");
+
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];
                     user.Text = col_sql[1];

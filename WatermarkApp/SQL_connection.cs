@@ -360,6 +360,57 @@ namespace WatermarkApp
             return pos_barcode;
         }
 
+        public void Insert_dimensions_doc(int id_doc, int width, int height, int width_bmp, int height_bmp)
+        {
+            int numberRecords = 0;
+            sql = "Use Watermark;INSERT INTO [dbo].[dimensions_document] VALUES ("
+            + id_doc + "," +  width + "," + height + "," + width_bmp + "," + height_bmp + ");";
+            connection = new SqlConnection(connetionString);
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                numberRecords = command.ExecuteNonQuery();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                tracker.WriteFile("inserceção de valores acerca das dimensões do ficheiro " + tracker.insertionError + " - " + ex.Message);
+            }
+
+            if (numberRecords > 0)
+                tracker.WriteFile("inserceção de valores acerca das dimensões do ficheiro " + tracker.finnishState);
+            else
+                tracker.WriteFile("inserceção de valores acerca das dimensões do ficheiro " + tracker.insertionError);
+        }
+
+        public string GetDimensionsDoc_db(int id_doc)
+        {
+            string dimensions = "";
+
+            sql = "Use Watermark; Select width, height, width_bmp, height_bmp from dimensions_document where id_doc = " + id_doc + ";";
+            connection = new SqlConnection(connetionString);
+            try
+            {
+                connection.Open();
+                command = new SqlCommand(sql, connection);
+                dataReader = command.ExecuteReader();
+                while (dataReader.Read())
+                {
+                   dimensions = dataReader.GetValue(0).ToString() + ":" + dataReader.GetValue(1).ToString() + ":" + dataReader.GetValue(2).ToString() + ":" + dataReader.GetValue(3).ToString();
+                }
+                dataReader.Close();
+                command.Dispose();
+                connection.Close();
+            }
+            catch (Exception ex)
+            {
+                tracker.WriteFile($"erro ao obter as posições do documento da base de dados - {ex.Message}");
+            }
+            return dimensions;
+        }
+
 
         public void Remove_Forense(int id_doc)
         {

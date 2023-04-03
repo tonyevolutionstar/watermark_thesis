@@ -238,8 +238,12 @@ namespace WatermarkApp
                 Integrity analise = new Integrity(x_barcode_pos, y_barcode_pos, x2_barcode_pos);
                 tracker.WriteFile("determinação dos pontos para a análise forense " + tracker.finnishState);
 
+                commom.GetDimensionsDocument(file_name);
+                commom.GetDimensionsImage(file_name);
+
                 SQL_connection sql = new SQL_connection();
                 sql.Insert_barcode(analise.positions, date_time_barcode.ToString());
+                sql.Insert_dimensions_doc(id_doc, commom.width, commom.height, commom.width_bmp, commom.height_bmp);
                 id_barcode = sql.Get_id_barcode(date_time_barcode.ToString());
 
                 AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf");

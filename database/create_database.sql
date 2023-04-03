@@ -12,6 +12,7 @@ DROP TABLE IF EXISTS forense_analises;
 DROP TABLE IF EXISTS position_char_file;
 DROP TABLE IF EXISTS watermark;
 DROP TABLE IF EXISTS barcode;
+DROP TABLE IF EXISTS dimensions_document;
 DROP TABLE IF EXISTS document;
 
 CREATE TABLE document (
@@ -82,3 +83,4 @@ height_bmp int
 -- Select * from watermark;
 -- Select * from forense_analises;
 -- Select * from position_char_file;
+-- Select * from dimensions_document;

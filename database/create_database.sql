@@ -46,8 +46,10 @@ CREATE TABLE watermark(
 	y INT,  -- start y position barcode
 	x2 INT, -- end x position barcode
 	y2 INT, -- end y position barcode
-	x_barcode39 INT,
-	y_barcode39 INT
+	x_39 INT,
+	y_39 INT,
+	x2_39 INT,
+	y2_39 INT
 );
 
 CREATE TABLE position_char_file(
@@ -76,7 +78,6 @@ height int,
 width_bmp int,
 height_bmp int 
 );
-
 
 -- Select * from document;
 -- Select * from barcode;

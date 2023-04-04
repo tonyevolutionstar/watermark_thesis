@@ -267,7 +267,7 @@ namespace WatermarkApp
         /// <param name="diff_x"></param>
         /// <param name="diff_y"></param>
 
-        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y)
+        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y, double prop_x, double prop_y)
         {
             string f = commom.Convert_pdf_png(watermark_file);
             int sizeLetter = 10;
@@ -299,45 +299,14 @@ namespace WatermarkApp
                         int res_height = res_y * h / bmp.Height;
 
                         int new_x = res_width + diff_x;
-                        int new_y = res_height + diff_y;
-                        
-                        //ajustar valores ao scan, porque podem variar
-                        if (new_x >= 60 && new_x < 180)
-                            new_x += 6;
-                      
-                        else if (new_x >= 180 && new_x < 230)
-                            new_x += 3;
-                        else if (new_x > 300 && new_x < 430)
-                            new_x -= 4;
-                        else if (new_x > 430 && new_x <= 450)
-                            new_x -= 7;
-                        else if (new_x > 450 && new_x <= 550)
-                            new_x -= 10;
-
-                        if (new_y >= 60 && new_y < 190)
-                            new_y -= 2;
-                        else if (new_y >= 190 && new_y < 240)
-                            new_y -= 5;
-                        else if (new_y >= 240 && new_y <= 270)
-                            new_y -= 6;
-                        else if (new_y >= 275 && new_y < 290)
-                            new_y -= 2;
-                        else if (new_y <= 290 && new_y <= 295)
-                            new_y -= 7;
-                        else if (new_y > 295 && new_y < 420)
-                            new_y -= 9;
-                        else if (new_y >= 420 && new_y <= 530)
-                            new_y -= 15;
-                        else if (new_y >= 790 && new_y <= 842)
-                            new_y -= 28;
-
+                        int new_y = res_height - diff_y;
+                   
                         if (!watermark_file.Contains("scan"))
                             intersection = new Point(res_x,res_y);
                         else
-                            intersection = new Point(new_x * bmp.Width/w, new_y * bmp.Height/h); //adjust point barcode
+                            intersection = new Point(new_x * bmp.Width / w, new_y * bmp.Height / h); //adjust point barcode
                         Console.WriteLine($"{ch.Trim()};{res_width}:{res_height};{new_x}:{new_y}");
                     
-
                         g.DrawString(ch, drawFont, drawBrush, intersection);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);
                     }

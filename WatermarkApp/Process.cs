@@ -36,14 +36,6 @@ namespace WatermarkApp
       
         private string watermark_file = "_watermark_"; // distinguir ficheiros com e sem marca de água
 
-        private int x_barcode_pos;
-        private int y_barcode_pos;
-        private int x2_barcode_pos;
-        private int y2_barcode_pos;
-        private int x_barcode39;
-        private int y_barcode39;
-
-
         private TrackerServices tracker = new TrackerServices();
         int status = -1; // 0 rejected, 1 accepted;
    
@@ -218,24 +210,12 @@ namespace WatermarkApp
                 DateTime date_time_barcode = DateTime.Now;
 
                 watermark.Generate_barcode(id_barcode);
-                watermark.Generate_barcode_38(id_barcode);
-                tracker.WriteFile("código de barras criado");
+                watermark.Generate_barcode_39(id_barcode);
+                tracker.WriteFile("códigos de barras criados");
                 watermark.Add_watermark_pdf(date_time);
-                tracker.WriteFile("código de barras adicionado ao ficheiro");
-                List<string> barcode_res = commom.Return_PositionBarcode(file_name + watermark_file + date_time + ".pdf");
-   
-                tracker.WriteFile("obtenção das posições do código de barras no ficheiro " + tracker.finnishState);
-                string[] val_pos_barcode = barcode_res[1].Split(':');
-                x_barcode_pos = int.Parse(val_pos_barcode[0]);
-                y_barcode_pos = int.Parse(val_pos_barcode[1]);
-                x2_barcode_pos = int.Parse(val_pos_barcode[2]);
-                y2_barcode_pos = int.Parse(val_pos_barcode[3]);
-
-                string[] barcode39 = barcode_res[0].Split(':');
-                x_barcode39 = int.Parse(barcode39[0]);
-                y_barcode39 = int.Parse(barcode39[1]);  
-
-                Integrity analise = new Integrity(x_barcode_pos, y_barcode_pos, x2_barcode_pos);
+                tracker.WriteFile("códigos de barras adicionado ao ficheiro");
+         
+                Integrity analise = new Integrity(commom.x_barcode_pos, commom.y_barcode_pos, commom.x2_barcode_pos);
                 tracker.WriteFile("determinação dos pontos para a análise forense " + tracker.finnishState);
 
                 commom.GetDimensionsDocument(file_name);
@@ -342,7 +322,7 @@ namespace WatermarkApp
                     {
                         status = 1;
                         SQL_connection sql = new SQL_connection();
-                        sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos, y2_barcode_pos, x_barcode39, y_barcode39);
+                        sql.Insert_watermark(id_doc, id_barcode, status, commom.x_barcode_pos, commom.y_barcode_pos, commom.x2_barcode_pos, commom.y2_barcode_pos, commom.x_39, commom.y_39, commom.x2_39, commom.y2_39);
                         tracker.WriteFile("documento aceite na base de dados");
                         MessageBox.Show(accepted_Doc);
                         accept_flag = true;
@@ -357,7 +337,6 @@ namespace WatermarkApp
                     MessageBox.Show("Último ficheiro na diretoria Ficheiros " + argumentOutOfRangeException);
                 }
             }
-
         }
 
  
@@ -374,7 +353,7 @@ namespace WatermarkApp
                 {
                     status = 0;
                     SQL_connection sql = new SQL_connection();
-                    sql.Insert_watermark(id_doc, id_barcode, status, x_barcode_pos, y_barcode_pos, x2_barcode_pos, y2_barcode_pos, x_barcode39, y_barcode39);
+                    sql.Insert_watermark(id_doc, id_barcode, status, commom.x_barcode_pos, commom.y_barcode_pos, commom.x2_barcode_pos, commom.y2_barcode_pos, commom.x_39, commom.y_39, commom.x2_39, commom.y2_39);
                     tracker.WriteFile("documento rejeitado na base de dados");
                     System.IO.File.Delete(file_name_watermark);
                     Process_file();

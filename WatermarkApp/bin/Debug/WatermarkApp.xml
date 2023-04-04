@@ -54,7 +54,7 @@
             <param name="y"></param>
             <returns>Letra</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32)">
+        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32,System.Double,System.Double)">
             <summary>
             Usado pela Analise Forense
             </summary>
@@ -304,7 +304,7 @@
             <param name="ID">número de identificação ficheiro</param>
             <returns>0 - não tem, >1 se tem</returns>
         </member>
-        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:WatermarkApp.SQL_connection.Insert_watermark(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Faz registo de cada vez que um documento com watermark é gerado, guardando se o utilizador aceitou ou rejeitou
             </summary>
@@ -315,8 +315,10 @@
             <param name="y"></param>
             <param name="x2"></param>
             <param name="y2"></param>
-            <param name="x_barcode39"></param>
-            <param name="y_barcode39"></param>
+            <param name="x_39"></param>
+            <param name="y_39"></param>
+            <param name="x2_39"></param>
+            <param name="y2_39"></param>
         </member>
         <member name="M:WatermarkApp.SQL_connection.Search_document(System.Int32)">
             <summary>

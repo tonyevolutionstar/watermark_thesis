@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -22,11 +21,8 @@ namespace WatermarkApp
 
         private int diff_x;
         private int diff_y;
-
-        private int x_second_barcode;
-        private int y_second_barcode;
-        private int x_second_barcode_res;
-        private int y_second_barcode_res;
+        private double prop_x;
+        private double prop_y;
 
         private TrackerServices tracker = new TrackerServices(); 
 
@@ -81,63 +77,122 @@ namespace WatermarkApp
                     y_or = int.Parse(val_barcode_pos[1]);
                     int x2_or = int.Parse(val_barcode_pos[2]);
                     int y2_or = int.Parse(val_barcode_pos[3]);
-                    x_second_barcode = int.Parse(val_barcode_pos[4]);
-                    y_second_barcode = int.Parse(val_barcode_pos[5]);
+                    string barcode128_or = $"{x_or}:{y_or}:{x2_or}:{y2_or}";
 
-                    List<string> res_barcode = commom.Return_PositionBarcode(file_name);
-                    string[] res_barcode39 = res_barcode[0].Split(':'); 
-                    x_second_barcode_res = int.Parse(res_barcode39[0]);
-                    y_second_barcode_res = int.Parse(res_barcode39[1]);
-                    
-                    string[] res_barcode_pos = res_barcode[1].Split(':');
+                    int x_39_or = int.Parse(val_barcode_pos[4]);
+                    int y_39_or = int.Parse(val_barcode_pos[5]);
+                    int x2_39_or = int.Parse(val_barcode_pos[6]);
+                    int y2_39_or = int.Parse(val_barcode_pos[7]);
+                    string barcode39_or = $"{x_39_or}:{y_39_or}:{x2_39_or}:{y2_39_or}";
+           
+                    string res_barcode = commom.Return_PositionBarcode(file_name);
+                    string[] res_barcode_pos = res_barcode.Split(':');
                     //Dig = digitalizado
                     int x_dig = int.Parse(res_barcode_pos[0]);
                     int y_dig = int.Parse(res_barcode_pos[1]);
                     int x2_dig = int.Parse(res_barcode_pos[2]);
                     int y2_dig = int.Parse(res_barcode_pos[3]);
-                    
+                    string barcode128_dig = $"{x_dig}:{y_dig}:{x2_dig}:{y2_dig}";
+
+                    int x_39_dig = int.Parse(res_barcode_pos[4]);
+                    int y_39_dig = int.Parse(res_barcode_pos[5]);
+                    int x2_39_dig = int.Parse(res_barcode_pos[6]);
+                    int y2_39_dig = int.Parse(res_barcode_pos[7]);
+                    string barcode39_dig = $"{x_39_dig}:{y_39_dig}:{x2_39_dig}:{y2_39_dig}";
+
                     int x_diff_or = x2_or - x_or;
-                    int x_diff_dig = x2_dig - x_dig;
-                    int y_heigth_or = y_second_barcode - y_or;
-                    int y_heigth_dig = y_second_barcode_res - y_dig;
                     int y_diff_or = y2_or - y_or;
+                    int x_diff_dig = x2_dig - x_dig;
                     int y_diff_dig = y2_dig - y_dig;
-
-                    //get dimensions doc 
-                    string dimensions = sql.GetDimensionsDoc_db(id_doc);
-                    string[] val_dim = dimensions.Split(':');
-                    int width_doc_or = int.Parse(val_dim[0]);
-                    int height_doc_or = int.Parse(val_dim[1]);
-                    int width_bmp_or = int.Parse(val_dim[2]);
-                    int heigth_bmp_or = int.Parse(val_dim[3]);
-
-                    commom.GetDimensionsDocument(file_name);
-                    commom.GetDimensionsImage(file_name);
-                    int width_doc_scan = commom.width;
-                    int height_doc_scan = commom.height;
-                    int width_bmp_scan = commom.width_bmp;
-                    int height_bmp_scan = commom.height_bmp;
-                    string scan_dimen = $"{width_doc_scan}:{height_doc_scan}:{width_bmp_scan}:{height_bmp_scan}";
-
-                    int diff_width_doc = width_doc_or - width_doc_scan;
-                    int diff_height_doc = height_doc_or - height_doc_scan;
-                    int diff_width_bmp = width_bmp_or - width_bmp_scan;
-                    int diff_heigth_bmp = heigth_bmp_or - height_bmp_scan;
-                    string diff_dimen = $"{diff_width_doc}:{diff_height_doc}:{diff_width_bmp}:{diff_heigth_bmp}";
-
-                    diff_x = x_dig - x_or;
+                
+                    diff_x = x_diff_dig - x_diff_or;
                     diff_y = y_diff_dig - y_diff_or;
-                    double prop_x = (double) x_diff_dig / x_diff_or;
-                    double prop_y = (double) y_diff_dig / y_diff_or;
+
+                    int x_39_diff_or = x2_39_or - x2_39_or;
+                    int y_39_diff_or = y2_39_or - y2_39_or;
+                    int x_39_diff_dig = x2_39_dig - x_39_dig;
+                    int y_39_diff_dig = y2_39_dig - y_39_dig;
+                    
+                    int diff_x_39 = x_39_diff_dig - x_39_diff_or;
+                    int diff_y_39 = y_39_diff_dig - y_39_diff_or;
 
                     if (!file_name.Contains("scan"))
                         diff_y = 0;
-                    Console.WriteLine($"Original pos {barcode_pos}, digital pos {res_barcode[0]} | {res_barcode[1]}"); 
-                    Console.WriteLine($"Diference x {diff_x}, diference y {diff_y/2}"); 
+                    Console.WriteLine($"Original pos barcode 128 {barcode128_or} | barcode 39 {barcode39_or}");
+                    Console.WriteLine($"Digital pos barcode 128 {barcode128_dig} | barcode 39 {barcode39_dig}");
+                    Console.WriteLine($"Distance x barcode 128 = {diff_x}, Distance y barcode 128 = {diff_y}");
+                    Console.WriteLine($"Distance x barcode 39 = {diff_x_39}, Distance y barcode 39 = {diff_y_39}");
+
                     Console.WriteLine($"X original {x_diff_or}, x retificar {x_diff_dig}");
-                    Console.WriteLine($"Y original {y_diff_or}, y retificar {prop_y}");
-                    Console.WriteLine($"prop x {prop_x}, prop y {y_diff_dig}");
-                    Console.WriteLine($"original dim {dimensions}, Scan positions {scan_dimen}, diff {diff_dimen}");
+                    Console.WriteLine($"Y original {y_diff_or}, y retificar {y_diff_dig}");
+                    //Console.WriteLine($"prop x {prop_x}, prop y {prop_y}");
+
+                    string img = commom.Convert_pdf_png(file_name);
+                    commom.GetDimensionsDocument(file_name);
+                    //arc
+                    int w_arc = 5;
+                    int h_arc = 5;
+                    int startAngle = 0;
+                    int sweepAngle = 360;
+                    Pen yellow = new Pen(Color.Yellow, 3);
+                    Pen red = new Pen(Color.Red,3); 
+                    Pen green = new Pen(Color.Green, 3);
+
+                    using (Bitmap bmp = new Bitmap(img))
+                    {
+                        using (Graphics g = Graphics.FromImage(bmp))
+                        {
+                            SolidBrush drawBrush = new SolidBrush(Color.Chocolate);
+                            Font drawFont = new Font("Arial", 10);
+
+                            int p_x = x_dig * bmp.Width / commom.width;
+                            int p_y = y_dig * bmp.Height / commom.height;
+                            int p2_x = x2_dig * bmp.Width / commom.width;
+                            int p2_y = y2_dig * bmp.Height / commom.height;
+                            Point p1_l_u_r = new Point(p_x, p_y);
+                            Point p1_r_u_r = new Point(p2_x, p_y);
+                            Point p1_r_b_r = new Point(p2_x, p2_y);
+                            Point p1_l_b_r = new Point(p_x, p2_y);
+
+                            g.DrawArc(yellow, p1_l_u_r.X, p1_l_u_r.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(yellow, p1_r_u_r.X, p1_r_u_r.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(yellow, p1_l_b_r.X, p1_l_b_r.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(yellow, p1_r_b_r.X, p1_r_b_r.Y, w_arc, h_arc, startAngle, sweepAngle);
+
+                            int p_x_or = x_or * bmp.Width / commom.width;
+                            int p_y_or = y_or * bmp.Height / commom.height;
+                            int p2_x_or = x2_or * bmp.Width / commom.width;
+                            int p2_y_or = y2_or * bmp.Height / commom.height;
+                            Point p1_l_u_o = new Point(p_x_or, p_y_or);
+                            Point p1_r_u_o = new Point(p2_x_or, p_y_or);
+                            Point p1_r_b_o = new Point(p2_x_or, p2_y_or);
+                            Point p1_l_b_o = new Point(p_x_or, p2_y_or);
+
+                            g.DrawArc(red, p1_l_u_o.X, p1_l_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(red, p1_r_u_o.X, p1_r_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(red, p1_l_b_o.X, p1_l_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(red, p1_r_b_o.X, p1_r_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+
+                            int p_x_39_or = x_39_or * bmp.Width / commom.width;
+                            int p_y_39_or = y_39_or * bmp.Height / commom.height;
+                            int p2_x_39_or = x2_39_or * bmp.Width / commom.width;
+                            int p2_y_39_or = y2_39_or * bmp.Height / commom.height;
+                            Point p1_l_u_39_o = new Point(p_x_39_or, p_y_39_or);
+                            Point p1_r_u_39_o = new Point(p2_x_39_or, p_y_39_or);
+                            Point p1_r_b_39_o = new Point(p2_x_39_or, p2_y_39_or);
+                            Point p1_l_b_39_o = new Point(p_x_39_or, p2_y_39_or);
+
+                            g.DrawArc(green, p1_l_u_39_o.X, p1_l_u_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(green, p1_r_u_39_o.X, p1_r_u_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(green, p1_l_b_39_o.X, p1_l_b_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(green, p1_r_b_39_o.X, p1_r_b_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+
+                            g.Dispose();
+                        }
+                        string[] filename = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
+                        bmp.Save(filename[0] + "_pos_barcode.png", System.Drawing.Imaging.ImageFormat.Png);
+                        bmp.Dispose();
+                    }
 
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];
@@ -158,7 +213,7 @@ namespace WatermarkApp
         {
             MessageBox.Show(infoAnaliseForense);
             SQL_connection sql = new SQL_connection();
-            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y);
+            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y, prop_x, prop_y);
         }
 
         private void Retificate_FormClosed(object sender, FormClosedEventArgs e)

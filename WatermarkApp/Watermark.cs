@@ -32,8 +32,7 @@ namespace WatermarkApp
             MyBarCode.ChangeBarCodeColor(Color.Black);
             MyBarCode.SaveAsPng(filename + commom.extension_barcode);
         }
-
-        public void Generate_barcode_38(int id_barcode)
+        public void Generate_barcode_39(int id_barcode)
         {
             string data_barcode = id_doc.ToString() + ";" + id_barcode.ToString();
             GeneratedBarcode MyBarCode = BarcodeWriter.CreateBarcode(data_barcode, BarcodeWriterEncoding.Code39);
@@ -42,7 +41,6 @@ namespace WatermarkApp
             MyBarCode.ChangeBarCodeColor(Color.Black);
             MyBarCode.SaveAsPng(filename + "_code39.png");
         }
-
 
 
         public void Add_watermark_pdf(string date_time)
@@ -62,7 +60,7 @@ namespace WatermarkApp
 
                 //header 
                 iTextSharp.text.Image barcode_img_header = iTextSharp.text.Image.GetInstance(barcodeStream2);
-                barcode_img_header.SetAbsolutePosition(middle_w, height - commom.height_barcode*2 + 10);
+                barcode_img_header.SetAbsolutePosition(middle_w, height - commom.height_barcode * 2 + 10);
                 barcode_img_header.SetDpi(dpiBarcode, dpiBarcode);
                 pdfContentByte.AddImage(barcode_img_header);
 

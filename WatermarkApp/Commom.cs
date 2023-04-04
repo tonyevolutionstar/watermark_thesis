@@ -26,6 +26,15 @@ namespace WatermarkApp
         private string jar_file = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Ficheiros\thesis_watermark.jar";
         public int width_bmp;
         public int height_bmp;
+        public int x_barcode_pos = 200;
+        public int y_barcode_pos = 812;
+        public int x2_barcode_pos = 446;
+        public int y2_barcode_pos = 827;
+        public int x_39 = 232;
+        public int y_39 = 5;
+        public int x2_39 = 413;
+        public int y2_39 = 20;
+
 
         private TrackerServices trackerServices = new TrackerServices();
 
@@ -93,22 +102,13 @@ namespace WatermarkApp
         {
             trackerServices.WriteFile($"lendo o código de barras do ficheiro {file_name}");
             string img_file = Convert_pdf_png(file_name);
-            BarcodeReaderOptions readerOptions = new BarcodeReaderOptions()
+       
+            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium,
+               BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+            if (result != null)
             {
-                ExpectMultipleBarcodes = true,
-                ExpectBarcodeTypes = BarcodeEncoding.Code128
-            };
-            List<string> res = new List<string>();
-
-            var result = BarcodeReader.Read(img_file, readerOptions);
-            if(result != null)
-            {
-                foreach(var barcode in result)
-                {
-                    res.Add(barcode.Value);
-                }
-                // os valores que estão dentro do código são iguais, exceto as posições, por isso para obter o texto do código de barras tanto faz ser 0 como 1  
-                return res[0];
+              
+                return result.Text;
             }
             else
                 trackerServices.WriteFile("erro na leitura do código de barras");
@@ -117,70 +117,50 @@ namespace WatermarkApp
         }
 
 
-        public List<string> Return_PositionBarcode(string file_name)
+        public string Return_PositionBarcode(string file_name)
         {
             GetDimensionsDocument(file_name);
             trackerServices.WriteFile("lendo as posições do código de barras");
             string img_file = Convert_pdf_png(file_name);
-            List<string> res = new List<string>();
+            string res = "";
 
-            BarcodeReaderOptions readerOptions = new BarcodeReaderOptions()
-            {
-                Speed = ReadingSpeed.ExtremeDetail,
-                ExpectMultipleBarcodes= true,
-                ExpectBarcodeTypes = BarcodeEncoding.Code128
-            };
-
-            var result = BarcodeReader.Read(img_file, readerOptions);
+            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium,
+                BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
 
             var result2 = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code39, BarcodeReader.BarcodeRotationCorrection.Medium,
-            BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+                BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
 
-            if (result != null || result2 != null)
+            if (result != null && result2 != null)
             {
-                using (Bitmap bmp = new Bitmap(img_file)) // garantir o fechar do bitmap - fecha todos os recursos usados
+                using (Bitmap bmp = new Bitmap(img_file)) 
                 {
-                    //mudar aqui adicionar lista do result2, compor posições, eliminar code39
-                    int x_39 = (int)result2.X1 * width / bmp.Width + 103;
-                    int y_39 = (int)result2.Y1 * height / bmp.Height + 27;
-                    int x2_39 = (int)result2.X2 * width / bmp.Width - 70;
-                    int y2_39 = (int)result2.Y2 * height / bmp.Height - 34;
-                    res.Add($"{x_39}:{y_39}:{x2_39}:{y2_39}");
-
-                    foreach(var barcode in result)
+                    if (file_name.Contains("scan"))
                     {
-                        // é necessário compor as posições do código barras pois ele tem espaço branco na imagem, os valores foram ajustados manualmente
-                        // com a ajuda da criação de uma imagem auxiliar que permite a visualização dos pontos
-                        int x = (int)barcode.X1 * width / bmp.Width + 97;
-                        int y = (int)barcode.Y1 * height / bmp.Height + 25;
-                        int x2 = (int)barcode.X2 * width / bmp.Width - 60; // se for maior que -55 vai para a direita, -70 vai para a esquerda
-                        int y2 = (int)barcode.Y2 * height / bmp.Height;
+                        x_barcode_pos = (int)result.X1 * width / bmp.Width + 99;
+                        y_barcode_pos = (int)result.Y1 * height / bmp.Height + 28;
+                        x2_barcode_pos = (int)result.X2 * width / bmp.Width - 65;
+                        y2_barcode_pos = (int)result.Y2 * height / bmp.Height + 4;
 
-                        if (file_name.Contains("scan"))
-                        {
+                        x_39 = (int)result2.X1 * width / bmp.Width;
+                        y_39 = (int)result2.Y1 * height / bmp.Height;
+                        x2_39 = (int)result2.X2 * width / bmp.Width;
+                        y_39 = (int)result2.Y2 * height / bmp.Height;
 
-                            x = (int)barcode.X1 * width / bmp.Width + 97;
-                            y = (int)barcode.Y1 * height / bmp.Height + 25;
-                            x2 = (int)barcode.X2 * width / bmp.Width - 60;
-                            y2 = (int)barcode.Y2 * height / bmp.Height;
-                            //change
-                            //fixing the values of scan image 
-                            if (y >= 1000)
-                                y = Math.Abs(height - y + 15);
-                            if (x >= 220)
-                                x = Math.Abs(width - x - 63);
-                            if (x2 >= 500)
-                                x2 = Math.Abs(width - x2);
-                            if (y2 >= 1000)
-                                y2 = Math.Abs(height - y2 + 90);
-                            if (x2 <= 100)
-                                x2 += width / 2 + 41;
-                        }
-                        res.Add($"{x}:{y}:{x2}:{y2}");
+                        //change
+                        //fixing the values of scan image 
+                        if (y_barcode_pos >= 1000)
+                            y_barcode_pos = Math.Abs(height - y_barcode_pos + 15);
+                        if (x_barcode_pos >= 220)
+                            x_barcode_pos = Math.Abs(width - x_barcode_pos - 63);
+                        if (x2_barcode_pos >= 500)
+                            x2_barcode_pos = Math.Abs(width - x2_barcode_pos);
+                        if (y2_barcode_pos >= 1000)
+                            y2_barcode_pos = Math.Abs(height - y2_barcode_pos + 90);
+                        if (x2_barcode_pos <= 100)
+                            x2_barcode_pos += width / 2 + 41;
                     }
-                   
                     bmp.Dispose();
-                    return res;
+                    return $"{x_barcode_pos}:{y_barcode_pos}:{x2_barcode_pos}:{y2_barcode_pos}:{x_39}:{y_39}:{x2_39}:{y2_39}";
                 }
             }
             else
@@ -190,12 +170,12 @@ namespace WatermarkApp
         }
 
 
-        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y)
+        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double prop_x, double prop_y)
         {   
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name);
 
-            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y);
+            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, prop_x, prop_y);
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";

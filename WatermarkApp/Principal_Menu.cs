@@ -123,7 +123,7 @@ namespace WatermarkApp
             string[] s_doc = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             var copy_image = (Bitmap)System.Drawing.Image.FromFile(img);
-            int stripCount = 10; // se o scan nao ter posições ou estiver muito torto alterar para 30
+            int stripCount = 15; // se o scan nao ter posições ou estiver muito torto alterar para 30
             var compact = new Compact(copy_image, stripCount);
 
             //find rotation angle

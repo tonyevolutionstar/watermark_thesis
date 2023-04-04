@@ -97,12 +97,15 @@ namespace WatermarkApp
         /// <param name="y"></param>
         /// <param name="x2"></param>
         /// <param name="y2"></param>
-        /// <param name="x_barcode39"></param>
-        /// <param name="y_barcode39"></param>
-        public void Insert_watermark(int id_document, int id_barcode, int validation, int x, int y, int x2, int y2, int x_barcode39, int y_barcode39)
+        /// <param name="x_39"></param>
+        /// <param name="y_39"></param>
+        /// <param name="x2_39"></param>
+        /// <param name="y2_39"></param>
+
+        public void Insert_watermark(int id_document, int id_barcode, int validation, int x, int y, int x2, int y2, int x_39, int y_39, int x2_39, int y2_39)
         {
             sql = "Use Watermark;INSERT INTO [dbo].[watermark] VALUES ("
-            + id_document + "," + id_barcode + "," + validation + "," + x + "," + y + "," + x2 + "," + y2 + "," + x_barcode39 + "," + y_barcode39 + ");";
+            + id_document + "," + id_barcode + "," + validation + "," + x + "," + y + "," + x2 + "," + y2 + "," + x_39 + "," + y_39 + "," + x2_39 + "," + y2_39 + ");";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -338,7 +341,7 @@ namespace WatermarkApp
         public string Get_Positions_Barcode(int id_doc)
         {
             string pos_barcode = "";
-            sql = "Use Watermark; Select x, y, x2, y2, x_barcode39, y_barcode39 from barcode inner join watermark on barcode.id_barcode = watermark.id_barcode where id_doc = " + id_doc + ";";
+            sql = "Use Watermark; Select x, y, x2, y2, x_39, y_39, x2_39, y2_39 from barcode inner join watermark on barcode.id_barcode = watermark.id_barcode where id_doc = " + id_doc + ";";
             connection = new SqlConnection(connetionString);
             try
             {
@@ -347,7 +350,16 @@ namespace WatermarkApp
                 dataReader = command.ExecuteReader();
                 while (dataReader.Read())
                 {
-                    pos_barcode = dataReader.GetValue(0).ToString() + ":" + dataReader.GetValue(1).ToString() + ":" + dataReader.GetValue(2).ToString() + ":" + dataReader.GetValue(3).ToString() + ":" + dataReader.GetValue(4).ToString() + ":" + dataReader.GetValue(5).ToString();
+                    string x = dataReader.GetValue(0).ToString();
+                    string y = dataReader.GetValue(1).ToString();
+                    string x2 = dataReader.GetValue(2).ToString();
+                    string y2 = dataReader.GetValue(3).ToString();
+                    string x_39 = dataReader.GetValue(4).ToString();
+                    string y_39 = dataReader.GetValue(5).ToString();
+                    string x2_39 = dataReader.GetValue(6).ToString();
+                    string y2_39 = dataReader.GetValue(7).ToString();
+
+                    pos_barcode = $"{x}:{y}:{x2}:{y2}:{x_39}:{y_39}:{x2_39}:{y2_39}";
                 }
                 dataReader.Close();
                 command.Dispose();

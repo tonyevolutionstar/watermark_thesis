@@ -23,6 +23,14 @@ namespace WatermarkApp
         private int diff_y;
         private double prop_x;
         private double prop_y;
+        private int diff_width_doc;
+        private int diff_height_doc;
+        private int diff_width_bmp;
+        private int diff_height_bmp;
+        private int width_doc_or;
+        private int height_doc_or;
+        private int width_bmp_or;
+        private int height_bmp_or;
 
         private TrackerServices tracker = new TrackerServices(); 
 
@@ -112,20 +120,52 @@ namespace WatermarkApp
                     int y_39_diff_or = y2_39_or - y2_39_or;
                     int x_39_diff_dig = x2_39_dig - x_39_dig;
                     int y_39_diff_dig = y2_39_dig - y_39_dig;
+                    int delta_y_or = y2_or - y_39_or;
+                    int delta_y_res = y2_dig - y_39_dig;
                     
                     int diff_x_39 = x_39_diff_dig - x_39_diff_or;
                     int diff_y_39 = y_39_diff_dig - y_39_diff_or;
 
+                    //get dimensions doc 
+                    string dimensions = sql.GetDimensionsDoc_db(id_doc);
+                    string[] val_dim = dimensions.Split(':');
+                    width_doc_or = int.Parse(val_dim[0]);
+                    height_doc_or = int.Parse(val_dim[1]);
+                    width_bmp_or = int.Parse(val_dim[2]);
+                    height_bmp_or= int.Parse(val_dim[3]);
+         
+                    commom.GetDimensionsDocument(file_name);
+                    commom.GetDimensionsImage(file_name);
+                    int width_doc_scan = commom.width;
+                    int height_doc_scan = commom.height;
+                    int width_bmp_scan = commom.width_bmp;
+                    int height_bmp_scan = commom.height_bmp;
+                    string scan_dimen = $"{width_doc_scan}:{height_doc_scan}:{width_bmp_scan}:{height_bmp_scan}";
+
+                    diff_width_doc = width_doc_or - width_doc_scan;
+                    diff_height_doc = height_doc_or - height_doc_scan;
+
+                    diff_width_bmp = width_bmp_or - width_bmp_scan;
+                    diff_height_bmp = height_bmp_or - height_bmp_scan;
+
+                    string diff_dimen = $"{diff_width_doc}:{diff_height_doc}";
+                    string diff_bmp_dim = $"{diff_width_bmp}:{diff_height_bmp}";
+
                     if (!file_name.Contains("scan"))
                         diff_y = 0;
+                    Console.WriteLine($"Original dimensions {dimensions}, Scan dimensions {scan_dimen}, diff doc {diff_dimen}, bmp {diff_bmp_dim}");
                     Console.WriteLine($"Original pos barcode 128 {barcode128_or} | barcode 39 {barcode39_or}");
                     Console.WriteLine($"Digital pos barcode 128 {barcode128_dig} | barcode 39 {barcode39_dig}");
                     Console.WriteLine($"Distance x barcode 128 = {diff_x}, Distance y barcode 128 = {diff_y}");
                     Console.WriteLine($"Distance x barcode 39 = {diff_x_39}, Distance y barcode 39 = {diff_y_39}");
+                    Console.WriteLine($"Delta y or {delta_y_or}, delta y dig {delta_y_res}");
 
                     Console.WriteLine($"X original {x_diff_or}, x retificar {x_diff_dig}");
                     Console.WriteLine($"Y original {y_diff_or}, y retificar {y_diff_dig}");
-                    //Console.WriteLine($"prop x {prop_x}, prop y {prop_y}");
+                    prop_x = (double) x_diff_dig / x_diff_or;
+                    prop_y = (double) delta_y_res / delta_y_or;
+
+                    Console.WriteLine($"prop x {prop_x}, prop y {prop_y}");
 
                     string img = commom.Convert_pdf_png(file_name);
                     commom.GetDimensionsDocument(file_name);
@@ -137,6 +177,7 @@ namespace WatermarkApp
                     Pen yellow = new Pen(Color.Yellow, 3);
                     Pen red = new Pen(Color.Red,3); 
                     Pen green = new Pen(Color.Green, 3);
+                    Pen pink = new Pen(Color.Pink, 3);
 
                     using (Bitmap bmp = new Bitmap(img))
                     {
@@ -187,6 +228,20 @@ namespace WatermarkApp
                             g.DrawArc(green, p1_l_b_39_o.X, p1_l_b_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
                             g.DrawArc(green, p1_r_b_39_o.X, p1_r_b_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
 
+                            int p_x_39_dig = x_39_dig * bmp.Width / commom.width;
+                            int p_y_39_dig = y_39_dig * bmp.Height / commom.height;
+                            int p2_x_39_dig = x2_39_dig * bmp.Width / commom.width;
+                            int p2_y_39_dig = y2_39_dig * bmp.Height / commom.height;
+                            Point p1_l_u_39_dig = new Point(p_x_39_dig, p_y_39_dig);
+                            Point p1_r_u_39_dig = new Point(p2_x_39_dig, p_y_39_dig);
+                            Point p1_r_b_39_dig = new Point(p2_x_39_dig, p2_y_39_dig);
+                            Point p1_l_b_39_dig = new Point(p_x_39_dig, p2_y_39_dig);
+
+                            g.DrawArc(pink, p1_l_u_39_dig.X, p1_l_u_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(pink, p1_r_u_39_dig.X, p1_r_u_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(pink, p1_l_b_39_dig.X, p1_l_b_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
+                            g.DrawArc(pink, p1_r_b_39_dig.X, p1_r_b_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
+
                             g.Dispose();
                         }
                         string[] filename = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
@@ -213,7 +268,7 @@ namespace WatermarkApp
         {
             MessageBox.Show(infoAnaliseForense);
             SQL_connection sql = new SQL_connection();
-            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y, prop_x, prop_y);
+            commom.RetificateAnalise(id_doc, sql, file_name, diff_x, diff_y, prop_x, prop_y, diff_width_doc, diff_height_doc, diff_width_bmp, diff_width_bmp);
         }
 
         private void Retificate_FormClosed(object sender, FormClosedEventArgs e)

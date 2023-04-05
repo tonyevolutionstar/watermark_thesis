@@ -257,7 +257,7 @@ namespace WatermarkApp
             return inter;
         }
 
- 
+
 
         /// <summary>
         /// Usado pela Analise Forense
@@ -266,8 +266,14 @@ namespace WatermarkApp
         /// <param name="watermark_file"></param>
         /// <param name="diff_x"></param>
         /// <param name="diff_y"></param>
+        /// <param name="prop_x"></param>
+        /// <param name="prop_y"></param>
+        /// <param name="diff_width_doc"></param>
+        /// <param name="diff_height_doc"></param>
+        /// <param name="diff_width_bmp"></param>
+        /// <param name="diff_height_bmp"></param>
 
-        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y, double prop_x, double prop_y)
+        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y, double prop_x, double prop_y, int diff_width_doc, int diff_height_doc, int diff_width_bmp, int diff_height_bmp)
         {
             string f = commom.Convert_pdf_png(watermark_file);
             int sizeLetter = 10;
@@ -298,15 +304,29 @@ namespace WatermarkApp
                         int res_width = res_x * w / bmp.Width;
                         int res_height = res_y * h / bmp.Height;
 
-                        int new_x = res_width + diff_x;
-                        int new_y = res_height - diff_y;
-                   
+
+                        if (diff_width_doc == 0)
+                        {
+                            diff_width_doc = 17;
+                            diff_width_bmp = 71;
+                        }
+                        if (diff_height_doc == 0)
+                        {
+                            diff_height_doc = 18;
+                            diff_height_bmp = 73;
+                        }
+
+
                         if (!watermark_file.Contains("scan"))
                             intersection = new Point(res_x,res_y);
                         else
+                        {
+                            int new_x = Convert.ToInt16((res_width - diff_x) * prop_x - diff_width_bmp / diff_width_doc);
+                            int new_y = Convert.ToInt16((res_height - diff_y) * prop_y + diff_height_bmp / diff_height_doc);
                             intersection = new Point(new_x * bmp.Width / w, new_y * bmp.Height / h); //adjust point barcode
-                        Console.WriteLine($"{ch.Trim()};{res_width}:{res_height};{new_x}:{new_y}");
-                    
+                            Console.WriteLine($"{ch.Trim()};{res_width}:{res_height};{new_x}:{new_y}");
+                        }
+                          
                         g.DrawString(ch, drawFont, drawBrush, intersection);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);
                     }

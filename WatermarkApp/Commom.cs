@@ -136,15 +136,20 @@ namespace WatermarkApp
                 {
                     if (file_name.Contains("scan"))
                     {
-                        x_barcode_pos = (int)result.X1 * width / bmp.Width + 99;
-                        y_barcode_pos = (int)result.Y1 * height / bmp.Height + 28;
-                        x2_barcode_pos = (int)result.X2 * width / bmp.Width - 65;
-                        y2_barcode_pos = (int)result.Y2 * height / bmp.Height + 4;
+                        x_barcode_pos = (int)result.X1 * width / bmp.Width + 96;
+                        y_barcode_pos = (int)result.Y1 * height / bmp.Height + 27;
+                        x2_barcode_pos = (int)result.X2 * width / bmp.Width - 64;
+                        y2_barcode_pos = (int)result.Y2 * height / bmp.Height + 2;
 
-                        x_39 = (int)result2.X1 * width / bmp.Width;
-                        y_39 = (int)result2.Y1 * height / bmp.Height;
-                        x2_39 = (int)result2.X2 * width / bmp.Width;
-                        y_39 = (int)result2.Y2 * height / bmp.Height;
+                        x_39 = (int)result2.X1 * width / bmp.Width + 100;
+                        y_39 = (int)result2.Y1 * height / bmp.Height + 26;
+                        x2_39 = (int)result2.X2 * width / bmp.Width - 70;
+                        y2_39 = (int)result2.Y2 * height / bmp.Height - 32;
+
+                        if(y2_39 < 0)
+                        {
+                            y2_39 += 19;
+                        }
 
                         //change
                         //fixing the values of scan image 
@@ -170,12 +175,12 @@ namespace WatermarkApp
         }
 
 
-        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double prop_x, double prop_y)
+        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double prop_x, double prop_y, int diff_width_doc, int diff_height_doc, int diff_width_bmp, int diff_height_bmp)
         {   
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name);
 
-            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, prop_x, prop_y);
+            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, prop_x, prop_y, diff_width_doc, diff_height_doc, diff_width_bmp, diff_height_bmp);
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";

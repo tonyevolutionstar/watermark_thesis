@@ -11655,3 +11655,15 @@ The statement has been terminated.
 05/04/2023 23:08:13 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_4_4_2023_19_39_38_scan.pdf concluída
 05/04/2023 23:08:15 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_4_4_2023_19_39_38_scan.pdf concluída
 05/04/2023 23:08:19 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_4_4_2023_19_39_38_scan.pdf concluída
+06/04/2023 11:55:11 - verificar se o ficheiro scan está torto
+06/04/2023 11:55:12 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_23_2022_05000_watermark_5_4_2023_22_20_0_scan.pdf concluída
+06/04/2023 11:55:14 - ficheiro scan está direito
+06/04/2023 11:55:14 - ---------- Retificar -----------
+06/04/2023 11:55:14 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_23_2022_05000_watermark_5_4_2023_22_20_0_scan.pdf a iniciar
+06/04/2023 11:55:14 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_23_2022_05000_watermark_5_4_2023_22_20_0_scan.pdf
+06/04/2023 11:55:14 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_23_2022_05000_watermark_5_4_2023_22_20_0_scan.pdf concluída
+06/04/2023 11:55:26 - lendo as posições do código de barras
+06/04/2023 11:55:26 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_23_2022_05000_watermark_5_4_2023_22_20_0_scan.pdf concluída
+06/04/2023 11:55:46 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_23_2022_05000_watermark_5_4_2023_22_20_0_scan.pdf concluída
+06/04/2023 11:55:48 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_23_2022_05000_watermark_5_4_2023_22_20_0_scan.pdf concluída
+06/04/2023 11:55:55 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NACIONAL_23_2022_05000_watermark_5_4_2023_22_20_0_scan.pdf concluída

@@ -122,16 +122,16 @@ namespace WatermarkApp
             GetDimensionsDocument(file_name);
             trackerServices.WriteFile("lendo as posições do código de barras");
             string img_file = Convert_pdf_png(file_name);
-            string res = "";
-
-            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium,
-                BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
-
+          
             var result2 = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code39, BarcodeReader.BarcodeRotationCorrection.Medium,
-                BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+            BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+
+            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Extreme,
+                BarcodeReader.BarcodeImageCorrection.MediumCleanPixels);
 
             if (result != null && result2 != null)
             {
+                //Console.WriteLine($"result")
                 using (Bitmap bmp = new Bitmap(img_file)) 
                 {
                     if (file_name.Contains("scan"))
@@ -171,7 +171,7 @@ namespace WatermarkApp
             else
                 trackerServices.WriteFile("erro ao obter as posições do código de barras");
             
-            return res;
+            return "";
         }
 
 

@@ -94,7 +94,7 @@ namespace WatermarkApp
                 {
                     string[] file_val = rotated_img.Split(new[] { "_rotated" }, StringSplitOptions.None);
              
-                    Document doc = new Document();
+                    Document doc = new Document(new iTextSharp.text.Rectangle(0, 0, 578, 823));
                     PdfWriter.GetInstance(doc, new FileStream(file_val[0] + "_rotated.pdf", FileMode.Create));
                     doc.Open();
                     iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rotated_img);

@@ -18,6 +18,23 @@ namespace WatermarkApp
       
         private int x_or;
         private int y_or;
+        private int x2_or;
+        private int y2_or;
+
+        private int x_dig;
+        private int y_dig;
+        private int x2_dig;
+        private int y2_dig;
+
+        private int x_39_or;
+        private int y_39_or;
+        private int x2_39_or;
+        private int y2_39_or;
+
+        private int x_39_dig;
+        private int y_39_dig;
+        private int x2_39_dig;
+        private int y2_39_dig;
 
         private int diff_x;
         private int diff_y;
@@ -61,6 +78,92 @@ namespace WatermarkApp
             }
         }
 
+        private void Draw_Points_Barcodes()
+        {
+            string img = commom.Convert_pdf_png(file_name);
+            commom.GetDimensionsDocument(file_name);
+            //arc
+            int w_arc = 5;
+            int h_arc = 5;
+            int startAngle = 0;
+            int sweepAngle = 360;
+            Pen yellow = new Pen(Color.Yellow, 3);
+            Pen red = new Pen(Color.Red, 3);
+            Pen green = new Pen(Color.Green, 3);
+            Pen pink = new Pen(Color.Pink, 3);
+
+            using (Bitmap bmp = new Bitmap(img))
+            {
+                using (Graphics g = Graphics.FromImage(bmp))
+                {
+                    SolidBrush drawBrush = new SolidBrush(Color.Chocolate);
+                    Font drawFont = new Font("Arial", 10);
+
+                    int p_x = x_dig * bmp.Width / commom.width;
+                    int p_y = y_dig * bmp.Height / commom.height;
+                    int p2_x = x2_dig * bmp.Width / commom.width;
+                    int p2_y = y2_dig * bmp.Height / commom.height;
+                    Point p1_l_u_r = new Point(p_x, p_y);
+                    Point p1_r_u_r = new Point(p2_x, p_y);
+                    Point p1_r_b_r = new Point(p2_x, p2_y);
+                    Point p1_l_b_r = new Point(p_x, p2_y);
+
+                    g.DrawArc(yellow, p1_l_u_r.X, p1_l_u_r.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(yellow, p1_r_u_r.X, p1_r_u_r.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(yellow, p1_l_b_r.X, p1_l_b_r.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(yellow, p1_r_b_r.X, p1_r_b_r.Y, w_arc, h_arc, startAngle, sweepAngle);
+
+                    int p_x_or = x_or * bmp.Width / commom.width;
+                    int p_y_or = y_or * bmp.Height / commom.height;
+                    int p2_x_or = x2_or * bmp.Width / commom.width;
+                    int p2_y_or = y2_or * bmp.Height / commom.height;
+                    Point p1_l_u_o = new Point(p_x_or, p_y_or);
+                    Point p1_r_u_o = new Point(p2_x_or, p_y_or);
+                    Point p1_r_b_o = new Point(p2_x_or, p2_y_or);
+                    Point p1_l_b_o = new Point(p_x_or, p2_y_or);
+
+                    g.DrawArc(red, p1_l_u_o.X, p1_l_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(red, p1_r_u_o.X, p1_r_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(red, p1_l_b_o.X, p1_l_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(red, p1_r_b_o.X, p1_r_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+
+                    int p_x_39_or = x_39_or * bmp.Width / commom.width;
+                    int p_y_39_or = y_39_or * bmp.Height / commom.height;
+                    int p2_x_39_or = x2_39_or * bmp.Width / commom.width;
+                    int p2_y_39_or = y2_39_or * bmp.Height / commom.height;
+                    Point p1_l_u_39_o = new Point(p_x_39_or, p_y_39_or);
+                    Point p1_r_u_39_o = new Point(p2_x_39_or, p_y_39_or);
+                    Point p1_r_b_39_o = new Point(p2_x_39_or, p2_y_39_or);
+                    Point p1_l_b_39_o = new Point(p_x_39_or, p2_y_39_or);
+
+                    g.DrawArc(green, p1_l_u_39_o.X, p1_l_u_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(green, p1_r_u_39_o.X, p1_r_u_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(green, p1_l_b_39_o.X, p1_l_b_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(green, p1_r_b_39_o.X, p1_r_b_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
+
+                    int p_x_39_dig = x_39_dig * bmp.Width / commom.width;
+                    int p_y_39_dig = y_39_dig * bmp.Height / commom.height;
+                    int p2_x_39_dig = x2_39_dig * bmp.Width / commom.width;
+                    int p2_y_39_dig = y2_39_dig * bmp.Height / commom.height;
+                    Point p1_l_u_39_dig = new Point(p_x_39_dig, p_y_39_dig);
+                    Point p1_r_u_39_dig = new Point(p2_x_39_dig, p_y_39_dig);
+                    Point p1_r_b_39_dig = new Point(p2_x_39_dig, p2_y_39_dig);
+                    Point p1_l_b_39_dig = new Point(p_x_39_dig, p2_y_39_dig);
+
+                    g.DrawArc(pink, p1_l_u_39_dig.X, p1_l_u_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(pink, p1_r_u_39_dig.X, p1_r_u_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(pink, p1_l_b_39_dig.X, p1_l_b_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
+                    g.DrawArc(pink, p1_r_b_39_dig.X, p1_r_b_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
+
+                    g.Dispose();
+                }
+                string[] filename = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
+                bmp.Save(filename[0] + "_pos_barcode.png", System.Drawing.Imaging.ImageFormat.Png);
+                bmp.Dispose();
+            }
+        }
+
+
         private void Retificate_Load(object sender, EventArgs e)
         {
             SQL_connection sql = new SQL_connection();
@@ -83,29 +186,29 @@ namespace WatermarkApp
                     // or = original
                     x_or = int.Parse(val_barcode_pos[0]);
                     y_or = int.Parse(val_barcode_pos[1]);
-                    int x2_or = int.Parse(val_barcode_pos[2]);
-                    int y2_or = int.Parse(val_barcode_pos[3]);
+                    x2_or = int.Parse(val_barcode_pos[2]);
+                    y2_or = int.Parse(val_barcode_pos[3]);
                     string barcode128_or = $"{x_or}:{y_or}:{x2_or}:{y2_or}";
 
-                    int x_39_or = int.Parse(val_barcode_pos[4]);
-                    int y_39_or = int.Parse(val_barcode_pos[5]);
-                    int x2_39_or = int.Parse(val_barcode_pos[6]);
-                    int y2_39_or = int.Parse(val_barcode_pos[7]);
+                    x_39_or = int.Parse(val_barcode_pos[4]);
+                    y_39_or = int.Parse(val_barcode_pos[5]);
+                    x2_39_or = int.Parse(val_barcode_pos[6]);
+                    y2_39_or = int.Parse(val_barcode_pos[7]);
                     string barcode39_or = $"{x_39_or}:{y_39_or}:{x2_39_or}:{y2_39_or}";
            
                     string res_barcode = commom.Return_PositionBarcode(file_name);
                     string[] res_barcode_pos = res_barcode.Split(':');
                     //Dig = digitalizado
-                    int x_dig = int.Parse(res_barcode_pos[0]);
-                    int y_dig = int.Parse(res_barcode_pos[1]);
-                    int x2_dig = int.Parse(res_barcode_pos[2]);
-                    int y2_dig = int.Parse(res_barcode_pos[3]);
+                    x_dig = int.Parse(res_barcode_pos[0]);
+                    y_dig = int.Parse(res_barcode_pos[1]);
+                    x2_dig = int.Parse(res_barcode_pos[2]);
+                    y2_dig = int.Parse(res_barcode_pos[3]);
                     string barcode128_dig = $"{x_dig}:{y_dig}:{x2_dig}:{y2_dig}";
 
-                    int x_39_dig = int.Parse(res_barcode_pos[4]);
-                    int y_39_dig = int.Parse(res_barcode_pos[5]);
-                    int x2_39_dig = int.Parse(res_barcode_pos[6]);
-                    int y2_39_dig = int.Parse(res_barcode_pos[7]);
+                    x_39_dig = int.Parse(res_barcode_pos[4]);
+                    y_39_dig = int.Parse(res_barcode_pos[5]);
+                    x2_39_dig = int.Parse(res_barcode_pos[6]);
+                    y2_39_dig = int.Parse(res_barcode_pos[7]);
                     string barcode39_dig = $"{x_39_dig}:{y_39_dig}:{x2_39_dig}:{y2_39_dig}";
 
                     int x_diff_or = x2_or - x_or;
@@ -166,88 +269,7 @@ namespace WatermarkApp
                     prop_y = (double) delta_y_res / delta_y_or;
 
                     Console.WriteLine($"prop x {prop_x}, prop y {prop_y}");
-
-                    string img = commom.Convert_pdf_png(file_name);
-                    commom.GetDimensionsDocument(file_name);
-                    //arc
-                    int w_arc = 5;
-                    int h_arc = 5;
-                    int startAngle = 0;
-                    int sweepAngle = 360;
-                    Pen yellow = new Pen(Color.Yellow, 3);
-                    Pen red = new Pen(Color.Red,3); 
-                    Pen green = new Pen(Color.Green, 3);
-                    Pen pink = new Pen(Color.Pink, 3);
-
-                    using (Bitmap bmp = new Bitmap(img))
-                    {
-                        using (Graphics g = Graphics.FromImage(bmp))
-                        {
-                            SolidBrush drawBrush = new SolidBrush(Color.Chocolate);
-                            Font drawFont = new Font("Arial", 10);
-
-                            int p_x = x_dig * bmp.Width / commom.width;
-                            int p_y = y_dig * bmp.Height / commom.height;
-                            int p2_x = x2_dig * bmp.Width / commom.width;
-                            int p2_y = y2_dig * bmp.Height / commom.height;
-                            Point p1_l_u_r = new Point(p_x, p_y);
-                            Point p1_r_u_r = new Point(p2_x, p_y);
-                            Point p1_r_b_r = new Point(p2_x, p2_y);
-                            Point p1_l_b_r = new Point(p_x, p2_y);
-
-                            g.DrawArc(yellow, p1_l_u_r.X, p1_l_u_r.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(yellow, p1_r_u_r.X, p1_r_u_r.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(yellow, p1_l_b_r.X, p1_l_b_r.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(yellow, p1_r_b_r.X, p1_r_b_r.Y, w_arc, h_arc, startAngle, sweepAngle);
-
-                            int p_x_or = x_or * bmp.Width / commom.width;
-                            int p_y_or = y_or * bmp.Height / commom.height;
-                            int p2_x_or = x2_or * bmp.Width / commom.width;
-                            int p2_y_or = y2_or * bmp.Height / commom.height;
-                            Point p1_l_u_o = new Point(p_x_or, p_y_or);
-                            Point p1_r_u_o = new Point(p2_x_or, p_y_or);
-                            Point p1_r_b_o = new Point(p2_x_or, p2_y_or);
-                            Point p1_l_b_o = new Point(p_x_or, p2_y_or);
-
-                            g.DrawArc(red, p1_l_u_o.X, p1_l_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(red, p1_r_u_o.X, p1_r_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(red, p1_l_b_o.X, p1_l_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(red, p1_r_b_o.X, p1_r_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-
-                            int p_x_39_or = x_39_or * bmp.Width / commom.width;
-                            int p_y_39_or = y_39_or * bmp.Height / commom.height;
-                            int p2_x_39_or = x2_39_or * bmp.Width / commom.width;
-                            int p2_y_39_or = y2_39_or * bmp.Height / commom.height;
-                            Point p1_l_u_39_o = new Point(p_x_39_or, p_y_39_or);
-                            Point p1_r_u_39_o = new Point(p2_x_39_or, p_y_39_or);
-                            Point p1_r_b_39_o = new Point(p2_x_39_or, p2_y_39_or);
-                            Point p1_l_b_39_o = new Point(p_x_39_or, p2_y_39_or);
-
-                            g.DrawArc(green, p1_l_u_39_o.X, p1_l_u_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(green, p1_r_u_39_o.X, p1_r_u_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(green, p1_l_b_39_o.X, p1_l_b_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(green, p1_r_b_39_o.X, p1_r_b_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-
-                            int p_x_39_dig = x_39_dig * bmp.Width / commom.width;
-                            int p_y_39_dig = y_39_dig * bmp.Height / commom.height;
-                            int p2_x_39_dig = x2_39_dig * bmp.Width / commom.width;
-                            int p2_y_39_dig = y2_39_dig * bmp.Height / commom.height;
-                            Point p1_l_u_39_dig = new Point(p_x_39_dig, p_y_39_dig);
-                            Point p1_r_u_39_dig = new Point(p2_x_39_dig, p_y_39_dig);
-                            Point p1_r_b_39_dig = new Point(p2_x_39_dig, p2_y_39_dig);
-                            Point p1_l_b_39_dig = new Point(p_x_39_dig, p2_y_39_dig);
-
-                            g.DrawArc(pink, p1_l_u_39_dig.X, p1_l_u_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(pink, p1_r_u_39_dig.X, p1_r_u_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(pink, p1_l_b_39_dig.X, p1_l_b_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
-                            g.DrawArc(pink, p1_r_b_39_dig.X, p1_r_b_39_dig.Y, w_arc, h_arc, startAngle, sweepAngle);
-
-                            g.Dispose();
-                        }
-                        string[] filename = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
-                        bmp.Save(filename[0] + "_pos_barcode.png", System.Drawing.Imaging.ImageFormat.Png);
-                        bmp.Dispose();
-                    }
+                    //Draw_Points_Barcodes(); // faz desenho dos pontos obtidos para retificar
 
                     string[] col_sql = res_doc.Split(';');
                     dct_name.Text = col_sql[0];

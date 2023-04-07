@@ -304,8 +304,12 @@ namespace WatermarkApp
                         int res_width = res_x * w / bmp.Width;
                         int res_height = res_y * h / bmp.Height;
 
+                        if (diff_width_bmp == 1)
+                        {
+                            diff_width_bmp = 0;
+                        }
 
-                        if (diff_width_doc == 0)
+                        if (diff_width_doc == 0 )
                         {
                             diff_width_doc = 17;
                             diff_width_bmp = 71;
@@ -316,13 +320,15 @@ namespace WatermarkApp
                             diff_height_bmp = 73;
                         }
 
+                        double diff_width = diff_width_bmp / diff_width_doc;
+                        double diff_height = diff_height_bmp / diff_height_doc;
 
                         if (!watermark_file.Contains("scan"))
                             intersection = new Point(res_x,res_y);
                         else
                         {
-                            int new_x = Convert.ToInt16((res_width - diff_x) * prop_x - diff_width_bmp / diff_width_doc);
-                            int new_y = Convert.ToInt16((res_height - diff_y) * prop_y + diff_height_bmp / diff_height_doc);
+                            int new_x = Convert.ToInt16((res_width - diff_x) * prop_x - diff_width);
+                            int new_y = Convert.ToInt16((res_height - diff_y) * prop_y + diff_height);
                             intersection = new Point(new_x * bmp.Width / w, new_y * bmp.Height / h); //adjust point barcode
                             Console.WriteLine($"{ch.Trim()};{res_width}:{res_height};{new_x}:{new_y}");
                         }
@@ -332,7 +338,7 @@ namespace WatermarkApp
                     }
 
                     filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
-
+                    bmp.SetResolution(300, 300);
                     bmp.Save(filename[0] + integrity_extension + ".png");
                     g.Dispose();
                     bmp.Dispose();

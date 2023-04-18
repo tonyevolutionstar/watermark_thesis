@@ -16054,3 +16054,842 @@ The statement has been terminated.
 07/04/2023 12:37:54 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
 07/04/2023 12:38:14 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
 07/04/2023 12:38:41 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:25:02 - verificar se o ficheiro scan está torto
+15/04/2023 18:25:04 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:25:06 - ficheiro scan está direito
+15/04/2023 18:25:06 - ---------- Retificar -----------
+15/04/2023 18:25:06 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+15/04/2023 18:25:06 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+15/04/2023 18:25:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:25:17 - lendo as posições do código de barras
+15/04/2023 18:25:17 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:25:37 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:25:47 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:28:47 - verificar se o ficheiro scan está torto
+15/04/2023 18:28:48 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:28:50 - ficheiro scan está direito
+15/04/2023 18:28:50 - ---------- Retificar -----------
+15/04/2023 18:28:50 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+15/04/2023 18:28:50 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+15/04/2023 18:28:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:29:00 - lendo as posições do código de barras
+15/04/2023 18:29:00 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:29:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:29:35 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:31:55 - verificar se o ficheiro scan está torto
+15/04/2023 18:31:56 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+15/04/2023 18:31:58 - ficheiro scan está direito
+15/04/2023 18:31:58 - ---------- Retificar -----------
+15/04/2023 18:31:58 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+15/04/2023 18:31:58 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+15/04/2023 18:31:58 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+15/04/2023 18:32:09 - lendo as posições do código de barras
+15/04/2023 18:32:09 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+15/04/2023 18:32:30 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+15/04/2023 18:32:44 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+15/04/2023 18:39:29 - verificar se o ficheiro scan está torto
+15/04/2023 18:39:31 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+15/04/2023 18:39:32 - ficheiro scan está direito
+15/04/2023 18:39:32 - ---------- Retificar -----------
+15/04/2023 18:39:32 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+15/04/2023 18:39:32 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+15/04/2023 18:39:32 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+15/04/2023 18:39:43 - lendo as posições do código de barras
+15/04/2023 18:39:43 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+15/04/2023 18:40:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+15/04/2023 18:41:21 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+15/04/2023 18:43:17 - verificar se o ficheiro scan está torto
+15/04/2023 18:43:18 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:43:20 - ficheiro scan está direito
+15/04/2023 18:43:20 - ---------- Retificar -----------
+15/04/2023 18:43:20 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+15/04/2023 18:43:20 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+15/04/2023 18:43:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:43:30 - lendo as posições do código de barras
+15/04/2023 18:43:30 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:43:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:44:18 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:45:18 - verificar se o ficheiro scan está torto
+15/04/2023 18:45:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:45:22 - ficheiro scan está direito
+15/04/2023 18:45:22 - ---------- Retificar -----------
+15/04/2023 18:45:22 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+15/04/2023 18:45:22 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+15/04/2023 18:45:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:45:33 - lendo as posições do código de barras
+15/04/2023 18:45:33 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:45:54 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:45:59 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:46:26 - verificar se o ficheiro scan está torto
+15/04/2023 18:46:28 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:46:29 - ficheiro scan está direito
+15/04/2023 18:46:29 - ---------- Retificar -----------
+15/04/2023 18:46:29 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+15/04/2023 18:46:29 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+15/04/2023 18:46:29 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:46:40 - lendo as posições do código de barras
+15/04/2023 18:46:40 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:47:02 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:47:16 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:56:20 - verificar se o ficheiro scan está torto
+15/04/2023 18:56:21 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:56:23 - ficheiro scan está direito
+15/04/2023 18:56:23 - ---------- Retificar -----------
+15/04/2023 18:56:23 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+15/04/2023 18:56:23 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+15/04/2023 18:56:23 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:56:34 - lendo as posições do código de barras
+15/04/2023 18:56:34 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 18:56:54 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:01:32 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:05:29 - Verificar se o ficheiro scan está torto
+15/04/2023 19:05:31 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:05:33 - ficheiro scan está direito
+15/04/2023 19:05:33 - ---------- Retificar -----------
+15/04/2023 19:05:33 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+15/04/2023 19:05:33 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+15/04/2023 19:05:33 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:05:43 - lendo as posições do código de barras
+15/04/2023 19:05:43 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:06:04 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:06:14 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:08:29 - Verificar se o ficheiro scan está torto
+15/04/2023 19:08:33 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:08:35 - ficheiro scan está direito
+15/04/2023 19:08:35 - ---------- Retificar -----------
+15/04/2023 19:08:35 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+15/04/2023 19:08:35 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+15/04/2023 19:08:35 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:08:45 - lendo as posições do código de barras
+15/04/2023 19:08:45 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:09:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:09:26 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:10:43 - Verificar se o ficheiro scan está torto
+15/04/2023 19:10:46 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:10:47 - ficheiro scan está direito
+15/04/2023 19:10:47 - ---------- Retificar -----------
+15/04/2023 19:10:47 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+15/04/2023 19:10:47 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+15/04/2023 19:10:47 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:10:58 - lendo as posições do código de barras
+15/04/2023 19:10:58 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:11:18 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:11:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:12:14 - Verificar se o ficheiro scan está torto
+15/04/2023 19:12:16 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:12:18 - ficheiro scan está direito
+15/04/2023 19:12:18 - ---------- Retificar -----------
+15/04/2023 19:12:18 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+15/04/2023 19:12:18 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+15/04/2023 19:12:18 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:12:28 - lendo as posições do código de barras
+15/04/2023 19:12:28 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:12:48 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+15/04/2023 19:13:05 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:13:08 - Verificar se o ficheiro scan está torto
+16/04/2023 16:13:09 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:13:11 - ficheiro scan está direito
+16/04/2023 16:13:11 - ---------- Retificar -----------
+16/04/2023 16:13:11 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+16/04/2023 16:13:11 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+16/04/2023 16:13:11 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:13:23 - lendo as posições do código de barras
+16/04/2023 16:13:23 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:13:45 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:13:52 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:14:38 - Verificar se o ficheiro scan está torto
+16/04/2023 16:14:48 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:14:50 - ficheiro scan está direito
+16/04/2023 16:14:50 - ---------- Retificar -----------
+16/04/2023 16:14:50 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+16/04/2023 16:14:50 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+16/04/2023 16:14:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:15:01 - lendo as posições do código de barras
+16/04/2023 16:15:01 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:15:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:15:28 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:16:13 - Verificar se o ficheiro scan está torto
+16/04/2023 16:16:15 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:16:16 - ficheiro scan está direito
+16/04/2023 16:16:16 - ---------- Retificar -----------
+16/04/2023 16:16:16 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+16/04/2023 16:16:16 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+16/04/2023 16:16:16 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:16:27 - lendo as posições do código de barras
+16/04/2023 16:16:27 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:16:48 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:16:59 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:17:48 - Verificar se o ficheiro scan está torto
+16/04/2023 16:17:52 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:17:54 - ficheiro scan está direito
+16/04/2023 16:17:54 - ---------- Retificar -----------
+16/04/2023 16:17:54 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+16/04/2023 16:17:54 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+16/04/2023 16:17:54 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:18:05 - lendo as posições do código de barras
+16/04/2023 16:18:05 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:18:26 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:19:01 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:19:58 - Verificar se o ficheiro scan está torto
+16/04/2023 16:19:59 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:20:01 - ficheiro scan está direito
+16/04/2023 16:20:01 - ---------- Retificar -----------
+16/04/2023 16:20:01 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+16/04/2023 16:20:01 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+16/04/2023 16:20:01 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:20:12 - lendo as posições do código de barras
+16/04/2023 16:20:12 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:20:34 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:20:38 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:22:28 - Verificar se o ficheiro scan está torto
+16/04/2023 16:22:29 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:22:31 - ficheiro scan está direito
+16/04/2023 16:22:31 - ---------- Retificar -----------
+16/04/2023 16:22:31 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+16/04/2023 16:22:31 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+16/04/2023 16:22:31 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:22:42 - lendo as posições do código de barras
+16/04/2023 16:22:42 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:23:03 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:23:05 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:23:10 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:27:29 - Verificar se o ficheiro scan está torto
+16/04/2023 16:27:30 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:27:31 - ficheiro scan está direito
+16/04/2023 16:27:31 - ---------- Retificar -----------
+16/04/2023 16:27:31 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+16/04/2023 16:27:31 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+16/04/2023 16:27:31 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:27:42 - lendo as posições do código de barras
+16/04/2023 16:27:42 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:28:02 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:28:04 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:29:21 - Verificar se o ficheiro scan está torto
+16/04/2023 16:29:23 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:29:24 - ficheiro scan está direito
+16/04/2023 16:29:24 - ---------- Retificar -----------
+16/04/2023 16:29:24 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+16/04/2023 16:29:24 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+16/04/2023 16:29:24 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:29:36 - lendo as posições do código de barras
+16/04/2023 16:29:36 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:29:59 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:30:01 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:31:17 - Verificar se o ficheiro scan está torto
+16/04/2023 16:31:19 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:31:20 - ficheiro scan está direito
+16/04/2023 16:31:20 - ---------- Retificar -----------
+16/04/2023 16:31:20 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+16/04/2023 16:31:20 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+16/04/2023 16:31:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:31:31 - lendo as posições do código de barras
+16/04/2023 16:31:31 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:31:54 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:31:56 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+16/04/2023 16:32:45 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:23:56 - ---------- Retificar -----------
+17/04/2023 16:23:56 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf a iniciar
+17/04/2023 16:23:56 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf
+17/04/2023 16:23:56 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+17/04/2023 16:24:08 - lendo as posições do código de barras
+17/04/2023 16:24:08 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+17/04/2023 16:24:29 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+17/04/2023 16:24:30 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+17/04/2023 16:25:29 - Verificar se o ficheiro scan está torto
+17/04/2023 16:25:30 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:25:32 - ficheiro scan está direito
+17/04/2023 16:25:32 - ---------- Retificar -----------
+17/04/2023 16:25:32 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 16:25:32 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 16:25:32 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:25:43 - lendo as posições do código de barras
+17/04/2023 16:25:43 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:26:10 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:26:11 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:33:11 - Verificar se o ficheiro scan está torto
+17/04/2023 16:33:12 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:33:13 - ficheiro scan está direito
+17/04/2023 16:33:13 - ---------- Retificar -----------
+17/04/2023 16:33:13 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 16:33:14 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 16:33:14 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:33:29 - lendo as posições do código de barras
+17/04/2023 16:33:29 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:33:55 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:33:56 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:35:16 - Verificar se o ficheiro scan está torto
+17/04/2023 16:35:17 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:35:19 - ficheiro scan está direito
+17/04/2023 16:35:19 - ---------- Retificar -----------
+17/04/2023 16:35:19 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 16:35:19 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 16:35:19 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:35:30 - lendo as posições do código de barras
+17/04/2023 16:35:30 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:35:51 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:35:52 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:36:56 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:38:35 - Verificar se o ficheiro scan está torto
+17/04/2023 16:38:37 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:38:39 - ficheiro scan está direito
+17/04/2023 16:38:39 - ---------- Retificar -----------
+17/04/2023 16:38:39 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 16:38:39 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 16:38:39 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:38:51 - lendo as posições do código de barras
+17/04/2023 16:38:51 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:39:13 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:39:14 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:39:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:41:12 - Verificar se o ficheiro scan está torto
+17/04/2023 16:41:13 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:41:14 - ficheiro scan está direito
+17/04/2023 16:41:14 - ---------- Retificar -----------
+17/04/2023 16:41:14 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 16:41:14 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 16:41:14 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:41:26 - lendo as posições do código de barras
+17/04/2023 16:41:26 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:41:48 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:41:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:41:57 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:42:41 - Verificar se o ficheiro scan está torto
+17/04/2023 16:42:43 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:42:45 - ficheiro scan está direito
+17/04/2023 16:42:45 - ---------- Retificar -----------
+17/04/2023 16:42:45 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 16:42:45 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 16:42:45 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:42:55 - lendo as posições do código de barras
+17/04/2023 16:42:55 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:43:16 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:43:17 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:43:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:47:33 - Verificar se o ficheiro scan está torto
+17/04/2023 16:47:35 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:47:36 - ficheiro scan está direito
+17/04/2023 16:47:36 - ---------- Retificar -----------
+17/04/2023 16:47:36 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 16:47:37 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 16:47:37 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:47:48 - lendo as posições do código de barras
+17/04/2023 16:47:48 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:48:16 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 16:48:33 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:18:16 - Verificar se o ficheiro scan está torto
+17/04/2023 22:18:17 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:18:19 - ficheiro scan está direito
+17/04/2023 22:18:19 - ---------- Retificar -----------
+17/04/2023 22:18:19 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 22:18:19 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 22:18:19 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:18:30 - lendo as posições do código de barras
+17/04/2023 22:18:30 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:18:52 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:18:58 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:19:19 - Verificar se o ficheiro scan está torto
+17/04/2023 22:19:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:19:22 - ficheiro scan está direito
+17/04/2023 22:19:22 - ---------- Retificar -----------
+17/04/2023 22:19:22 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 22:19:22 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 22:19:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:19:35 - lendo as posições do código de barras
+17/04/2023 22:19:35 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:20:00 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:20:19 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:20:52 - Verificar se o ficheiro scan está torto
+17/04/2023 22:20:53 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:20:54 - ficheiro scan está direito
+17/04/2023 22:20:54 - ---------- Retificar -----------
+17/04/2023 22:20:54 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 22:20:54 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 22:20:54 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:21:05 - lendo as posições do código de barras
+17/04/2023 22:21:05 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:21:27 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:22:14 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:22:42 - Verificar se o ficheiro scan está torto
+17/04/2023 22:22:42 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:22:44 - ficheiro scan está direito
+17/04/2023 22:22:44 - ---------- Retificar -----------
+17/04/2023 22:22:44 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 22:22:44 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 22:22:44 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:22:56 - lendo as posições do código de barras
+17/04/2023 22:22:56 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:23:18 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:23:28 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:24:25 - Verificar se o ficheiro scan está torto
+17/04/2023 22:24:26 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:24:27 - ficheiro scan está direito
+17/04/2023 22:24:27 - ---------- Retificar -----------
+17/04/2023 22:24:27 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+17/04/2023 22:24:27 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+17/04/2023 22:24:27 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:24:38 - lendo as posições do código de barras
+17/04/2023 22:24:38 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:25:00 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+17/04/2023 22:25:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 09:59:59 - ---------- Retificar -----------
+18/04/2023 09:59:59 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf a iniciar
+18/04/2023 09:59:59 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf
+18/04/2023 09:59:59 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:00:10 - lendo as posições do código de barras
+18/04/2023 10:00:10 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:00:32 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:06:00 - ---------- Retificar -----------
+18/04/2023 10:06:00 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf a iniciar
+18/04/2023 10:06:00 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf
+18/04/2023 10:06:00 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:06:11 - lendo as posições do código de barras
+18/04/2023 10:06:11 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:06:31 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:07:21 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:09:25 - ---------- Retificar -----------
+18/04/2023 10:09:25 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf a iniciar
+18/04/2023 10:09:25 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf
+18/04/2023 10:09:25 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:09:36 - lendo as posições do código de barras
+18/04/2023 10:09:36 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:09:56 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:10:00 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18.pdf concluída
+18/04/2023 10:27:05 - Verificar se o ficheiro scan está torto
+18/04/2023 10:27:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:27:08 - ficheiro scan está direito
+18/04/2023 10:27:08 - ---------- Retificar -----------
+18/04/2023 10:27:08 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:27:08 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:27:08 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:27:18 - lendo as posições do código de barras
+18/04/2023 10:27:18 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:27:39 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:29:36 - Verificar se o ficheiro scan está torto
+18/04/2023 10:29:37 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:29:39 - ficheiro scan está direito
+18/04/2023 10:29:39 - ---------- Retificar -----------
+18/04/2023 10:29:39 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:29:39 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:29:39 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:29:49 - lendo as posições do código de barras
+18/04/2023 10:29:49 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:30:10 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:32:09 - Verificar se o ficheiro scan está torto
+18/04/2023 10:32:10 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:32:11 - ficheiro scan está direito
+18/04/2023 10:32:12 - ---------- Retificar -----------
+18/04/2023 10:32:12 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:32:12 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:32:12 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:32:22 - lendo as posições do código de barras
+18/04/2023 10:32:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:32:42 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:37:08 - Verificar se o ficheiro scan está torto
+18/04/2023 10:37:09 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:37:11 - ficheiro scan está direito
+18/04/2023 10:37:11 - ---------- Retificar -----------
+18/04/2023 10:37:11 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:37:11 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:37:11 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:37:21 - lendo as posições do código de barras
+18/04/2023 10:37:21 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:37:42 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:39:07 - Verificar se o ficheiro scan está torto
+18/04/2023 10:39:08 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:39:10 - ficheiro scan está direito
+18/04/2023 10:39:10 - ---------- Retificar -----------
+18/04/2023 10:39:10 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:39:10 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:39:10 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:39:22 - lendo as posições do código de barras
+18/04/2023 10:39:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:39:44 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:40:13 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:41:32 - Verificar se o ficheiro scan está torto
+18/04/2023 10:41:34 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:41:35 - ficheiro scan está direito
+18/04/2023 10:41:35 - ---------- Retificar -----------
+18/04/2023 10:41:35 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:41:35 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:41:35 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:41:46 - lendo as posições do código de barras
+18/04/2023 10:41:46 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:42:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:43:47 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:45:20 - Verificar se o ficheiro scan está torto
+18/04/2023 10:45:21 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:45:22 - ficheiro scan está direito
+18/04/2023 10:45:22 - ---------- Retificar -----------
+18/04/2023 10:45:22 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:45:22 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:45:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:45:33 - lendo as posições do código de barras
+18/04/2023 10:45:33 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:45:53 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:46:31 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:48:15 - Verificar se o ficheiro scan está torto
+18/04/2023 10:48:17 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:48:19 - ficheiro scan está direito
+18/04/2023 10:48:19 - ---------- Retificar -----------
+18/04/2023 10:48:19 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:48:19 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:48:19 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:48:29 - lendo as posições do código de barras
+18/04/2023 10:48:29 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:48:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:48:55 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:49:11 - Verificar se o ficheiro scan está torto
+18/04/2023 10:49:12 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:49:14 - ficheiro scan está direito
+18/04/2023 10:49:14 - ---------- Retificar -----------
+18/04/2023 10:49:14 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:49:14 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:49:14 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:49:24 - lendo as posições do código de barras
+18/04/2023 10:49:24 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:49:45 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:49:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:52:03 - Verificar se o ficheiro scan está torto
+18/04/2023 10:52:04 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:52:06 - ficheiro scan está direito
+18/04/2023 10:52:06 - ---------- Retificar -----------
+18/04/2023 10:52:06 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:52:06 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:52:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:52:16 - lendo as posições do código de barras
+18/04/2023 10:52:16 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:52:36 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:52:41 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:53:39 - Verificar se o ficheiro scan está torto
+18/04/2023 10:53:43 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:53:44 - ficheiro scan está direito
+18/04/2023 10:53:44 - ---------- Retificar -----------
+18/04/2023 10:53:44 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:53:45 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:53:45 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:53:55 - lendo as posições do código de barras
+18/04/2023 10:53:55 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:54:15 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:54:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:55:00 - Verificar se o ficheiro scan está torto
+18/04/2023 10:55:01 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:55:02 - ficheiro scan está direito
+18/04/2023 10:55:02 - ---------- Retificar -----------
+18/04/2023 10:55:02 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:55:03 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:55:03 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:55:13 - lendo as posições do código de barras
+18/04/2023 10:55:13 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:55:33 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:56:09 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:56:50 - Verificar se o ficheiro scan está torto
+18/04/2023 10:56:51 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:56:52 - ficheiro scan está direito
+18/04/2023 10:56:52 - ---------- Retificar -----------
+18/04/2023 10:56:52 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:56:53 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:56:53 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:57:03 - lendo as posições do código de barras
+18/04/2023 10:57:03 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:57:24 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:57:28 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:58:04 - Verificar se o ficheiro scan está torto
+18/04/2023 10:58:05 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:58:06 - ficheiro scan está direito
+18/04/2023 10:58:06 - ---------- Retificar -----------
+18/04/2023 10:58:06 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 10:58:06 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 10:58:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:58:17 - lendo as posições do código de barras
+18/04/2023 10:58:17 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:58:37 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 10:59:12 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 11:02:13 - Verificar se o ficheiro scan está torto
+18/04/2023 11:02:14 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 11:02:16 - ficheiro scan está direito
+18/04/2023 11:02:16 - ---------- Retificar -----------
+18/04/2023 11:02:16 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf a iniciar
+18/04/2023 11:02:16 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf
+18/04/2023 11:02:16 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 11:02:27 - lendo as posições do código de barras
+18/04/2023 11:02:27 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 11:02:52 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 11:02:56 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 14:32:27 - Verificar se o ficheiro scan está torto
+18/04/2023 14:32:27 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:32:29 - ficheiro scan está direito
+18/04/2023 14:32:29 - ---------- Retificar -----------
+18/04/2023 14:32:29 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf a iniciar
+18/04/2023 14:32:29 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf
+18/04/2023 14:32:29 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:32:40 - lendo as posições do código de barras
+18/04/2023 14:32:40 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:33:02 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:33:44 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:36:49 - Verificar se o ficheiro scan está torto
+18/04/2023 14:36:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:36:52 - ficheiro scan está direito
+18/04/2023 14:36:52 - ---------- Retificar -----------
+18/04/2023 14:36:52 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf a iniciar
+18/04/2023 14:36:52 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf
+18/04/2023 14:36:52 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:37:04 - lendo as posições do código de barras
+18/04/2023 14:37:04 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:37:28 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:37:33 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:43:20 - Verificar se o ficheiro scan está torto
+18/04/2023 14:43:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:43:21 - ficheiro scan está direito
+18/04/2023 14:43:21 - ---------- Retificar -----------
+18/04/2023 14:43:21 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf a iniciar
+18/04/2023 14:43:22 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf
+18/04/2023 14:43:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:43:32 - lendo as posições do código de barras
+18/04/2023 14:43:32 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:43:53 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 14:44:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 15:54:20 - Verificar se o ficheiro scan está torto
+18/04/2023 15:54:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 15:54:48 - Verificar se o ficheiro scan está torto
+18/04/2023 15:54:49 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 15:56:56 - Verificar se o ficheiro scan está torto
+18/04/2023 15:56:57 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan3.pdf concluída
+18/04/2023 16:00:38 - Verificar se o ficheiro scan está torto
+18/04/2023 16:00:39 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:03:51 - Verificar se o ficheiro scan está torto
+18/04/2023 16:03:52 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:03:53 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:04:31 - Verificar se o ficheiro scan está torto
+18/04/2023 16:04:32 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:04:33 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:06:50 - Verificar se o ficheiro scan está torto
+18/04/2023 16:06:51 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:06:52 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:07:37 - Verificar se o ficheiro scan está torto
+18/04/2023 16:07:38 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:07:39 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:08:08 - Verificar se o ficheiro scan está torto
+18/04/2023 16:08:09 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:08:10 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:08:11 - ficheiro scan está direito
+18/04/2023 16:08:11 - ---------- Retificar -----------
+18/04/2023 16:08:11 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 16:08:11 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 16:08:11 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:08:20 - lendo as posições do código de barras
+18/04/2023 16:08:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:08:41 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 16:09:26 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:03:19 - Verificar se o ficheiro scan está torto
+18/04/2023 17:03:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:03:21 - ficheiro scan está direito
+18/04/2023 17:03:21 - ---------- Retificar -----------
+18/04/2023 17:03:21 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:03:21 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:03:21 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:03:34 - lendo as posições do código de barras
+18/04/2023 17:03:34 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:03:59 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:04:11 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:05:21 - Verificar se o ficheiro scan está torto
+18/04/2023 17:05:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:05:23 - ficheiro scan está direito
+18/04/2023 17:05:24 - ---------- Retificar -----------
+18/04/2023 17:05:24 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:05:24 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:05:24 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:05:34 - lendo as posições do código de barras
+18/04/2023 17:05:34 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:05:56 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:06:00 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:07:14 - Verificar se o ficheiro scan está torto
+18/04/2023 17:07:15 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:07:16 - ficheiro scan está direito
+18/04/2023 17:07:16 - ---------- Retificar -----------
+18/04/2023 17:07:16 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:07:16 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:07:16 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:07:27 - lendo as posições do código de barras
+18/04/2023 17:07:27 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:07:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:08:46 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:08:57 - Verificar se o ficheiro scan está torto
+18/04/2023 17:08:58 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan2.pdf concluída
+18/04/2023 17:09:00 - ficheiro scan está torto
+18/04/2023 17:09:30 - Verificar se o ficheiro scan está torto
+18/04/2023 17:09:31 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:09:32 - ficheiro scan está direito
+18/04/2023 17:09:32 - ---------- Retificar -----------
+18/04/2023 17:09:32 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:09:32 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:09:32 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:09:42 - lendo as posições do código de barras
+18/04/2023 17:09:42 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:10:03 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:10:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:12:21 - Verificar se o ficheiro scan está torto
+18/04/2023 17:12:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:12:23 - ficheiro scan está direito
+18/04/2023 17:12:23 - ---------- Retificar -----------
+18/04/2023 17:12:23 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:12:23 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:12:23 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:12:33 - lendo as posições do código de barras
+18/04/2023 17:12:33 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:12:54 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:12:58 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:13:26 - Verificar se o ficheiro scan está torto
+18/04/2023 17:13:27 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:13:28 - ficheiro scan está direito
+18/04/2023 17:13:28 - ---------- Retificar -----------
+18/04/2023 17:13:28 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:13:28 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:13:28 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:13:39 - lendo as posições do código de barras
+18/04/2023 17:13:39 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:14:00 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:14:13 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:15:24 - Verificar se o ficheiro scan está torto
+18/04/2023 17:15:25 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:15:26 - ficheiro scan está direito
+18/04/2023 17:15:26 - ---------- Retificar -----------
+18/04/2023 17:15:26 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:15:26 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:15:26 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:15:36 - lendo as posições do código de barras
+18/04/2023 17:15:36 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:15:58 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:16:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:16:28 - Verificar se o ficheiro scan está torto
+18/04/2023 17:16:29 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:16:30 - ficheiro scan está direito
+18/04/2023 17:16:30 - ---------- Retificar -----------
+18/04/2023 17:16:30 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:16:30 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:16:30 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:16:41 - lendo as posições do código de barras
+18/04/2023 17:16:41 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:17:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:17:09 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:19:48 - Verificar se o ficheiro scan está torto
+18/04/2023 17:19:49 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:19:50 - ficheiro scan está direito
+18/04/2023 17:19:50 - ---------- Retificar -----------
+18/04/2023 17:19:50 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:19:50 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:19:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:20:01 - lendo as posições do código de barras
+18/04/2023 17:20:01 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:20:24 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:23:21 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:26:05 - Verificar se o ficheiro scan está torto
+18/04/2023 17:26:06 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:26:07 - ficheiro scan está direito
+18/04/2023 17:26:07 - ---------- Retificar -----------
+18/04/2023 17:26:07 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:26:07 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:26:07 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:26:20 - lendo as posições do código de barras
+18/04/2023 17:26:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:26:43 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:33:28 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:34:00 - Verificar se o ficheiro scan está torto
+18/04/2023 17:34:01 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:34:02 - ficheiro scan está direito
+18/04/2023 17:34:02 - ---------- Retificar -----------
+18/04/2023 17:34:02 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:34:02 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:34:02 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:34:12 - lendo as posições do código de barras
+18/04/2023 17:34:12 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:34:33 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:34:38 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:34:49 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:35:27 - Verificar se o ficheiro scan está torto
+18/04/2023 17:35:28 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:35:29 - ficheiro scan está direito
+18/04/2023 17:35:29 - ---------- Retificar -----------
+18/04/2023 17:35:29 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:35:29 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:35:29 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:35:39 - lendo as posições do código de barras
+18/04/2023 17:35:39 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:36:01 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:36:16 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:36:50 - Verificar se o ficheiro scan está torto
+18/04/2023 17:36:52 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:36:53 - ficheiro scan está direito
+18/04/2023 17:36:53 - ---------- Retificar -----------
+18/04/2023 17:36:53 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:36:53 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:36:53 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:37:03 - lendo as posições do código de barras
+18/04/2023 17:37:03 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:37:24 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:38:04 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:38:56 - Verificar se o ficheiro scan está torto
+18/04/2023 17:38:57 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:38:58 - ficheiro scan está direito
+18/04/2023 17:38:58 - ---------- Retificar -----------
+18/04/2023 17:38:58 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:38:58 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:38:58 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:39:08 - lendo as posições do código de barras
+18/04/2023 17:39:08 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:39:28 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:39:38 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:43:51 - Verificar se o ficheiro scan está torto
+18/04/2023 17:43:52 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:43:53 - ficheiro scan está direito
+18/04/2023 17:43:53 - ---------- Retificar -----------
+18/04/2023 17:43:53 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:43:53 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:43:53 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:44:02 - lendo as posições do código de barras
+18/04/2023 17:44:02 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:44:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:44:44 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:46:32 - Verificar se o ficheiro scan está torto
+18/04/2023 17:46:34 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:46:35 - ficheiro scan está direito
+18/04/2023 17:46:35 - ---------- Retificar -----------
+18/04/2023 17:46:35 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:46:35 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:46:35 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:46:45 - lendo as posições do código de barras
+18/04/2023 17:46:45 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:47:04 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:47:10 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:47:33 - Verificar se o ficheiro scan está torto
+18/04/2023 17:47:34 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:47:35 - ficheiro scan está direito
+18/04/2023 17:47:35 - ---------- Retificar -----------
+18/04/2023 17:47:35 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:47:35 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:47:35 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:47:45 - lendo as posições do código de barras
+18/04/2023 17:47:45 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:48:05 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:48:16 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:52:18 - Verificar se o ficheiro scan está torto
+18/04/2023 17:52:18 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:52:19 - ficheiro scan está direito
+18/04/2023 17:52:19 - ---------- Retificar -----------
+18/04/2023 17:52:19 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:52:20 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:52:20 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:52:30 - lendo as posições do código de barras
+18/04/2023 17:52:30 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:52:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:53:18 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:53:37 - Verificar se o ficheiro scan está torto
+18/04/2023 17:53:38 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:53:39 - ficheiro scan está direito
+18/04/2023 17:53:39 - ---------- Retificar -----------
+18/04/2023 17:53:39 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf a iniciar
+18/04/2023 17:53:39 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf
+18/04/2023 17:53:39 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:53:50 - lendo as posições do código de barras
+18/04/2023 17:53:50 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:54:09 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída
+18/04/2023 17:54:37 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Ficheiros\NATO_190_2021_13000_watermark_6_4_2023_18_30_18_scan.pdf concluída

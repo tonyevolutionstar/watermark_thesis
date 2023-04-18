@@ -136,15 +136,15 @@ namespace WatermarkApp
                 {
                     if (file_name.Contains("scan"))
                     {
-                        x_barcode_pos = (int)result.X1 * width / bmp.Width + 96;
-                        y_barcode_pos = (int)result.Y1 * height / bmp.Height + 27;
-                        x2_barcode_pos = (int)result.X2 * width / bmp.Width - 64;
-                        y2_barcode_pos = (int)result.Y2 * height / bmp.Height + 2;
+                        x_barcode_pos = (int)result.X1 * width / bmp.Width + 95;
+                        y_barcode_pos = (int)result.Y1 * height / bmp.Height + 26;
+                        x2_barcode_pos = (int)result.X2 * width / bmp.Width - 62;
+                        y2_barcode_pos = (int)result.Y2 * height / bmp.Height + 3;
 
                         x_39 = (int)result2.X1 * width / bmp.Width + 100;
-                        y_39 = (int)result2.Y1 * height / bmp.Height + 26;
+                        y_39 = (int)result2.Y1 * height / bmp.Height + 25;
                         x2_39 = (int)result2.X2 * width / bmp.Width - 70;
-                        y2_39 = (int)result2.Y2 * height / bmp.Height - 32;
+                        y2_39 = (int)result2.Y2 * height / bmp.Height + 3;
 
                         if(y2_39 < 0)
                         {

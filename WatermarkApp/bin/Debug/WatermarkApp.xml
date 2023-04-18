@@ -349,6 +349,11 @@
             </summary>
             <param name="file_name"></param>
         </member>
+        <member name="M:WatermarkApp.Retificate.Draw_Points_Barcodes">
+            <summary>
+            Cria uma imagem com os pontos lidos dos códigos de barras do scan e do original
+            </summary>
+        </member>
         <member name="F:WatermarkApp.Retificate.components">
             <summary>
             Required designer variable.

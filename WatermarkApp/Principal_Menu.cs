@@ -15,7 +15,7 @@ namespace WatermarkApp
         private string errorFile_without_watermark = "O ficheiro que selecionou ainda não tem marca de água";
         private string errorFileType = "O ficheiro que selecionou é de formato imagem ou não é de formato pdf";
         private string errorFile_with_watermark = "O ficheiro que selecionou já foi processado";
-        private string verify_scan_angle = "verificar se o ficheiro scan está torto";
+        private string verify_scan_angle = "Verificar se o ficheiro scan está torto";
        
         private Commom commom = new Commom();
         double angle;
@@ -78,6 +78,7 @@ namespace WatermarkApp
             }
         }
 
+
         private void ChangeFile_Rotated()
         {
             string val = Fix_Rotation();
@@ -86,16 +87,42 @@ namespace WatermarkApp
             angle = double.Parse(values[1]);
             
             Console.WriteLine($"angle = {angle}");
+            /*
+            if(rotated_img.Contains("scan"))
+            {
+                string img = commom.Convert_pdf_png(file_name);
+                string[] img_v = img.Split(new[] { ".png" }, StringSplitOptions.None);
+                Bitmap bmp = new Bitmap(img);
+                bmp.Save(img_v[0] + "_rotated.png");
+
+                string[] file_val = rotated_img.Split(new[] { "_scan" }, StringSplitOptions.None);
+                Document doc = new Document(); //new iTextSharp.text.Rectangle(0, 0, 578, 823)
+                PdfWriter.GetInstance(doc, new FileStream(file_val[0] + "_rotated.pdf", FileMode.Create));
+                doc.Open();
+                iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rotated_img);
+                image.SetDpi(300, 300);
+                image.SetAbsolutePosition(0, 0); // canto superior esquerdo
+                image.ScaleToFit(doc.PageSize.Width, doc.PageSize.Height);
+                doc.Add(image);
+                doc.Close();
+
+                FileSystem.DeleteFile(file_val[0] + "_scan.pdf", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                FileSystem.CopyFile(file_val[0] + "_rotated.pdf", file_val[0] + "_scan.pdf", UIOption.OnlyErrorDialogs);
+                File.Delete(file_val[0] + "_rotated.pdf");
+               // FileSystem.DeleteFile(file_val[0] + "_scan.png", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                FileSystem.DeleteFile(file_val[0] + "_scan_rotated.png", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+            }
+           */
 
             if (angle != 0.0)
             {
                 tracker.WriteFile("ficheiro scan está torto");
+           
                 if (rotated_img.Contains("rotated"))
                 {
-                    string[] file_val = rotated_img.Split(new[] { "_rotated" }, StringSplitOptions.None);
-             
-                    Document doc = new Document(new iTextSharp.text.Rectangle(0, 0, 578, 823));
-                    PdfWriter.GetInstance(doc, new FileStream(file_val[0] + "_rotated.pdf", FileMode.Create));
+                    string[] file_val = rotated_img.Split(new[] { "_scan" }, StringSplitOptions.None);
+                    Document doc = new Document(new iTextSharp.text.Rectangle(0, 0, 578, 823)); 
+                    PdfWriter.GetInstance(doc, new FileStream(file_val + "_rotated.pdf", FileMode.Create));
                     doc.Open();
                     iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rotated_img);
                     image.SetDpi(300, 300);
@@ -103,7 +130,7 @@ namespace WatermarkApp
                     image.ScaleToFit(doc.PageSize.Width, doc.PageSize.Height);
                     doc.Add(image);
                     doc.Close();
-                    
+
                     FileSystem.DeleteFile(file_val[0] + ".pdf", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
                     FileSystem.CopyFile(file_val[0] + "_rotated.pdf", file_val[0] + ".pdf", UIOption.OnlyErrorDialogs);                   
                     File.Delete(file_val[0] + "_rotated.pdf");
@@ -123,7 +150,7 @@ namespace WatermarkApp
             string[] s_doc = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             var copy_image = (Bitmap)System.Drawing.Image.FromFile(img);
-            int stripCount = 15; // se o scan nao ter posições ou estiver muito torto alterar para 30
+            int stripCount = 10; // se o scan nao ter posições ou estiver muito torto alterar para 30
             var compact = new Compact(copy_image, stripCount);
 
             //find rotation angle

@@ -36,7 +36,11 @@ namespace TestesApp
    
         private void RetificateF()
         {
-            Console.WriteLine("retificate");
+            Commom commom = new Commom();
+            string file_name_without_dir = commom.Get_file_name_without_directory(file_name);
+            if (file_name_without_dir.Contains("scan"))
+                ChangeFile_Rotated();
+            ret = new Retificate(file_name);
         }
 
         private string Fix_Rotation()

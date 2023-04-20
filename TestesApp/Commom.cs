@@ -196,7 +196,8 @@ namespace TestesApp
                     reader.Close();
                 }
             }
-            Console.WriteLine("Acabei de retificar o ficheiro");
+            if (System.IO.File.Exists(s_doc[0] + ".png"))
+                System.IO.File.Delete(s_doc[0] + ".png");
         }
 
         public void GetDimensionsImage(string file_name)

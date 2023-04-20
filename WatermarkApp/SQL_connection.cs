@@ -21,8 +21,6 @@ namespace WatermarkApp
         public SQL_connection()
         {
             check = -1;
-            connetionString = null;
-            sql = null;
             connetionString = @"Data Source=localhost;Initial Catalog=Watermark;User ID=antonio;Password=antonio;Integrated Security=true;Trusted_Connection=true";
         }
 

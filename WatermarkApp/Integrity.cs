@@ -7,9 +7,7 @@
     {
         public string positions;
 
-
         #region positions
-
         private string top_left;
         private string top_middle;
         private string top_right;
@@ -19,16 +17,8 @@
         private string bottom_left;
         private string bottom_middle;
         private string bottom_right;
-
         #endregion
 
-        /// <summary>
-        /// Obtem as margens        
-        /// </summary>
-
-        /// <param name="x_left_barcode"></param>
-        /// <param name="y_barcode"></param>
-        /// <param name="x_right_barcode"></param>
         public Integrity(int x_left_barcode, int y_barcode, int x_right_barcode)
         {
             int barcode_width = x_right_barcode - x_left_barcode;

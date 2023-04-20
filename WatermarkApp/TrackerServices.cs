@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 
-
 namespace WatermarkApp
 {
     /// <summary>
@@ -14,10 +13,7 @@ namespace WatermarkApp
         public string errorState = "erro";
         public string insertionError = "falhou";
 
-        public TrackerServices()
-        {
-
-        }
+        public TrackerServices(){}
 
         public void WriteFile(string message)
         {
@@ -25,7 +21,6 @@ namespace WatermarkApp
             {
                 writer.WriteLine($"{DateTime.Now} - {message}");
             }
- 
         }
     }
 }

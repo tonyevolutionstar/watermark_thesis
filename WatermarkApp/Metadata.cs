@@ -11,13 +11,7 @@ namespace WatermarkApp
     /// </summary>
     public enum Formato
     {
-        /// <summary>
-        /// eletronico
-        /// </summary>
         Eletronico,
-        /// <summary>
-        /// extraido
-        /// </summary>
         Extraido
     }
 
@@ -26,34 +20,16 @@ namespace WatermarkApp
     /// </summary>
     public enum Estado
     {
-        /// <summary>
-        /// ativo
-        /// </summary>
         [Description("Ativo")]
         Ativo = 0,
-        /// <summary>
-        /// transferido
-        /// </summary>
         [Description("Transferido")]
         Transferido = 2,
-        /// <summary>
-        /// arquivado
-        /// </summary>
         [Description("Arquivado")]
         Arquivado = 3,
-        /// <summary>
-        /// destruido
-        /// </summary>
         [Description("Destruido")]
         Destruido = 4,
-        /// <summary>
-        /// em transferencia
-        /// </summary>
         [Description("Em Transferencia")]
         EmTransferencia = 5,
-        /// <summary>
-        /// em destruição
-        /// </summary>
         [Description("Em Destruição")]
         EmDestruicao = 6
     }

@@ -1,0 +1,17 @@
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\ConsoleNet.exe.config
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\ConsoleNet.exe
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\ConsoleNet.pdb
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\zxing.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\zxing.presentation.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\zxing.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\zxing.presentation.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\obj\Debug\ConsoleNet.csproj.AssemblyReference.cache
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\obj\Debug\ConsoleNet.csproj.SuggestedBindingRedirects.cache
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\obj\Debug\ConsoleNet.csproj.CoreCompileInputs.cache
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\obj\Debug\ConsoleNet.csproj.CopyComplete
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\obj\Debug\ConsoleNet.exe
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\obj\Debug\ConsoleNet.pdb
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Freeware.Pdf2Png.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\itextsharp.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\itextsharp.xml

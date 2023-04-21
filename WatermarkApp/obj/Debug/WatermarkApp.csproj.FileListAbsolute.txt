@@ -352,7 +352,6 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\Watermark
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\BitMiracle.LibTiff.NET.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Freeware.Pdf2Png.dll
-C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\IronBarCode.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\IronSoftware.Drawing.Common.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\itextsharp.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Microsoft.Extensions.Logging.Abstractions.dll
@@ -370,7 +369,6 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\Watermark
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\zxing.presentation.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\BitMiracle.LibTiff.NET.xml
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\BouncyCastle.Crypto.xml
-C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\IronBarCode.xml
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\IronSoftware.Drawing.Common.pdb
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\itextsharp.xml
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Microsoft.Extensions.Logging.Abstractions.xml
@@ -407,4 +405,3 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\Watermark
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.csproj.CopyComplete
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.exe
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.pdb
-C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\IronBarCode.pdb

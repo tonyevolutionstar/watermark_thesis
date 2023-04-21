@@ -32,14 +32,6 @@
             Classe para obter as margens do documento
             </summary>
         </member>
-        <member name="M:WatermarkApp.Integrity.#ctor(System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Obtem as margens        
-            </summary>
-            <param name="x_left_barcode"></param>
-            <param name="y_barcode"></param>
-            <param name="x_right_barcode"></param>
-        </member>
         <member name="T:WatermarkApp.AuxFunc">
             <summary>
             Classe auxiliar para operações no ficheiro
@@ -162,136 +154,10 @@
             the contents of this method with the code editor.
             </summary>
         </member>
-        <member name="T:WatermarkApp.Formato">
-            <summary>
-            Possiveis formatos de um exemplar
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.Formato.Eletronico">
-            <summary>
-            eletronico
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.Formato.Extraido">
-            <summary>
-            extraido
-            </summary>
-        </member>
-        <member name="T:WatermarkApp.Estado">
-            <summary>
-            Possiveis estados de um exemplar
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.Estado.Ativo">
-            <summary>
-            ativo
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.Estado.Transferido">
-            <summary>
-            transferido
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.Estado.Arquivado">
-            <summary>
-            arquivado
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.Estado.Destruido">
-            <summary>
-            destruido
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.Estado.EmTransferencia">
-            <summary>
-            em transferencia
-            </summary>
-        </member>
-        <member name="F:WatermarkApp.Estado.EmDestruicao">
-            <summary>
-            em destruição
-            </summary>
-        </member>
         <member name="T:WatermarkApp.Metadata">
             <summary>
             Classe destinada a informações relativas a documentos
             </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.NumeroRegisto">
-            <summary>
-            numero de registo do documento
-            </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.NumeroExemplar">
-            <summary>
-            numero exemplar do documento
-            </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.NumeroCopia">
-            <summary>
-            numero de cópia do documento
-            </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.ClassificacaoSeguranca">
-            <summary>
-            classificacao de segurança do documento
-            </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.Utilizador">
-            <summary>
-            utilizador que tem o documento ou assinou
-            </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.DataOperacao">
-            <summary>
-            data de alteração de algo em relação ao documento
-            </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.EstadoExemplar">
-            <summary>
-            qual é o estado do documento, se está ativo,...
-            </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.FormatoExemplar">
-            <summary>
-            define o formato do documento
-            </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.SiglaPrincipal">
-            <summary>
-            sigla do documento
-            </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.PostoAtual">
-            <summary>
-            posto atual em que o documento se encontra
-            </summary>
-        </member>
-        <member name="P:WatermarkApp.Metadata.Dominio">
-            <summary>
-            dominio do documento
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.Metadata.#ctor">
-            <summary>
-            Construtor
-            </summary>
-        </member>
-        <member name="M:WatermarkApp.Metadata.#ctor(System.String,System.Int32,System.Int32,System.String,WatermarkApp.Estado,WatermarkApp.Formato,System.String,System.DateTime,System.String,System.String,System.String)">
-            <summary>
-            Instancia um documento
-            </summary>
-            <param name="numeroRegisto"></param>
-            <param name="numeroExemplar"></param>
-            <param name="numeroCopia"></param>
-            <param name="classificacaoSeguranca"></param>
-            <param name="estadoExemplar"></param>
-            <param name="formatoExemplar"></param>
-            <param name="utilizador"></param>
-            <param name="dataOperacao"></param>
-            <param name="siglaPrincipal"></param>
-            <param name="postoAtual"></param>
-            <param name="dominio"></param>
         </member>
         <member name="M:WatermarkApp.Program.Main">
             <summary>

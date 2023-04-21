@@ -1,4 +1,5 @@
-﻿using IronBarCode;
+﻿using ZXing;
+using ZXing.Common; 
 using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
@@ -102,12 +103,22 @@ namespace WatermarkApp
         {
             trackerServices.WriteFile($"lendo o código de barras do ficheiro {file_name}");
             string img_file = Convert_pdf_png(file_name);
-       
-            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Medium,
-               BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
+            Bitmap bmp = new Bitmap(img_file);
+            var reader = new BarcodeReader
+            {
+                Options = new DecodingOptions
+                {
+                    PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_128 },
+                    TryHarder = true
+                }
+            };
+
+            // Decode the barcode from the image
+            var result = reader.Decode(bmp);
+
             if (result != null)
             {
-              
+                bmp.Dispose();
                 return result.Text;
             }
             else
@@ -122,56 +133,100 @@ namespace WatermarkApp
             GetDimensionsDocument(file_name);
             trackerServices.WriteFile("lendo as posições do código de barras");
             string img_file = Convert_pdf_png(file_name);
-          
-            var result2 = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code39, BarcodeReader.BarcodeRotationCorrection.Medium,
-            BarcodeReader.BarcodeImageCorrection.DeepCleanPixels);
-
-            var result = BarcodeReader.ReadASingleBarcode(img_file, BarcodeEncoding.Code128, BarcodeReader.BarcodeRotationCorrection.Extreme,
-                BarcodeReader.BarcodeImageCorrection.MediumCleanPixels);
+            Bitmap bmp = new Bitmap(img_file);
+            var reader128 = new BarcodeReader
+            {
+                Options = new DecodingOptions
+                {
+                    PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_128 },
+                    TryHarder = true
+                }
+            };
+            var reader39 = new BarcodeReader
+            {
+                Options = new DecodingOptions
+                {
+                    PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_39 },
+                    TryHarder = true
+                }
+            };
+            var barcodeResult128 = reader128.Decode(bmp);
+            var result = barcodeResult128?.ResultPoints;
+            var barcodeResult39 = reader39.Decode(bmp);
+            var result2 = barcodeResult39?.ResultPoints;
+            List<Point> list128 = new List<Point>();
+            List<Point> list39 = new List<Point>();
+            Point p1_barcode129 = new Point();
+            Point p2_barcode129 = new Point();
+            Point p1_barcode39 = new Point();
+            Point p2_barcode39 = new Point();
 
             if (result != null && result2 != null)
             {
-                //Console.WriteLine($"result")
-                using (Bitmap bmp = new Bitmap(img_file)) 
+                foreach (var point in result)
                 {
-                    if (file_name.Contains("scan"))
-                    {
-                        x_barcode_pos = (int)result.X1 * width / bmp.Width + 95;
-                        y_barcode_pos = (int)result.Y1 * height / bmp.Height + 26;
-                        x2_barcode_pos = (int)result.X2 * width / bmp.Width - 62;
-                        y2_barcode_pos = (int)result.Y2 * height / bmp.Height + 3;
+                    int x = (int)point.X * width / bmp.Width;
+                    int y = (int)point.Y * height / bmp.Height;
+                    list128.Add(new Point(x, y));
+                }
+                foreach (var point2 in result2)
+                {
+                    int x = (int)point2.X * width / bmp.Width;
+                    int y = (int)point2.Y * height / bmp.Height;
+                    list39.Add(new Point(x, y));
+                }
 
-                        x_39 = (int)result2.X1 * width / bmp.Width + 100;
-                        y_39 = (int)result2.Y1 * height / bmp.Height + 25;
-                        x2_39 = (int)result2.X2 * width / bmp.Width - 70;
-                        y2_39 = (int)result2.Y2 * height / bmp.Height + 3;
+                for (int i = 0; i < list128.Count; i++)
+                {
+                    p1_barcode129 = list128[0];
+                    p2_barcode129 = list128[1];
+                }
 
-                        if(y2_39 < 0)
-                        {
-                            y2_39 += 19;
-                        }
-
-                        //change
-                        //fixing the values of scan image 
-                        if (y_barcode_pos >= 1000)
-                            y_barcode_pos = Math.Abs(height - y_barcode_pos + 15);
-                        if (x_barcode_pos >= 220)
-                            x_barcode_pos = Math.Abs(width - x_barcode_pos - 63);
-                        if (x2_barcode_pos >= 500)
-                            x2_barcode_pos = Math.Abs(width - x2_barcode_pos);
-                        if (y2_barcode_pos >= 1000)
-                            y2_barcode_pos = Math.Abs(height - y2_barcode_pos + 90);
-                        if (x2_barcode_pos <= 100)
-                            x2_barcode_pos += width / 2 + 41;
-                    }
-                    bmp.Dispose();
-                    return $"{x_barcode_pos}:{y_barcode_pos}:{x2_barcode_pos}:{y2_barcode_pos}:{x_39}:{y_39}:{x2_39}:{y2_39}";
+                for (int i = 0; i < list39.Count; i++)
+                {
+                    p1_barcode39 = list39[0];
+                    p2_barcode39 = list39[1];
                 }
             }
             else
+            {
                 trackerServices.WriteFile("erro ao obter as posições do código de barras");
-            
-            return "";
+                return "";
+            }
+
+            if (file_name.Contains("scan"))
+            {
+                x_barcode_pos = p1_barcode129.X * width / bmp.Width + 95;
+                y_barcode_pos = p1_barcode129.Y * height / bmp.Height + 26;
+                x2_barcode_pos = p2_barcode129.X * width / bmp.Width - 62;
+                y2_barcode_pos = (p2_barcode129.Y + 15) * height / bmp.Height + 3;
+
+                x_39 = p1_barcode39.X * width / bmp.Width + 100;
+                y_39 = p1_barcode39.Y * height / bmp.Height + 25;
+                x2_39 = p2_barcode39.X * width / bmp.Width - 70;
+                y2_39 = (p2_barcode39.Y + 15) * height / bmp.Height + 3;
+
+                if (y2_39 < 0)
+                {
+                    y2_39 += 19;
+                }
+
+                //change
+                //fixing the values of scan image 
+                if (y_barcode_pos >= 1000)
+                    y_barcode_pos = Math.Abs(height - y_barcode_pos + 15);
+                if (x_barcode_pos >= 220)
+                    x_barcode_pos = Math.Abs(width - x_barcode_pos - 63);
+                if (x2_barcode_pos >= 500)
+                    x2_barcode_pos = Math.Abs(width - x2_barcode_pos);
+                if (y2_barcode_pos >= 1000)
+                    y2_barcode_pos = Math.Abs(height - y2_barcode_pos + 90);
+                if (x2_barcode_pos <= 100)
+                    x2_barcode_pos += width / 2 + 41;
+            }
+            bmp.Dispose();
+
+            return $"{x_barcode_pos}:{y_barcode_pos}:{x2_barcode_pos}:{y2_barcode_pos}:{x_39}:{y_39}:{x2_39}:{y2_39}";
         }
 
 

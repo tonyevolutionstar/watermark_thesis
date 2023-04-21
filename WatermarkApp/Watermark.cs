@@ -1,7 +1,7 @@
-﻿using IronBarCode;
+﻿using ZXing;
+using ZXing.Common; 
 using iTextSharp.text.pdf;
 using System.IO;
-using System.Drawing;
 
 namespace WatermarkApp
 {
@@ -26,20 +26,36 @@ namespace WatermarkApp
         public void Generate_barcode(int id_barcode)
         {
             string data_barcode = id_doc.ToString() + ";" + id_barcode.ToString();
-            GeneratedBarcode MyBarCode = BarcodeWriter.CreateBarcode(data_barcode, BarcodeWriterEncoding.Code128);
-            MyBarCode.ResizeTo(MyBarCode.Width, resizedBarcode); // pixels
-            MyBarCode.SetMargins(0, 0, 0, 0);
-            MyBarCode.ChangeBarCodeColor(Color.Black);
-            MyBarCode.SaveAsPng(filename + commom.extension_barcode);
+            var writer = new BarcodeWriter
+            {
+                Format = BarcodeFormat.CODE_128,
+                Options = new EncodingOptions
+                {
+                    Height = resizedBarcode,
+                    Width = 250,
+                    Margin = 0
+                }
+            };
+
+            var barcodeBitmap = writer.Write(data_barcode);
+            barcodeBitmap.Save(filename + commom.extension_barcode);
         }
         public void Generate_barcode_39(int id_barcode)
         {
             string data_barcode = id_doc.ToString() + ";" + id_barcode.ToString();
-            GeneratedBarcode MyBarCode = BarcodeWriter.CreateBarcode(data_barcode, BarcodeWriterEncoding.Code39);
-            MyBarCode.ResizeTo(MyBarCode.Width, resizedBarcode); // pixels
-            MyBarCode.SetMargins(0, 0, 0, 0);
-            MyBarCode.ChangeBarCodeColor(Color.Black);
-            MyBarCode.SaveAsPng(filename + "_code39.png");
+            var writer = new BarcodeWriter
+            {
+                Format = BarcodeFormat.CODE_39,
+                Options = new EncodingOptions
+                {
+                    Height = resizedBarcode,
+                    Width = 200,
+                    Margin = 0
+                }
+            };
+
+            var barcodeBitmap = writer.Write(data_barcode);
+            barcodeBitmap.Save(filename + "_code39.png");
         }
 
 

@@ -1,8 +1,0 @@
-{
-  "profiles": {
-    "TestesApp": {
-      "commandName": "Project",
-      "commandLineArgs": "process \\Ficheiros\\NACIONAL_1_2022_01000.pdf"
-    }
-  }
-}

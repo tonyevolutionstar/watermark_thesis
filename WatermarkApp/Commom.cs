@@ -194,6 +194,16 @@ namespace WatermarkApp
                 return "";
             }
 
+            x_barcode_pos = p1_barcode129.X * width / bmp.Width + 95;
+            y_barcode_pos = p1_barcode129.Y * height / bmp.Height + 26;
+            x2_barcode_pos = p2_barcode129.X * width / bmp.Width - 62;
+            y2_barcode_pos = (p2_barcode129.Y + 15) * height / bmp.Height + 3;
+
+            x_39 = p1_barcode39.X * width / bmp.Width + 100;
+            y_39 = p1_barcode39.Y * height / bmp.Height + 25;
+            x2_39 = p2_barcode39.X * width / bmp.Width - 70;
+            y2_39 = (p2_barcode39.Y + 15) * height / bmp.Height + 3;
+
             if (file_name.Contains("scan"))
             {
                 x_barcode_pos = p1_barcode129.X * width / bmp.Width + 95;

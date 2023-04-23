@@ -46,7 +46,7 @@ namespace ConsoleNet
                 Options = new EncodingOptions
                 {
                     Height = resizedBarcode,
-                    Width = 200,
+                    Width = 181,
                     Margin = 0
                 }
             };

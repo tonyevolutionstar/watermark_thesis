@@ -23,14 +23,26 @@ namespace ConsoleNet
         private readonly string jar_file = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Ficheiros\thesis_watermark.jar";
         public int width_bmp;
         public int height_bmp;
+
+        public int x_barcode_pos;
+        public int y_barcode_pos;
+        public int x2_barcode_pos;
+        public int y2_barcode_pos;
+        public int x_39;
+        public int y_39;
+        public int x2_39;
+        public int y2_39;
+
+        /*
         public int x_barcode_pos = 200;
         public int y_barcode_pos = 812;
         public int x2_barcode_pos = 446;
         public int y2_barcode_pos = 827;
-        public int x_39 = 232;
+        public int x_39 = 198;
         public int y_39 = 5;
-        public int x2_39 = 413;
+        public int x2_39 = 392;
         public int y2_39 = 20;
+        */
 
 
         private readonly TrackerServices trackerServices = new TrackerServices();
@@ -124,7 +136,8 @@ namespace ConsoleNet
                 Options = new DecodingOptions
                 {
                     PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_128 },
-                    TryHarder = true
+                    TryHarder = true,
+                    TryInverted = true
                 }
             };
             var reader39 = new BarcodeReader
@@ -132,7 +145,8 @@ namespace ConsoleNet
                 Options = new DecodingOptions
                 {
                     PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_39 },
-                    TryHarder = true
+                    TryHarder = true,
+                    TryInverted = true
                 }
             };
             var barcodeResult128 = reader128.Decode(bmp);
@@ -179,35 +193,31 @@ namespace ConsoleNet
                 return "";
             }
 
+            x_barcode_pos = p1_barcode129.X - 10;
+            y_barcode_pos = p1_barcode129.Y - 2;
+            x2_barcode_pos = p2_barcode129.X + 16;
+            y2_barcode_pos = p2_barcode129.Y - 2 + 15;
+
+            x_39 = p1_barcode39.X - 5;
+            y_39 = p1_barcode39.Y - 13;
+            x2_39 = p2_barcode39.X + 7;
+            y2_39 = p2_barcode39.Y - 13 + 15;
+
+
             if (file_name.Contains("scan"))
             {
-                x_barcode_pos = p1_barcode129.X * width / bmp.Width + 95;
-                y_barcode_pos = p1_barcode129.Y * height / bmp.Height + 26;
-                x2_barcode_pos = p2_barcode129.X * width / bmp.Width - 62;
-                y2_barcode_pos = (p2_barcode129.Y + 15) * height / bmp.Height + 3;
+                x_barcode_pos = p1_barcode129.X;
+                y_barcode_pos = p1_barcode129.Y;
+                x2_barcode_pos = p2_barcode129.X;
+                y2_barcode_pos = p2_barcode129.Y + 15;
 
-                x_39 = p1_barcode39.X * width / bmp.Width + 100;
-                y_39 = p1_barcode39.Y * height / bmp.Height + 25;
-                x2_39 = p2_barcode39.X * width / bmp.Width - 70;
-                y2_39 = (p2_barcode39.Y + 15) * height / bmp.Height + 3;
+                x_39 = p1_barcode39.X;
+                y_39 = p1_barcode39.Y;
+                x2_39 = p2_barcode39.X;
+                y2_39 = p2_barcode39.Y + 15;
 
-                if (y2_39 < 0)
-                {
-                    y2_39 += 19;
-                }
 
-                //change
-                //fixing the values of scan image 
-                if (y_barcode_pos >= 1000)
-                    y_barcode_pos = Math.Abs(height - y_barcode_pos + 15);
-                if (x_barcode_pos >= 220)
-                    x_barcode_pos = Math.Abs(width - x_barcode_pos - 63);
-                if (x2_barcode_pos >= 500)
-                    x2_barcode_pos = Math.Abs(width - x2_barcode_pos);
-                if (y2_barcode_pos >= 1000)
-                    y2_barcode_pos = Math.Abs(height - y2_barcode_pos + 90);
-                if (x2_barcode_pos <= 100)
-                    x2_barcode_pos += width / 2 + 41;
+
             }
             bmp.Dispose();
 

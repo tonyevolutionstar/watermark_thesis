@@ -85,7 +85,7 @@ namespace ConsoleNet
                 {
                     Calculate_differences_barcode(sql);
                     Calculate_differences_document(sql, commom);
-                    //Draw_Points_Barcodes(); // descomentar caso pretender visualizar os pontos
+                    Draw_Points_Barcodes(); // descomentar caso pretender visualizar os pontos
                     Print_values();
                     string[] col_sql = res_doc.Split(';');
                     string dct_name = col_sql[0];

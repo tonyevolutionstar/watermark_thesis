@@ -190,6 +190,8 @@ namespace ConsoleNet
                 watermark.Add_watermark_pdf(date_time);
                 tracker.WriteFile("códigos de barras adicionado ao ficheiro");
 
+                commom.Return_PositionBarcode(file_name + "_" + commom.extension_watermark + "_" + date_time + ".pdf");
+
                 Integrity analise = new Integrity(commom.x_barcode_pos, commom.y_barcode_pos, commom.x2_barcode_pos);
                 tracker.WriteFile("determinação dos pontos para a análise forense " + tracker.finnishState);
 

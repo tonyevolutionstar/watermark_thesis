@@ -61,6 +61,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuxFunc.cs" />
+    <Compile Include="ChangeDocument.cs" />
     <Compile Include="Commom.cs" />
     <Compile Include="Compactor.cs" />
     <Compile Include="ImageWrapper.cs" />

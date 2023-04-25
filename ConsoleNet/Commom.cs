@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using iTextSharp.text.pdf;
+using Bytescout.BarCodeReader;
 
 namespace ConsoleNet
 {
@@ -40,7 +41,7 @@ namespace ConsoleNet
         public int y2_barcode_pos = 827;
         public int x_39 = 198;
         public int y_39 = 5;
-        public int x2_39 = 392;
+        public int x2_39 = 2;
         public int y2_39 = 20;
         */
 
@@ -136,29 +137,26 @@ namespace ConsoleNet
                 Options = new DecodingOptions
                 {
                     PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_128 },
-                    TryHarder = true,
-                    TryInverted = true
+                    TryHarder = true
                 }
             };
-            var reader39 = new BarcodeReader
-            {
-                Options = new DecodingOptions
-                {
-                    PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_39 },
-                    TryHarder = true,
-                    TryInverted = true
-                }
-            };
+            // devido a falhas de leitura do código de barras do zxing.net em certos documentos com escala variavel 
+            // usou-se o Bytescout.BarCodeReader para ler
+            var reader39 = new Bytescout.BarCodeReader.Reader();
+            reader39.BarcodeTypesToFind.Code39 = true;
+            reader39.MaxNumberOfBarcodesPerPage = 1;
+
+            var bitmap = new Bitmap(img_file);
+            var result2 = reader39.ReadFrom(bitmap);
+
             var barcodeResult128 = reader128.Decode(bmp);
             var result = barcodeResult128?.ResultPoints;
-            var barcodeResult39 = reader39.Decode(bmp);
-            var result2 = barcodeResult39?.ResultPoints;
+    
             List<Point> list128 = new List<Point>();
             List<Point> list39 = new List<Point>();
-            Point p1_barcode129 = new Point();
-            Point p2_barcode129 = new Point();
+            Point p1_barcode128 = new Point();
+            Point p2_barcode128 = new Point();
             Point p1_barcode39 = new Point();
-            Point p2_barcode39 = new Point();
 
             if (result != null && result2 != null)
             {
@@ -170,21 +168,20 @@ namespace ConsoleNet
                 }
                 foreach (var point2 in result2)
                 {
-                    int x = (int)point2.X * width / bmp.Width;
-                    int y = (int)point2.Y * height / bmp.Height;
+                    int x = (int)point2.Rect.X * width / bmp.Width;
+                    int y = (int)point2.Rect.Y * height / bmp.Height;
                     list39.Add(new Point(x, y));
                 }
                 
                 for(int i = 0; i < list128.Count; i++)
                 {
-                    p1_barcode129 = list128[0];
-                    p2_barcode129 = list128[1];
+                    p1_barcode128 = list128[0];
+                    p2_barcode128 = list128[1];
                 }
 
                 for(int i = 0; i < list39.Count; i++)
                 {
                     p1_barcode39 = list39[0];
-                    p2_barcode39 = list39[1];
                 }
             }
             else
@@ -193,31 +190,27 @@ namespace ConsoleNet
                 return "";
             }
 
-            x_barcode_pos = p1_barcode129.X - 10;
-            y_barcode_pos = p1_barcode129.Y - 2;
-            x2_barcode_pos = p2_barcode129.X + 16;
-            y2_barcode_pos = p2_barcode129.Y - 2 + 15;
+            x_barcode_pos = p1_barcode128.X - 10;
+            y_barcode_pos = p1_barcode128.Y - 2;
+            x2_barcode_pos = p2_barcode128.X + 16;
+            y2_barcode_pos = p2_barcode128.Y - 2 + 15;
 
-            x_39 = p1_barcode39.X - 5;
-            y_39 = p1_barcode39.Y - 13;
-            x2_39 = p2_barcode39.X + 7;
-            y2_39 = p2_barcode39.Y - 13 + 15;
-
+            x_39 = p1_barcode39.X + 1;
+            y_39 = p1_barcode39.Y;
+            x2_39 = p1_barcode39.X + 195;
+            y2_39 = p1_barcode39.Y + 15;
 
             if (file_name.Contains("scan"))
             {
-                x_barcode_pos = p1_barcode129.X;
-                y_barcode_pos = p1_barcode129.Y;
-                x2_barcode_pos = p2_barcode129.X;
-                y2_barcode_pos = p2_barcode129.Y + 15;
+                x_barcode_pos = p1_barcode128.X;
+                y_barcode_pos = p1_barcode128.Y;
+                x2_barcode_pos = p2_barcode128.X;
+                y2_barcode_pos = p2_barcode128.Y + 15;
 
                 x_39 = p1_barcode39.X;
                 y_39 = p1_barcode39.Y;
-                x2_39 = p2_barcode39.X;
-                y2_39 = p2_barcode39.Y + 15;
-
-
-
+                x2_39 = p1_barcode39.X + 195;
+                y2_39 = p1_barcode39.Y + 15;
             }
             bmp.Dispose();
 

@@ -39,14 +39,14 @@ namespace ConsoleNet
         }
         public void Generate_barcode_39(int id_barcode)
         {
-            string data_barcode = id_doc.ToString() + ";" + id_barcode.ToString();
+            string data_barcode = id_doc.ToString();
             var writer = new BarcodeWriter
             {
                 Format = BarcodeFormat.CODE_39,
                 Options = new EncodingOptions
                 {
-                    Height = resizedBarcode,
-                    Width = 181,
+                    Height = 15,
+                    Width = 50,
                     Margin = 0
                 }
             };
@@ -73,8 +73,8 @@ namespace ConsoleNet
 
                 //header 
                 iTextSharp.text.Image barcode_img_header = iTextSharp.text.Image.GetInstance(barcodeStream2);
-                barcode_img_header.SetAbsolutePosition(middle_w, height - commom.height_barcode * 2 + 10);
-                barcode_img_header.SetDpi(dpiBarcode, dpiBarcode);
+                barcode_img_header.SetAbsolutePosition(middle_w, height - commom.height_barcode * 2 + 5);
+                barcode_img_header.SetDpi(500, 500);
                 pdfContentByte.AddImage(barcode_img_header);
 
                 //footer barcode

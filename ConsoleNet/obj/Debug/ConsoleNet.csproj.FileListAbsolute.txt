@@ -15,3 +15,5 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNe
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\BouncyCastle.Crypto.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\itextsharp.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\itextsharp.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Bytescout.BarCodeReader.dll
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Bytescout.BarCodeReader.xml

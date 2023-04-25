@@ -1,5 +1,6 @@
 ﻿using System;
 
+
 namespace ConsoleNet
 {
     public class Program
@@ -43,7 +44,6 @@ namespace ConsoleNet
                 {
                     ChangeDocument ch_doc = new ChangeDocument(file_choosed);
                     string[] filename = file_choosed.Split(new[] { ".pdf" }, StringSplitOptions.None);
-                    //ch_doc.GetScale(file_choosed);
 
                     for (decimal i = 0.5m; i < 1m; i += 0.05m)
                     {
@@ -53,15 +53,13 @@ namespace ConsoleNet
                         Console.WriteLine(res);
                     }
 
-                    for (decimal i = 0.95m; i < 1m; i += 0.01m)
+                    for (decimal i = 0.96m; i < 1m; i += 0.01m)
                     {
                         ch_doc.Scale(i);
                         Console.WriteLine($"scale percentage {i * 100}");
                         string res = commom.Return_PositionBarcode(filename[0] + "_scale_" + (int)(i * 100) + ".pdf");
                         Console.WriteLine(res);
                     }
-
-
                 }
             }
         }

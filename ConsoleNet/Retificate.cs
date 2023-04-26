@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 
 namespace ConsoleNet
 {
@@ -51,6 +52,7 @@ namespace ConsoleNet
 
         private string diff_dimen;
         private string diff_bmp_dim;
+        private decimal scale_doc; 
 
         private readonly TrackerServices tracker = new TrackerServices();
 
@@ -212,21 +214,41 @@ namespace ConsoleNet
             p1_39_dig = new Point(int.Parse(res_barcode_pos[4]), int.Parse(res_barcode_pos[5]));
             p2_39_dig = new Point(int.Parse(res_barcode_pos[6]), int.Parse(res_barcode_pos[7]));
 
-            barcode128_dig = $"{p1_dig.X}:{p1_dig.Y}:{p2_dig.X}:{p2_dig.Y}";
-            barcode39_dig = $"{p1_39_dig.X}:{p1_39_dig.Y}:{p2_39_dig.X}:{p2_39_dig.Y}";
-
             int x_diff_or = p2_or.X - p1_or.X;
             int y_diff_or = p2_or.Y - p1_or.Y;
+    
+            int x_39_diff_or = p2_39_or.X - p1_39_or.X;
+            int y_39_diff_or = p2_39_or.Y - p1_39_or.Y;
+
+            // calcular a escala do ficheiro com base na primeira posição do y do código 39 
+            // como as dimensões do ficheiro diminuiem é necessário também calcular a altura do código de barras atual
+            // sabe-se que por defeito a altura do código de barras é 15 e comprimento 246
+            scale_doc = Math.Round(Convert.ToDecimal(1 - ((double)p1_39_dig.Y / 842) + 0.01), 2);
+            if(scale_doc != 1.00m)
+            {
+                int x_scale = Convert.ToInt16(x_diff_or * scale_doc);
+                int x_39_scale = Convert.ToInt16(x_39_diff_or * scale_doc);
+                int y_scale = Convert.ToInt16(y_diff_or * scale_doc);
+                p1_dig.X = Convert.ToInt16(((p1_dig.X + x_scale)*scale_doc) - 9);
+                p1_dig.Y = p1_dig.Y;
+                p2_dig.X = Convert.ToInt16(p1_dig.X + x_scale);
+                p2_dig.Y = Convert.ToInt16(p2_dig.Y + y_scale - y_diff_or);
+                p2_39_dig.X = Convert.ToInt16(p1_39_dig.X + x_39_scale);
+                p2_39_dig.Y = Convert.ToInt16(p2_39_dig.Y + y_scale - y_diff_or);
+            }
+
             int x_diff_dig = p2_dig.X - p1_dig.X;
             int y_diff_dig = p2_dig.Y - p1_dig.Y;
+
+            int x_39_diff_dig = p2_39_dig.X - p1_39_dig.X;
+            int y_39_diff_dig = p2_39_dig.Y - p1_39_dig.Y;
+
+            barcode128_dig = $"{p1_dig.X}:{p1_dig.Y}:{p2_dig.X}:{p2_dig.Y}";
+            barcode39_dig = $"{p1_39_dig.X}:{p1_39_dig.Y}:{p2_39_dig.X}:{p2_39_dig.Y}";
+            
             diff_or = new Point(x_diff_or, y_diff_or);
             diff_dig = new Point(x_diff_dig, y_diff_dig);
             diff_barcode = new Point(x_diff_dig - x_diff_or, y_diff_dig - y_diff_or);
-
-            int x_39_diff_or = p2_39_or.X - p1_39_or.X;
-            int y_39_diff_or = p2_39_or.Y - p1_39_or.Y;
-            int x_39_diff_dig = p2_39_dig.X - p1_39_dig.X;
-            int y_39_diff_dig = p2_39_dig.Y - p1_39_dig.Y;
 
             diff_barcode39 = new Point(x_39_diff_dig - x_39_diff_or, y_39_diff_dig - y_39_diff_or);
             int delta_y_or = p2_or.Y - p2_39_or.Y;
@@ -270,6 +292,7 @@ namespace ConsoleNet
             Console.WriteLine($"Barcode 39 X = {diff_barcode39.X}, Y = {diff_barcode39.Y}");
             Console.WriteLine($"Barcode 128 diff x original {diff_or.X}, y retificar {diff_or.Y}");
             Console.WriteLine($"Barcode 128 diff x digital {diff_dig.X}, y digital {diff_dig.Y}");
+            Console.WriteLine($"Prop x {prop.X}, y {prop.Y}");
         }
     }
 }

@@ -319,8 +319,6 @@ namespace ConsoleNet
                     bmp.Save(filename[0] + integrity_extension + ".png");
                     g.Dispose();
                     bmp.Dispose();
-                    if (File.Exists(f))
-                        File.Delete(f);
                 }
             }
             return filename[0] + integrity_extension + ".png";

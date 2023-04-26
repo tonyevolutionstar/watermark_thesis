@@ -117,12 +117,11 @@ namespace ConsoleNet
 
             if (result != null)
             {
-                bmp.Dispose();
                 return result.Text;
             }
             else
                 trackerServices.WriteFile("erro na leitura do código de barras");
-
+            bmp.Dispose();
             return errorReadBarcode;
         }
        
@@ -245,8 +244,7 @@ namespace ConsoleNet
                     reader.Close();
                 }
             }
-            if (System.IO.File.Exists(s_doc[0] + ".png"))
-                System.IO.File.Delete(s_doc[0] + ".png");
+
         }
 
         public void GetDimensionsImage(string file_name)

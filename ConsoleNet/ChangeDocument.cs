@@ -36,6 +36,5 @@ namespace ConsoleNet
             writer.Close();
         }
 
-    
     }
 }

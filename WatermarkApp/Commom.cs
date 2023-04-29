@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
+using Bytescout.BarCodeReader;
 
 namespace WatermarkApp
 {
@@ -27,22 +28,23 @@ namespace WatermarkApp
         private string jar_file = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + @"\Ficheiros\thesis_watermark.jar";
         public int width_bmp;
         public int height_bmp;
-        public int x_barcode_pos = 200;
-        public int y_barcode_pos = 812;
-        public int x2_barcode_pos = 446;
-        public int y2_barcode_pos = 827;
-        public int x_39 = 232;
-        public int y_39 = 5;
-        public int x2_39 = 413;
-        public int y2_39 = 20;
 
+        #region PositionBarcode
+        public int x_barcode_pos;
+        public int y_barcode_pos;
+        public int x2_barcode_pos;
+        public int y2_barcode_pos;
+        public int x_39;
+        public int y_39;
+        public int x2_39;
+        public int y2_39;
+        #endregion
 
         private TrackerServices trackerServices = new TrackerServices();
 
         public Commom()
         {
-            string partialPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            files = partialPath + files_dir;
+            files = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + files_dir;
         }
 
         /// <summary>
@@ -88,21 +90,28 @@ namespace WatermarkApp
             return file[0];
         }
 
+        private string Get_file_img_name(string img_file)
+        {
+            string[] filename = img_file.Split(new[] { ".png" }, StringSplitOptions.None);
+            return filename[0] + ".pdf";
+        }
+
         public string Convert_pdf_png(string file_name_png)
         {
             trackerServices.WriteFile($"converção do ficheiro {file_name_png} concluída");
-            var dd = System.IO.File.ReadAllBytes(file_name_png);
+            var dd = File.ReadAllBytes(file_name_png);
             byte[] pngByte = Freeware.Pdf2Png.Convert(dd, 1);
             string[] filename = file_name_png.Split(new[] { ".pdf" }, StringSplitOptions.None);
-            if(!System.IO.File.Exists(filename[0] + ".png"))
-                System.IO.File.WriteAllBytes(filename[0]+ ".png", pngByte);
+            if(!File.Exists(filename[0] + ".png"))
+                File.WriteAllBytes(filename[0]+ ".png", pngByte);
             return filename[0] + ".png";
         }
 
-        public string Read_barcode(string file_name)
+        public string Read_barcode(string img_file)
         {
+            string file_name = Get_file_img_name(img_file);
             trackerServices.WriteFile($"lendo o código de barras do ficheiro {file_name}");
-            string img_file = Convert_pdf_png(file_name);
+            //Console.WriteLine($"read barcode {img_file}");
             Bitmap bmp = new Bitmap(img_file);
             var reader = new BarcodeReader
             {
@@ -113,26 +122,25 @@ namespace WatermarkApp
                 }
             };
 
-            // Decode the barcode from the image
             var result = reader.Decode(bmp);
 
             if (result != null)
             {
-                bmp.Dispose();
                 return result.Text;
             }
             else
                 trackerServices.WriteFile("erro na leitura do código de barras");
 
+            bmp.Dispose();
             return errorReadBarcode;
         }
 
 
-        public string Return_PositionBarcode(string file_name)
+        public string Return_PositionBarcode(string img_file)
         {
+            string file_name = Get_file_img_name(img_file);
             GetDimensionsDocument(file_name);
-            trackerServices.WriteFile("lendo as posições do código de barras");
-            string img_file = Convert_pdf_png(file_name);
+            trackerServices.WriteFile($"lendo as posições do código de barras do ficheiro {file_name}");
             Bitmap bmp = new Bitmap(img_file);
             var reader128 = new BarcodeReader
             {
@@ -142,24 +150,23 @@ namespace WatermarkApp
                     TryHarder = true
                 }
             };
-            var reader39 = new BarcodeReader
-            {
-                Options = new DecodingOptions
-                {
-                    PossibleFormats = new List<BarcodeFormat> { BarcodeFormat.CODE_39 },
-                    TryHarder = true
-                }
-            };
+
+            // devido a falhas de leitura do código de barras do zxing.net em certos documentos com escala variavel 
+            // usou-se o Bytescout.BarCodeReader para ler
+            var reader39 = new Bytescout.BarCodeReader.Reader();
+            reader39.BarcodeTypesToFind.Code39 = true;
+            reader39.MaxNumberOfBarcodesPerPage = 1;
+
+            var result2 = reader39.ReadFrom(bmp);
+
             var barcodeResult128 = reader128.Decode(bmp);
             var result = barcodeResult128?.ResultPoints;
-            var barcodeResult39 = reader39.Decode(bmp);
-            var result2 = barcodeResult39?.ResultPoints;
+         
             List<Point> list128 = new List<Point>();
             List<Point> list39 = new List<Point>();
-            Point p1_barcode129 = new Point();
-            Point p2_barcode129 = new Point();
+            Point p1_barcode128 = new Point();
+            Point p2_barcode128 = new Point();
             Point p1_barcode39 = new Point();
-            Point p2_barcode39 = new Point();
 
             if (result != null && result2 != null)
             {
@@ -171,21 +178,20 @@ namespace WatermarkApp
                 }
                 foreach (var point2 in result2)
                 {
-                    int x = (int)point2.X * width / bmp.Width;
-                    int y = (int)point2.Y * height / bmp.Height;
+                    int x = point2.Rect.X * width / bmp.Width;
+                    int y = point2.Rect.Y * height / bmp.Height;
                     list39.Add(new Point(x, y));
                 }
 
                 for (int i = 0; i < list128.Count; i++)
                 {
-                    p1_barcode129 = list128[0];
-                    p2_barcode129 = list128[1];
+                    p1_barcode128 = list128[0];
+                    p2_barcode128 = list128[1];
                 }
 
                 for (int i = 0; i < list39.Count; i++)
                 {
                     p1_barcode39 = list39[0];
-                    p2_barcode39 = list39[1];
                 }
             }
             else
@@ -194,45 +200,27 @@ namespace WatermarkApp
                 return "";
             }
 
-            x_barcode_pos = p1_barcode129.X * width / bmp.Width + 95;
-            y_barcode_pos = p1_barcode129.Y * height / bmp.Height + 26;
-            x2_barcode_pos = p2_barcode129.X * width / bmp.Width - 62;
-            y2_barcode_pos = (p2_barcode129.Y + 15) * height / bmp.Height + 3;
+            x_barcode_pos = p1_barcode128.X - 10;
+            y_barcode_pos = p1_barcode128.Y - 2;
+            x2_barcode_pos = p2_barcode128.X + 16;
+            y2_barcode_pos = p2_barcode128.Y - 2 + 15;
 
-            x_39 = p1_barcode39.X * width / bmp.Width + 100;
-            y_39 = p1_barcode39.Y * height / bmp.Height + 25;
-            x2_39 = p2_barcode39.X * width / bmp.Width - 70;
-            y2_39 = (p2_barcode39.Y + 15) * height / bmp.Height + 3;
+            x_39 = p1_barcode39.X + 1;
+            y_39 = p1_barcode39.Y;
+            x2_39 = p1_barcode39.X + 195;
+            y2_39 = p1_barcode39.Y + 15;
 
             if (file_name.Contains("scan"))
             {
-                x_barcode_pos = p1_barcode129.X * width / bmp.Width + 95;
-                y_barcode_pos = p1_barcode129.Y * height / bmp.Height + 26;
-                x2_barcode_pos = p2_barcode129.X * width / bmp.Width - 62;
-                y2_barcode_pos = (p2_barcode129.Y + 15) * height / bmp.Height + 3;
+                x_barcode_pos = p1_barcode128.X;
+                y_barcode_pos = p1_barcode128.Y;
+                x2_barcode_pos = p2_barcode128.X;
+                y2_barcode_pos = p2_barcode128.Y + 15;
 
-                x_39 = p1_barcode39.X * width / bmp.Width + 100;
-                y_39 = p1_barcode39.Y * height / bmp.Height + 25;
-                x2_39 = p2_barcode39.X * width / bmp.Width - 70;
-                y2_39 = (p2_barcode39.Y + 15) * height / bmp.Height + 3;
-
-                if (y2_39 < 0)
-                {
-                    y2_39 += 19;
-                }
-
-                //change
-                //fixing the values of scan image 
-                if (y_barcode_pos >= 1000)
-                    y_barcode_pos = Math.Abs(height - y_barcode_pos + 15);
-                if (x_barcode_pos >= 220)
-                    x_barcode_pos = Math.Abs(width - x_barcode_pos - 63);
-                if (x2_barcode_pos >= 500)
-                    x2_barcode_pos = Math.Abs(width - x2_barcode_pos);
-                if (y2_barcode_pos >= 1000)
-                    y2_barcode_pos = Math.Abs(height - y2_barcode_pos + 90);
-                if (x2_barcode_pos <= 100)
-                    x2_barcode_pos += width / 2 + 41;
+                x_39 = p1_barcode39.X;
+                y_39 = p1_barcode39.Y;
+                x2_39 = p1_barcode39.X + 195;
+                y2_39 = p1_barcode39.Y + 15;
             }
             bmp.Dispose();
 
@@ -240,12 +228,12 @@ namespace WatermarkApp
         }
 
 
-        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double prop_x, double prop_y, int diff_width_doc, int diff_height_doc, int diff_width_bmp, int diff_height_bmp)
+        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double prop_x, double prop_y, int diff_width_doc, int diff_height_doc, int diff_width_bmp, int diff_height_bmp, double scale_doc)
         {   
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name);
 
-            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, prop_x, prop_y, diff_width_doc, diff_height_doc, diff_width_bmp, diff_height_bmp);
+            string img = auxFunc.DrawImage(returnlist, difference_x, difference_y, prop_x, prop_y, diff_width_doc, diff_height_doc, diff_width_bmp, diff_height_bmp, scale_doc);
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";
@@ -255,7 +243,7 @@ namespace WatermarkApp
             {
                 using (FileStream outputStream = new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
-                    iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(sourceStream);
+                    PdfReader reader = new PdfReader(sourceStream);
                     PdfStamper stamper = new PdfStamper(reader, outputStream);
                     iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(img);
                     image.SetAbsolutePosition(0, 0);
@@ -272,11 +260,8 @@ namespace WatermarkApp
             form.Show();
         }
 
-        public void GetDimensionsImage(string file_name)
+        public void GetDimensionsImage(string img_file)
         {
-            if (!file_name.Contains(".pdf"))
-                file_name += ".pdf";
-            string img_file = Convert_pdf_png(file_name);
             Bitmap bmp = new Bitmap(img_file);
             width_bmp = bmp.Width;
             height_bmp = bmp.Height;
@@ -285,12 +270,10 @@ namespace WatermarkApp
 
         public void GetDimensionsDocument(string file_name)
         {
-            if (!file_name.Contains(".pdf"))
-                file_name += ".pdf";
             using (Stream inputPdfStream = new FileStream(file_name, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                var reader = new iTextSharp.text.pdf.PdfReader(inputPdfStream);
-                iTextSharp.text.pdf.PdfReader.unethicalreading = true;
+                var reader = new PdfReader(inputPdfStream);
+                PdfReader.unethicalreading = true;
                 width = (int)reader.GetPageSize(1).Width;
                 height = (int)reader.GetPageSize(1).Height;
                 reader.Close();

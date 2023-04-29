@@ -34,23 +34,11 @@ namespace ConsoleNet
         public int x2_39;
         public int y2_39;
 
-        /*
-        public int x_barcode_pos = 200;
-        public int y_barcode_pos = 812;
-        public int x2_barcode_pos = 446;
-        public int y2_barcode_pos = 827;
-        public int x_39 = 198;
-        public int y_39 = 5;
-        public int x2_39 = 2;
-        public int y2_39 = 20;
-        */
-
-
         private readonly TrackerServices trackerServices = new TrackerServices();
 
         public Commom()
         {
-            files = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + files_dir;
+            files = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location) + files_dir;
         }
 
         public void Get_PositionChar(string file_name)
@@ -87,6 +75,13 @@ namespace ConsoleNet
             return file[0];
         }
 
+        private string Get_file_img_name(string img_file)
+        {
+            string[] filename = img_file.Split(new[] { ".png" }, StringSplitOptions.None);
+            return filename[0] + ".pdf";
+        }
+
+
         public string Convert_pdf_png(string file_name_png)
         {
             trackerServices.WriteFile($"converção do ficheiro {file_name_png} concluída");
@@ -98,10 +93,11 @@ namespace ConsoleNet
             return filename[0] + ".png";
         }
 
-        public string Read_barcode(string file_name)
+        public string Read_barcode(string img_file)
         {
+            string file_name = Get_file_img_name(img_file);
             trackerServices.WriteFile($"lendo o código de barras do ficheiro {file_name}");
-            string img_file = Convert_pdf_png(file_name);
+ 
             Bitmap bmp = new Bitmap(img_file);
             var reader = new BarcodeReader
             {
@@ -112,24 +108,21 @@ namespace ConsoleNet
                 }
             };
 
-            // Decode the barcode from the image
             var result = reader.Decode(bmp);
-
             if (result != null)
-            {
                 return result.Text;
-            }
             else
                 trackerServices.WriteFile("erro na leitura do código de barras");
             bmp.Dispose();
             return errorReadBarcode;
         }
        
-        public string Return_PositionBarcode(string file_name)
+        public string Return_PositionBarcode(string img_file)
         {
+            string file_name = Get_file_img_name(img_file);
             GetDimensionsDocument(file_name);
             trackerServices.WriteFile("lendo as posições do código de barras");
-            string img_file = Convert_pdf_png(file_name);
+            
             Bitmap bmp = new Bitmap(img_file);
             var reader128 = new BarcodeReader
             {
@@ -145,8 +138,7 @@ namespace ConsoleNet
             reader39.BarcodeTypesToFind.Code39 = true;
             reader39.MaxNumberOfBarcodesPerPage = 1;
 
-            var bitmap = new Bitmap(img_file);
-            var result2 = reader39.ReadFrom(bitmap);
+            var result2 = reader39.ReadFrom(bmp);
 
             var barcodeResult128 = reader128.Decode(bmp);
             var result = barcodeResult128?.ResultPoints;
@@ -217,12 +209,12 @@ namespace ConsoleNet
         }
 
 
-        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double prop_x, double prop_y, int diff_width_doc, int diff_height_doc, int diff_width_bmp, int diff_height_bmp)
+        public void RetificateAnalise(int id_doc, SQL_connection sql, string file_name, int difference_x, int difference_y, double prop_x, double prop_y, int diff_width_doc, int diff_height_doc, int diff_width_bmp, int diff_height_bmp, double scale_doc)
         {
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name);
 
-            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, prop_x, prop_y, diff_width_doc, diff_height_doc, diff_width_bmp, diff_height_bmp);
+            string img = auxFunc.DrawImage(returnlist, difference_x, difference_y, prop_x, prop_y, diff_width_doc, diff_height_doc, diff_width_bmp, diff_height_bmp, scale_doc);
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";
@@ -232,7 +224,7 @@ namespace ConsoleNet
             {
                 using (FileStream outputStream = new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
-                    iTextSharp.text.pdf.PdfReader reader = new iTextSharp.text.pdf.PdfReader(sourceStream);
+                    PdfReader reader = new PdfReader(sourceStream);
                     PdfStamper stamper = new PdfStamper(reader, outputStream);
                     iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(img);
                     image.SetAbsolutePosition(0, 0);
@@ -244,14 +236,10 @@ namespace ConsoleNet
                     reader.Close();
                 }
             }
-
         }
 
-        public void GetDimensionsImage(string file_name)
+        public void GetDimensionsImage(string img_file)
         {
-            if (!file_name.Contains(".pdf"))
-                file_name += ".pdf";
-            string img_file = Convert_pdf_png(file_name);
             Bitmap bmp = new Bitmap(img_file);
             width_bmp = bmp.Width;
             height_bmp = bmp.Height;
@@ -260,12 +248,10 @@ namespace ConsoleNet
 
         public void GetDimensionsDocument(string file_name)
         {
-            if (!file_name.Contains(".pdf"))
-                file_name += ".pdf";
             using (Stream inputPdfStream = new FileStream(file_name, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
-                var reader = new iTextSharp.text.pdf.PdfReader(inputPdfStream);
-                iTextSharp.text.pdf.PdfReader.unethicalreading = true;
+                var reader = new PdfReader(inputPdfStream);
+                PdfReader.unethicalreading = true;
 
                 width = (int)reader.GetPageSize(1).Width;
                 height = (int)reader.GetPageSize(1).Height;

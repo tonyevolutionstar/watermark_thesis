@@ -46,21 +46,6 @@
             <param name="y"></param>
             <returns>Letra</returns>
         </member>
-        <member name="M:WatermarkApp.AuxFunc.DrawImage(System.Collections.Generic.List{System.String},System.String,System.Int32,System.Int32,System.Double,System.Double,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Usado pela Analise Forense
-            </summary>
-            <param name="return_list"></param>
-            <param name="watermark_file"></param>
-            <param name="diff_x"></param>
-            <param name="diff_y"></param>
-            <param name="prop_x"></param>
-            <param name="prop_y"></param>
-            <param name="diff_width_doc"></param>
-            <param name="diff_height_doc"></param>
-            <param name="diff_width_bmp"></param>
-            <param name="diff_height_bmp"></param>
-        </member>
         <member name="T:WatermarkApp.Commom">
             <summary>
             Funções comuns entre classes

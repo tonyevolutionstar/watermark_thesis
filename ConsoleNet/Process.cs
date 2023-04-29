@@ -26,6 +26,8 @@ namespace ConsoleNet
         int status = -1; // 0 rejected, 1 accepted;
         private int accept = 1; // testes - 0 rejected, 1 accepted;
 
+        private string img_file;
+
         public Process(string file_name)
         {
             this.file_name = file_name;
@@ -137,7 +139,6 @@ namespace ConsoleNet
             return conteudos;
         }
 
-
         private void Insert_info_char_database()
         {
             SQL_connection sql = new SQL_connection();
@@ -190,13 +191,15 @@ namespace ConsoleNet
                 watermark.Add_watermark_pdf(date_time);
                 tracker.WriteFile("códigos de barras adicionado ao ficheiro");
 
-                commom.Return_PositionBarcode(file_name + "_" + commom.extension_watermark + "_" + date_time + ".pdf");
+                commom.Return_PositionBarcode(file_name + "_" + commom.extension_watermark + "_" + date_time + ".png");
 
                 Integrity analise = new Integrity(commom.x_barcode_pos, commom.y_barcode_pos, commom.x2_barcode_pos);
                 tracker.WriteFile("determinação dos pontos para a análise forense " + tracker.finnishState);
 
                 commom.GetDimensionsDocument(file_name);
-                commom.GetDimensionsImage(file_name);
+                string name = commom.Get_file_name_using_split(file_name);
+                img_file = name + ".png";
+                commom.GetDimensionsImage(img_file);
 
                 SQL_connection sql = new SQL_connection();
                 sql.Insert_barcode(analise.positions, date_time_barcode.ToString());
@@ -204,7 +207,7 @@ namespace ConsoleNet
                 id_barcode = sql.Get_id_barcode(date_time_barcode.ToString());
 
                 AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf");
-                auxFunc.CalculateIntersection(analise.positions, file_name + watermark_file + date_time + ".pdf");
+                auxFunc.CalculateIntersection(analise.positions);
             }
         }
 
@@ -230,10 +233,10 @@ namespace ConsoleNet
             {
                 foreach (string file in delete_files)
                 {
-                    if (System.IO.File.Exists(file))
+                    if (File.Exists(file))
                     {
                         tracker.WriteFile($"ficheiro auxiliar {file} apagado");
-                        System.IO.File.Delete(file);
+                        File.Delete(file);
                     }
                 }
             }
@@ -261,7 +264,7 @@ namespace ConsoleNet
             SQL_connection sql = new SQL_connection();
             sql.Insert_watermark(id_doc, id_barcode, status, commom.x_barcode_pos, commom.y_barcode_pos, commom.x2_barcode_pos, commom.y2_barcode_pos, commom.x_39, commom.y_39, commom.x2_39, commom.y2_39);
             tracker.WriteFile("documento rejeitado na base de dados");
-            System.IO.File.Delete(file_name_watermark);
+            File.Delete(file_name_watermark);
             Process_file();
         }
     }

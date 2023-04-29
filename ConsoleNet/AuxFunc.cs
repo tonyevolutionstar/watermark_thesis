@@ -21,6 +21,7 @@ namespace ConsoleNet
         private readonly int min_random = 10;
         private readonly int max_random = 70;
         private readonly string integrity_extension = "_";
+        private string img_file;
          
         public AuxFunc(int id_doc, SQL_connection sql, string filename)
         {
@@ -28,19 +29,15 @@ namespace ConsoleNet
             this.sql = sql;
             commom = new Commom();
             commom.GetDimensionsDocument(filename);
+            string name = commom.Get_file_name_using_split(filename);
+            img_file = name + ".png";
+        
             integrity_extension += commom.extension_integrity;
             numberPoints = commom.number_points;
             w = commom.width;
             h = commom.height;
         }
 
-        /// <summary>
-        /// Obtem a letra próxima ao valor da interseção
-        /// </summary>
-        /// <param name="bmp"></param>
-        /// <param name="x"></param>
-        /// <param name="y"></param>
-        /// <returns>Letra</returns>
         private string Get_Value_in(Bitmap bmp, float x, float y)
         {
             string ch = "";
@@ -65,10 +62,9 @@ namespace ConsoleNet
         }
 
 
-        public void CalculateIntersection(string position, string watermark_file)
+        public void CalculateIntersection(string position)
         {
-            string f = commom.Convert_pdf_png(watermark_file);
-            Bitmap bmp = new Bitmap(f);
+            Bitmap bmp = new Bitmap(img_file);
 
             circle_points = Obtain_points_surround_circle(position, bmp);
 
@@ -255,37 +251,20 @@ namespace ConsoleNet
         }
 
 
-
-        /// <summary>
-        /// Usado pela Analise Forense
-        /// </summary>
-        /// <param name="return_list"></param>
-        /// <param name="watermark_file"></param>
-        /// <param name="diff_x"></param>
-        /// <param name="diff_y"></param>
-        /// <param name="prop_x"></param>
-        /// <param name="prop_y"></param>
-        /// <param name="diff_width_doc"></param>
-        /// <param name="diff_height_doc"></param>
-        /// <param name="diff_width_bmp"></param>
-        /// <param name="diff_height_bmp"></param>
-
-        public string DrawImage(List<string> return_list, string watermark_file, int diff_x, int diff_y, double prop_x, double prop_y, int diff_width_doc, int diff_height_doc, int diff_width_bmp, int diff_height_bmp)
+        public string DrawImage(List<string> return_list, int diff_x, int diff_y, double prop_x, double prop_y, int diff_width_doc, int diff_height_doc, int diff_width_bmp, int diff_height_bmp, double scale_doc)
         {
-            string f = commom.Convert_pdf_png(watermark_file);
             int sizeLetter = 10;
             Point intersection;
 
-            using (Bitmap bmp = new Bitmap(f))
+            using (Bitmap bmp = new Bitmap(img_file))
             {
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
                     Pen yellow = new Pen(Color.Yellow, 3);
-                    int width = 5;
-                    int height = 5;
+                    int width_circle = 5;
+                    int height_circle = 5;
                     int startAngle = 0;
                     int sweepAngle = 360;
-                    string[] lines = new string[] { "" };
                     Font drawFont = new Font("Arial", sizeLetter);
                     SolidBrush drawBrush = new SolidBrush(Color.Blue);
                     SolidBrush orBrush = new SolidBrush(Color.Red);
@@ -300,21 +279,36 @@ namespace ConsoleNet
 
                         double diff_width = (double)diff_width_doc / diff_width_bmp;
                         double diff_height = (double)diff_height_doc / diff_height_bmp;
-
-                        if (!watermark_file.Contains("scan"))
-                            intersection = new Point(res_x, res_y);
+                        if (!img_file.Contains("scan"))
+                        {
+                            if (scale_doc >= 1.00f)
+                                intersection = new Point(res_x, res_y);
+                            else
+                            {
+                                int n_x = Convert.ToInt16(res_x * (double)w/ bmp.Width);
+                                int n_y = Convert.ToInt16(res_y * (double)h/ bmp.Height);
+                                int s_x = Convert.ToInt16(n_x * scale_doc);
+                                int s_y = Convert.ToInt16(n_y * scale_doc);
+                              
+                                int new_x = Convert.ToInt16(s_x * (double)bmp.Width/w);
+                                int new_y = Convert.ToInt16(s_y * (double)bmp.Height/h);
+                     
+                                intersection = new Point(new_x, new_y); //adjust point barcode
+                            }
+                        }
                         else
                         {
-                            int new_x = Convert.ToInt16((res_x - diff_x) * prop_x + diff_width_doc);
-                            int new_y = Convert.ToInt16((res_y - diff_y) * prop_y + diff_height_doc);
-                            intersection = new Point(new_x, new_y); //adjust point barcode
+                            int new_x = Convert.ToInt32((res_x - diff_x) * prop_x + diff_width);
+                            int new_y = Convert.ToInt32((res_y - diff_y) * prop_y + diff_height);
+                          
+                            intersection = new Point(new_x, new_y); //adjust point barcode                           
                         }
 
                         g.DrawString(ch, drawFont, drawBrush, intersection);
-                        g.DrawArc(yellow, intersection.X, intersection.Y, width, height, startAngle, sweepAngle);
+                        g.DrawArc(yellow, intersection.X, intersection.Y, width_circle, height_circle, startAngle, sweepAngle);
                     }
 
-                    filename = f.Split(new[] { ".png" }, StringSplitOptions.None);
+                    filename = img_file.Split(new[] { ".png" }, StringSplitOptions.None);
 
                     bmp.Save(filename[0] + integrity_extension + ".png");
                     g.Dispose();

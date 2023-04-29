@@ -38,7 +38,8 @@ namespace WatermarkApp
 
         private TrackerServices tracker = new TrackerServices();
         int status = -1; // 0 rejected, 1 accepted;
-   
+
+        private string img_file;
 
         /// <summary>
         /// Processamento do ficheiro para a originação do documento com marca de água
@@ -131,7 +132,7 @@ namespace WatermarkApp
         {
             string[] show_doc = file_name.Split(new[] { commom.files_dir }, StringSplitOptions.None);
      
-            if (System.IO.File.Exists(doc_file + watermark_file + date_time + ".pdf"))
+            if (File.Exists(doc_file + watermark_file + date_time + ".pdf"))
             {
                 MessageBox.Show(already_processed);  
             }
@@ -187,10 +188,10 @@ namespace WatermarkApp
             {
                 foreach (string file in delete_files)
                 {
-                    if (System.IO.File.Exists(file))
+                    if (File.Exists(file))
                     {
                         tracker.WriteFile($"ficheiro auxiliar {file} apagado");
-                        System.IO.File.Delete(file);
+                        File.Delete(file);
                     }
                 }
             }
@@ -214,12 +215,17 @@ namespace WatermarkApp
                 tracker.WriteFile("códigos de barras criados");
                 watermark.Add_watermark_pdf(date_time);
                 tracker.WriteFile("códigos de barras adicionado ao ficheiro");
-         
+                string output_file = file_name + "_" + commom.extension_watermark + "_" + date_time + ".pdf";
+                commom.Convert_pdf_png(output_file);
+                commom.Return_PositionBarcode(file_name + "_" + commom.extension_watermark + "_" + date_time + ".png");
+
                 Integrity analise = new Integrity(commom.x_barcode_pos, commom.y_barcode_pos, commom.x2_barcode_pos);
                 tracker.WriteFile("determinação dos pontos para a análise forense " + tracker.finnishState);
 
-                commom.GetDimensionsDocument(file_name);
-                commom.GetDimensionsImage(file_name);
+                commom.GetDimensionsDocument(output_file);
+                string name = commom.Get_file_name_using_split(output_file);
+                img_file = name + ".png";
+                commom.GetDimensionsImage(img_file);
 
                 SQL_connection sql = new SQL_connection();
                 sql.Insert_barcode(analise.positions, date_time_barcode.ToString());
@@ -227,7 +233,7 @@ namespace WatermarkApp
                 id_barcode = sql.Get_id_barcode(date_time_barcode.ToString());
 
                 AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf");
-                auxFunc.CalculateIntersection(analise.positions, file_name + watermark_file + date_time + ".pdf");
+                auxFunc.CalculateIntersection(analise.positions);
             }
         }
 
@@ -318,7 +324,7 @@ namespace WatermarkApp
                     string doc_name = commom.Get_file_name_using_split(file_name);
 
                     string file_name_watermark = doc_name + watermark_file + date_time + ".pdf";
-                    if (System.IO.File.Exists(file_name_watermark))
+                    if (File.Exists(file_name_watermark))
                     {
                         status = 1;
                         SQL_connection sql = new SQL_connection();
@@ -349,13 +355,13 @@ namespace WatermarkApp
                 MessageBox.Show(already_accepted);
             else
             {
-                if (System.IO.File.Exists(file_name_watermark))
+                if (File.Exists(file_name_watermark))
                 {
                     status = 0;
                     SQL_connection sql = new SQL_connection();
                     sql.Insert_watermark(id_doc, id_barcode, status, commom.x_barcode_pos, commom.y_barcode_pos, commom.x2_barcode_pos, commom.y2_barcode_pos, commom.x_39, commom.y_39, commom.x2_39, commom.y2_39);
                     tracker.WriteFile("documento rejeitado na base de dados");
-                    System.IO.File.Delete(file_name_watermark);
+                    File.Delete(file_name_watermark);
                     Process_file();
                     MessageBox.Show(rejected_Doc);
                 }

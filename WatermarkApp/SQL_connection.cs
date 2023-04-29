@@ -356,7 +356,6 @@ namespace WatermarkApp
                     string y_39 = dataReader.GetValue(5).ToString();
                     string x2_39 = dataReader.GetValue(6).ToString();
                     string y2_39 = dataReader.GetValue(7).ToString();
-
                     pos_barcode = $"{x}:{y}:{x2}:{y2}:{x_39}:{y_39}:{x2_39}:{y2_39}";
                 }
                 dataReader.Close();

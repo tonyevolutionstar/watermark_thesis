@@ -17,7 +17,7 @@ namespace WatermarkApp
         private string file_name;
         private readonly string result_barcode;
         private int id_doc;
-
+        #region points
         private Point p1_or;
         private Point p2_or;
         private Point p1_dig;
@@ -34,25 +34,27 @@ namespace WatermarkApp
         private Point image_dim_dig;
 
         private Point diff_barcode;
-        private Point diff_barcode39;
         private Point diff_doc_dim;
         private Point diff_img_dim;
-        private Point diff_or;
-        private Point diff_dig;
         private PointF prop;
 
         private string barcode128_or;
         private string barcode39_or;
         private string barcode128_dig;
         private string barcode39_dig;
-
+        #endregion;
         private string dimensions;
         private string scan_dimen;
 
         private string diff_dimen;
         private string diff_bmp_dim;
+        private decimal scale_doc;
 
-        private TrackerServices tracker = new TrackerServices(); 
+        private int delta_y_or;
+        private int delta_y_dig;
+
+        private TrackerServices tracker = new TrackerServices();
+        private string img_file;
 
         /// <summary>
         /// Retifica um documento com marca de água
@@ -67,10 +69,12 @@ namespace WatermarkApp
             InitializeComponent();
             commom = new Commom();
             this.file_name = file_name;
+            string name = commom.Get_file_name_using_split(file_name);
+            img_file = name + ".png";
 
-            file_qrcode.src = file_name;
-            Controls.Add(file_qrcode);
-            result_barcode = commom.Read_barcode(file_name);
+            file_watermark.src = file_name;
+            Controls.Add(file_watermark);
+            result_barcode = commom.Read_barcode(img_file);
 
             if (result_barcode == commom.errorReadBarcode)
             {
@@ -86,8 +90,6 @@ namespace WatermarkApp
         /// </summary>
         private void Draw_Points_Barcodes()
         {
-            string img = commom.Convert_pdf_png(file_name);
-            commom.GetDimensionsDocument(file_name);
             //arc
             int w_arc = 5;
             int h_arc = 5;
@@ -98,7 +100,7 @@ namespace WatermarkApp
             Pen green = new Pen(Color.Green, 3);
             Pen pink = new Pen(Color.Pink, 3);
 
-            using (Bitmap bmp = new Bitmap(img))
+            using (Bitmap bmp = new Bitmap(img_file))
             {
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
@@ -180,38 +182,60 @@ namespace WatermarkApp
 
             barcode128_or = $"{p1_or.X}:{p1_or.Y}:{p2_or.X}:{p2_or.Y}";
             barcode39_or = $"{p1_39_or.X}:{p1_39_or.Y}:{p2_39_or.X}:{p2_39_or.Y}";
-
-            string res_barcode = commom.Return_PositionBarcode(file_name);
+         
+            string res_barcode = commom.Return_PositionBarcode(img_file);
             string[] res_barcode_pos = res_barcode.Split(':');
             p1_dig = new Point(int.Parse(res_barcode_pos[0]), int.Parse(res_barcode_pos[1]));
             p2_dig = new Point(int.Parse(res_barcode_pos[2]), int.Parse(res_barcode_pos[3]));
             p1_39_dig = new Point(int.Parse(res_barcode_pos[4]), int.Parse(res_barcode_pos[5]));
             p2_39_dig = new Point(int.Parse(res_barcode_pos[6]), int.Parse(res_barcode_pos[7]));
 
+            int x_diff_or = p2_or.X - p1_or.X;
+            int y_diff_or = p2_or.Y - p1_or.Y;
+
+            int x_39_diff_or = p2_39_or.X - p1_39_or.X;
+
+            // calcular a escala do ficheiro com base na primeira posição do y do código 39 
+            // como as dimensões do ficheiro diminuiem é necessário também calcular a altura do código de barras atual
+            // sabe-se que por defeito a altura do código de barras é 15 e comprimento 246
+            scale_doc = Math.Round(Convert.ToDecimal(((double)p1_dig.Y / 842)), 2);
+            scale_doc += 0.03m;
+
+            if (scale_doc == 0.99m)
+                scale_doc = 1.00m;
+
+            Console.WriteLine($"calculate scale {scale_doc}");
+
+            if (p1_39_dig.Y == 10)
+                p1_39_dig.Y = 11;
+
+            if (scale_doc != 1.00m)
+            {
+                int x_scale = Convert.ToInt16(x_diff_or * scale_doc);
+                int x_39_scale = Convert.ToInt16(x_39_diff_or * scale_doc);
+                int y_scale = Convert.ToInt16(y_diff_or * scale_doc);
+
+                p1_dig.X += 2;
+                p2_dig.X = Convert.ToInt16(p1_dig.X + x_scale);
+                p2_dig.Y = Convert.ToInt16(p2_dig.Y + y_scale - y_diff_or);
+                p2_39_dig.X = Convert.ToInt16(p1_39_dig.X + x_39_scale);
+                p2_39_dig.Y = Convert.ToInt16(p2_39_dig.Y + y_scale - y_diff_or + 1);
+            }
+
+            int x_diff_dig = p2_dig.X - p1_dig.X;
+
+            int height_or_doc = p2_or.Y - p1_39_or.Y;
+            int height_dig_doc = p2_dig.Y - p1_39_dig.Y;
+
             barcode128_dig = $"{p1_dig.X}:{p1_dig.Y}:{p2_dig.X}:{p2_dig.Y}";
             barcode39_dig = $"{p1_39_dig.X}:{p1_39_dig.Y}:{p2_39_dig.X}:{p2_39_dig.Y}";
 
-            int x_diff_or = p2_or.X - p1_or.X;
-            int y_diff_or = p2_or.Y - p1_or.Y;
-            int x_diff_dig = p2_dig.X - p1_dig.X;
-            int y_diff_dig = p2_dig.Y - p1_dig.Y;
-            diff_or = new Point(x_diff_or, y_diff_or);
-            diff_dig = new Point(x_diff_dig, y_diff_dig);
-            diff_barcode = new Point(x_diff_dig - x_diff_or, y_diff_dig - y_diff_or);
+            diff_barcode = new Point(x_diff_dig - x_diff_or, height_dig_doc - height_or_doc);
 
-            int x_39_diff_or = p2_39_or.X - p1_39_or.X;
-            int y_39_diff_or = p2_39_or.Y - p1_39_or.Y;
-            int x_39_diff_dig = p2_39_dig.X - p1_39_dig.X;
-            int y_39_diff_dig = p2_39_dig.Y - p1_39_dig.Y;
+            delta_y_or = p2_or.Y - p2_39_or.Y;
+            delta_y_dig = p2_dig.Y - p2_39_dig.Y;
 
-            diff_barcode39 = new Point(x_39_diff_dig - x_39_diff_or, y_39_diff_dig - y_39_diff_or);
-            int delta_y_or = p2_or.Y - p2_39_or.Y;
-            int delta_y_res = p2_dig.Y - p2_39_dig.Y;
-
-            prop = new PointF((float)x_diff_dig / x_diff_or, (float)delta_y_res / delta_y_or);
-           
-            if (!file_name.Contains("scan"))
-                diff_barcode.Y = 0;
+            prop = new PointF((float)x_diff_dig / x_diff_or, (float)delta_y_dig / delta_y_or);
         }
 
 
@@ -223,7 +247,7 @@ namespace WatermarkApp
             image_dim_or = new Point(int.Parse(val_dim[2]), int.Parse(val_dim[3]));
 
             commom.GetDimensionsDocument(file_name);
-            commom.GetDimensionsImage(file_name);
+            commom.GetDimensionsImage(img_file);
             doc_dim_dig = new Point(commom.width, commom.height);
             image_dim_dig = new Point(commom.width_bmp, commom.height_bmp);
 
@@ -242,10 +266,9 @@ namespace WatermarkApp
             Console.WriteLine($"Original pos barcode 128 {barcode128_or} | barcode 39 {barcode39_or}");
             Console.WriteLine($"Digital pos barcode 128 {barcode128_dig} | barcode 39 {barcode39_dig}");
             Console.WriteLine("--- Difference between original and digital");
-            Console.WriteLine($"Barcode 128 X = {diff_barcode.X}, Y = {diff_barcode.Y}");
-            Console.WriteLine($"Barcode 39 X = {diff_barcode39.X}, Y = {diff_barcode39.Y}");
-            Console.WriteLine($"Barcode 128 diff x original {diff_or.X}, y retificar {diff_or.Y}");
-            Console.WriteLine($"Barcode 128 diff x digital {diff_dig.X}, y digital {diff_dig.Y}");
+            Console.WriteLine($"Differences 128 X = {diff_barcode.X}, Y = {diff_barcode.Y}");
+            Console.WriteLine($"Prop x {prop.X}, y {prop.Y}");
+            Console.WriteLine($"Delta original {delta_y_or}, delta dig {delta_y_dig}");
         }
 
 
@@ -289,14 +312,13 @@ namespace WatermarkApp
         {
             MessageBox.Show(infoAnaliseForense);
             SQL_connection sql = new SQL_connection();
-            commom.RetificateAnalise(id_doc, sql, file_name, diff_barcode.X, diff_barcode.Y, prop.X, prop.Y, diff_doc_dim.X, diff_doc_dim.Y, diff_img_dim.X, diff_img_dim.Y);
+            commom.RetificateAnalise(id_doc, sql, file_name, diff_barcode.X, diff_barcode.Y, prop.X, prop.Y, diff_doc_dim.X, diff_doc_dim.Y, diff_img_dim.X, diff_img_dim.Y, (double) scale_doc);
         }
 
         private void Retificate_FormClosed(object sender, FormClosedEventArgs e)
         {
             string name_file = commom.Get_file_name_using_split(file_name);
             string file_rotated = name_file + "_rotated.png";
-            string img_file = name_file + ".png";
             if (File.Exists(file_rotated))
                 File.Delete(file_rotated);  
             if (File.Exists(img_file))

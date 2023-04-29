@@ -31,7 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Retificate));
             this.label1 = new System.Windows.Forms.Label();
             this.dct_name = new System.Windows.Forms.Label();
-            this.file_qrcode = new AxAcroPDFLib.AxAcroPDF();
+            this.file_watermark = new AxAcroPDFLib.AxAcroPDF();
             this.label2 = new System.Windows.Forms.Label();
             this.user = new System.Windows.Forms.Label();
             this.sigla = new System.Windows.Forms.Label();
@@ -39,7 +39,7 @@
             this.posto = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.forense_btn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.file_qrcode)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.file_watermark)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -64,12 +64,12 @@
             // 
             // file_qrcode
             // 
-            this.file_qrcode.Enabled = true;
-            this.file_qrcode.Location = new System.Drawing.Point(272, 12);
-            this.file_qrcode.Name = "file_qrcode";
-            this.file_qrcode.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("file_qrcode.OcxState")));
-            this.file_qrcode.Size = new System.Drawing.Size(1000, 533);
-            this.file_qrcode.TabIndex = 4;
+            this.file_watermark.Enabled = true;
+            this.file_watermark.Location = new System.Drawing.Point(272, 12);
+            this.file_watermark.Name = "file_qrcode";
+            this.file_watermark.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("file_qrcode.OcxState")));
+            this.file_watermark.Size = new System.Drawing.Size(1000, 533);
+            this.file_watermark.TabIndex = 4;
             // 
             // label2
             // 
@@ -155,7 +155,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.user);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.file_qrcode);
+            this.Controls.Add(this.file_watermark);
             this.Controls.Add(this.dct_name);
             this.Controls.Add(this.label1);
             this.Name = "Retificate";
@@ -163,7 +163,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Retificate_FormClosed);
             this.Load += new System.EventHandler(this.Retificate_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.file_qrcode)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.file_watermark)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -173,7 +173,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label dct_name;
-        private AxAcroPDFLib.AxAcroPDF file_qrcode;
+        private AxAcroPDFLib.AxAcroPDF file_watermark;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label user;
         private System.Windows.Forms.Label sigla;

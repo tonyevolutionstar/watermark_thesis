@@ -20,6 +20,7 @@ namespace WatermarkApp
         private Commom commom = new Commom();
         double angle;
         TrackerServices tracker = new TrackerServices();
+        private string img_file;
 
         public Principal_Menu()
         {
@@ -37,9 +38,9 @@ namespace WatermarkApp
             if (result == DialogResult.OK)
             {
                 file_name = ofd.FileName;
-                if (!System.IO.File.Exists(file_name))
+                if (!File.Exists(file_name))
                 {
-                   return false;
+                    return false;
                 }
             }
             else if (result == DialogResult.Cancel)
@@ -54,6 +55,7 @@ namespace WatermarkApp
             if (Choose_file())
             {
                 string file_name_without_dir = commom.Get_file_name_without_directory(file_name);
+                img_file = commom.Convert_pdf_png(file_name);
 
                 if (file_name.Contains(".png"))
                 {
@@ -120,10 +122,9 @@ namespace WatermarkApp
 
         private string Fix_Rotation()
         {
-            string img = commom.Convert_pdf_png(file_name);
-            string[] s_doc = img.Split(new[] { ".png" }, StringSplitOptions.None);
+            string[] s_doc = img_file.Split(new[] { ".png" }, StringSplitOptions.None);
 
-            var copy_image = (Bitmap)System.Drawing.Image.FromFile(img);
+            var copy_image = (Bitmap)System.Drawing.Image.FromFile(img_file);
             int stripCount = 10; // se o scan nao ter posições ou estiver muito torto alterar para 30
             var compact = new Compact(copy_image, stripCount);
 
@@ -148,6 +149,7 @@ namespace WatermarkApp
             if (Choose_file())
             {
                 string file_name_without_dir = commom.Get_file_name_without_directory(file_name);
+                img_file = commom.Convert_pdf_png(file_name);
 
                 if (file_name_without_dir.Contains(commom.extension_watermark))
                 {

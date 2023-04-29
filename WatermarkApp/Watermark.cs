@@ -76,7 +76,7 @@ namespace WatermarkApp
 
                 //header 
                 iTextSharp.text.Image barcode_img_header = iTextSharp.text.Image.GetInstance(barcodeStream2);
-                barcode_img_header.SetAbsolutePosition(middle_w, height - commom.height_barcode * 2 + 10);
+                barcode_img_header.SetAbsolutePosition(middle_w, height - commom.height_barcode * 2 + 5);
                 barcode_img_header.SetDpi(dpiBarcode, dpiBarcode);
                 pdfContentByte.AddImage(barcode_img_header);
 

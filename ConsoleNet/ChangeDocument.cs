@@ -28,13 +28,15 @@ namespace ConsoleNet
             PdfImportedPage page = writer.GetImportedPage(reader, 1); //page #1
             PdfDictionary pageDict = reader.GetPageN(1);
             pageDict.Put(PdfName.PRINTSCALING, new PdfNumber((float)scalef));
-            writer.DirectContent.AddTemplate(page, (float)scalef, 0, 0, (float)scalef, 0, 0);
+
+            float yPos = reader.GetPageSize(1).Height - (reader.GetPageSize(1).Height * (float)scalef); 
+            writer.DirectContent.AddTemplate(page, (float)scalef, 0, 0, (float)scalef, 0, yPos);
+
             doc.NewPage();
 
             doc.Close();
             reader.Close();
             writer.Close();
         }
-
     }
 }

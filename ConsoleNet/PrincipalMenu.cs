@@ -18,10 +18,12 @@ namespace ConsoleNet
         private readonly Commom commom = new Commom();
         private double angle;
         readonly TrackerServices tracker = new TrackerServices();
+        private string img_file;
 
         public PrincipalMenu(string file_name, string action)
         {
             this.file_name = file_name;
+            img_file = commom.Convert_pdf_png(file_name);
             if (action.Equals("process"))
                 new Process(file_name);
             else if (action.Equals("retificate"))
@@ -39,10 +41,9 @@ namespace ConsoleNet
 
         private string Fix_Rotation()
         {
-            string img = commom.Convert_pdf_png(file_name);
-            string[] s_doc = img.Split(new[] { ".png" }, StringSplitOptions.None);
+            string[] s_doc = img_file.Split(new[] { ".png" }, StringSplitOptions.None);
 
-            var copy_image = (Bitmap)System.Drawing.Image.FromFile(img);
+            var copy_image = (Bitmap)System.Drawing.Image.FromFile(img_file);
             int stripCount = 10; // se o scan nao ter posições ou estiver muito torto alterar para 30
             var compact = new Compact(copy_image, stripCount);
 

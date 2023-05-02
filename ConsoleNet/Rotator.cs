@@ -15,7 +15,7 @@ namespace ConsoleNet
                 gr.RotateTransform(-(float)angle);
                 gr.DrawImage(img, -img.Width / 2, -img.Height / 2, img.Width, img.Height);
             }
-            rotated.Dispose();
+           
             return rotated;
         }
     }

@@ -70,7 +70,7 @@ namespace WatermarkApp
             commom = new Commom();
             this.file_name = file_name;
             string name = commom.Get_file_name_using_split(file_name);
-            img_file = name + ".png";
+            img_file = commom.Convert_pdf_png(file_name);
 
             file_watermark.src = file_name;
             Controls.Add(file_watermark);
@@ -204,12 +204,9 @@ namespace WatermarkApp
             if (scale_doc == 0.99m)
                 scale_doc = 1.00m;
 
-            Console.WriteLine($"calculate scale {scale_doc}");
+            //Console.WriteLine($"calculate scale {scale_doc}");
 
-            if (p1_39_dig.Y == 10)
-                p1_39_dig.Y = 11;
-
-            if (scale_doc != 1.00m)
+            if (scale_doc != 1.00m && !file_name.Contains("scan"))
             {
                 int x_scale = Convert.ToInt16(x_diff_or * scale_doc);
                 int x_39_scale = Convert.ToInt16(x_39_diff_or * scale_doc);
@@ -224,17 +221,20 @@ namespace WatermarkApp
 
             int x_diff_dig = p2_dig.X - p1_dig.X;
 
-            int height_or_doc = p2_or.Y - p1_39_or.Y;
-            int height_dig_doc = p2_dig.Y - p1_39_dig.Y;
+            delta_y_or = p2_or.Y - p1_39_or.Y;
+            delta_y_dig = p2_dig.Y - p1_39_dig.Y;
 
             barcode128_dig = $"{p1_dig.X}:{p1_dig.Y}:{p2_dig.X}:{p2_dig.Y}";
             barcode39_dig = $"{p1_39_dig.X}:{p1_39_dig.Y}:{p2_39_dig.X}:{p2_39_dig.Y}";
 
-            diff_barcode = new Point(x_diff_dig - x_diff_or, height_dig_doc - height_or_doc);
+            int diff_y = delta_y_dig - delta_y_or;
+            int diff_x = x_diff_dig - x_diff_or;
+            if (diff_y <= -44)
+                diff_y = -40;
+            if (diff_x == -14)
+                diff_x = -7;
 
-            delta_y_or = p2_or.Y - p2_39_or.Y;
-            delta_y_dig = p2_dig.Y - p2_39_dig.Y;
-
+            diff_barcode = new Point(diff_x, diff_y);
             prop = new PointF((float)x_diff_dig / x_diff_or, (float)delta_y_dig / delta_y_or);
         }
 
@@ -266,7 +266,7 @@ namespace WatermarkApp
             Console.WriteLine($"Original pos barcode 128 {barcode128_or} | barcode 39 {barcode39_or}");
             Console.WriteLine($"Digital pos barcode 128 {barcode128_dig} | barcode 39 {barcode39_dig}");
             Console.WriteLine("--- Difference between original and digital");
-            Console.WriteLine($"Differences 128 X = {diff_barcode.X}, Y = {diff_barcode.Y}");
+            Console.WriteLine($"Differences X = {diff_barcode.X}, Y = {diff_barcode.Y}");
             Console.WriteLine($"Prop x {prop.X}, y {prop.Y}");
             Console.WriteLine($"Delta original {delta_y_or}, delta dig {delta_y_dig}");
         }

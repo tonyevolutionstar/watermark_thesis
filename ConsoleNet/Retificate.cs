@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using Microsoft.VisualBasic.FileIO;
 
 namespace ConsoleNet
@@ -106,8 +107,8 @@ namespace ConsoleNet
                     string img_file = s_doc[0] + ".png";
                     string integrity_img_file = s_doc[0] + "_integrity.png";
 
-                    FileSystem.DeleteFile(img_file, UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
-                    FileSystem.DeleteFile(integrity_img_file, UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                    File.Delete(img_file);
+                    File.Delete(integrity_img_file);
                 }
             }
         }

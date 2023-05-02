@@ -89,16 +89,22 @@ namespace WatermarkApp
             angle = double.Parse(values[1]);
             
             Console.WriteLine($"angle = {angle}");
-   
+
             if (angle != 0.0)
             {
-                tracker.WriteFile("ficheiro scan está torto");
+                tracker.WriteFile("Ficheiro scan está torto");
            
                 if (rotated_img.Contains("rotated"))
                 {
-                    string[] file_val = rotated_img.Split(new[] { "_scan" }, StringSplitOptions.None);
-                    Document doc = new Document(new iTextSharp.text.Rectangle(0, 0, 578, 823)); 
-                    PdfWriter.GetInstance(doc, new FileStream(file_val + "_rotated.pdf", FileMode.Create));
+                    string[] file_val = rotated_img.Split(new[] { "_rotated" }, StringSplitOptions.None);
+                    Console.WriteLine(file_val[0]);
+
+                    string inputFile = file_val[0] + ".pdf";
+                    string rotatedPDF = file_val[0] + "_rotated.pdf";
+                    string rotatedPNG = file_val[0] + "_rotated.png";
+
+                    Document doc = new Document(new iTextSharp.text.Rectangle(0, 0, 578, 823));
+                    PdfWriter.GetInstance(doc, new FileStream(rotatedPDF, FileMode.Create));
                     doc.Open();
                     iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rotated_img);
                     image.SetDpi(300, 300);
@@ -107,17 +113,40 @@ namespace WatermarkApp
                     doc.Add(image);
                     doc.Close();
 
-                    FileSystem.DeleteFile(file_val[0] + ".pdf", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
-                    FileSystem.CopyFile(file_val[0] + "_rotated.pdf", file_val[0] + ".pdf", UIOption.OnlyErrorDialogs);                   
-                    File.Delete(file_val[0] + "_rotated.pdf");
-                    FileSystem.DeleteFile(file_val[0] + "_rotated.png", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
-                    FileSystem.DeleteFile(file_val[0] + ".png", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
-                    
-                    tracker.WriteFile("ficheiro scan composto");
+                    //FileSystem.DeleteFile(inputFile, UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                    FileSystem.CopyFile(rotatedPDF, inputFile, UIOption.OnlyErrorDialogs);
+                    FileSystem.DeleteFile(rotatedPDF, UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                    FileSystem.DeleteFile(rotatedPNG, UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                    if(File.Exists(img_file))
+                        File.Delete(img_file);
+
+                    tracker.WriteFile("Ficheiro scan composto");
                 }
             }
+            else
+            {
+                string[] file_val = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
+                string rotatedPDF = file_val[0] + "_rotated.pdf";
+                Bitmap bmp = new Bitmap(img_file);
+                bmp.Save(file_val[0] + "fix.png");
 
-            tracker.WriteFile("ficheiro scan está direito");
+                Document doc = new Document(new iTextSharp.text.Rectangle(0, 0, 578, 823));
+                PdfWriter.GetInstance(doc, new FileStream(rotatedPDF, FileMode.Create));
+                doc.Open();
+                iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(file_val[0] + "fix.png");
+                image.SetDpi(300, 300);
+                image.SetAbsolutePosition(0, 0); // canto superior esquerdo
+                image.ScaleToFit(doc.PageSize.Width, doc.PageSize.Height);
+                doc.Add(image);
+                doc.Close();
+                FileSystem.CopyFile(rotatedPDF, file_name, UIOption.OnlyErrorDialogs);
+                FileSystem.DeleteFile(rotatedPDF, UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+               
+                if (File.Exists(file_val[0] + "fix.png"))
+                    File.Delete(file_val[0] + "fix.png");
+            }
+
+            tracker.WriteFile("Ficheiro scan está direito");
         }
 
         private string Fix_Rotation()
@@ -125,7 +154,7 @@ namespace WatermarkApp
             string[] s_doc = img_file.Split(new[] { ".png" }, StringSplitOptions.None);
 
             var copy_image = (Bitmap)System.Drawing.Image.FromFile(img_file);
-            int stripCount = 10; // se o scan nao ter posições ou estiver muito torto alterar para 30
+            int stripCount = 15; // se o scan nao ter posições ou estiver muito torto alterar para 30
             var compact = new Compact(copy_image, stripCount);
 
             //find rotation angle

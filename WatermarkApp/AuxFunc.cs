@@ -259,11 +259,13 @@ namespace WatermarkApp
         }
 
 
-        public string DrawImage(List<string> return_list, int diff_x, int diff_y, double prop_x, double prop_y, int diff_width_doc, int diff_height_doc, int diff_width_bmp, int diff_height_bmp, double scale_doc)
+        public string DrawImage(List<string> return_list, string f, int diff_x, int diff_y, double prop_x, double prop_y, int diff_width_doc, int diff_height_doc, int diff_width_bmp, int diff_height_bmp, double scale_doc)
         {
             int sizeLetter = 10;
             Point intersection;
+            Commom commom = new Commom();
 
+            img_file = commom.Convert_pdf_png(f);
             using (Bitmap bmp = new Bitmap(img_file))
             {
                 using (Graphics g = Graphics.FromImage(bmp))
@@ -277,6 +279,9 @@ namespace WatermarkApp
                     SolidBrush drawBrush = new SolidBrush(Color.Blue);
                     SolidBrush orBrush = new SolidBrush(Color.Red);
 
+                    double diff_width = (double)diff_width_doc / diff_width_bmp;
+                    double diff_height = (double)diff_height_doc / diff_height_bmp;
+
                     for (int i = 0; i < return_list.Count; i++)
                     {
                         string[] values = return_list[i].Split('|');
@@ -284,9 +289,6 @@ namespace WatermarkApp
                         string ch = values[1];
                         int res_x = Convert.ToInt16(inter_point[0]);
                         int res_y = Convert.ToInt16(inter_point[1]);
-
-                        double diff_width = (double) diff_width_doc / diff_width_bmp;
-                        double diff_height = (double) diff_height_doc/ diff_height_bmp;
 
                         if (!img_file.Contains("scan"))
                         {
@@ -306,10 +308,17 @@ namespace WatermarkApp
                         }
                         else
                         {
-                            int new_x = Convert.ToInt32((res_x - diff_x) * prop_x + diff_width);
-                            int new_y = Convert.ToInt32((res_y - diff_y) * prop_y + diff_height);
+                            int n_x = Convert.ToInt16(res_x * w / bmp.Width);
+                            int n_y = Convert.ToInt16(res_y * h / bmp.Height);
+                          
+                            //Differences X = -13, Y = -44
+                            int s_x = Convert.ToInt32((n_x - diff_x) * prop_x );
+                            int s_y = Convert.ToInt32((n_y - diff_y-(diff_height_doc*2)+1) * prop_y );
+                            int new_x = Convert.ToInt16(s_x * bmp.Width / w);
+                            int new_y = Convert.ToInt16(s_y * bmp.Height / h);
+                            Console.WriteLine($"{ch.Trim()},{n_x},{n_y},{(n_x - diff_x)},{(n_y - diff_y)},{s_x},{s_y}");  
 
-                            intersection = new Point(new_x, new_y); //adjust point barcode                           
+                            intersection = new Point(new_x, new_y); //adjust point barcode                        
                         }
 
                         g.DrawString(ch, drawFont, drawBrush, intersection);
@@ -319,6 +328,7 @@ namespace WatermarkApp
                     filename = img_file.Split(new[] { ".png" }, StringSplitOptions.None);
                    
                     bmp.Save(filename[0] + integrity_extension + ".png");
+                    bmp.SetResolution(300, 300);
                     g.Dispose();
                     bmp.Dispose();
                 }

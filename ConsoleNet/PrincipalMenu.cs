@@ -42,7 +42,8 @@ namespace ConsoleNet
         private string Fix_Rotation()
         {
             string[] s_doc = img_file.Split(new[] { ".png" }, StringSplitOptions.None);
-
+      
+   
             var copy_image = (Bitmap)System.Drawing.Image.FromFile(img_file);
             int stripCount = 10; // se o scan nao ter posições ou estiver muito torto alterar para 30
             var compact = new Compact(copy_image, stripCount);
@@ -53,9 +54,11 @@ namespace ConsoleNet
 
             double angle = SkewCalculator.FindRotateAngle(compact, stripX1, stripX2);
             angle = (angle * 180 / Math.PI);//to degrees
+            Console.WriteLine("angle " + angle);
             if (angle != 0)
             {
                 var rotated = Rotator.Rotate(copy_image, angle);
+
                 rotated.Save(s_doc[0] + "_rotated.png");
             }
 
@@ -65,6 +68,7 @@ namespace ConsoleNet
         private void ChangeFile_Rotated()
         {
             string val = Fix_Rotation();
+            Console.WriteLine(val);
             string[] values = val.Split('|');
             string rotated_img = values[0];
             angle = double.Parse(values[1]);
@@ -77,9 +81,11 @@ namespace ConsoleNet
 
                 if (rotated_img.Contains("rotated"))
                 {
-                    string[] file_val = rotated_img.Split(new[] { "_scan" }, StringSplitOptions.None);
+                    string[] file_val = rotated_img.Split(new[] { ".png" }, StringSplitOptions.None);
+                    string outputRotatedPDF = file_val[0] + "_rotated.pdf";
+         
                     Document doc = new Document(new iTextSharp.text.Rectangle(0, 0, 578, 823));
-                    PdfWriter.GetInstance(doc, new FileStream(file_val + "_rotated.pdf", FileMode.Create));
+                    PdfWriter.GetInstance(doc, new FileStream(outputRotatedPDF, FileMode.Create));
                     doc.Open();
                     iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(rotated_img);
                     image.SetDpi(300, 300);
@@ -88,11 +94,11 @@ namespace ConsoleNet
                     doc.Add(image);
                     doc.Close();
 
-                    FileSystem.DeleteFile(file_val[0] + ".pdf", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
-                    FileSystem.CopyFile(file_val[0] + "_rotated.pdf", file_val[0] + ".pdf", UIOption.OnlyErrorDialogs);
+
+                    File.Delete(file_name);
+                    File.Copy(file_val[0] + "_rotated.pdf", file_name);
                     File.Delete(file_val[0] + "_rotated.pdf");
-                    FileSystem.DeleteFile(file_val[0] + "_rotated.png", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
-                    FileSystem.DeleteFile(file_val[0] + ".png", UIOption.OnlyErrorDialogs, RecycleOption.DeletePermanently);
+                    File.Delete(file_val[0] + ".png");
 
                     tracker.WriteFile("ficheiro scan composto");
                 }

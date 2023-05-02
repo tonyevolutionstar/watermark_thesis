@@ -293,7 +293,7 @@ namespace ConsoleNet
                                 int new_x = Convert.ToInt16(s_x * (double)bmp.Width/w);
                                 int new_y = Convert.ToInt16(s_y * (double)bmp.Height/h);
                      
-                                intersection = new Point(new_x, new_y); //adjust point barcode
+                                intersection = new Point(new_x, new_y);
                             }
                         }
                         else

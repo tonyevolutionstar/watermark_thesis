@@ -132,8 +132,7 @@ namespace ConsoleNet
                     TryHarder = true
                 }
             };
-            // devido a falhas de leitura do código de barras do zxing.net em certos documentos com escala variavel 
-            // usou-se o Bytescout.BarCodeReader para ler
+          
             var reader39 = new Bytescout.BarCodeReader.Reader();
             reader39.BarcodeTypesToFind.Code39 = true;
             reader39.MaxNumberOfBarcodesPerPage = 1;
@@ -224,7 +223,8 @@ namespace ConsoleNet
             {
                 using (FileStream outputStream = new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
-                    PdfReader reader = new PdfReader(sourceStream);
+                    PdfReader reader = new PdfReader(sourceStream); 
+                    PdfReader.unethicalreading = true;
                     PdfStamper stamper = new PdfStamper(reader, outputStream);
                     iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(img);
                     image.SetAbsolutePosition(0, 0);

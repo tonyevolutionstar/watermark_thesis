@@ -1,0 +1,2 @@
+process \Ficheiros\NACIONAL_1_2022_01000.pdf
+retificate \Ficheiros\NACIONAL_1_2022_01000_watermark_20_4_2023_14_54_40.pdf

@@ -41,15 +41,30 @@ namespace ConsoleNet
                 {
                     new PrincipalMenu(file_choosed, action);
                 }
-                else if (action.Equals("convert"))
+                else if (action.Equals("scale"))
                 {
                     ChangeDocument ch_doc = new ChangeDocument(file_choosed);
-
+                    ch_doc.Scale(0.5m);
                     for (decimal i = 0.8m; i < 1m; i += 0.05m)
                     {
                         ch_doc.Scale(i);
                         Console.WriteLine($"scale percentage {i * 100}");
                     }
+                }
+                else if (action.Equals("rotate"))
+                {
+                    ChangeDocument ch_doc = new ChangeDocument(file_choosed);
+            
+                    string img_file = commom.Convert_pdf_png(file_choosed);
+
+                    for (int i = -5; i < 6; i++)
+                    {
+                        ch_doc.RotateDoc(img_file, i);
+                        ch_doc.AddImage_pdf(i);
+                    }
+                
+                    if (File.Exists(img_file))
+                        File.Delete(img_file);
                 }
             }
         }

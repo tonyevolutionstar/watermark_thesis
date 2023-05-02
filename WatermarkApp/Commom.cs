@@ -208,19 +208,19 @@ namespace WatermarkApp
             x_39 = p1_barcode39.X + 1;
             y_39 = p1_barcode39.Y;
             x2_39 = p1_barcode39.X + 195;
-            y2_39 = p1_barcode39.Y + 15;
+            y2_39 = y_39 + 15;
 
             if (file_name.Contains("scan"))
             {
-                x_barcode_pos = p1_barcode128.X;
+                x_barcode_pos = p1_barcode128.X - 10;
                 y_barcode_pos = p1_barcode128.Y;
-                x2_barcode_pos = p2_barcode128.X;
+                x2_barcode_pos = p2_barcode128.X + 16;
                 y2_barcode_pos = p2_barcode128.Y + 15;
 
-                x_39 = p1_barcode39.X;
-                y_39 = p1_barcode39.Y;
+                x_39 = p1_barcode39.X + 1;
+                y_39 = p1_barcode39.Y+1;
                 x2_39 = p1_barcode39.X + 195;
-                y2_39 = p1_barcode39.Y + 15;
+                y2_39 = y_39 + 15;
             }
             bmp.Dispose();
 
@@ -233,7 +233,7 @@ namespace WatermarkApp
             List<string> returnlist = sql.Get_Values_Analise_Forense(id_doc);
             AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name);
 
-            string img = auxFunc.DrawImage(returnlist, difference_x, difference_y, prop_x, prop_y, diff_width_doc, diff_height_doc, diff_width_bmp, diff_height_bmp, scale_doc);
+            string img = auxFunc.DrawImage(returnlist, file_name, difference_x, difference_y, prop_x, prop_y, diff_width_doc, diff_height_doc, diff_width_bmp, diff_height_bmp, scale_doc);
             string[] filename = img.Split(new[] { ".png" }, StringSplitOptions.None);
 
             string output = filename[0] + ".pdf";
@@ -244,6 +244,7 @@ namespace WatermarkApp
                 using (FileStream outputStream = new FileStream(output, FileMode.Create, FileAccess.Write, FileShare.None))
                 {
                     PdfReader reader = new PdfReader(sourceStream);
+                    PdfReader.unethicalreading = true;
                     PdfStamper stamper = new PdfStamper(reader, outputStream);
                     iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(img);
                     image.SetAbsolutePosition(0, 0);
@@ -255,6 +256,7 @@ namespace WatermarkApp
                     reader.Close();
                 }
             }
+            Console.WriteLine(filename[0] + ".pdf");
 
             AnaliseForenseForm form = new AnaliseForenseForm(filename[0] + ".pdf");
             form.Show();

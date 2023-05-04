@@ -260,9 +260,11 @@ namespace ConsoleNet
             {
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
-                    Pen yellow = new Pen(Color.Yellow, 3);
-                    int width_circle = 5;
-                    int height_circle = 5;
+                    Pen red = new Pen(Color.Red, 7);
+                    Pen yellow = new Pen(Color.Yellow, 5);
+                    int size_cross = 25;
+                    int width_circle = 1;
+                    int height_circle = 1;
                     int startAngle = 0;
                     int sweepAngle = 360;
                     Font drawFont = new Font("Arial", sizeLetter);
@@ -305,6 +307,8 @@ namespace ConsoleNet
                         }
 
                         g.DrawString(ch, drawFont, drawBrush, intersection);
+                        g.DrawLine(red, intersection.X - size_cross, intersection.Y, intersection.X + size_cross, intersection.Y);
+                        g.DrawLine(red, intersection.X, intersection.Y - size_cross, intersection.X, intersection.Y + size_cross);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width_circle, height_circle, startAngle, sweepAngle);
                     }
 

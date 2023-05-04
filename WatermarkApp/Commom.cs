@@ -111,7 +111,6 @@ namespace WatermarkApp
         {
             string file_name = Get_file_img_name(img_file);
             trackerServices.WriteFile($"lendo o código de barras do ficheiro {file_name}");
-            //Console.WriteLine($"read barcode {img_file}");
             Bitmap bmp = new Bitmap(img_file);
             var reader = new BarcodeReader
             {
@@ -256,7 +255,6 @@ namespace WatermarkApp
                     reader.Close();
                 }
             }
-            Console.WriteLine(filename[0] + ".pdf");
 
             AnaliseForenseForm form = new AnaliseForenseForm(filename[0] + ".pdf");
             form.Show();

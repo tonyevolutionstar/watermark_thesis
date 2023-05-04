@@ -69,7 +69,6 @@ namespace WatermarkApp
             InitializeComponent();
             commom = new Commom();
             this.file_name = file_name;
-            string name = commom.Get_file_name_using_split(file_name);
             img_file = commom.Convert_pdf_png(file_name);
 
             file_watermark.src = file_name;

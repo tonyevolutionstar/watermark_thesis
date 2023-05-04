@@ -1,0 +1,35 @@
+04/05/2023 20:18:43 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf concluída
+04/05/2023 20:18:44 - ---------- Retificar -----------
+04/05/2023 20:18:44 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf a iniciar
+04/05/2023 20:18:44 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf
+04/05/2023 20:18:44 - lendo as posições do código de barras
+04/05/2023 20:20:21 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf concluída
+04/05/2023 20:20:22 - ---------- Retificar -----------
+04/05/2023 20:20:22 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf a iniciar
+04/05/2023 20:20:22 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf
+04/05/2023 20:20:22 - lendo as posições do código de barras
+04/05/2023 20:20:35 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf concluída
+04/05/2023 20:20:36 - ---------- Retificar -----------
+04/05/2023 20:20:36 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf a iniciar
+04/05/2023 20:20:36 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf
+04/05/2023 20:20:37 - lendo as posições do código de barras
+04/05/2023 20:21:22 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf concluída
+04/05/2023 20:21:23 - ---------- Retificar -----------
+04/05/2023 20:21:23 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf a iniciar
+04/05/2023 20:21:23 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf
+04/05/2023 20:21:23 - lendo as posições do código de barras
+04/05/2023 20:23:59 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf concluída
+04/05/2023 20:24:00 - ---------- Retificar -----------
+04/05/2023 20:24:00 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf a iniciar
+04/05/2023 20:24:00 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf
+04/05/2023 20:24:00 - lendo as posições do código de barras
+04/05/2023 20:24:40 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf concluída
+04/05/2023 20:24:41 - ---------- Retificar -----------
+04/05/2023 20:24:41 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf a iniciar
+04/05/2023 20:24:41 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf
+04/05/2023 20:24:42 - lendo as posições do código de barras
+04/05/2023 20:25:11 - converção do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf concluída
+04/05/2023 20:25:12 - ---------- Retificar -----------
+04/05/2023 20:25:12 - retificação do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf a iniciar
+04/05/2023 20:25:12 - lendo o código de barras do ficheiro C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\ConsoleNet\bin\Debug\Ficheiros\NACIONAL_1_2022_01000_watermark_24_4_2023_17_34_28.pdf
+04/05/2023 20:25:12 - lendo as posições do código de barras

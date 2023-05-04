@@ -270,9 +270,11 @@ namespace WatermarkApp
             {
                 using (Graphics g = Graphics.FromImage(bmp))
                 {
-                    Pen yellow = new Pen(Color.Yellow, 3);
-                    int width_circle = 5;
-                    int height_circle = 5;
+                    Pen red = new Pen(Color.Red, 7);
+                    Pen yellow = new Pen(Color.Yellow, 5);
+                    int size_cross = 25;
+                    int width_circle = 1;
+                    int height_circle = 1;
                     int startAngle = 0;
                     int sweepAngle = 360;
                     Font drawFont = new Font("Arial", sizeLetter);
@@ -302,7 +304,6 @@ namespace WatermarkApp
                                 int s_y = Convert.ToInt16(n_y * scale_doc);
                                 int new_x = Convert.ToInt16(s_x * (double)bmp.Width / w);
                                 int new_y = Convert.ToInt16(s_y * (double)bmp.Height / h);
-
                                 intersection = new Point(new_x, new_y); //adjust point barcode
                             }
                         }
@@ -316,12 +317,13 @@ namespace WatermarkApp
                             int s_y = Convert.ToInt32((n_y - diff_y-(diff_height_doc*2)+1) * prop_y );
                             int new_x = Convert.ToInt16(s_x * bmp.Width / w);
                             int new_y = Convert.ToInt16(s_y * bmp.Height / h);
-                            Console.WriteLine($"{ch.Trim()},{n_x},{n_y},{(n_x - diff_x)},{(n_y - diff_y)},{s_x},{s_y}");  
 
                             intersection = new Point(new_x, new_y); //adjust point barcode                        
                         }
 
                         g.DrawString(ch, drawFont, drawBrush, intersection);
+                        g.DrawLine(red, intersection.X - size_cross, intersection.Y, intersection.X + size_cross, intersection.Y);
+                        g.DrawLine(red, intersection.X, intersection.Y - size_cross, intersection.X, intersection.Y + size_cross);
                         g.DrawArc(yellow, intersection.X, intersection.Y, width_circle, height_circle, startAngle, sweepAngle);
                     }
 

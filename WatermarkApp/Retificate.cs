@@ -74,7 +74,7 @@ namespace WatermarkApp
             file_watermark.src = file_name;
             Controls.Add(file_watermark);
             result_barcode = commom.Read_barcode(img_file);
-
+            Console.WriteLine($"Res bar {result_barcode}");
             if (result_barcode == commom.errorReadBarcode)
             {
                 tracker.WriteFile($"retificação do ficheiro {file_name} falhou - {error_readBarcode}");

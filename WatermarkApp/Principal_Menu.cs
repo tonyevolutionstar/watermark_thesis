@@ -87,7 +87,7 @@ namespace WatermarkApp
             string[] values = val.Split('|');
             string rotated_img = values[0];
             angle = double.Parse(values[1]);
-            
+      
             Console.WriteLine($"angle = {angle}");
 
             if (angle != 0.0)

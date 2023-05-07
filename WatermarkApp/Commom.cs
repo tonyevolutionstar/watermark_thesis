@@ -81,6 +81,7 @@ namespace WatermarkApp
             string[] s_doc = file_name.Split(new[] { ".pdf" }, StringSplitOptions.None);
             return s_doc[0];
         }
+        
 
 
         public string Get_file_name_without_directory(string file_name)
@@ -112,6 +113,7 @@ namespace WatermarkApp
             string file_name = Get_file_img_name(img_file);
             trackerServices.WriteFile($"lendo o código de barras do ficheiro {file_name}");
             Bitmap bmp = new Bitmap(img_file);
+
             var reader = new BarcodeReader
             {
                 Options = new DecodingOptions
@@ -121,7 +123,7 @@ namespace WatermarkApp
                 }
             };
 
-            var result = reader.Decode(bmp);
+            Result result = reader.Decode(bmp);
 
             if (result != null)
             {

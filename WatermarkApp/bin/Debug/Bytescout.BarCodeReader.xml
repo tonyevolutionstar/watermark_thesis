@@ -1934,20 +1934,38 @@
         </member>
         <member name="M:Bytescout.BarCodeReader.IReader.LoadProfiles(System.String)">
             <summary>
-            Loads profiles from file.
+            Loads profiles from file. IMPORTANT: you will need to select profile using .Profiles to apply it.
+            You can switch between profiles using .Profiles property to set profile name.
+            If you use simplified profiles format then default profile name is `profile1`
+            To apply mulitple profiles please use comma separated list, e.g.: `profile1, profile2`. Or `profile1` for one single profile.
+            </summary>
+            <param name="fileName">JSON file containing profiles.</param>
+        </member>
+        <member name="M:Bytescout.BarCodeReader.IReader.LoadProfilesFromFileAndApply(System.String)">
+            <summary>
+            Loads profiles from file and applies immediately.
+            You can switch between profiles using .Profiles property to set profile name.
+            If you use simplified profiles format then default profile name is `profile1`
+            To apply mulitple profiles please use comma separated list, e.g.: `profile1, profile2`. Or `profile1` for one single profile.
             </summary>
             <param name="fileName">JSON file containing profiles.</param>
         </member>
         <member name="M:Bytescout.BarCodeReader.IReader.LoadProfilesFromString(System.String)">
             <summary>
-            Loads profiles from JSON string.
+            Loads profiles from JSON string. IMPORTANT: you will need to select profile using .Profiles to apply it.
+            You can switch between profiles using .Profiles property to set profile name.
+            If you use simplified profiles format then default profile name is `profile1`
+            To apply mulitple profiles please use comma separated list, e.g.: `profile1, profile2`. Or `profile1` for one single profile.
             </summary>
             <param name="jsonString">JSON string containing profiles.</param>
         </member>
         <member name="M:Bytescout.BarCodeReader.IReader.LoadAndApplyProfiles(System.String)">
             <summary>
-            Loads profiles from JSON string and automatically applies them. Note that profiles containing
-            detection keywords will be deferred until the extraction.
+            Loads profiles from JSON string and automatically applies them. 
+            IMPORTANT: you will need to select profile using .Profiles to apply it.
+            You can switch between profiles using .Profiles property to set profile name.
+            If you use simplified profiles format then default profile name is `profile1`
+            To apply mulitple profiles please use comma separated list, e.g.: `profile1, profile2`. Or `profile1` for one single profile.
             </summary>
             <remarks>Note, all existing profiles are discarded before loading profiles from the provided string.</remarks>
             <param name="jsonString">JSON string containing profiles.</param>

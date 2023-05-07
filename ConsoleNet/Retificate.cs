@@ -129,8 +129,6 @@ namespace ConsoleNet
             int startAngle = 0;
             int sweepAngle = 360;
             Pen yellow = new Pen(Color.Yellow, 3);
-            Pen red = new Pen(Color.Red, 3);
-            Pen green = new Pen(Color.Green, 3);
             Pen pink = new Pen(Color.Pink, 3);
 
             using (Bitmap bmp = new Bitmap(img_file))
@@ -153,34 +151,6 @@ namespace ConsoleNet
                     g.DrawArc(yellow, p1_r_u_r.X, p1_r_u_r.Y, w_arc, h_arc, startAngle, sweepAngle);
                     g.DrawArc(yellow, p1_l_b_r.X, p1_l_b_r.Y, w_arc, h_arc, startAngle, sweepAngle);
                     g.DrawArc(yellow, p1_r_b_r.X, p1_r_b_r.Y, w_arc, h_arc, startAngle, sweepAngle);
-
-                    int p_x_or = p1_or.X * bmp.Width / commom.width;
-                    int p_y_or = p1_or.Y * bmp.Height / commom.height;
-                    int p2_x_or = p2_or.X * bmp.Width / commom.width;
-                    int p2_y_or = p2_or.Y * bmp.Height / commom.height;
-                    Point p1_l_u_o = new Point(p_x_or, p_y_or);
-                    Point p1_r_u_o = new Point(p2_x_or, p_y_or);
-                    Point p1_r_b_o = new Point(p2_x_or, p2_y_or);
-                    Point p1_l_b_o = new Point(p_x_or, p2_y_or);
-
-                    g.DrawArc(red, p1_l_u_o.X, p1_l_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                    g.DrawArc(red, p1_r_u_o.X, p1_r_u_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                    g.DrawArc(red, p1_l_b_o.X, p1_l_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                    g.DrawArc(red, p1_r_b_o.X, p1_r_b_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-
-                    int p_x_39_or = p1_39_or.X * bmp.Width / commom.width;
-                    int p_y_39_or = p1_39_or.Y * bmp.Height / commom.height;
-                    int p2_x_39_or = p2_39_or.X * bmp.Width / commom.width;
-                    int p2_y_39_or = p2_39_or.Y * bmp.Height / commom.height;
-                    Point p1_l_u_39_o = new Point(p_x_39_or, p_y_39_or);
-                    Point p1_r_u_39_o = new Point(p2_x_39_or, p_y_39_or);
-                    Point p1_r_b_39_o = new Point(p2_x_39_or, p2_y_39_or);
-                    Point p1_l_b_39_o = new Point(p_x_39_or, p2_y_39_or);
-
-                    g.DrawArc(green, p1_l_u_39_o.X, p1_l_u_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                    g.DrawArc(green, p1_r_u_39_o.X, p1_r_u_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                    g.DrawArc(green, p1_l_b_39_o.X, p1_l_b_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
-                    g.DrawArc(green, p1_r_b_39_o.X, p1_r_b_39_o.Y, w_arc, h_arc, startAngle, sweepAngle);
 
                     int p_x_39_dig = p1_39_dig.X * bmp.Width / commom.width;
                     int p_y_39_dig = p1_39_dig.Y * bmp.Height / commom.height;

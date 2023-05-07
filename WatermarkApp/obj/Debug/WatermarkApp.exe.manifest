@@ -78,14 +78,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bytescout.BarCodeReader.dll" size="12161536">
-      <assemblyIdentity name="Bytescout.BarCodeReader" version="11.9.0.2093" publicKeyToken="F7DD1BD9D40A50EB" language="neutral" processorArchitecture="msil" />
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Bytescout.BarCodeReader.dll" size="12226048">
+      <assemblyIdentity name="Bytescout.BarCodeReader" version="12.0.0.2131" publicKeyToken="F7DD1BD9D40A50EB" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>ittaWrKTS+148sQheEVBxTYnWKVhSdM90Pxrinw8vXw=</dsig:DigestValue>
+        <dsig:DigestValue>N3Mb+JusquCW8YomtjhQLW7ItBUwFUI4bDn8mf2mtEo=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -145,7 +145,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>p7ZOu2gPHc3UTEOTrGi5By/HJs5KWn3tuVwCfr1EIEw=</dsig:DigestValue>
+        <dsig:DigestValue>xthy2UgU0x/z3QQc2SOekk70B4dOLRRvn0KuWaLYvUI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

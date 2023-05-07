@@ -55,7 +55,8 @@ class PositionCharacter extends PDFTextStripper
             FileWriter file = new FileWriter(f[0]+"_pos.txt", true);
             String ch;
 
-            for (TextPosition text : textPositions) {
+            for (TextPosition text : textPositions)
+            {
                 ch = text.getUnicode();
 
                 //remove ?

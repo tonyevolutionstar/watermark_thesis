@@ -75,8 +75,8 @@
     <Reference Include="BitMiracle.LibTiff.NET, Version=2.4.649.0, Culture=neutral, PublicKeyToken=53879b3e20e7a7d6, processorArchitecture=MSIL">
       <HintPath>packages\BitMiracle.LibTiff.NET.2.4.649\lib\net40\BitMiracle.LibTiff.NET.dll</HintPath>
     </Reference>
-    <Reference Include="Bytescout.BarCodeReader, Version=11.9.0.2093, Culture=neutral, PublicKeyToken=f7dd1bd9d40a50eb, processorArchitecture=MSIL">
-      <HintPath>packages\Bytescout.BarCode.Reader.11.9.0.2093\lib\net40\Bytescout.BarCodeReader.dll</HintPath>
+    <Reference Include="Bytescout.BarCodeReader, Version=12.0.0.2131, Culture=neutral, PublicKeyToken=f7dd1bd9d40a50eb, processorArchitecture=MSIL">
+      <HintPath>packages\Bytescout.BarCode.Reader.12.0.0.2131\lib\net40\Bytescout.BarCodeReader.dll</HintPath>
     </Reference>
     <Reference Include="Freeware.Pdf2Png, Version=1.0.1.0, Culture=neutral, PublicKeyToken=0b93ff91d4be458d, processorArchitecture=MSIL">
       <HintPath>packages\Freeware.Pdf2Png.1.0.1\lib\net45\Freeware.Pdf2Png.dll</HintPath>

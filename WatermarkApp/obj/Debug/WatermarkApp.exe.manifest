@@ -138,14 +138,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WatermarkApp.exe" size="76288">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="WatermarkApp.exe" size="76800">
       <assemblyIdentity name="WatermarkApp" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>lxnBXR16nVwIKKQdebLVNUHzwu7l6sRmFmsDiNSMN4o=</dsig:DigestValue>
+        <dsig:DigestValue>R7vZjgiOGX501F1WjDB9Z2PDeTKoZG9T8VNWK1wkpk0=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

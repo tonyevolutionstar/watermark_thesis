@@ -250,6 +250,20 @@ namespace WatermarkApp
             string ficheiroMDNSR = Path.Combine(partialPath, @"Ficheiros\NACIONAL_23_2022_05000.pdf");
             string ficheiroDELNATOSR = Path.Combine(partialPath, @"Ficheiros\NATO_190_2021_13000.pdf");
 
+            string ficheiroSeg = Path.Combine(partialPath, @"Ficheiros\Nacional Segurança-test.pdf");
+            Metadata metadataRegistoSeg = new Metadata();
+            metadataRegistoSeg.NumeroRegisto = @"4/2022/1000";
+            metadataRegistoSeg.NumeroExemplar = 1;
+            metadataRegistoSeg.NumeroCopia = 0;
+            metadataRegistoSeg.ClassificacaoSeguranca = "S";
+            metadataRegistoSeg.EstadoExemplar = Estado.Ativo;
+            metadataRegistoSeg.FormatoExemplar = Formato.Eletronico;
+            metadataRegistoSeg.Utilizador = "Daniela Sequeira";
+            metadataRegistoSeg.DataOperacao = new DateTime(2022, 04, 20, 17, 00, 35);
+            metadataRegistoSeg.SiglaPrincipal = @"Nacional Segurança";
+            metadataRegistoSeg.PostoAtual = "Registo Central";
+            metadataRegistoSeg.Dominio = "NACIONAL";
+
             Metadata metadataRegistoRC = new Metadata();
             metadataRegistoRC.NumeroRegisto = @"1/2022/01000";
             metadataRegistoRC.NumeroExemplar = 1;
@@ -306,6 +320,7 @@ namespace WatermarkApp
             conteudos.Add(metadataRegistoGNSSR, ficheiroGNSSR);
             conteudos.Add(metadataRegistoMDNSR, ficheiroMDNSR);
             conteudos.Add(metadataRegistoDELNATOSR, ficheiroDELNATOSR);
+            conteudos.Add(metadataRegistoSeg, ficheiroSeg);
             #endregion
 
             return conteudos;

@@ -311,13 +311,10 @@ namespace WatermarkApp
                         {
                             int n_x = Convert.ToInt16(res_x * w / bmp.Width);
                             int n_y = Convert.ToInt16(res_y * h / bmp.Height);
-                          
-                            //Differences X = -13, Y = -44
                             int s_x = Convert.ToInt32((n_x - diff_x) * prop_x );
                             int s_y = Convert.ToInt32((n_y - diff_y-(diff_height_doc*2)+1) * prop_y );
                             int new_x = Convert.ToInt16(s_x * bmp.Width / w);
                             int new_y = Convert.ToInt16(s_y * bmp.Height / h);
-
                             intersection = new Point(new_x, new_y); //adjust point barcode                        
                         }
 

@@ -53,11 +53,11 @@ CREATE TABLE watermark(
 );
 
 CREATE TABLE dimensions_document(
-id_doc INT FOREIGN KEY REFERENCES document(id_document),
-width int,
-height int,
-width_bmp int,
-height_bmp int 
+	id_doc INT FOREIGN KEY REFERENCES document(id_document),
+	width int,
+	height int,
+	width_bmp int,
+	height_bmp int 
 );
 
 CREATE TABLE position_char_file(
@@ -78,8 +78,6 @@ CREATE TABLE forense_analises(
 	line1_points varchar(200),
 	line2_points varchar(200)
 );
-
-
 
 -- Select * from document;
 -- Select * from barcode;

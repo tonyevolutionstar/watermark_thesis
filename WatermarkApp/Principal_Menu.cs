@@ -13,7 +13,7 @@ namespace WatermarkApp
         string file_name;
         private string errorFile_empty = "Por favor escolha um ficheiro";
         private string errorFile_without_watermark = "O ficheiro que selecionou ainda não tem marca de água";
-        private string errorFileType = "O ficheiro que selecionou é de formato imagem ou não é de formato pdf";
+        private string errorFileType = "O ficheiro que selecionou não é de formato pdf";
         private string errorFile_with_watermark = "O ficheiro que selecionou já foi processado";
         private string verify_scan_angle = "Verificar se o ficheiro scan está torto";
        
@@ -57,7 +57,7 @@ namespace WatermarkApp
                 string file_name_without_dir = commom.Get_file_name_without_directory(file_name);
                 img_file = commom.Convert_pdf_png(file_name);
 
-                if (file_name.Contains(".png"))
+                if (!file_name.Contains(".pdf"))
                 {
                     MessageBox.Show(errorFileType);
                 }
@@ -177,31 +177,38 @@ namespace WatermarkApp
         {
             if (Choose_file())
             {
-                string file_name_without_dir = commom.Get_file_name_without_directory(file_name);
-                img_file = commom.Convert_pdf_png(file_name);
-
-                if (file_name_without_dir.Contains(commom.extension_watermark))
+                if (!file_name.Contains(".pdf"))
                 {
-                    if(file_name.Contains("scan"))
-                    {
-                        tracker.WriteFile(verify_scan_angle);
-                        MessageBox.Show(verify_scan_angle);
-                        ChangeFile_Rotated();
-                    }
-
-                    Retificate retificar = new Retificate(file_name);
-                    try
-                    {
-                        retificar.Show();
-                    }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show(ex.Message);
-                    }
+                    MessageBox.Show(errorFileType);
                 }
                 else
                 {
-                    MessageBox.Show(errorFile_without_watermark);
+                    string file_name_without_dir = commom.Get_file_name_without_directory(file_name);
+                    img_file = commom.Convert_pdf_png(file_name);
+
+                    if (file_name_without_dir.Contains(commom.extension_watermark))
+                    {
+                        if (file_name.Contains("scan"))
+                        {
+                            tracker.WriteFile(verify_scan_angle);
+                            MessageBox.Show(verify_scan_angle);
+                            ChangeFile_Rotated();
+                        }
+
+                        Retificate retificar = new Retificate(file_name);
+                        try
+                        {
+                            retificar.Show();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show(ex.Message);
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(errorFile_without_watermark);
+                    }
                 }
             }
             else

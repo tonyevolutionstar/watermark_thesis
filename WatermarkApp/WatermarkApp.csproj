@@ -110,11 +110,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AnaliseForenseForm.cs">
+    <Compile Include="VerificacaoIntegridade.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="AnaliseForenseForm.Designer.cs">
-      <DependentUpon>AnaliseForenseForm.cs</DependentUpon>
+    <Compile Include="VerificacaoIntegridade.Designer.cs">
+      <DependentUpon>VerificacaoIntegridade.cs</DependentUpon>
     </Compile>
     <Compile Include="ChangeDocument.cs" />
     <Compile Include="Compact.cs" />
@@ -148,8 +148,8 @@
     <Compile Include="Retificate.Designer.cs">
       <DependentUpon>Retificate.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="AnaliseForenseForm.resx">
-      <DependentUpon>AnaliseForenseForm.cs</DependentUpon>
+    <EmbeddedResource Include="VerificacaoIntegridade.resx">
+      <DependentUpon>VerificacaoIntegridade.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Principal_Menu.resx">
       <DependentUpon>Principal_Menu.cs</DependentUpon>

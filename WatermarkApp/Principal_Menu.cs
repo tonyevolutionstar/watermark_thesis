@@ -186,7 +186,7 @@ namespace WatermarkApp
                     string file_name_without_dir = commom.Get_file_name_without_directory(file_name);
                     img_file = commom.Convert_pdf_png(file_name);
 
-                    if (file_name_without_dir.Contains(commom.extension_watermark))
+                    if (file_name_without_dir.Contains(commom.extension_watermark) && !file_name_without_dir.Contains("integrity"))
                     {
                         if (file_name.Contains("scan"))
                         {

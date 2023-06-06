@@ -258,7 +258,7 @@ namespace WatermarkApp
                 }
             }
 
-            AnaliseForenseForm form = new AnaliseForenseForm(filename[0] + ".pdf");
+            VerificacaoIntegridade form = new VerificacaoIntegridade(filename[0] + ".pdf");
             form.Show();
         }
 

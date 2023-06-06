@@ -4,24 +4,24 @@
         <name>WatermarkApp</name>
     </assembly>
     <members>
-        <member name="M:WatermarkApp.AnaliseForenseForm.#ctor(System.String)">
+        <member name="M:WatermarkApp.VerificacaoIntegridade.#ctor(System.String)">
             <summary>
             Mostrar resultado da análise forense através de um documento criado com as letras que se devia ter em azul
             </summary>
             <param name="file_name"></param>
         </member>
-        <member name="F:WatermarkApp.AnaliseForenseForm.components">
+        <member name="F:WatermarkApp.VerificacaoIntegridade.components">
             <summary>
             Required designer variable.
             </summary>
         </member>
-        <member name="M:WatermarkApp.AnaliseForenseForm.Dispose(System.Boolean)">
+        <member name="M:WatermarkApp.VerificacaoIntegridade.Dispose(System.Boolean)">
             <summary>
             Clean up any resources being used.
             </summary>
             <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         </member>
-        <member name="M:WatermarkApp.AnaliseForenseForm.InitializeComponent">
+        <member name="M:WatermarkApp.VerificacaoIntegridade.InitializeComponent">
             <summary>
             Required method for Designer support - do not modify
             the contents of this method with the code editor.

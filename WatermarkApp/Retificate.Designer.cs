@@ -62,12 +62,12 @@
             this.dct_name.TabIndex = 1;
             this.dct_name.Text = "label2";
             // 
-            // file_qrcode
+            // file_watermark
             // 
             this.file_watermark.Enabled = true;
             this.file_watermark.Location = new System.Drawing.Point(272, 12);
-            this.file_watermark.Name = "file_qrcode";
-            this.file_watermark.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("file_qrcode.OcxState")));
+            this.file_watermark.Name = "file_watermark";
+            this.file_watermark.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("file_watermark.OcxState")));
             this.file_watermark.Size = new System.Drawing.Size(1000, 533);
             this.file_watermark.TabIndex = 4;
             // 
@@ -138,7 +138,7 @@
             this.forense_btn.Name = "forense_btn";
             this.forense_btn.Size = new System.Drawing.Size(246, 84);
             this.forense_btn.TabIndex = 11;
-            this.forense_btn.Text = "Análise Forense";
+            this.forense_btn.Text = "Verificação de Integridade";
             this.forense_btn.UseVisualStyleBackColor = true;
             this.forense_btn.Click += new System.EventHandler(this.Forense_btn_Click);
             // 

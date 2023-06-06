@@ -370,7 +370,6 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\Watermark
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\Interop.AcroPDFLib.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\AxInterop.AcroPDFLib.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.csproj.ResolveComReference.cache
-C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.AnaliseForenseForm.resources
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.Principal_Menu.resources
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.Process.resources
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.Properties.Resources.resources
@@ -384,3 +383,4 @@ C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\Watermark
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.pdb
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Bytescout.BarCodeReader.dll
 C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\bin\Debug\Bytescout.BarCodeReader.xml
+C:\Users\tonya\OneDrive\Ambiente de Trabalho\mestrado\watermark_thesis\WatermarkApp\obj\Debug\WatermarkApp.VerificacaoIntegridade.resources

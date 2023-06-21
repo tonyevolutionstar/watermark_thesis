@@ -71,7 +71,7 @@
         </member>
         <member name="M:WatermarkApp.Process.#ctor(System.String)">
             <summary>
-            Processamento do ficheiro para a originação do documento com marca de água
+            Processamento do ficheiro para a criação do documento com marca de água
             </summary>
             <param name="file_name">Nome do ficheiro sem watermark</param>
         </member>

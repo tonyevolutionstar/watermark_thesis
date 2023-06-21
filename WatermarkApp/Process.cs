@@ -42,7 +42,7 @@ namespace WatermarkApp
         private string img_file;
 
         /// <summary>
-        /// Processamento do ficheiro para a originação do documento com marca de água
+        /// Processamento do ficheiro para a criação do documento com marca de água
         /// </summary>
         /// <param name="file_name">Nome do ficheiro sem watermark</param>
         public Process(string file_name)
@@ -233,7 +233,7 @@ namespace WatermarkApp
                 id_barcode = sql.Get_id_barcode(date_time_barcode.ToString());
 
                 AuxFunc auxFunc = new AuxFunc(id_doc, sql, file_name + ".pdf");
-                auxFunc.CalculateIntersection(analise.positions);
+                auxFunc.CalculateIntersection(analise.positions, output_file);
             }
         }
 

@@ -1,6 +1,9 @@
-﻿using System;
+﻿using iTextSharp.text.pdf;
+using Microsoft.VisualBasic.FileIO;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 
 namespace WatermarkApp
@@ -70,9 +73,107 @@ namespace WatermarkApp
         }
 
 
-        public void CalculateIntersection(string position)
+        private void Show_lines(Bitmap bmp, Point A, Point B, Point C, Point D)
         {
-            Bitmap bmp = new Bitmap(img_file);
+            Pen green = new Pen(Color.Green, 5);
+            List<string> p = new List<string>
+            {
+                "A",
+                "B",
+                "C",
+                "D"
+            };
+            Dictionary<string, Point> dic = new Dictionary<string, Point>
+            {
+                { "A", A },
+                { "B", B },
+                { "C", C },
+                { "D", D }
+            };
+
+
+            List<string> new_p = new List<string>();
+            List<string> uniqueCombinations = new List<string>();
+
+            using (Graphics g = Graphics.FromImage(bmp))
+            {
+                foreach (string p1 in p)
+                {
+                    foreach (string p2 in p)
+                    {
+                        if (!p1.Equals(p2) || !p2.Equals(p1))
+                        {
+                            new_p.Add($"{p1}:{p2}");
+                        }
+                    }
+                }
+
+                foreach (string val in new_p)
+                {
+                    string[] v = val.Split(':');
+                    string p1_v = v[0];
+                    string p2_v = v[1];
+                    bool duplicateFound = false;
+                    foreach (string val2 in uniqueCombinations)
+                    {
+                        string[] v2 = val2.Split(':');
+                        string p1_v2 = v2[0];
+                        string p2_v2 = v2[1];
+                        if (p1_v.Equals(p2_v2) && p2_v.Equals(p1_v2))
+                        {
+                            duplicateFound = true;
+                            break;
+                        }
+                    }
+                    if (!duplicateFound)
+                        uniqueCombinations.Add(val);
+                }
+
+                foreach (string val in uniqueCombinations)
+                {
+                    string[] v = val.Split(':');
+                    dic.TryGetValue(v[0], out Point X);
+                    dic.TryGetValue(v[1], out Point Y);
+                    g.DrawLine(green, X, Y);
+                }
+            }
+        }
+
+        private void WriteFile(Bitmap bmp, string watermark_file)
+        {
+            string[] getName = img_file.Split(new[] { ".png" }, StringSplitOptions.None);
+            bmp.Save(getName[0] + "_test.png");
+            string f_name = commom.Get_file_name_using_split(watermark_file);
+
+
+            using (FileStream sourceStream = new FileStream(watermark_file, FileMode.Open, FileAccess.Read, FileShare.Read))
+            {
+                using (FileStream outputStream = new FileStream(f_name + "_lines.pdf", FileMode.Create, FileAccess.Write, FileShare.None))
+                {
+                    PdfReader reader = new PdfReader(sourceStream);
+                    PdfReader.unethicalreading = true;
+                    PdfStamper stamper = new PdfStamper(reader, outputStream);
+                    iTextSharp.text.Image image = iTextSharp.text.Image.GetInstance(getName[0] + "_test.png");
+                    image.SetAbsolutePosition(0, 0);
+                    iTextSharp.text.Rectangle pageSize = reader.GetPageSizeWithRotation(1);
+                    image.ScaleToFit(pageSize.Width, pageSize.Height);
+                    PdfContentByte content = stamper.GetOverContent(1);
+                    content.AddImage(image);
+                    stamper.Close();
+                    reader.Close();
+                }
+            }
+
+            File.Delete(watermark_file);
+            File.Delete(getName[0] + "_test.png");
+            File.Copy(f_name + "_lines.pdf", watermark_file);
+            File.Delete(f_name + "_lines.pdf");
+        }
+
+        public void CalculateIntersection(string position, string watermark_file)
+        {
+            string f_name = commom.Get_file_name_using_split(watermark_file);
+            Bitmap bmp = new Bitmap(f_name + ".png");
 
             circle_points = Obtain_points_surround_circle(position, bmp);
        
@@ -111,7 +212,9 @@ namespace WatermarkApp
                         circle_points.TryGetValue(points_i[1], out Point B);
                         circle_points.TryGetValue(points_j[0], out Point C);
                         circle_points.TryGetValue(points_j[1], out Point D);
-                  
+
+                        //Show_lines(bmp, A, B, C, D); // comentar caso nao se queira mostrar as retas
+
                         Point res = Intersection(A, B, C, D);
                       
                         if ((res.X > 0 && res.X < bmp.Width) && res.Y > 0 && res.Y < bmp.Height && res.X != 0 && res.Y != 0 && (res.X != A.X && res.Y != A.Y) && (res.X != B.X && res.Y != B.Y) && (res.X != C.X && res.Y != C.Y) && (res.X != D.X && res.Y != D.Y))
@@ -204,6 +307,9 @@ namespace WatermarkApp
                     }
                 }
             }
+            
+            //WriteFile(bmp, watermark_file);// comentar caso nao se queira mostrar as retas
+
             bmp.Dispose();
         }
 
@@ -272,6 +378,7 @@ namespace WatermarkApp
                 {
                     Pen red = new Pen(Color.Red, 7);
                     Pen yellow = new Pen(Color.Yellow, 5);
+                    Pen green = new Pen(Color.Green, 5);
                     int size_cross = 25;
                     int width_circle = 1;
                     int height_circle = 1;

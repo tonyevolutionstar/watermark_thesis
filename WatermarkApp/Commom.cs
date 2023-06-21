@@ -219,7 +219,7 @@ namespace WatermarkApp
                 y2_barcode_pos = p2_barcode128.Y + 15;
 
                 x_39 = p1_barcode39.X + 1;
-                y_39 = p1_barcode39.Y+1;
+                y_39 = p1_barcode39.Y + 1;
                 x2_39 = p1_barcode39.X + 195;
                 y2_39 = y_39 + 15;
             }
